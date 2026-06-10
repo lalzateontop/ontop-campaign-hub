@@ -1498,6 +1498,8 @@ ${lastAssistant.content}`;
   showToast('Guardando hipótesis en GitHub...', 2000);
   await pushHipotesisToMd(S.client, hipotesis);
 }
+
+async function sendChat(){
   const inp=document.getElementById('chat-inp');
   if(!inp) return;
   const text=inp.value.trim();
