@@ -164,7 +164,8 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
   <div class="nav-item" onclick="syncSheets(true)" id="sync-btn" style="font-size:12px;display:none">↻ Sync manual</div>
   <div class="nav-sep"></div>
   <div class="nav-label">MD del proyecto</div>
-  <div id="md-status" style="padding:0 16px;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace">cargando...</div>
+  <div id="md-status" style="padding:0 16px;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;line-height:1.7">cargando...</div>
+  <div class="nav-item" onclick="promptGithubToken()" style="font-size:12px;color:var(--warn)">⚙ Configurar GitHub</div>
   <div class="nav-sep"></div>
   <div class="nav-label">API Key</div>
   <div class="nav-item" onclick="promptApiKey()" style="font-size:12px;color:var(--warn)">⚙ Configurar key</div>
@@ -268,31 +269,148 @@ let S = {
 // ══════════════════════════════════════════════
 // MD LOADER
 // ══════════════════════════════════════════════
-const MD_PATHS = {
-  edtech:'.agents/campaigns/edtech-plus-campaign.md',
-  toloka:'.agents/campaigns/toloka-campaign.md',
-  ride:'.agents/campaigns/ridetechnology-campaign.md',
-  nebius:'.agents/campaigns/nebius-campaign.md',
-  context:'.agents/product-marketing.md',
+// ══════════════════════════════════════════════
+// GITHUB API — lectura y escritura de .md
+// ══════════════════════════════════════════════
+const GITHUB = {
+  owner: 'lalzateontop',
+  repo: 'ontop-campaign-hub',
+  branch: 'main',
+  get token(){ return localStorage.getItem('ontop_github_token')||''; },
 };
 
-async function loadMd(){
-  let n=0;
-  for(const[k,p] of Object.entries(MD_PATHS)){
-    try{const r=await fetch(p);if(r.ok){S.campaignMd[k]=await r.text();n++;}}catch(e){}
+const MD_FILES = {
+  edtech:  '.agents/campaigns/edtech-plus-campaign.md',
+  toloka:  '.agents/campaigns/toloka-campaign.md',
+  ride:    '.agents/campaigns/ridetechnology-campaign.md',
+  nebius:  '.agents/campaigns/nebius-campaign.md',
+  context: '.agents/product-marketing.md',
+};
+
+// Lee un archivo desde GitHub API
+async function ghRead(path){
+  const url=`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/contents/${path}?ref=${GITHUB.branch}&t=${Date.now()}`;
+  const res=await fetch(url,{headers:{
+    'Authorization':`token ${GITHUB.token}`,
+    'Accept':'application/vnd.github.v3+json'
+  }});
+  if(!res.ok) throw new Error(`GitHub ${res.status}: ${path}`);
+  const data=await res.json();
+  return{content:atob(data.content.replace(/\n/g,'')), sha:data.sha};
+}
+
+// Escribe un archivo en GitHub API (append o reemplazar sección)
+async function ghWrite(path, newContent, commitMsg){
+  // Primero leer el SHA actual
+  const {sha}=await ghRead(path);
+  const url=`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/contents/${path}`;
+  const res=await fetch(url,{
+    method:'PUT',
+    headers:{
+      'Authorization':`token ${GITHUB.token}`,
+      'Accept':'application/vnd.github.v3+json',
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+      message: commitMsg,
+      content: btoa(unescape(encodeURIComponent(newContent))),
+      sha: sha,
+      branch: GITHUB.branch
+    })
+  });
+  if(!res.ok){
+    const err=await res.json();
+    throw new Error(err.message||`GitHub write error ${res.status}`);
   }
+  return await res.json();
+}
+
+// Agrega un bloque de aprendizaje al .md del cliente (append-only en Sección 5)
+async function appendCicloToMd(clientId, cicloBloque){
+  const path = MD_FILES[clientId];
+  if(!path) return;
+  const{content}=await ghRead(path);
+
+  // Buscar la sección de aprendizajes y agregar al final
+  const marker='## 5. Aprendizajes por ciclo';
+  const nextSection='## 6. Próximo ciclo';
+
+  let updated;
+  if(content.includes(marker)){
+    // Insertar antes de la sección 6
+    updated=content.replace(nextSection, cicloBloque+'\n\n'+nextSection);
+  } else {
+    updated=content+'\n\n'+cicloBloque;
+  }
+
+  const c=CLIENTS[clientId];
+  await ghWrite(path, updated, `Ciclo registrado — ${c?.name||clientId} — ${new Date().toLocaleDateString('es-CO',{month:'long',year:'numeric'})}`);
+  // Recargar en memoria
+  S.campaignMd[clientId]=updated;
+  showToast('✓ .md actualizado en GitHub',2500);
+}
+
+// Actualiza la sección 6 (Próximo ciclo) del .md
+async function updateProximoCicloMd(clientId, nuevaHipotesis){
+  const path = MD_FILES[clientId];
+  if(!path) return;
+  const{content}=await ghRead(path);
+
+  const marker='## 6. Próximo ciclo — hipótesis y ajustes';
+  if(!content.includes(marker)) return;
+
+  // Reemplazar todo el contenido de la sección 6
+  const parts=content.split(marker);
+  const updated=parts[0]+marker+'\n\n> Este bloque lo actualiza el hub desde el Paso 7 después de cada ciclo.\n\n'+nuevaHipotesis;
+
+  const c=CLIENTS[clientId];
+  await ghWrite(path, updated, `Estrategia actualizada — ${c?.name||clientId} — ${new Date().toLocaleDateString('es-CO',{month:'long',year:'numeric'})}`);
+  S.campaignMd[clientId]=updated;
+  showToast('✓ Estrategia actualizada en GitHub',2500);
+}
+
+async function loadMd(){
   const dot=document.getElementById('dot-md');
   const lbl=document.getElementById('md-label');
   const sb=document.getElementById('md-status');
+
+  if(!GITHUB.token){
+    if(dot) dot.className='skilldot err';
+    if(lbl) lbl.textContent='.md: configurar GitHub token';
+    if(sb)  sb.textContent='Haz clic en "Configurar GitHub" en el sidebar';
+    return;
+  }
+
+  if(dot) dot.className='skilldot loading';
+  if(lbl) lbl.textContent='cargando .md...';
+
+  let n=0;
+  for(const[k,path] of Object.entries(MD_FILES)){
+    try{
+      const{content}=await ghRead(path);
+      S.campaignMd[k]=content;
+      n++;
+    }catch(e){ console.warn('MD load error',k,e.message); }
+  }
+
   if(n>0){
     S.mdLoaded=true;
-    dot.className='skilldot ok';
-    lbl.textContent=`${n} .md cargados`;
-    if(sb) sb.textContent=`✓ ${n} archivos activos`;
+    if(dot) dot.className='skilldot ok';
+    if(lbl) lbl.textContent=`${n} .md cargados`;
+    if(sb)  sb.textContent=`✓ ${n} archivos activos`;
   } else {
-    dot.className='skilldot err';
-    lbl.textContent='.md: verificar servidor';
-    if(sb) sb.textContent='Correr: python3 -m http.server 8080';
+    if(dot) dot.className='skilldot err';
+    if(lbl) lbl.textContent='.md: error GitHub';
+    if(sb)  sb.textContent='Verificar token de GitHub';
+  }
+}
+
+function promptGithubToken(){
+  const t=prompt('Ingresa tu GitHub Personal Access Token (scope: repo):\nSe guarda solo en tu navegador.');
+  if(t&&t.trim()){
+    localStorage.setItem('ontop_github_token',t.trim());
+    showToast('✓ GitHub token guardado — recargando .md...',2000);
+    setTimeout(()=>loadMd(),500);
   }
 }
 
@@ -1171,7 +1289,11 @@ function renderResultados(){
         ${ci.notas?`<div style="font-size:12px;color:var(--text2);padding:8px;background:var(--bg3);border-radius:var(--r);margin-bottom:8px">${ci.notas}</div>`:''}
         ${ci.diagnostico?`<div style="border-top:1px solid var(--border);padding-top:10px;margin-top:4px"><div style="font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Diagnóstico Claude</div><div style="font-size:12px;color:var(--text2);line-height:1.7;white-space:pre-wrap">${ci.diagnostico}</div></div>`:''}
         <div class="brow" style="margin-top:8px">
-          ${!ci.diagnostico?`<button class="btn btnp" style="font-size:11px;padding:5px 10px" onclick="diagnosticarCiclo(${idx})">Diagnosticar →</button>`:`<button class="btn" style="font-size:11px;padding:5px 10px" onclick="irAEstrategia()">Iterar estrategia →</button>`}
+        ${!ci.diagnostico?`<button class="btn btnp" style="font-size:11px;padding:5px 10px" onclick="diagnosticarCiclo(${idx})">Diagnosticar →</button>`:`
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="btn" style="font-size:11px;padding:5px 10px" onclick="irAEstrategia()">Iterar estrategia →</button>
+            ${ci.mdBloque&&GITHUB.token?`<button class="btn btnp" style="font-size:11px;padding:5px 10px" onclick="pushCicloToMd(${idx})">↑ Guardar en .md</button>`:''}
+          </div>`}
         </div>
       </div>`;
     });
@@ -1258,12 +1380,46 @@ Máx 300 palabras. Directo y específico.`;
     if(!raw) return;
     ciclos[idx].diagnostico=raw;
     saveCiclos(S.client,t.id,ciclos);
-    showToast('✓ Diagnóstico listo',2000);
+    showToast('✓ Diagnóstico listo — puedes actualizar el .md',2500);
+
+    // Generar bloque de aprendizaje para el .md
+    const ci=ciclos[idx];
+    const mesLabel=ci.fecha||new Date().toLocaleDateString('es-CO',{month:'long',year:'numeric'});
+    ciclos[idx].mdBloque = `### Ciclo — ${mesLabel}
+**Resultado:** ${ci.migraciones}/${ci.targetMigraciones} migraciones (${ci.targetMigraciones>0?Math.round(ci.migraciones/ci.targetMigraciones*100):0}%)
+**Canal:** ${ci.canal} · Apertura: ${ci.apertura||'—'}% · Clicks: ${ci.clicks||'—'}%
+**Feedback HR:** ${ci.notas||'—'}
+
+**Diagnóstico:**
+${raw}`;
+    saveCiclos(S.client,t.id,ciclos);
     renderResultados();
   }catch(e){showToast('Error: '+e.message,4000);}
 }
 
 function irAEstrategia(){S.chatHistory=[];goStep(7);}
+
+// Actualiza el .md desde el diagnóstico de un ciclo
+async function pushCicloToMd(idx){
+  const t=S.track;
+  const ciclos=getCiclos(S.client,t.id);
+  const ci=ciclos[idx];
+  if(!ci?.mdBloque){showToast('Primero diagnostica el ciclo',2000);return;}
+  try{
+    await appendCicloToMd(S.client, ci.mdBloque);
+  }catch(e){
+    showToast('Error GitHub: '+e.message,4000);
+  }
+}
+
+// Actualiza la hipótesis del próximo ciclo en el .md
+async function pushHipotesisToMd(clientId, hipotesis){
+  try{
+    await updateProximoCicloMd(clientId, hipotesis);
+  }catch(e){
+    showToast('Error GitHub: '+e.message,4000);
+  }
+}
 
 // ══════════════════════════════════════════════
 // STEP 7: ESTRATEGIA (chat con contexto de resultados)
@@ -1313,7 +1469,10 @@ function renderChatUI(step){
       <div class="chat-msgs" id="chat-msgs">${msgsHtml}</div>
       <div class="chat-input-wrap">
         <textarea class="chat-inp" id="chat-inp" rows="2" placeholder="Pregunta sobre resultados, pide ajuste de estrategia, solicita nuevo copy..."></textarea>
-        <button class="send-btn" id="send-btn" onclick="sendChat()">Enviar</button>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <button class="send-btn" id="send-btn" onclick="sendChat()">Enviar</button>
+          ${GITHUB.token&&S.client&&CLIENTS[S.client]?`<button class="btn" style="font-size:11px;padding:5px 10px;white-space:nowrap" onclick="guardarHipotesisDesdeChat()" title="Guarda la última respuesta de Claude como hipótesis del próximo ciclo en el .md">↑ Guardar en .md</button>`:''}
+        </div>
       </div>
     </div>`;
 
@@ -1324,7 +1483,21 @@ function renderChatUI(step){
   });
 }
 
-async function sendChat(){
+async function guardarHipotesisDesdeChat(){
+  // Tomar la última respuesta de Claude del chat
+  const lastAssistant = [...S.chatHistory].reverse().find(m=>m.role==='assistant');
+  if(!lastAssistant){showToast('No hay respuesta de Claude para guardar',2000);return;}
+
+  const now = new Date();
+  const mesLabel = now.toLocaleDateString('es-CO',{month:'long',year:'numeric'});
+  const hipotesis = `**Período:** ${mesLabel}
+**Basado en conversación de estrategia — ${now.toLocaleDateString('es-CO')}**
+
+${lastAssistant.content}`;
+
+  showToast('Guardando hipótesis en GitHub...', 2000);
+  await pushHipotesisToMd(S.client, hipotesis);
+}
   const inp=document.getElementById('chat-inp');
   if(!inp) return;
   const text=inp.value.trim();
