@@ -274,9 +274,25 @@ let S = {
   step:1, emailChain:[], campaignMd:{}, mdLoaded:false,
   apiKey:localStorage.getItem('ontop_api_key')||'',
   trackStatus:{}, chatHistory:[],
-  lang:'en',
+  viewLang:'en',   // idioma que se está viendo/editando (se genera siempre EN+ES)
   channels:['email'],
 };
+
+// Helpers de contenido bilingüe
+function chainOf(st, lang){
+  if(!st) return [];
+  return st['emails_'+lang] || (lang==='es'&&st.emails) || [];
+}
+function hasContent(st){
+  return !!(st && ((st.emails_en&&st.emails_en.length) || (st.emails_es&&st.emails_es.length) || (st.emails&&st.emails.length)));
+}
+function contentCount(st){
+  const en=chainOf(st,'en'), es=chainOf(st,'es');
+  const base=en.length?en:es;
+  const emailCount=base.filter(e=>e.type==='email').length;
+  const waCount=base.filter(e=>e.type==='whatsapp').length;
+  return [emailCount?`${emailCount} emails`:'',waCount?`${waCount} WhatsApp`:''].filter(Boolean).join(' + ')||`${base.length} mensajes`;
+}
 
 // ══════════════════════════════════════════════
 // MD LOADER
@@ -429,14 +445,15 @@ function promptGithubToken(){
 // ══════════════════════════════════════════════
 // SYSTEM PROMPT (skills integrados)
 // ══════════════════════════════════════════════
-function buildSystem(){
+function buildSystem(lang){
   const md=S.campaignMd;
-  const TARGET_LANG=S.lang==='en'?'ENGLISH':'SPANISH';
+  const isEn=lang==='en';
+  const TARGET_LANG=isEn?'ENGLISH':'SPANISH';
   return `${'━'.repeat(40)}
 ‼️ OUTPUT LANGUAGE = ${TARGET_LANG} ‼️
 You MUST write 100% of the campaign copy (subjects, previews, bodies, CTAs, WhatsApp messages) in ${TARGET_LANG}.
 The instructions and reference documents below are written in Spanish, but that is IRRELEVANT to your output language. They are reference material only.
-${S.lang==='en'?'Even though these instructions are in Spanish, your ENTIRE output must be in fluent, native English. Do NOT write in Spanish. Do NOT translate literally. Write as a native English copywriter would.':'Escribe TODO en español natural y profesional.'}
+${isEn?'Even though these instructions are in Spanish, your ENTIRE output must be in fluent, native English. Do NOT write in Spanish. Do NOT translate literally. Write as a native English copywriter would.':'Escribe TODO en español natural y profesional.'}
 ${'━'.repeat(40)}
 
 Eres un experto en email marketing B2B2C y copywriting de productos financieros para trabajadores remotos. Trabajas para Ontop, plataforma de pagos internacionales.
@@ -488,8 +505,8 @@ ${md.toloka?'══ TOLOKA CAMPAIGN ══\n'+md.toloka.slice(0,800)+'\n':''}
 6. PPT contracts: NEVER offer Quick.
 
 ══ LANGUAGE ══
-Generate ALL copy in: ${S.lang==='en'?'ENGLISH':'SPANISH'}.
-${S.lang==='en'?'Use natural, professional English. Avoid literal translations. Write as a native speaker.':'Usa español natural y profesional. Evita anglicismos innecesarios.'}
+Generate ALL copy in: ${TARGET_LANG}.
+${isEn?'Use natural, professional English. Avoid literal translations. Write as a native speaker.':'Usa español natural y profesional. Evita anglicismos innecesarios.'}
 
 ══ CHANNELS TO GENERATE ══
 ${S.channels.includes('email')?`EMAIL CHAIN:
@@ -527,7 +544,7 @@ Writing principles:
 - Tone as instructed.
 
 ${'━'.repeat(40)}
-‼️ FINAL REMINDER: Your output MUST be entirely in ${TARGET_LANG}. ${S.lang==='en'?'Write everything in English, regardless of the Spanish instructions above.':'Escribe todo en español.'}
+‼️ FINAL REMINDER: Your output MUST be entirely in ${TARGET_LANG}. ${isEn?'Write everything in English, regardless of the Spanish instructions above.':'Escribe todo en español.'}
 ${'━'.repeat(40)}`;
 }
 
@@ -781,17 +798,8 @@ function selectTrackAndConfig(trackId){
 
 async function generateTrack(t, c){
   const el=document.getElementById(`prog-${t.id}`);
-  if(el){
-    el.style.opacity='1';
-    el.innerHTML=`
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-        <span style="font-size:13px;font-weight:500">${t.label}</span>
-        <div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>
-      </div>
-      <div style="font-size:12px;color:var(--text3)">Framework: ${S.framework} · ${S.psych.length} principios · ${S.lang==='en'?'English':'Español'} · ${S.channels.join('+')||'email'}</div>`;
-  }
+  const setProg=(html,border)=>{ if(el){el.innerHTML=html; if(border)el.style.borderColor=border; el.style.opacity='1';} };
 
-  const langLabel=S.lang==='en'?'English':'Spanish';
   const psychDesc=S.psych.map(k=>PSYCH.find(p=>p.key===k)).filter(Boolean).map(p=>`- ${p.label}: ${p.desc}`).join('\n');
   const channelInstructions=[];
   if(S.channels.includes('email')){
@@ -803,7 +811,7 @@ async function generateTrack(t, c){
     channelInstructions.push('Generate 2 WhatsApp messages (short, conversational, max 160 chars each). Format: WHATSAPP_1: ... WHATSAPP_END / WHATSAPP_2: ... WHATSAPP_END');
   }
 
-  const prompt=`Generate trade marketing campaign copy for Ontop in ${langLabel}.
+  const buildPrompt=(langLabel)=>`Generate trade marketing campaign copy for Ontop. WRITE EVERYTHING IN ${langLabel.toUpperCase()}.
 
 Client: ${c.name}
 Track: ${t.label}
@@ -814,7 +822,6 @@ Conversions needed: ${t.need}
 Contract type: ${c.contract}
 Framework: ${S.framework}
 Tone: ${S.tone}
-Language: ${langLabel}
 ${S.extraCtx?'Additional context: '+S.extraCtx:''}
 
 Psychological principles to apply:
@@ -827,36 +834,45 @@ ${channelInstructions.join('\n')}
 
 REMEMBER: All output text must be in ${langLabel.toUpperCase()}.`;
 
-  try{
-    const raw=await callClaude(prompt);
-    if(!raw){
-      if(el){
-        el.innerHTML=`<div style="font-size:13px;color:var(--accent3);margin-bottom:8px">${t.label} — Sin respuesta. Verifica tu API key en el sidebar.</div>
-          <button class="btn" style="font-size:11px" onclick="retryTrack('${t.id}')">↻ Reintentar</button>`;
-        el.style.borderColor='rgba(240,74,138,.3)';
-      }
-      return;
-    }
+  const genOne=async(lang)=>{
+    const raw=await callClaude(buildPrompt(lang==='en'?'English':'Spanish'), buildSystem(lang));
+    if(!raw) throw new Error('Respuesta vacía de la API');
     const items=parseAll(raw);
-    const emails=items.length?items:[{n:1,type:'email',subject:t.label,preview:'',body:raw,cta:'',legal:'',sent:false,editMode:false,editBody:''}];
-    saveStatus(S.client,t.id,{emails,sentCount:0,framework:S.framework,psych:S.psych,tone:S.tone,lang:S.lang,channels:S.channels,generatedAt:new Date().toISOString()});
-    if(S.track?.id===t.id) S.emailChain=emails;
-    const emailCount=emails.filter(e=>e.type==='email').length;
-    const waCount=emails.filter(e=>e.type==='whatsapp').length;
-    const countLabel=[emailCount?`${emailCount} emails`:'',waCount?`${waCount} WhatsApp`:''].filter(Boolean).join(' + ');
-    if(el) el.innerHTML=`
-      <div style="display:flex;align-items:center;justify-content:space-between">
+    return items.length?items:[{n:1,type:'email',subject:t.label,preview:'',body:raw,cta:'',legal:'',sent:false,editMode:false,editBody:''}];
+  };
+
+  try{
+    // EN
+    setProg(`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
         <span style="font-size:13px;font-weight:500">${t.label}</span>
-        <span style="color:var(--accent);font-size:12px;font-family:'DM Mono',monospace">✓ ${countLabel} generados</span>
-      </div>`;
-    if(el) el.style.borderColor='rgba(200,240,74,.3)';
+        <div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3)">🇺🇸 Generando inglés... · ${S.framework} · ${S.channels.join('+')||'email'}</div>`);
+    const emails_en=await genOne('en');
+
+    // ES
+    setProg(`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <span style="font-size:13px;font-weight:500">${t.label}</span>
+        <div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3)">🇺🇸 inglés ✓ · 🇨🇴 Generando español...</div>`);
+    const emails_es=await genOne('es');
+
+    saveStatus(S.client,t.id,{emails_en,emails_es,sentCount:0,framework:S.framework,psych:S.psych,tone:S.tone,channels:S.channels,generatedAt:new Date().toISOString()});
+    if(S.track?.id===t.id) S.emailChain=chainOf({emails_en,emails_es},S.viewLang);
+
+    const base=emails_en;
+    const emailCount=base.filter(e=>e.type==='email').length;
+    const waCount=base.filter(e=>e.type==='whatsapp').length;
+    const countLabel=[emailCount?`${emailCount} emails`:'',waCount?`${waCount} WhatsApp`:''].filter(Boolean).join(' + ');
+    setProg(`<div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:13px;font-weight:500">${t.label}</span>
+        <span style="color:var(--accent);font-size:12px;font-family:'DM Mono',monospace">✓ ${countLabel} · 🇺🇸+🇨🇴</span>
+      </div>`,'rgba(200,240,74,.3)');
   }catch(e){
-    const el=document.getElementById(`prog-${t.id}`);
-    if(el){
-      el.innerHTML=`<div style="font-size:13px;color:var(--accent3);margin-bottom:8px">${t.label} — Error: ${e.message}</div>
-        <button class="btn" style="font-size:11px" onclick="retryTrack('${t.id}')">↻ Reintentar</button>`;
-      el.style.borderColor='rgba(240,74,138,.3)';
-    }
+    setProg(`<div style="font-size:13px;color:var(--accent3);margin-bottom:8px">${t.label} — Error: ${e.message}</div>
+        <button class="btn" style="font-size:11px" onclick="retryTrack('${t.id}')">↻ Reintentar</button>`,'rgba(240,74,138,.3)');
+    console.error('generateTrack error:',t.id,e);
   }
 }
 
