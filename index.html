@@ -431,7 +431,15 @@ function promptGithubToken(){
 // ══════════════════════════════════════════════
 function buildSystem(){
   const md=S.campaignMd;
-  return `Eres un experto en email marketing B2B2C y copywriting de productos financieros para trabajadores remotos. Trabajas para Ontop, plataforma de pagos internacionales.
+  const TARGET_LANG=S.lang==='en'?'ENGLISH':'SPANISH';
+  return `${'━'.repeat(40)}
+‼️ OUTPUT LANGUAGE = ${TARGET_LANG} ‼️
+You MUST write 100% of the campaign copy (subjects, previews, bodies, CTAs, WhatsApp messages) in ${TARGET_LANG}.
+The instructions and reference documents below are written in Spanish, but that is IRRELEVANT to your output language. They are reference material only.
+${S.lang==='en'?'Even though these instructions are in Spanish, your ENTIRE output must be in fluent, native English. Do NOT write in Spanish. Do NOT translate literally. Write as a native English copywriter would.':'Escribe TODO en español natural y profesional.'}
+${'━'.repeat(40)}
+
+Eres un experto en email marketing B2B2C y copywriting de productos financieros para trabajadores remotos. Trabajas para Ontop, plataforma de pagos internacionales.
 
 ══ SKILL: emails v2.0 ══
 Cuando generas cadenas de emails:
@@ -516,7 +524,11 @@ WhatsApp rules: short sentences, mobile-first, no bullet points, one idea per me
 Writing principles:
 - First line of each message: hook immediately. NEVER start with "Hi, we're Ontop" or corporate intro.
 - Always human signature: Luis Miguel, your Ontop CSM
-- Tone as instructed.`;
+- Tone as instructed.
+
+${'━'.repeat(40)}
+‼️ FINAL REMINDER: Your output MUST be entirely in ${TARGET_LANG}. ${S.lang==='en'?'Write everything in English, regardless of the Spanish instructions above.':'Escribe todo en español.'}
+${'━'.repeat(40)}`;
 }
 
 // ══════════════════════════════════════════════
@@ -811,11 +823,20 @@ ${psychDesc}
 ${S.client==='toloka'?'IMPORTANT: Toloka has 6 All-In workers — use them as social proof.':''}
 
 Generate the following:
-${channelInstructions.join('\n')}`;
+${channelInstructions.join('\n')}
+
+REMEMBER: All output text must be in ${langLabel.toUpperCase()}.`;
 
   try{
     const raw=await callClaude(prompt);
-    if(!raw) return;
+    if(!raw){
+      if(el){
+        el.innerHTML=`<div style="font-size:13px;color:var(--accent3);margin-bottom:8px">${t.label} — Sin respuesta. Verifica tu API key en el sidebar.</div>
+          <button class="btn" style="font-size:11px" onclick="retryTrack('${t.id}')">↻ Reintentar</button>`;
+        el.style.borderColor='rgba(240,74,138,.3)';
+      }
+      return;
+    }
     const items=parseAll(raw);
     const emails=items.length?items:[{n:1,type:'email',subject:t.label,preview:'',body:raw,cta:'',legal:'',sent:false,editMode:false,editBody:''}];
     saveStatus(S.client,t.id,{emails,sentCount:0,framework:S.framework,psych:S.psych,tone:S.tone,lang:S.lang,channels:S.channels,generatedAt:new Date().toISOString()});
@@ -831,8 +852,18 @@ ${channelInstructions.join('\n')}`;
     if(el) el.style.borderColor='rgba(200,240,74,.3)';
   }catch(e){
     const el=document.getElementById(`prog-${t.id}`);
-    if(el){el.innerHTML=`<div style="font-size:13px;color:var(--accent3)">${t.label} — Error: ${e.message}</div>`;el.style.borderColor='rgba(240,74,138,.3)';}
+    if(el){
+      el.innerHTML=`<div style="font-size:13px;color:var(--accent3);margin-bottom:8px">${t.label} — Error: ${e.message}</div>
+        <button class="btn" style="font-size:11px" onclick="retryTrack('${t.id}')">↻ Reintentar</button>`;
+      el.style.borderColor='rgba(240,74,138,.3)';
+    }
   }
+}
+
+async function retryTrack(trackId){
+  const c=CLIENTS[S.client];
+  const t=c.tracks.find(x=>x.id===trackId);
+  if(t) await generateTrack(t,c);
 }
 
 async function forceRegenerate(){
@@ -987,8 +1018,8 @@ async function renderGenerate(){
         <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Ya existe <strong>${countLabel}</strong> para este track.</div>
         <div class="brow">
           <button class="btn btnp" onclick="goStep(4)">Ver y editar →</button>
-          <button class="btn" onclick="forceRegenerate()">Regenerar</button>
-          <button class="btn" onclick="S.track=null;S.emailChain=[];goStep(1)">← Elegir otro track</button>
+          <button class="btn" onclick="forceRegenerate()">↻ Regenerar</button>
+          <button class="btn" onclick="S.track=null;S.emailChain=[];goStep(4)">← Otros tracks</button>
         </div>
       </div>`;
     return;
@@ -1099,13 +1130,31 @@ function renderEdit(){
   }).join('');
 
   document.getElementById('panel').innerHTML=`
-    <div class="stitle">Edit <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · Track ${t.id}</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <button class="btn" style="font-size:12px" onclick="S.track=null;S.emailChain=[];goStep(4)">← Todos los tracks</button>
+      <span style="font-size:12px;color:var(--text3)">${c.name}</span>
+    </div>
+    <div class="stitle">Editar — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
+    ${trackSwitcher(t.id,4)}
     <div class="chain-wrap" id="chain-container">${chainsHtml}</div>
     <div class="brow">
-      <button class="btn" onclick="goStep(3)">← Regenerate</button>
-      <button class="btn btnp" onclick="goStep(5)">Mark status →</button>
-      <button class="btn" onclick="S.track=null;goStep(4)" style="margin-left:auto">↩ Todos los tracks</button>
+      <button class="btn btnp" onclick="goStep(5)">Marcar status →</button>
+      <button class="btn" onclick="forceRegenerate()">↻ Regenerar este track</button>
+      <button class="btn" onclick="exportClientDoc()" style="margin-left:auto">↓ Documento del cliente</button>
     </div>`;
+}
+
+// Pills para saltar entre tracks con contenido sin salir de la sección
+function trackSwitcher(currentTrackId, step){
+  const c=CLIENTS[S.client];
+  const withContent=c.tracks.filter(t=>{const st=getStatus(S.client,t.id);return st?.emails?.length>0;});
+  if(withContent.length<=1) return '';
+  return `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;align-items:center;padding:10px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r)">
+    <span style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-right:2px">Cambiar de track:</span>
+    ${withContent.map(t=>`
+      <button class="btn ${t.id===currentTrackId?'btnp':''}" style="font-size:11px;padding:5px 12px"
+        onclick="selectTrackAndGo('${t.id}',${step})" title="${t.label}">Track ${t.id}</button>`).join('')}
+  </div>`;
 }
 
 function exportClientDoc(){
@@ -1282,13 +1331,19 @@ function renderStatus(){
 
   const t=S.track;
 
-  let html=`<div class="stitle">Status campaña <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · Track ${t.id}</span></div>`;
+  let html=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <button class="btn" style="font-size:12px" onclick="S.track=null;S.emailChain=[];goStep(5)">← Todos los tracks</button>
+      <span style="font-size:12px;color:var(--text3)">${c.name}</span>
+    </div>
+    <div class="stitle">Status — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
+    ${trackSwitcher(t.id,5)}`;
   S.emailChain.forEach((em,i)=>{
+    const isWA=em.type==='whatsapp';
     html+=`<div class="card" style="margin-bottom:12px">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
         <div>
-          <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:14px">${em.subject}</div>
-          <div style="font-size:11px;color:var(--text3);margin-top:2px">Email ${em.n} de ${S.emailChain.length}</div>
+          <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:14px">${isWA?'💬 WhatsApp '+em.n:(em.subject||'Email '+em.n)}</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:2px">${isWA?'Mensaje WhatsApp':'Email'} ${em.n}</div>
         </div>
         ${em.sent?`<span class="status-sent">✓ Enviado</span>`:`<span class="status-pending">⏳ Pendiente</span>`}
       </div>
@@ -1297,7 +1352,6 @@ function renderStatus(){
         ${em.sent
           ?`<button class="btn" onclick="toggleSent(${i})">Marcar como no enviado</button>`
           :`<button class="btn btnp" onclick="toggleSent(${i})">✓ Marcar como enviado</button>`}
-        <button class="btn" onclick="goStep(4)">Editar email</button>
       </div>
     </div>`;
   });
@@ -1397,7 +1451,12 @@ function renderResultados(){
   const currData = currSnap?.clients?.[S.client];
   const prevData = prevSnap?.clients?.[S.client];
 
-  let html=`<div class="stitle">Resultados <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · Track ${t.id}</span></div>
+  let html=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <button class="btn" style="font-size:12px" onclick="S.track=null;goStep(6)">← Todos los tracks</button>
+      <span style="font-size:12px;color:var(--text3)">${c.name}</span>
+    </div>
+  <div class="stitle">Resultados — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
+  ${trackSwitcher(t.id,6)}
 
   <!-- Período indicator -->
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
