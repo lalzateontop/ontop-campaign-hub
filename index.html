@@ -682,7 +682,9 @@ function renderBrief(){
         <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',4)">Editar cadena</button>
         <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',5)">Status</button>
         <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',6)">Resultados</button>
-      </div>`:''}
+      </div>`:`<div class="brow" style="margin-top:0">
+        <button class="btn btnp" style="font-size:12px" onclick="selectTrackAndConfig('${t.id}')">⚙ Configurar y generar →</button>
+      </div>`}
     </div>`;
   };
 
@@ -756,6 +758,13 @@ function selectTrackAndGo(trackId, step){
   if(st?.emails?.length) S.emailChain=st.emails;
   else S.emailChain=[];
   goStep(step);
+}
+
+function selectTrackAndConfig(trackId){
+  const c=CLIENTS[S.client];
+  S.track=c.tracks.find(t=>t.id===trackId);
+  S.emailChain=[];
+  goStep(2); // ir a Skills para configurar antes de generar
 }
 
 async function generateTrack(t, c){
@@ -969,14 +978,17 @@ async function renderGenerate(){
   const existing=getStatus(S.client,t.id);
   if(existing?.emails?.length){
     S.emailChain=existing.emails;
+    const emailCount=existing.emails.filter(e=>e.type==='email').length;
+    const waCount=existing.emails.filter(e=>e.type==='whatsapp').length;
+    const countLabel=[emailCount?`${emailCount} emails`:'',waCount?`${waCount} WhatsApp`:''].filter(Boolean).join(' + ')||`${existing.emails.length} mensajes`;
     document.getElementById('panel').innerHTML=`
       <div class="stitle">Cadena existente <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · Track ${t.id}</span></div>
       <div class="card" style="background:rgba(200,240,74,.04);border-color:rgba(200,240,74,.15)">
-        <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Ya existe una cadena de <strong>${existing.emails.length} emails</strong> para este track.</div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Ya existe <strong>${countLabel}</strong> para este track.</div>
         <div class="brow">
           <button class="btn btnp" onclick="goStep(4)">Ver y editar →</button>
           <button class="btn" onclick="forceRegenerate()">Regenerar</button>
-          <button class="btn" onclick="goStep(1)">← Resumen</button>
+          <button class="btn" onclick="S.track=null;S.emailChain=[];goStep(1)">← Elegir otro track</button>
         </div>
       </div>`;
     return;
@@ -1010,21 +1022,29 @@ function renderEdit(){
   if(!S.track){
     const withChain=c.tracks.filter(t=>{const st=getStatus(S.client,t.id);return st?.emails?.length>0;});
     if(!withChain.length){goStep(1);return;}
-    let html=`<div class="stitle">Editar emails <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · selecciona un track</span></div>`;
+    let html=`<div class="stitle">Editar mensajes <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · selecciona un track</span></div>`;
     withChain.forEach(t=>{
       const st=getStatus(S.client,t.id);
       const emails=st.emails||[];
+      const emailCount=emails.filter(e=>e.type==='email').length;
+      const waCount=emails.filter(e=>e.type==='whatsapp').length;
       const sent=emails.filter(e=>e.sent).length;
+      const countLabel=[emailCount?`${emailCount} emails`:'',waCount?`${waCount} WhatsApp`:''].filter(Boolean).join(' + ');
       html+=`<div class="card" style="margin-bottom:10px;cursor:pointer" onclick="selectTrackAndGo('${t.id}',4)">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div>
             <div style="font-size:14px;font-weight:500;margin-bottom:4px">${t.label}</div>
-            <div style="font-size:12px;color:var(--text3)">${emails.length} emails · ${sent} enviados</div>
+            <div style="font-size:12px;color:var(--text3)">${countLabel} · ${sent} enviados</div>
           </div>
           <button class="btn btnp" style="font-size:12px">Editar →</button>
         </div>
       </div>`;
     });
+    html+=`<div class="card" style="background:rgba(74,240,184,.04);border-color:rgba(74,240,184,.2);margin-top:14px">
+      <div class="clabel">Documento completo del cliente</div>
+      <div style="font-size:12px;color:var(--text2);margin-bottom:12px">Descarga un solo documento Word con todos los tracks generados de ${c.name} — listo para compartir con el equipo de marketing.</div>
+      <button class="btn btnp" onclick="exportClientDoc()">↓ Descargar documento .docx — ${c.name}</button>
+    </div>`;
     html+=`<div class="brow"><button class="btn" onclick="goStep(1)">← Resumen</button></div>`;
     document.getElementById('panel').innerHTML=html;
     return;
@@ -1084,117 +1104,72 @@ function renderEdit(){
     <div class="brow">
       <button class="btn" onclick="goStep(3)">← Regenerate</button>
       <button class="btn btnp" onclick="goStep(5)">Mark status →</button>
-      <button class="btn" onclick="exportToGoogleDocs()" style="margin-left:auto">↗ Export to Google Docs</button>
+      <button class="btn" onclick="S.track=null;goStep(4)" style="margin-left:auto">↩ Todos los tracks</button>
     </div>`;
 }
 
-function exportToGoogleDocs(){
+function exportClientDoc(){
   const c=CLIENTS[S.client];
-  const t=S.track;
-  if(!S.emailChain.length){showToast('No hay contenido generado para exportar',2000);return;}
+  const tracksWithContent=c.tracks.filter(t=>{const st=getStatus(S.client,t.id);return st?.emails?.length>0;});
+  if(!tracksWithContent.length){showToast('No hay contenido generado para exportar',2000);return;}
 
-  // Construir el contenido del documento
-  const docTitle=`Ontop Campaign — ${c.name} · Track ${t?.id||'All'} · ${new Date().toLocaleDateString('es-CO',{month:'long',year:'numeric'})}`;
+  const mesLabel=new Date().toLocaleDateString('es-CO',{month:'long',year:'numeric'});
+  const fecha=new Date().toLocaleDateString('es-CO');
 
-  let content=`${docTitle}\n${'='.repeat(60)}\n\n`;
-  content+=`Client: ${c.name}\n`;
-  content+=`Track: ${t?.label||'All tracks'}\n`;
-  content+=`Generated: ${new Date().toLocaleString('es-CO')}\n`;
-  content+=`Language: ${S.lang==='en'?'English':'Español'} · Framework: ${S.framework}\n`;
-  content+=`\n${'─'.repeat(60)}\n\n`;
+  // Construir HTML compatible con Word (.doc se abre nativamente en Word)
+  let body=`
+    <h1 style="font-family:Arial;color:#1a1a1a;border-bottom:3px solid #c8f04a;padding-bottom:8px">Ontop Campaign — ${c.name}</h1>
+    <p style="font-family:Arial;color:#666;font-size:11pt">
+      <strong>Cliente:</strong> ${c.name} (${c.contract})<br>
+      <strong>Generado:</strong> ${fecha}<br>
+      <strong>Workers totales:</strong> ${c.workers}<br>
+      <strong>MRR B2C:</strong> ${c.mrr}
+    </p>
+    <hr>
+  `;
 
-  S.emailChain.forEach((em,i)=>{
-    if(em.type==='whatsapp'){
-      content+=`WHATSAPP ${em.n}\n${'-'.repeat(30)}\n`;
-      content+=`${em.body}\n\n`;
-    } else {
-      content+=`EMAIL ${em.n}\n${'-'.repeat(30)}\n`;
-      if(em.subject) content+=`Subject: ${em.subject}\n`;
-      if(em.preview) content+=`Preview: ${em.preview}\n`;
-      content+=`\n${em.body}\n`;
-      if(em.cta) content+=`\nCTA: ${em.cta}\n`;
-      if(em.legal) content+=`\n⚠️ Legal note: ${em.legal}\n`;
-      content+='\n';
-    }
-    content+='\n';
+  tracksWithContent.forEach(t=>{
+    const st=getStatus(S.client,t.id);
+    const emails=st.emails||[];
+    body+=`<h2 style="font-family:Arial;color:#1a1a1a;background:#f4f9e0;padding:8px 12px;margin-top:24px">${t.label}</h2>`;
+    body+=`<p style="font-family:Arial;color:#666;font-size:10pt"><strong>Ruta:</strong> ${t.route} · <strong>Δ MRR:</strong> ${t.delta}/worker · <strong>Conversiones objetivo:</strong> ${t.need} · <strong>Productos:</strong> ${t.products.join(', ')||'—'}</p>`;
+
+    emails.forEach((em,i)=>{
+      if(em.type==='whatsapp'){
+        body+=`<div style="border-left:3px solid #4af0b8;padding:8px 14px;margin:12px 0;background:#f0fffa">
+          <p style="font-family:Arial;font-size:9pt;color:#2a9d7f;margin:0 0 6px;font-weight:bold">💬 WHATSAPP ${em.n}</p>
+          <p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:0;white-space:pre-wrap">${escapeHtml(em.body)}</p>
+        </div>`;
+      } else {
+        body+=`<div style="border:1px solid #ddd;border-radius:6px;padding:14px;margin:12px 0">
+          <p style="font-family:Arial;font-size:9pt;color:#888;margin:0 0 4px;font-weight:bold">✉ EMAIL ${em.n}</p>
+          ${em.subject?`<p style="font-family:Arial;font-size:12pt;color:#1a1a1a;margin:4px 0;font-weight:bold">Asunto: ${escapeHtml(em.subject)}</p>`:''}
+          ${em.preview?`<p style="font-family:Arial;font-size:10pt;color:#888;margin:0 0 8px;font-style:italic">Preview: ${escapeHtml(em.preview)}</p>`:''}
+          <p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:8px 0;white-space:pre-wrap;line-height:1.5">${escapeHtml(em.body)}</p>
+          ${em.cta?`<p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:8px 0"><strong>CTA:</strong> <span style="background:#c8f04a;padding:3px 10px;border-radius:4px">${escapeHtml(em.cta)}</span></p>`:''}
+          ${em.legal?`<p style="font-family:Arial;font-size:9pt;color:#cc3366;margin:8px 0">⚠️ ${escapeHtml(em.legal)}</p>`:''}
+        </div>`;
+      }
+    });
   });
 
-  // Usar la API de Google Docs a través de OAuth
-  const googleToken=localStorage.getItem('ontop_google_token');
-  if(!googleToken){
-    // Iniciar OAuth flow
-    const clientId='YOUR_GOOGLE_CLIENT_ID'; // placeholder
-    showToast('Conectando con Google Drive... Necesitas autorizar el acceso una vez.',3000);
+  const fullHtml=`<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+  <head><meta charset="utf-8"><title>Ontop Campaign ${c.name}</title></head>
+  <body>${body}</body></html>`;
 
-    // Por ahora: crear el doc como texto plano descargable
-    // y ofrecer abrir Google Docs directamente
-    const blob=new Blob([content],{type:'text/plain;charset=utf-8'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url;
-    a.download=docTitle.replace(/[^a-zA-Z0-9\s\-·]/g,'')+'.txt';
-    a.click();
-    URL.revokeObjectURL(url);
-
-    // Abrir Google Docs para que peguen el contenido
-    setTimeout(()=>{
-      if(confirm('El archivo fue descargado. ¿Quieres abrir Google Docs para crear el documento?\n\nPuedes pegar el contenido descargado ahí.')){
-        window.open('https://docs.new','_blank');
-      }
-    },500);
-    return;
-  }
-
-  // Si hay token de Google, crear directamente via API
-  createGoogleDoc(docTitle, content, googleToken);
+  // Descargar como .doc (Word lo abre nativamente)
+  const blob=new Blob(['\ufeff'+fullHtml],{type:'application/msword'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`Ontop_Campaign_${c.name.replace(/\s/g,'_')}_${mesLabel.replace(/\s/g,'_')}.doc`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('✓ Documento descargado — listo para el equipo de marketing',3000);
 }
 
-async function createGoogleDoc(title, content, token){
-  showToast('Creando documento en Google Drive...', 2000);
-  try{
-    // Crear el documento
-    const res=await fetch('https://docs.googleapis.com/v1/documents',{
-      method:'POST',
-      headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
-      body:JSON.stringify({title})
-    });
-    if(res.status===401){
-      localStorage.removeItem('ontop_google_token');
-      showToast('Token de Google expirado — descargando como archivo',2000);
-      exportToGoogleDocs();
-      return;
-    }
-    const doc=await res.json();
-    const docId=doc.documentId;
-
-    // Insertar el contenido
-    await fetch(`https://docs.googleapis.com/v1/documents/${docId}:batchUpdate`,{
-      method:'POST',
-      headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'},
-      body:JSON.stringify({requests:[{insertText:{location:{index:1},text:content}}]})
-    });
-
-    showToast('✓ Documento creado en Google Drive',3000);
-    window.open(`https://docs.google.com/document/d/${docId}/edit`,'_blank');
-  }catch(e){
-    showToast('Error Google Docs: '+e.message,4000);
-  }
-}
-
-function connectGoogleDrive(){
-  // OAuth 2.0 implicit flow para Google
-  const clientId=localStorage.getItem('ontop_google_client_id');
-  if(!clientId){
-    const id=prompt('Para conectar Google Drive, necesitas un Google Client ID.\nEncuéntralo en console.cloud.google.com\n\nIngresa tu Client ID:');
-    if(!id) return;
-    localStorage.setItem('ontop_google_client_id',id.trim());
-  }
-  const cid=localStorage.getItem('ontop_google_client_id');
-  const scope='https://www.googleapis.com/auth/documents https://www.googleapis.com/auth/drive.file';
-  const redirectUri=window.location.origin+window.location.pathname;
-  const url=`https://accounts.google.com/o/oauth2/v2/auth?client_id=${cid}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=token&scope=${encodeURIComponent(scope)}`;
-  window.open(url,'_blank','width=500,height=600');
-  showToast('Autoriza el acceso en la ventana de Google que se abrió',4000);
+function escapeHtml(str){
+  return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function toggleEdit(i){
