@@ -260,11 +260,6 @@ const CHANNELS = [
   {key:'whatsapp', label:'WhatsApp', icon:'💬', desc:'Mensajes cortos (<160 chars), tono conversacional, sin formato'},
 ];
 
-const LANGUAGES = [
-  {key:'en', label:'English', flag:'🇺🇸'},
-  {key:'es', label:'Español', flag:'🇨🇴'},
-];
-
 // ══════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════
@@ -551,12 +546,13 @@ ${'━'.repeat(40)}`;
 // ══════════════════════════════════════════════
 // CLAUDE API
 // ══════════════════════════════════════════════
+const CLAUDE_MODEL='claude-sonnet-4-6'; // modelo vigente — actualizar aquí si cambia
 async function callClaude(prompt, systemOverride){
   if(!S.apiKey){showToast('API key no configurada — haz clic en "Configurar key" en el sidebar',4000);return null;}
   const res=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':S.apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,system:systemOverride||buildSystem(),messages:[{role:'user',content:prompt}]})
+    body:JSON.stringify({model:CLAUDE_MODEL,max_tokens:2000,system:systemOverride||buildSystem('es'),messages:[{role:'user',content:prompt}]})
   });
   const d=await res.json();
   if(d.error) throw new Error(d.error.message);
@@ -568,7 +564,7 @@ async function callClaudeChat(messages, systemOverride){
   const res=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':S.apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,system:systemOverride||buildSystem(),messages})
+    body:JSON.stringify({model:CLAUDE_MODEL,max_tokens:1500,system:systemOverride||buildSystem('es'),messages})
   });
   const d=await res.json();
   if(d.error) throw new Error(d.error.message);
@@ -671,8 +667,9 @@ function renderBrief(){
   const tierBar=(t)=>{
     const priClass=t.priority==='máxima'?'ta':t.priority.includes('requiere')||t.priority.includes('Legal')?'td':t.priority.includes('pendiente')||t.priority.includes('confirmar')?'tw':'tm';
     const st=getStatus(S.client,t.id);
-    const sentCount=st?.emails?.filter(e=>e.sent).length||0;
-    const emailCount=st?.emails?.length||0;
+    const chain=chainOf(st,S.viewLang);
+    const sentCount=chain.filter(e=>e.sent).length||0;
+    const emailCount=chain.length||0;
     const ciclos=getCiclos(S.client,t.id);
     const totalMig=ciclos.reduce((s,ci)=>s+(parseInt(ci.migraciones)||0),0);
     const pct=t.need>0?Math.min(Math.round(totalMig/t.need*100),100):0;
@@ -783,9 +780,7 @@ function goToSkillsAndSaveCtx(){
 function selectTrackAndGo(trackId, step){
   const c=CLIENTS[S.client];
   S.track=c.tracks.find(t=>t.id===trackId);
-  const st=getStatus(S.client,trackId);
-  if(st?.emails?.length) S.emailChain=st.emails;
-  else S.emailChain=[];
+  S.emailChain=chainOf(getStatus(S.client,trackId),S.viewLang);
   goStep(step);
 }
 
@@ -911,16 +906,9 @@ function renderSkills(){
       <div style="font-size:11px;color:var(--text3);margin-top:8px">Selecciona uno o más canales — se generará copy específico para cada uno.</div>
     </div>
 
-    <div class="card">
+    <div class="card" style="background:rgba(74,240,184,.04);border-color:rgba(74,240,184,.2)">
       <div class="clabel">Idioma</div>
-      <div style="display:flex;gap:8px">
-        ${LANGUAGES.map(l=>`
-          <div class="fcard ${S.lang===l.key?'active':''}" onclick="setLang('${l.key}')" style="cursor:pointer;flex:1;display:flex;align-items:center;gap:8px">
-            <span style="font-size:18px">${l.flag}</span>
-            <div class="fcard-name">${l.label}</div>
-            ${S.lang===l.key?`<span style="margin-left:auto;color:var(--accent)">✓</span>`:''}
-          </div>`).join('')}
-      </div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6">Cada track se genera automáticamente en <strong style="color:var(--accent2)">🇺🇸 inglés y 🇨🇴 español</strong>. Podrás alternar y editar cada versión en el paso Editar, y el documento del cliente incluirá ambos.</div>
     </div>
 
     <div class="card">
@@ -942,7 +930,7 @@ function renderSkills(){
       <div class="clabel">Configuración activa</div>
       <div style="font-size:12px;font-family:'DM Mono',monospace;line-height:1.9;color:var(--text2)">
         <div>Canales: <span style="color:var(--accent)">${S.channels.map(k=>CHANNELS.find(c=>c.key===k)?.label).join(' + ')||'ninguno seleccionado'}</span></div>
-        <div>Idioma: <span style="color:var(--accent)">${LANGUAGES.find(l=>l.key===S.lang)?.label}</span></div>
+        <div>Idioma: <span style="color:var(--accent2)">🇺🇸 EN + 🇨🇴 ES (ambos)</span></div>
         <div>Framework: <span style="color:var(--accent)">${S.framework}</span></div>
         <div>Psicología: <span style="color:var(--accent2)">${S.psych.length} principios</span></div>
         <div>Tono: <span style="color:var(--text)">${S.tone}</span></div>
@@ -960,7 +948,6 @@ function renderSkills(){
     </div>`;
 }
 function setFW(k){S.framework=k;renderSkills();}
-function setLang(k){S.lang=k;renderSkills();}
 function toggleChannel(k){
   const i=S.channels.indexOf(k);
   if(i>=0)S.channels.splice(i,1);
@@ -979,14 +966,8 @@ async function renderGenerate(){
 
   // MODO GLOBAL: generar todos los tracks sin cadena aún
   if(!S.track){
-    const pending=c.tracks.filter(t=>{
-      const st=getStatus(S.client,t.id);
-      return !st?.emails?.length;
-    });
-    const withChain=c.tracks.filter(t=>{
-      const st=getStatus(S.client,t.id);
-      return st?.emails?.length>0;
-    });
+    const pending=c.tracks.filter(t=>!hasContent(getStatus(S.client,t.id)));
+    const withChain=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
 
     if(!pending.length){
       goStep(4); return;
@@ -1023,11 +1004,9 @@ async function renderGenerate(){
   // MODO INDIVIDUAL: un track específico
   const t=S.track;
   const existing=getStatus(S.client,t.id);
-  if(existing?.emails?.length){
-    S.emailChain=existing.emails;
-    const emailCount=existing.emails.filter(e=>e.type==='email').length;
-    const waCount=existing.emails.filter(e=>e.type==='whatsapp').length;
-    const countLabel=[emailCount?`${emailCount} emails`:'',waCount?`${waCount} WhatsApp`:''].filter(Boolean).join(' + ')||`${existing.emails.length} mensajes`;
+  if(hasContent(existing)){
+    S.emailChain=chainOf(existing,S.viewLang);
+    const countLabel=contentCount(existing);
     document.getElementById('panel').innerHTML=`
       <div class="stitle">Cadena existente <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · Track ${t.id}</span></div>
       <div class="card" style="background:rgba(200,240,74,.04);border-color:rgba(200,240,74,.15)">
@@ -1067,21 +1046,19 @@ function renderEdit(){
 
   // MODO GLOBAL: mostrar selector de tracks con cadenas generadas
   if(!S.track){
-    const withChain=c.tracks.filter(t=>{const st=getStatus(S.client,t.id);return st?.emails?.length>0;});
+    const withChain=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
     if(!withChain.length){goStep(1);return;}
     let html=`<div class="stitle">Editar mensajes <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · selecciona un track</span></div>`;
     withChain.forEach(t=>{
       const st=getStatus(S.client,t.id);
-      const emails=st.emails||[];
-      const emailCount=emails.filter(e=>e.type==='email').length;
-      const waCount=emails.filter(e=>e.type==='whatsapp').length;
-      const sent=emails.filter(e=>e.sent).length;
-      const countLabel=[emailCount?`${emailCount} emails`:'',waCount?`${waCount} WhatsApp`:''].filter(Boolean).join(' + ');
+      const chain=chainOf(st,S.viewLang);
+      const sent=chain.filter(e=>e.sent).length;
+      const countLabel=contentCount(st);
       html+=`<div class="card" style="margin-bottom:10px;cursor:pointer" onclick="selectTrackAndGo('${t.id}',4)">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div>
             <div style="font-size:14px;font-weight:500;margin-bottom:4px">${t.label}</div>
-            <div style="font-size:12px;color:var(--text3)">${countLabel} · ${sent} enviados</div>
+            <div style="font-size:12px;color:var(--text3)">${countLabel} · 🇺🇸+🇨🇴 · ${sent} enviados</div>
           </div>
           <button class="btn btnp" style="font-size:12px">Editar →</button>
         </div>
@@ -1098,11 +1075,9 @@ function renderEdit(){
   }
 
   // MODO INDIVIDUAL: editar emails del track seleccionado
-  if(!S.emailChain.length){
-    const st=getStatus(S.client,S.track.id);
-    if(st?.emails?.length) S.emailChain=st.emails;
-    else{goStep(1);return;}
-  }
+  const st0=getStatus(S.client,S.track.id);
+  if(!hasContent(st0)){goStep(1);return;}
+  S.emailChain=chainOf(st0,S.viewLang);
   const t=S.track;
 
   let chainsHtml=S.emailChain.map((em,i)=>{
@@ -1150,7 +1125,14 @@ function renderEdit(){
       <button class="btn" style="font-size:12px" onclick="S.track=null;S.emailChain=[];goStep(4)">← Todos los tracks</button>
       <span style="font-size:12px;color:var(--text3)">${c.name}</span>
     </div>
-    <div class="stitle">Editar — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div class="stitle" style="margin-bottom:0">Editar — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
+      <div style="display:flex;gap:4px;background:var(--bg2);border:1px solid var(--border);border-radius:99px;padding:3px">
+        <button class="btn ${S.viewLang==='en'?'btnp':''}" style="font-size:11px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('en')">🇺🇸 English</button>
+        <button class="btn ${S.viewLang==='es'?'btnp':''}" style="font-size:11px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('es')">🇨🇴 Español</button>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--text3);margin:6px 0 16px;font-family:'DM Mono',monospace">Editando versión en ${S.viewLang==='en'?'inglés':'español'} · ambos idiomas se guardan por separado</div>
     ${trackSwitcher(t.id,4)}
     <div class="chain-wrap" id="chain-container">${chainsHtml}</div>
     <div class="brow">
@@ -1160,10 +1142,16 @@ function renderEdit(){
     </div>`;
 }
 
+function setViewLang(lang){
+  S.viewLang=lang;
+  if(S.step===4) renderEdit();
+  else if(S.step===5) renderStatus();
+}
+
 // Pills para saltar entre tracks con contenido sin salir de la sección
 function trackSwitcher(currentTrackId, step){
   const c=CLIENTS[S.client];
-  const withContent=c.tracks.filter(t=>{const st=getStatus(S.client,t.id);return st?.emails?.length>0;});
+  const withContent=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
   if(withContent.length<=1) return '';
   return `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;align-items:center;padding:10px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r)">
     <span style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-right:2px">Cambiar de track:</span>
@@ -1175,7 +1163,7 @@ function trackSwitcher(currentTrackId, step){
 
 function exportClientDoc(){
   const c=CLIENTS[S.client];
-  const tracksWithContent=c.tracks.filter(t=>{const st=getStatus(S.client,t.id);return st?.emails?.length>0;});
+  const tracksWithContent=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
   if(!tracksWithContent.length){showToast('No hay contenido generado para exportar',2000);return;}
 
   const mesLabel=new Date().toLocaleDateString('es-CO',{month:'long',year:'numeric'});
@@ -1193,22 +1181,18 @@ function exportClientDoc(){
     <hr>
   `;
 
-  tracksWithContent.forEach(t=>{
-    const st=getStatus(S.client,t.id);
-    const emails=st.emails||[];
-    body+=`<h2 style="font-family:Arial;color:#1a1a1a;background:#f4f9e0;padding:8px 12px;margin-top:24px">${t.label}</h2>`;
-    body+=`<p style="font-family:Arial;color:#666;font-size:10pt"><strong>Ruta:</strong> ${t.route} · <strong>Δ MRR:</strong> ${t.delta}/worker · <strong>Conversiones objetivo:</strong> ${t.need} · <strong>Productos:</strong> ${t.products.join(', ')||'—'}</p>`;
-
-    emails.forEach((em,i)=>{
+  const renderMsgs=(emails)=>{
+    let out='';
+    emails.forEach((em)=>{
       if(em.type==='whatsapp'){
-        body+=`<div style="border-left:3px solid #4af0b8;padding:8px 14px;margin:12px 0;background:#f0fffa">
+        out+=`<div style="border-left:3px solid #4af0b8;padding:8px 14px;margin:12px 0;background:#f0fffa">
           <p style="font-family:Arial;font-size:9pt;color:#2a9d7f;margin:0 0 6px;font-weight:bold">💬 WHATSAPP ${em.n}</p>
           <p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:0;white-space:pre-wrap">${escapeHtml(em.body)}</p>
         </div>`;
       } else {
-        body+=`<div style="border:1px solid #ddd;border-radius:6px;padding:14px;margin:12px 0">
+        out+=`<div style="border:1px solid #ddd;border-radius:6px;padding:14px;margin:12px 0">
           <p style="font-family:Arial;font-size:9pt;color:#888;margin:0 0 4px;font-weight:bold">✉ EMAIL ${em.n}</p>
-          ${em.subject?`<p style="font-family:Arial;font-size:12pt;color:#1a1a1a;margin:4px 0;font-weight:bold">Asunto: ${escapeHtml(em.subject)}</p>`:''}
+          ${em.subject?`<p style="font-family:Arial;font-size:12pt;color:#1a1a1a;margin:4px 0;font-weight:bold">Subject: ${escapeHtml(em.subject)}</p>`:''}
           ${em.preview?`<p style="font-family:Arial;font-size:10pt;color:#888;margin:0 0 8px;font-style:italic">Preview: ${escapeHtml(em.preview)}</p>`:''}
           <p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:8px 0;white-space:pre-wrap;line-height:1.5">${escapeHtml(em.body)}</p>
           ${em.cta?`<p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:8px 0"><strong>CTA:</strong> <span style="background:#c8f04a;padding:3px 10px;border-radius:4px">${escapeHtml(em.cta)}</span></p>`:''}
@@ -1216,6 +1200,22 @@ function exportClientDoc(){
         </div>`;
       }
     });
+    return out;
+  };
+
+  tracksWithContent.forEach(t=>{
+    const st=getStatus(S.client,t.id);
+    const en=chainOf(st,'en'), es=chainOf(st,'es');
+    body+=`<h2 style="font-family:Arial;color:#1a1a1a;background:#f4f9e0;padding:8px 12px;margin-top:24px">${t.label}</h2>`;
+    body+=`<p style="font-family:Arial;color:#666;font-size:10pt"><strong>Ruta:</strong> ${t.route} · <strong>Δ MRR:</strong> ${t.delta}/worker · <strong>Conversiones objetivo:</strong> ${t.need} · <strong>Productos:</strong> ${t.products.join(', ')||'—'}</p>`;
+    if(en.length){
+      body+=`<h3 style="font-family:Arial;color:#1a1a1a;margin-top:16px">🇺🇸 English</h3>`;
+      body+=renderMsgs(en);
+    }
+    if(es.length){
+      body+=`<h3 style="font-family:Arial;color:#1a1a1a;margin-top:16px">🇨🇴 Español</h3>`;
+      body+=renderMsgs(es);
+    }
   });
 
   const fullHtml=`<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
@@ -1258,41 +1258,56 @@ async function iterateWithAI(i){
   if(!instr){showToast('Escribe una instrucción primero',2000);return;}
   const statusEl=document.getElementById(`edit-status-${i}`);
   if(statusEl) statusEl.innerHTML='<div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>';
+  const langLabel=S.viewLang==='en'?'ENGLISH':'SPANISH';
+  const em=S.emailChain[i];
 
-  const prompt=`Tengo este email de campaña Ontop. Aplica el feedback:
+  let prompt;
+  if(em.type==='whatsapp'){
+    prompt=`Apply this feedback to an Ontop WhatsApp campaign message. Keep it under 160 chars, conversational. WRITE IN ${langLabel}.
 
 FEEDBACK: ${instr}
 
-EMAIL ACTUAL:
-ASUNTO: ${S.emailChain[i].subject}
+CURRENT MESSAGE:
+${body}
+
+Reply with ONLY the revised message text, nothing else.`;
+  } else {
+    prompt=`Apply this feedback to an Ontop campaign email. WRITE EVERYTHING IN ${langLabel}.
+
+FEEDBACK: ${instr}
+
+CURRENT EMAIL:
+SUBJECT: ${em.subject}
 ---
 ${body}
 ---
-CTA: ${S.emailChain[i].cta}
+CTA: ${em.cta}
 
-Genera el email revisado en el mismo formato (ASUNTO, PREVIEW, ---, cuerpo, ---, CTA, NOTA_LEGAL si aplica). Mantén todas las reglas de producto.`;
+Reply in the same format: SUBJECT: / PREVIEW: / --- / body / --- / CTA: / LEGAL_NOTE: (only if needed). Keep all product rules.`;
+  }
 
   try{
-    const raw=await callClaude(prompt);
+    const raw=await callClaude(prompt, buildSystem(S.viewLang));
     if(!raw) return;
-    const lines=raw.split('\n');
-    let subj=S.emailChain[i].subject,prev='',bd='',cta=S.emailChain[i].cta,legal='';
-    let inBody=false;
-    lines.forEach(l=>{
-      if(l.startsWith('ASUNTO:')) subj=l.replace('ASUNTO:','').trim();
-      else if(l.startsWith('PREVIEW:')) prev=l.replace('PREVIEW:','').trim();
-      else if(l.trim()==='---'&&!inBody) inBody=true;
-      else if(l.trim()==='---'&&inBody) inBody=false;
-      else if(l.startsWith('CTA:')) cta=l.replace('CTA:','').trim();
-      else if(l.startsWith('NOTA_LEGAL:')) legal=l.replace('NOTA_LEGAL:','').trim();
-      else if(inBody) bd+=l+'\n';
-    });
-    S.emailChain[i].subject=subj;
-    S.emailChain[i].preview=prev;
-    S.emailChain[i].body=bd.trim();
-    S.emailChain[i].cta=cta;
-    S.emailChain[i].legal=legal;
-    S.emailChain[i].editMode=false;
+    if(em.type==='whatsapp'){
+      em.body=raw.trim();
+    } else {
+      const lines=raw.split('\n');
+      let subj=em.subject,prev=em.preview||'',bd='',cta=em.cta,legal='';
+      let inBody=false;
+      lines.forEach(l=>{
+        const t=l.trim();
+        if(t.startsWith('SUBJECT:')||t.startsWith('ASUNTO:')) subj=t.replace(/^(SUBJECT|ASUNTO):/,'').trim();
+        else if(t.startsWith('PREVIEW:')) prev=t.replace('PREVIEW:','').trim();
+        else if(t==='---'&&!inBody) inBody=true;
+        else if(t==='---'&&inBody) inBody=false;
+        else if(t.startsWith('CTA:')) cta=t.replace('CTA:','').trim();
+        else if(t.startsWith('LEGAL_NOTE:')||t.startsWith('NOTA_LEGAL:')) legal=t.replace(/^(LEGAL_NOTE|NOTA_LEGAL):/,'').trim();
+        else if(inBody) bd+=l+'\n';
+      });
+      em.subject=subj; em.preview=prev; em.body=bd.trim(); em.cta=cta; em.legal=legal;
+    }
+    em.editMode=false;
     persistChain();
     renderEdit();
     showToast('✓ Iteración aplicada',2000);
@@ -1303,14 +1318,15 @@ Genera el email revisado en el mismo formato (ASUNTO, PREVIEW, ---, cuerpo, ---,
 
 function resetEmail(i){
   const st=getStatus(S.client,S.track.id);
-  if(st&&st.emails&&st.emails[i]) S.emailChain[i]=JSON.parse(JSON.stringify(st.emails[i]));
+  const orig=chainOf(st,S.viewLang);
+  if(orig&&orig[i]) S.emailChain[i]=JSON.parse(JSON.stringify(orig[i]));
   S.emailChain[i].editMode=false;
   renderEdit();
 }
 
 function persistChain(){
   const st=getStatus(S.client,S.track.id)||{};
-  st.emails=S.emailChain;
+  st['emails_'+S.viewLang]=S.emailChain;
   saveStatus(S.client,S.track.id,st);
 }
 
@@ -1323,12 +1339,12 @@ function renderStatus(){
 
   // Sin track — mostrar todos los tracks con su status
   if(!S.track||!S.emailChain.length){
-    const withChain=c.tracks.filter(t=>{const st=getStatus(S.client,t.id);return st?.emails?.length>0;});
+    const withChain=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
     if(!withChain.length){goStep(1);return;}
     let html=`<div class="stitle">${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— Status de campaña</span></div>`;
     withChain.forEach(t=>{
       const st=getStatus(S.client,t.id);
-      const emails=st.emails||[];
+      const emails=chainOf(st,S.viewLang);
       const sent=emails.filter(e=>e.sent).length;
       const pct=emails.length?Math.round(sent/emails.length*100):0;
       const color=pct===100?'var(--accent)':pct>0?'var(--warn)':'var(--text3)';
@@ -1351,7 +1367,14 @@ function renderStatus(){
       <button class="btn" style="font-size:12px" onclick="S.track=null;S.emailChain=[];goStep(5)">← Todos los tracks</button>
       <span style="font-size:12px;color:var(--text3)">${c.name}</span>
     </div>
-    <div class="stitle">Status — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div class="stitle" style="margin-bottom:0">Status — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
+      <div style="display:flex;gap:4px;background:var(--bg2);border:1px solid var(--border);border-radius:99px;padding:3px">
+        <button class="btn ${S.viewLang==='en'?'btnp':''}" style="font-size:11px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('en')">🇺🇸 EN</button>
+        <button class="btn ${S.viewLang==='es'?'btnp':''}" style="font-size:11px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('es')">🇨🇴 ES</button>
+      </div>
+    </div>
+    <div style="height:12px"></div>
     ${trackSwitcher(t.id,5)}`;
   S.emailChain.forEach((em,i)=>{
     const isWA=em.type==='whatsapp';
@@ -1527,15 +1550,18 @@ function renderResultados(){
   // Form nuevo ciclo manual
   html+=`<div class="card">
     <div class="clabel">Registrar ciclo mensual</div>
-    ${autoMig!==null?`<div style="background:rgba(74,240,184,.06);border:1px solid rgba(74,240,184,.2);border-radius:var(--r);padding:10px 12px;font-size:12px;color:var(--accent2);margin-bottom:14px;font-family:'DM Mono',monospace">
-      ✓ Sheets detectó <strong>${autoMig} migraciones</strong> en ${t.route} este mes. Puedes registrar el ciclo con este dato o ajustarlo manualmente.
-    </div>`:''}
+    <div style="background:${autoMig!==null?'rgba(74,240,184,.06)':'rgba(240,164,74,.06)'};border:1px solid ${autoMig!==null?'rgba(74,240,184,.2)':'rgba(240,164,74,.2)'};border-radius:var(--r);padding:12px 14px;margin-bottom:14px">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:6px">Migraciones del mes — calculado automáticamente de Sheets</div>
+      ${autoMig!==null
+        ? `<div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--accent2)">${autoMig} <span style="font-size:13px;font-weight:400;color:var(--text3)">migraciones ${t.route} en ${mesLabel}</span></div>
+           <div style="font-size:11px;color:var(--text3);margin-top:4px;font-family:'DM Mono',monospace">delta del snapshot ${getCurrentYM()} vs ${getPrevYM(getCurrentYM())}</div>`
+        : `<div style="font-size:13px;color:var(--warn)">Aún no hay dos snapshots para calcular el delta. Se necesita el snapshot de este mes y el del mes anterior. Las migraciones se calcularán automáticamente cuando ambos existan.</div>`}
+    </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
       <div class="field"><div class="flabel">Período</div><input type="text" id="ci-fecha" placeholder="Ej: Junio 2026" value="${mesLabel.charAt(0).toUpperCase()+mesLabel.slice(1)}"></div>
       <div class="field"><div class="flabel">Canal usado</div><select id="ci-canal"><option>Email vía HR</option><option>Email plataforma Ontop</option><option>WhatsApp</option><option>In-app pop-up</option><option>Combinado</option></select></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
-      <div class="field"><div class="flabel">Migraciones reales</div><input type="text" id="ci-mig" placeholder="Ej: 5" value="${autoMig!==null?autoMig:''}"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
       <div class="field"><div class="flabel">Apertura email %</div><input type="text" id="ci-ap" placeholder="Ej: 38"></div>
       <div class="field"><div class="flabel">Clicks %</div><input type="text" id="ci-cl" placeholder="Ej: 12"></div>
     </div>
@@ -1582,7 +1608,7 @@ function guardarCiclo(){
   const t=S.track;
   const ciclos=getCiclos(S.client,t.id);
   const autoMig = getAutoMigraciones(S.client, t.route);
-  const migVal = parseInt(document.getElementById('ci-mig')?.value)||0;
+  const migVal = autoMig!==null ? autoMig : 0; // siempre del cálculo de snapshots
   ciclos.push({
     fecha:document.getElementById('ci-fecha')?.value||'',
     canal:document.getElementById('ci-canal')?.value||'',
@@ -1591,11 +1617,11 @@ function guardarCiclo(){
     apertura:document.getElementById('ci-ap')?.value||'',
     clicks:document.getElementById('ci-cl')?.value||'',
     notas:document.getElementById('ci-notas')?.value||'',
-    fromSheets: autoMig!==null && migVal===autoMig,
+    fromSheets: autoMig!==null,
     diagnostico:null,ts:Date.now()
   });
   saveCiclos(S.client,t.id,ciclos);
-  showToast('✓ Ciclo guardado — ahora puedes diagnosticar',3000);
+  showToast(autoMig!==null?'✓ Ciclo guardado con migraciones de Sheets':'✓ Ciclo guardado (migraciones pendientes de snapshot)',3000);
   renderResultados();
 }
 
@@ -1609,7 +1635,7 @@ async function diagnosticarCiclo(idx){
   const prev=ciclos.slice(0,idx).map(cx=>`${cx.fecha}: ${cx.migraciones}/${cx.targetMigraciones} mig, apertura ${cx.apertura}%, clicks ${cx.clicks}%, notas: ${cx.notas}`).join('\n')||'Primer ciclo.';
   const pct=ci.targetMigraciones>0?Math.round((ci.migraciones/ci.targetMigraciones)*100):0;
 
-  const sys=buildSystem()+`\n\nADICIONAL — SKILLS PARA DIAGNÓSTICO:\n
+  const sys=buildSystem('es')+`\n\nADICIONAL — SKILLS PARA DIAGNÓSTICO:\n
 SKILL: marketing-ideas — Al diagnosticar, considera si hay tactics del banco de 139 ideas que apliquen: comparación de segmentos, re-engagement, social proof, referrals internos, community marketing.
 SKILL: marketing-plan (AARRR) — Analiza el ciclo con el lente AARRR: ¿Es problema de Activation (worker no activa el producto), Retention (activa pero no usa), o Acquisition (el mensaje no llega)?`;
 
