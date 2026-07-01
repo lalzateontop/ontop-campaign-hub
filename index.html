@@ -46,7 +46,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .mlabel{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
 .mval{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;color:var(--text)}
 .msub{font-size:10px;color:var(--text3);margin-top:3px;font-family:'DM Mono',monospace}
-select,input[type=text],textarea{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 13px;transition:border-color .15s;-webkit-appearance:none}
+select,input[type=text],input[type=password],textarea{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 13px;transition:border-color .15s;-webkit-appearance:none}
 select:focus,input:focus,textarea:focus{outline:none;border-color:var(--accent)}
 select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a5550' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px}
 textarea{resize:vertical;min-height:70px;line-height:1.6}
@@ -134,6 +134,54 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .step-dot{width:6px;height:6px;border-radius:50%;background:var(--text3)}
 .step-dot.done{background:var(--accent)}
 .step-dot.active{background:var(--warn)}
+/* CONEXIONES (sidebar) */
+.conn-row{display:flex;align-items:center;gap:8px;padding:6px 18px;font-size:12px;color:var(--text2);cursor:pointer;transition:background .15s}
+.conn-row:hover{background:rgba(255,255,255,.03)}
+.conn-row .conn-name{flex:1}
+.conn-row .conn-state{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3)}
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);z-index:5000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rlg);width:100%;max-width:520px;max-height:88vh;overflow-y:auto;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.modal-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px}
+.modal-sub{font-size:12px;color:var(--text3);margin-bottom:18px;line-height:1.6}
+.modal-close{margin-left:auto;background:transparent;border:none;color:var(--text3);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:6px}
+.modal-close:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.conn-block{border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px;background:var(--bg3)}
+.conn-block .cb-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.conn-block .cb-name{font-size:13px;font-weight:600;font-family:'Syne',sans-serif}
+.conn-block .cb-desc{font-size:11px;color:var(--text3);line-height:1.6;margin-bottom:10px}
+.conn-block input{font-family:'DM Mono',monospace;font-size:12px}
+/* EMPTY STATE */
+.empty{text-align:center;padding:46px 24px}
+.empty .e-icon{font-size:26px;opacity:.45;margin-bottom:10px}
+.empty .e-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;margin-bottom:6px}
+.empty .e-desc{font-size:12.5px;color:var(--text3);max-width:420px;margin:0 auto 18px;line-height:1.65}
+/* ONBOARDING BANNER */
+.setup-banner{display:flex;align-items:center;gap:14px;background:rgba(240,164,74,.06);border:1px solid rgba(240,164,74,.25);border-radius:var(--rlg);padding:14px 18px;margin-bottom:16px;flex-wrap:wrap}
+.setup-banner .sb-txt{flex:1;min-width:220px;font-size:12.5px;color:var(--text2);line-height:1.6}
+/* A11Y + MOTION */
+.btn:focus-visible,.nav-item:focus-visible,.step:focus-visible,.conn-row:focus-visible,.send-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* RESPONSIVE */
+.menu-btn{display:none;background:transparent;border:1px solid var(--border2);border-radius:8px;color:var(--text2);font-size:16px;padding:6px 10px;cursor:pointer;margin-right:8px;flex-shrink:0}
+.sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:900}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:860px){
+  body{overflow:auto}
+  .sidebar{position:fixed;left:0;top:0;bottom:0;z-index:1000;transform:translateX(-100%);transition:transform .22s ease;box-shadow:8px 0 30px rgba(0,0,0,.4)}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-backdrop.open{display:block}
+  .menu-btn{display:inline-flex}
+  .panel{padding:16px}
+  .mgrid{grid-template-columns:1fr 1fr}
+  .fgrid{grid-template-columns:1fr}
+  .grid4{grid-template-columns:1fr 1fr}
+  .grid2{grid-template-columns:1fr}
+  .mbubble{max-width:88%}
+  .pchip .tip{white-space:normal;width:200px}
+}
 </style>
 </head>
 <body>
@@ -158,28 +206,41 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
   <div class="nav-item" style="cursor:default;font-size:12px"><span class="sbadge">ADS</span> Ad Copy</div>
   <div class="nav-item" style="cursor:default;font-size:12px"><span class="sbadge">MKT</span> Ideas & Plan</div>
   <div class="nav-sep"></div>
-  <div class="nav-label">Sheets sync</div>
-  <div id="sheets-status" style="padding:0 16px;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;line-height:1.7">sin configurar</div>
-  <div class="nav-item" onclick="promptSheetsUrl()" style="font-size:12px;color:var(--warn)">⚙ Configurar URL</div>
-  <div class="nav-item" onclick="syncSheets(true)" id="sync-btn" style="font-size:12px;display:none">↻ Sync manual</div>
-  <div class="nav-sep"></div>
-  <div class="nav-label">MD del proyecto</div>
-  <div id="md-status" style="padding:0 16px;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;line-height:1.7">cargando...</div>
-  <div class="nav-item" onclick="promptGithubToken()" style="font-size:12px;color:var(--warn)">⚙ Configurar GitHub</div>
-  <div class="nav-sep"></div>
-  <div class="nav-label">API Key</div>
-  <div class="nav-item" onclick="promptApiKey()" style="font-size:12px;color:var(--warn)">⚙ Configurar key</div>
+  <div class="nav-label">Conexiones</div>
+  <div class="conn-row" onclick="openConfig('api')" title="API key de Anthropic — necesaria para generar contenido">
+    <span class="skilldot" id="dot-api" style="background:var(--text3)"></span>
+    <span class="conn-name">Claude API</span>
+    <span class="conn-state" id="api-state">—</span>
+  </div>
+  <div class="conn-row" onclick="openConfig('github')" title="Token de GitHub — sincroniza la estrategia (.md) de cada cliente">
+    <span class="skilldot" id="dot-md-side" style="background:var(--text3)"></span>
+    <span class="conn-name">GitHub (.md)</span>
+    <span class="conn-state" id="md-state">—</span>
+  </div>
+  <div class="conn-row" onclick="syncSheets(true)" title="Datos de workers por bucket — clic para sincronizar ahora">
+    <span class="skilldot" id="dot-sheets-side" style="background:var(--text3)"></span>
+    <span class="conn-name">Google Sheets</span>
+    <span class="conn-state" id="sheets-state">—</span>
+  </div>
+  <div id="sheets-status" style="display:none">sin configurar</div>
+  <div id="md-status" style="display:none">cargando...</div>
+  <div class="nav-item" onclick="openConfig()" style="font-size:12px;color:var(--warn)">⚙ Configurar conexiones</div>
+  <div class="nav-item" onclick="syncSheets(true)" id="sync-btn" style="font-size:12px;display:none">↻ Sync manual de Sheets</div>
+  <div style="flex:1"></div>
+  <div class="nav-item" onclick="openHelp()" style="font-size:12px;color:var(--text3)">? Cómo funciona el hub</div>
 </div>
+<div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar(false)"></div>
 
 <div class="main">
   <div class="topbar">
-    <div class="step active" id="step1" onclick="goStep(1)"><div class="snum">1</div>Resumen</div>
-    <div class="step" id="step2" onclick="goStep(2)"><div class="snum">2</div>Skills</div>
-    <div class="step" id="step3" onclick="goStep(3)"><div class="snum">3</div>Generar</div>
-    <div class="step" id="step4" onclick="goStep(4)"><div class="snum">4</div>Editar</div>
-    <div class="step" id="step5" onclick="goStep(5)"><div class="snum">5</div>Status</div>
-    <div class="step" id="step6" onclick="goStep(6)"><div class="snum">6</div>Resultados</div>
-    <div class="step" id="step7" onclick="goStep(7)"><div class="snum">7</div>Estrategia</div>
+    <button class="menu-btn" onclick="toggleSidebar()" aria-label="Abrir menú">☰</button>
+    <div class="step active" id="step1" onclick="goStep(1)" title="Métricas del cliente y tracks de campaña"><div class="snum">1</div>Resumen</div>
+    <div class="step" id="step2" onclick="goStep(2)" title="Configura canales, framework, psicología y tono"><div class="snum">2</div>Skills</div>
+    <div class="step" id="step3" onclick="goStep(3)" title="Genera emails y WhatsApp con Claude (EN + ES)"><div class="snum">3</div>Generar</div>
+    <div class="step" id="step4" onclick="goStep(4)" title="Revisa y edita cada mensaje, manual o con IA"><div class="snum">4</div>Editar</div>
+    <div class="step" id="step5" onclick="goStep(5)" title="Marca qué mensajes ya se enviaron"><div class="snum">5</div>Status</div>
+    <div class="step" id="step6" onclick="goStep(6)" title="Registra migraciones, apertura y clicks por ciclo"><div class="snum">6</div>Resultados</div>
+    <div class="step" id="step7" onclick="goStep(7)" title="Estrategia del cliente (.md) y chat con contexto"><div class="snum">7</div>Estrategia</div>
     <div class="tbar-right">
       <div id="periodo-indicator" style="display:flex;align-items:center;gap:10px;font-size:10px;font-family:'DM Mono',monospace">
         <div style="display:flex;align-items:center;gap:5px;color:var(--text3)">
@@ -201,6 +262,65 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
   <div class="panel" id="panel"></div>
 </div>
 <div class="toast" id="toast"></div>
+
+<!-- MODAL: CONEXIONES -->
+<div class="modal-backdrop" id="config-modal" onclick="if(event.target===this)closeModal('config-modal')">
+  <div class="modal" role="dialog" aria-label="Configurar conexiones">
+    <div style="display:flex;align-items:flex-start">
+      <div>
+        <div class="modal-title">Conexiones del hub</div>
+        <div class="modal-sub">Las llaves se guardan solo en este navegador (localStorage). Nunca salen de tu equipo salvo hacia el servicio correspondiente.</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('config-modal')" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div class="conn-block" id="cb-api">
+      <div class="cb-head"><span class="skilldot" id="mdot-api" style="background:var(--text3)"></span><span class="cb-name">Claude API</span><span class="conn-state" id="mstate-api" style="margin-left:auto">—</span></div>
+      <div class="cb-desc">Necesaria para generar contenido, iterar copy y diagnosticar ciclos. Se obtiene en console.anthropic.com → API Keys.</div>
+      <input type="password" id="inp-api-key" placeholder="sk-ant-..." autocomplete="off">
+    </div>
+
+    <div class="conn-block" id="cb-github">
+      <div class="cb-head"><span class="skilldot" id="mdot-github" style="background:var(--text3)"></span><span class="cb-name">GitHub — estrategia .md</span><span class="conn-state" id="mstate-github" style="margin-left:auto">—</span></div>
+      <div class="cb-desc">Personal Access Token con scope <strong style="color:var(--text2)">repo</strong>. Sincroniza los documentos de estrategia de cada cliente (lectura y escritura).</div>
+      <input type="password" id="inp-gh-token" placeholder="ghp_... / github_pat_..." autocomplete="off">
+    </div>
+
+    <div class="conn-block">
+      <div class="cb-head"><span class="skilldot" id="mdot-sheets" style="background:var(--text3)"></span><span class="cb-name">Google Sheets — datos de workers</span><span class="conn-state" id="mstate-sheets" style="margin-left:auto">—</span></div>
+      <div class="cb-desc">Endpoint fijo de Ontop, no requiere llave. Trae el snapshot mensual de buckets por cliente.</div>
+      <button class="btn" style="font-size:12px" onclick="syncSheets(true)">↻ Sincronizar ahora</button>
+    </div>
+
+    <div class="brow" style="margin-top:14px">
+      <button class="btn btnp" onclick="saveConfig()">Guardar cambios</button>
+      <button class="btn" onclick="closeModal('config-modal')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: AYUDA -->
+<div class="modal-backdrop" id="help-modal" onclick="if(event.target===this)closeModal('help-modal')">
+  <div class="modal" role="dialog" aria-label="Cómo funciona el hub">
+    <div style="display:flex;align-items:flex-start">
+      <div>
+        <div class="modal-title">Cómo funciona el hub</div>
+        <div class="modal-sub">Un ciclo de campaña por cliente, en 7 pasos. Puedes saltar entre pasos con la barra superior.</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('help-modal')" aria-label="Cerrar">✕</button>
+    </div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.8">
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">1 · Resumen</strong> — métricas del cliente y sus tracks. Elige un track o configura todo desde aquí.</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">2 · Skills</strong> — canales (email/WhatsApp), framework de copy, principios de psicología y tono. Se aplican a todos los tracks.</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">3 · Generar</strong> — Claude crea las cadenas en inglés y español. Requiere la API key configurada.</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">4 · Editar</strong> — revisa cada mensaje, edítalo a mano o pídele cambios a Claude. Exporta el documento Word del cliente.</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">5 · Status</strong> — marca qué mensajes ya se enviaron.</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">6 · Resultados</strong> — registra el ciclo (migraciones, apertura, clicks) y pide un diagnóstico a Claude.</div>
+      <div style="margin-bottom:14px"><strong style="color:var(--accent)">7 · Estrategia</strong> — el documento .md del cliente (desde GitHub) y un chat con todo el contexto para iterar la hipótesis del próximo ciclo.</div>
+      <div style="font-size:12px;color:var(--text3);border-top:1px solid var(--border);padding-top:12px">Las migraciones se calculan solas comparando el snapshot de Sheets del mes actual contra el anterior. Los aprendizajes de cada ciclo se guardan en el .md de GitHub para que nada se pierda.</div>
+    </div>
+  </div>
+</div>
 
 <script>
 // ══════════════════════════════════════════════
@@ -315,6 +435,54 @@ const MD_FILES = {
   context: '.agents/product-marketing.md',
 };
 
+// ══════════════════════════════════════════════
+// UTF-8 / TILDES
+// atob() decodifica base64 como Latin-1, no UTF-8 → "Lógica" se volvía "LÃ³gica".
+// b64DecodeUtf8 corrige la causa raíz; fixMojibake repara texto que ya quedó
+// corrupto (guardado así en GitHub o en localStorage antes del fix).
+// ══════════════════════════════════════════════
+function b64DecodeUtf8(b64){
+  const bin=atob((b64||'').replace(/\n/g,''));
+  const bytes=Uint8Array.from(bin,ch=>ch.charCodeAt(0));
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
+const _CP1252={128:8364,130:8218,131:402,132:8222,133:8230,134:8224,135:8225,136:710,137:8240,138:352,139:8249,140:338,142:381,145:8216,146:8217,147:8220,148:8221,149:8226,150:8211,151:8212,152:732,153:8482,154:353,155:8250,156:339,158:382,159:376};
+const MOJI_MAP=(()=>{
+  const enc=new TextEncoder();
+  // Rango Latin-1 completo incluyendo controles 0x80–0x9F (necesarios para
+  // desenrollar corrupción doble) y los "portadores" Ã/Â/â
+  let chars='';
+  for(let c=0x80;c<=0xFF;c++) chars+=String.fromCharCode(c);
+  chars+='—–“”‘’…•€™✓✗⚠→←↑↓↺↻☐☑✎✉💬🇺🇸🇨🇴\uFE0F';
+  const map=new Map();
+  for(const ch of chars){
+    const bytes=[...enc.encode(ch)];
+    // Ruta 1: atob puro → bytes altos como caracteres de control latin1
+    const latin1=bytes.map(b=>String.fromCharCode(b)).join('');
+    // Ruta 2: interpretación Windows-1252 (editores, otros lectores)
+    const cp1252=bytes.map(b=>String.fromCharCode(_CP1252[b]||b)).join('');
+    if(latin1!==ch&&!map.has(latin1)) map.set(latin1,ch);
+    if(cp1252!==ch&&cp1252!==latin1&&!map.has(cp1252)) map.set(cp1252,ch);
+  }
+  // Secuencias más largas primero (emoji 4 bytes > puntuación 3 > tildes 2)
+  return [...map.entries()].sort((a,b)=>b[0].length-a[0].length);
+})();
+
+function fixMojibake(s){
+  if(typeof s!=='string') return s;
+  if(s.indexOf('Ã')===-1&&s.indexOf('Â')===-1&&s.indexOf('â')===-1&&s.indexOf('ð')===-1) return s;
+  let out=s;
+  for(let pass=0;pass<3;pass++){
+    let changed=false;
+    for(const[k,v] of MOJI_MAP){
+      if(out.includes(k)){out=out.split(k).join(v);changed=true;}
+    }
+    if(!changed) break;
+  }
+  return out;
+}
+
 // Lee un archivo desde GitHub API
 async function ghRead(path){
   const url=`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/contents/${path}?ref=${GITHUB.branch}&t=${Date.now()}`;
@@ -324,7 +492,7 @@ async function ghRead(path){
   }});
   if(!res.ok) throw new Error(`GitHub ${res.status}: ${path}`);
   const data=await res.json();
-  return{content:atob(data.content.replace(/\n/g,'')), sha:data.sha};
+  return{content:fixMojibake(b64DecodeUtf8(data.content)), sha:data.sha};
 }
 
 // Escribe un archivo en GitHub API (append o reemplazar sección)
@@ -404,22 +572,23 @@ async function loadMd(){
 
   if(!GITHUB.token){
     if(dot) dot.className='skilldot err';
-    if(lbl) lbl.textContent='.md: configurar GitHub token';
-    if(sb)  sb.textContent='Haz clic en "Configurar GitHub" en el sidebar';
+    if(lbl) lbl.textContent='.md: configurar GitHub';
+    if(sb)  sb.textContent='Abre "⚙ Configurar conexiones" en el sidebar';
+    refreshConnStates();
     return;
   }
 
   if(dot) dot.className='skilldot loading';
   if(lbl) lbl.textContent='cargando .md...';
+  refreshConnStates();
 
-  let n=0;
-  for(const[k,path] of Object.entries(MD_FILES)){
-    try{
-      const{content}=await ghRead(path);
-      S.campaignMd[k]=content;
-      n++;
-    }catch(e){ console.warn('MD load error',k,e.message); }
-  }
+  // Carga en paralelo — antes era secuencial y tardaba 5× más
+  const results=await Promise.allSettled(Object.entries(MD_FILES).map(async([k,path])=>{
+    const{content}=await ghRead(path);
+    S.campaignMd[k]=content;
+  }));
+  const n=results.filter(r=>r.status==='fulfilled').length;
+  results.forEach((r,i)=>{ if(r.status==='rejected') console.warn('MD load error',Object.keys(MD_FILES)[i],r.reason?.message); });
 
   if(n>0){
     S.mdLoaded=true;
@@ -431,16 +600,12 @@ async function loadMd(){
     if(lbl) lbl.textContent='.md: error GitHub';
     if(sb)  sb.textContent='Verificar token de GitHub';
   }
+  refreshConnStates();
+  // Si el usuario está viendo la estrategia, refrescar con el contenido ya reparado
+  if(S.step===7 && CLIENTS[S.client]) renderEstrategiaCliente();
 }
 
-function promptGithubToken(){
-  const t=prompt('Ingresa tu GitHub Personal Access Token (scope: repo):\nSe guarda solo en tu navegador.');
-  if(t&&t.trim()){
-    localStorage.setItem('ontop_github_token',t.trim());
-    showToast('✓ GitHub token guardado — recargando .md...',2000);
-    setTimeout(()=>loadMd(),500);
-  }
-}
+function promptGithubToken(){ openConfig('github'); }
 
 // ══════════════════════════════════════════════
 // SYSTEM PROMPT (skills integrados)
@@ -559,7 +724,7 @@ ${'━'.repeat(40)}`;
 // ══════════════════════════════════════════════
 const CLAUDE_MODEL='claude-sonnet-4-6'; // modelo vigente — actualizar aquí si cambia
 async function callClaude(prompt, systemOverride){
-  if(!S.apiKey){showToast('API key no configurada — haz clic en "Configurar key" en el sidebar',4000);return null;}
+  if(!S.apiKey){showToast('Falta la API key de Claude — abriendo configuración',3000);openConfig('api');return null;}
   const res=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':S.apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
@@ -571,7 +736,7 @@ async function callClaude(prompt, systemOverride){
 }
 
 async function callClaudeChat(messages, systemOverride){
-  if(!S.apiKey){showToast('API key no configurada',3000);return null;}
+  if(!S.apiKey){showToast('Falta la API key de Claude — abriendo configuración',3000);openConfig('api');return null;}
   const res=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':S.apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
@@ -627,10 +792,10 @@ function parseAll(raw){
 // PERSIST STATUS
 // ══════════════════════════════════════════════
 function statusKey(cid,tid){return`ontop_status_${cid}_${tid}`;}
-function getStatus(cid,tid){try{return JSON.parse(localStorage.getItem(statusKey(cid,tid))||'null');}catch{return null;}}
+function getStatus(cid,tid){try{const raw=localStorage.getItem(statusKey(cid,tid));return raw?JSON.parse(fixMojibake(raw)):null;}catch{return null;}}
 function saveStatus(cid,tid,data){try{localStorage.setItem(statusKey(cid,tid),JSON.stringify(data));}catch{}}
 function ciclosKey(cid,tid){return`ontop_ciclos_${cid}_${tid}`;}
-function getCiclos(cid,tid){try{return JSON.parse(localStorage.getItem(ciclosKey(cid,tid))||'[]');}catch{return[];}}
+function getCiclos(cid,tid){try{const raw=localStorage.getItem(ciclosKey(cid,tid));return raw?JSON.parse(fixMojibake(raw)):[];}catch{return[];}}
 function saveCiclos(cid,tid,arr){try{localStorage.setItem(ciclosKey(cid,tid),JSON.stringify(arr));}catch{}}
 
 // ══════════════════════════════════════════════
@@ -747,6 +912,11 @@ function renderBrief(){
   }[dominantBucket] || 'var(--text2)';
 
   document.getElementById('panel').innerHTML=`
+    ${!S.apiKey||!GITHUB.token?`<div class="setup-banner">
+      <div class="sb-txt"><strong style="color:var(--warn)">Falta configurar ${!S.apiKey&&!GITHUB.token?'la API key y el token de GitHub':!S.apiKey?'la API key de Claude':'el token de GitHub'}.</strong>
+      ${!S.apiKey?' Sin API key no se puede generar contenido.':''}${!GITHUB.token?' Sin GitHub no se sincroniza la estrategia (.md) de los clientes.':''}</div>
+      <button class="btn btnp" style="font-size:12px" onclick="openConfig()">⚙ Configurar conexiones</button>
+    </div>`:''}
     <div class="stitle">${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— Resumen de campaña</span></div>
     <div class="mgrid">
       <div class="metric"><div class="mlabel">Workers totales</div><div class="mval">${totalWorkers.toLocaleString()}</div></div>
@@ -912,7 +1082,7 @@ function renderSkills(){
 
     <div class="card">
       <div class="clabel">Canales a generar</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="grid2">
         ${CHANNELS.map(ch=>`
           <div class="fcard ${S.channels.includes(ch.key)?'active':''}" onclick="toggleChannel('${ch.key}')" style="cursor:pointer">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
@@ -1074,7 +1244,12 @@ function renderEdit(){
   // MODO GLOBAL: mostrar selector de tracks con cadenas generadas
   if(!S.track){
     const withChain=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
-    if(!withChain.length){goStep(1);return;}
+    if(!withChain.length){
+      document.getElementById('panel').innerHTML=`
+        <div class="stitle">Editar mensajes <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name}</span></div>
+        ${emptyState('✉','Aún no hay mensajes para editar',`Primero genera las cadenas de email y WhatsApp de ${c.name}. Configura los skills en el paso 2 y genera en el paso 3 — toma un par de minutos por track.`,'Ir a generar contenido →','goStep(2)')}`;
+      return;
+    }
     let html=`<div class="stitle">Editar mensajes <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · selecciona un track</span></div>`;
     withChain.forEach(t=>{
       const st=getStatus(S.client,t.id);
@@ -1367,7 +1542,12 @@ function renderStatus(){
   // Sin track — mostrar todos los tracks con su status
   if(!S.track||!S.emailChain.length){
     const withChain=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
-    if(!withChain.length){goStep(1);return;}
+    if(!withChain.length){
+      document.getElementById('panel').innerHTML=`
+        <div class="stitle">${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— Status de campaña</span></div>
+        ${emptyState('⏳','Nada que marcar todavía',`El status registra qué mensajes de ${c.name} ya se enviaron, pero aún no hay contenido generado.`,'Ir a generar contenido →','goStep(2)')}`;
+      return;
+    }
     let html=`<div class="stitle">${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— Status de campaña</span></div>`;
     withChain.forEach(t=>{
       const st=getStatus(S.client,t.id);
@@ -1793,7 +1973,9 @@ function mdToHtml(md){
   h=h.replace(/^- \[x\] (.+)$/gm,'<div style="padding:2px 0;color:var(--accent2)">☑ $1</div>');
   h=h.replace(/^- (.+)$/gm,'<div style="padding:2px 0 2px 14px;color:var(--text2)">• $1</div>');
   h=h.replace(/^---$/gm,'<hr style="border:none;border-top:1px solid var(--border);margin:16px 0">');
-  h=h.replace(/\n\n/g,'<br>');
+  // Espaciado de párrafos: los bloques ya traen margen propio; entre texto plano sí separar
+  h=h.replace(/(<\/(?:h2|h3|h4|div|table|pre)>|<hr[^>]*>)\n+/g,'$1');
+  h=h.replace(/\n{2,}/g,'<br><br>');
   return h;
 }
 
@@ -1810,13 +1992,11 @@ function renderStrategyMd(){
   document.getElementById('panel').innerHTML=`
     <div class="stitle">Estrategia — ${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— fuente: GitHub .md</span></div>
     ${strategyTabs()}
-    ${!md?`<div class="card" style="border-color:rgba(240,164,74,.3)">
-      <div style="font-size:13px;color:var(--warn)">El .md de ${c.name} no está cargado. Verifica el token de GitHub en el sidebar ("⚙ Configurar GitHub") y recarga la página.</div>
-    </div>`:`
+    ${!md?emptyState('📄',`La estrategia de ${c.name} no está cargada`,'El documento .md vive en GitHub. Configura el token con scope repo y el hub lo sincroniza automáticamente.','⚙ Configurar GitHub','openConfig(\'github\')'):`
     <div class="card" style="background:rgba(200,240,74,.03)">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap">
         <div style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace">✓ cargado automáticamente desde GitHub · ${(md.length/1024).toFixed(1)} KB</div>
-        <button class="btn" style="font-size:11px" onclick="location.reload()">↻ Recargar desde GitHub</button>
+        <button class="btn" style="font-size:11px" onclick="showToast('Recargando desde GitHub...',2000);loadMd()">↻ Recargar desde GitHub</button>
       </div>
       <div style="max-height:520px;overflow-y:auto;padding-right:8px;font-size:13px;line-height:1.7">${mdToHtml(md)}</div>
     </div>
@@ -2107,7 +2287,7 @@ function renderPortfolio(){
     <div class="divider"></div>
     <div class="clabel" style="margin-bottom:10px">Mix del target — cómo se arma el +$500/mes</div>
     <div class="card" style="background:rgba(200,240,74,.03)">
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+      <div class="grid4" style="margin-bottom:12px">
         <div class="metric" style="border-color:rgba(200,240,74,.3)"><div class="mlabel">Edtech Plus</div><div class="mval" style="font-size:18px;color:var(--accent)">~$393</div><div class="msub">4 tracks en paralelo · 79%</div></div>
         <div class="metric"><div class="mlabel">Toloka</div><div class="mval" style="font-size:18px">~$50</div><div class="msub">B cruza umbral 20%</div></div>
         <div class="metric"><div class="mlabel">Nebius</div><div class="mval" style="font-size:18px">~$19</div><div class="msub">umbral con 2 conv · 1-1</div></div>
@@ -2117,7 +2297,7 @@ function renderPortfolio(){
     </div>
     <div class="divider"></div>
     <div class="clabel" style="margin-bottom:10px">Economics de rutas</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div class="grid2">
       ${[['Starter → Explorer','+$3.06','163w · 585 disponibles'],['Explorer → Builder','+$6.55','76w · 328 disponibles'],['Builder → Power User','+$11.26','44w · 116 disponibles'],['Power User → All-In','+$19.31','26w · solo 22 disponibles ⚠️']].map(([r,d,n])=>`
         <div class="metric"><div class="mlabel">${r}</div><div class="mval" style="font-size:18px;color:var(--accent)">${d}</div><div class="msub">${n}</div></div>`).join('')}
     </div>`;
@@ -2126,13 +2306,80 @@ function renderPortfolio(){
 // ══════════════════════════════════════════════
 // UTILS
 // ══════════════════════════════════════════════
-function promptApiKey(){
-  const key=prompt('Ingresa tu Anthropic API key (se guarda solo en tu navegador):');
-  if(key&&key.trim()){
-    S.apiKey=key.trim();
-    localStorage.setItem('ontop_api_key',S.apiKey);
-    showToast('✓ API key guardada',2000);
-  }
+function promptApiKey(){ openConfig('api'); }
+
+// ══════════════════════════════════════════════
+// MODALES + ESTADO DE CONEXIONES
+// ══════════════════════════════════════════════
+function openConfig(focus){
+  document.getElementById('inp-api-key').value='';
+  document.getElementById('inp-gh-token').value='';
+  document.getElementById('inp-api-key').placeholder=S.apiKey?maskKey(S.apiKey):'sk-ant-...';
+  document.getElementById('inp-gh-token').placeholder=GITHUB.token?maskKey(GITHUB.token):'ghp_... / github_pat_...';
+  refreshConnStates();
+  document.getElementById('config-modal').classList.add('open');
+  if(focus==='api') setTimeout(()=>document.getElementById('inp-api-key')?.focus(),80);
+  if(focus==='github') setTimeout(()=>document.getElementById('inp-gh-token')?.focus(),80);
+}
+function openHelp(){ document.getElementById('help-modal').classList.add('open'); }
+function closeModal(id){ document.getElementById(id)?.classList.remove('open'); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal('config-modal');closeModal('help-modal');toggleSidebar(false);} });
+
+function maskKey(k){ return k.length>10 ? k.slice(0,7)+'····'+k.slice(-4)+'  (guardada ✓)' : '····  (guardada ✓)'; }
+
+function saveConfig(){
+  const api=document.getElementById('inp-api-key').value.trim();
+  const gh=document.getElementById('inp-gh-token').value.trim();
+  let changed=false, ghChanged=false;
+  if(api){ S.apiKey=api; localStorage.setItem('ontop_api_key',api); changed=true; }
+  if(gh){ localStorage.setItem('ontop_github_token',gh); changed=true; ghChanged=true; }
+  closeModal('config-modal');
+  refreshConnStates();
+  if(ghChanged){ showToast('✓ Token guardado — cargando estrategias desde GitHub...',2500); loadMd(); }
+  else if(changed){ showToast('✓ Configuración guardada',2000); if(S.step===1) renderBrief(); }
+  else showToast('Sin cambios',1500);
+}
+
+// Refleja el estado real de cada conexión en sidebar y modal
+function refreshConnStates(){
+  const set=(dotIds,stateIds,cls,txt)=>{
+    dotIds.forEach(id=>{const el=document.getElementById(id);if(el)el.className='skilldot '+cls;});
+    stateIds.forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=txt;});
+  };
+  // Claude API
+  if(S.apiKey) set(['dot-api','mdot-api'],['api-state','mstate-api'],'ok','lista');
+  else set(['dot-api','mdot-api'],['api-state','mstate-api'],'err','falta key');
+  // GitHub
+  if(!GITHUB.token) set(['dot-md-side','mdot-github'],['md-state','mstate-github'],'err','falta token');
+  else if(S.mdLoaded) set(['dot-md-side','mdot-github'],['md-state','mstate-github'],'ok','sync ✓');
+  else set(['dot-md-side','mdot-github'],['md-state','mstate-github'],'loading','cargando');
+  // Sheets
+  const snap=getSnapshot(getCurrentYM());
+  if(snap) set(['dot-sheets-side','mdot-sheets'],['sheets-state','mstate-sheets'],'ok','snapshot ✓');
+  else set(['dot-sheets-side','mdot-sheets'],['sheets-state','mstate-sheets'],'err','sin datos');
+}
+
+// Sidebar móvil
+function toggleSidebar(force){
+  const sb=document.querySelector('.sidebar');
+  const bd=document.getElementById('sidebar-backdrop');
+  const open=typeof force==='boolean'?force:!sb.classList.contains('open');
+  sb.classList.toggle('open',open);
+  bd.classList.toggle('open',open);
+}
+// Cerrar el sidebar al navegar en móvil
+document.querySelector('.sidebar')?.addEventListener('click',e=>{
+  if(window.innerWidth<=860 && e.target.closest('.nav-item,.conn-row')) toggleSidebar(false);
+});
+
+// Estado vacío reutilizable
+function emptyState(icon,title,desc,ctaLabel,ctaJs){
+  return `<div class="card empty">
+    <div class="e-icon">${icon}</div>
+    <div class="e-title">${title}</div>
+    <div class="e-desc">${desc}</div>
+    ${ctaLabel?`<button class="btn btnp" onclick="${ctaJs}">${ctaLabel}</button>`:''}
+  </div>`;
 }
 
 function showToast(msg,dur=3000){
@@ -2240,6 +2487,7 @@ async function syncSheets(manual=false){
     if(btn)   btn.style.display='flex';
 
     if(manual) showToast('✓ Datos actualizados desde Sheets',2500);
+    refreshConnStates();
 
     // Refrescar el panel si está en Resumen o Portafolio
     if(S.step===1) renderBrief();
@@ -2248,6 +2496,7 @@ async function syncSheets(manual=false){
     if(dot)   dot.className='skilldot err';
     if(label) label.textContent='sheets ✗';
     if(sb)    sb.textContent=`Error: ${e.message}`;
+    refreshConnStates();
     if(manual) showToast('Error al conectar con Sheets: '+e.message, 4000);
   }
 }
@@ -2335,15 +2584,14 @@ async function checkMonthlySync(){
 // INIT
 // ══════════════════════════════════════════════
 async function init(){
-  if(!S.apiKey){
-    showToast('Sin API key — haz clic en "Configurar key" en el sidebar',5000);
-  }
+  refreshConnStates();
   updatePeriodIndicator();
   goStep(1);
   await Promise.all([
     loadMd(),
     checkMonthlySync(),
   ]);
+  refreshConnStates();
 }
 init();
 </script>
