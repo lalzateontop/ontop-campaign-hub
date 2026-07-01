@@ -7,19 +7,19 @@
 
 | Campo | Valor |
 |---|---|
-| Contrato | Tradicional (100%) |
+| Contrato | **Tradicional** — único cliente del portafolio con Quick disponible |
 | Workers totales | 65 (datos Sheets — Junio 2026) |
 | Canal de campaña | B2B-mediated vía HR/admin |
-| Quick/Paycheck Advance | ✅ Disponible — ÚNICO cliente del portafolio con Quick |
-| Productos disponibles | Ontop Card · Future Fund Flex · Future Fund +30 · Quick (pendiente Legal) |
+| Quick/Paycheck Advance | ✅ Disponible — ⚠️ requiere aprobación escrita Legal/Compliance para TODO copy |
+| Productos disponibles | Ontop Card · Future Fund Flex · Future Fund +30 · Quick (pend. Legal) · Reserve (solo Power Users) |
 
-**Restricciones y alertas:**
-- Quick: disponible por contrato tradicional, PERO requiere aprobación escrita de Legal/Compliance antes de cualquier comunicación. Ningún copy de Quick puede distribuirse sin este paso.
-- Future Fund: confirmar elegibilidad por región con Producto/Datos antes de comunicar.
-- Card standalone: solo zero foreign transaction fees. Sin cashback sin Reserve.
+**Restricciones de producto:**
+- Ontop Card standalone: SOLO zero foreign transaction fees. Sin cashback sin Reserve.
+- Future Fund: SIEMPRE dos opciones — Flex (3% APR) o +30 (4% APR). ⚠️ Elegibilidad pendiente de confirmar.
+- Quick: NINGÚN copy sale sin aprobación escrita de Legal/Compliance. Verificar además qué workers tienen Quick visible en la app (rollout en fases).
 
-**Por qué Ridetechnology es un caso especial:**
-Con 93% de workers en Starter, no hay suficiente información sobre comportamiento, necesidades o barreras. Lanzar una campaña de producto sin entender el contexto sería disparar al vacío. La Fase 0 de diagnóstico no es opcional — es la condición para que cualquier track funcione.
+**Guía de lenguaje para copy (regla dura):**
+Nombres de tiers, "tier", "track" y métricas internas NUNCA aparecen en mensajes al worker. Solo productos y beneficios concretos.
 
 ---
 
@@ -28,13 +28,13 @@ Con 93% de workers en Starter, no hay suficiente información sobre comportamien
 | Tier | Count | % | Δ vs mes anterior |
 |---|---|---|---|
 | Starter | 56 | 86.2% | — |
-| Explorer | 8 | 12.3% | — |
+| Explorer | 3 | 4.6% | — |
 | Builder | 1 | 1.5% | — |
 | Power User | 0 | 0% | — |
 | All-In | 0 | 0% | — |
 | **Total** | **65** | | |
 
-**Builder+:** 1.5% — 🔴 muy lejos del umbral. Horizonte realista: 6–12 meses.
+**Builder+:** 1.5% — 🔴 muy lejos del umbral. Horizonte 6–12 meses.
 
 > Este bloque se actualiza automáticamente desde el snapshot mensual de Sheets. No editar manualmente.
 
@@ -44,9 +44,9 @@ Con 93% de workers en Starter, no hay suficiente información sobre comportamien
 
 ### Fase 0 — Diagnóstico (OBLIGATORIA ANTES DE CUALQUIER TRACK)
 
-**Esta fase no es negociable.** Sin diagnóstico, no hay suficiente información para elegir el camino correcto.
+**Esta fase no es negociable.** El 86% de los workers no ha activado ningún producto y no sabemos por qué. Sin diagnóstico, cualquier track dispara a ciegas.
 
-El diagnóstico se hace con HR mediante 8 preguntas clave:
+Las 8 preguntas al HR:
 
 1. ¿Los workers realizan compras frecuentes en moneda extranjera?
 2. ¿Hay comportamiento de mantener saldo en el wallet, o transfieren todo inmediatamente?
@@ -57,41 +57,50 @@ El diagnóstico se hace con HR mediante 8 preguntas clave:
 7. ¿Cuánto tiempo llevan en promedio como contractors?
 8. ¿Hay alguna fricción conocida con la app de Ontop?
 
-**Las respuestas determinan el camino.** No al revés.
+### Estructura estándar de tracks (A→D)
 
-### Árbol de decisión post-diagnóstico
+| Track | Ruta | Workers disp. | Conversiones necesarias | Δ MRR/worker | Prioridad | Razón |
+|---|---|---|---|---|---|---|
+| A | Starter → Explorer | 56 | 11 | +$3.06 | Máxima (post-diagnóstico) | El único track con volumen real — 86% de la base |
+| B | Explorer → Builder | 3 | 2 | +$6.55 | Baja | Pipeline mínimo — crecerá con las conversiones de A |
+| C | Builder → Power User | 1 | 1 | +$11.26 | Baja | Base mínima |
+| D | Power User → All-In | 0 | — | +$19.31 | Sin base | Horizonte 12+ meses |
+
+### Enfoques de producto dentro del Track A (decididos por el diagnóstico)
+Track A es el mismo movimiento (activar el primer producto), pero el producto protagonista depende de las respuestas de la Fase 0:
 
 ```
 Diagnóstico completado
         │
         ├─► ¿Gastan internacionalmente o hay desconfianza en productos financieros?
-        │         └─► CAMINO A — Ontop Card (zero fees, baja fricción)
+        │         └─► ENFOQUE CARD — zero fees, baja fricción (default si hay duda)
         │
         ├─► ¿Mantienen saldo en el wallet?
-        │         └─► CAMINO B — Future Fund Flex o +30 (⚠️ validar elegibilidad)
+        │         └─► ENFOQUE FUTURE FUND — Flex o +30 (⚠️ validar elegibilidad)
         │
         └─► ¿Hay presión de flujo de caja entre pagos?
-                  └─► CAMINO C — Quick (⚠️ aprobación Legal/Compliance primero)
+                  └─► ENFOQUE QUICK — (⚠️ aprobación Legal/Compliance primero)
 ```
 
-### Tracks disponibles (pendientes de diagnóstico)
+**Quick como palanca de mayor impacto potencial:** si el perfil es gig con presión de caja, Quick es el producto más relevante del portafolio para este cliente — y también el más bloqueado. Iniciar el proceso de aprobación Legal en paralelo con la Fase 0, no después.
 
-| Track | Ruta | Workers disp. | Δ MRR/worker | Estado | Condición |
-|---|---|---|---|---|---|
-| A | Starter → Explorer (Card) | 56 | +$3.06 | Pendiente diagnóstico | Resultado Fase 0 |
-| B | Starter → Explorer (FF) | 56 | +$3.06 | Pendiente diagnóstico + elegibilidad | Resultado Fase 0 + Producto/Datos |
-| C | Starter → Explorer (Quick) | 56 | +$3.06 | Bloqueado | Aprobación escrita Legal/Compliance |
-
-**Quick como palanca de mayor impacto potencial:**
-Si hay presión de flujo de caja (perfil gig), Quick es el producto más relevante para este cliente. También es el más bloqueado operativamente. Iniciar el proceso de aprobación Legal en paralelo con la Fase 0.
+### Por qué el 86% sigue sin activar nada (hipótesis a validar en Fase 0)
+- H1: no tienen gastos internacionales → la Card no les resuelve nada visible.
+- H2: transfieren todo el pago de inmediato → Future Fund no aplica a su comportamiento.
+- H3: desconfianza o desconocimiento de la app más allá del payout.
+El diagnóstico confirma cuál domina; el enfoque de producto y el copy salen de ahí.
 
 ---
+
+
+### Contribución al target mensual del portafolio (+$500 MRR)
+Ridetechnology aporta ~$15/mes en régimen realista (Track A ~5 conversiones), condicionado a completar la Fase 0. No es palanca de target: es apuesta de medio plazo. Su asset único es Quick (único cliente con contrato tradicional) — si el diagnóstico revela presión de flujo de caja, Quick puede disparar la conversión muy por encima del 8% estándar, pero requiere aprobación escrita de Legal ANTES de cualquier copy.
 
 ## 4. Pendientes antes de lanzar cualquier track
 
 - [ ] **Agendar conversación de diagnóstico con HR** (8 preguntas — Fase 0)
 - [ ] Confirmar elegibilidad Future Fund para workers de Ridetechnology con Producto/Datos
-- [ ] Obtener aprobación escrita de Legal/Compliance para todo copy de Quick (Camino C)
+- [ ] Obtener aprobación escrita de Legal/Compliance para todo copy de Quick
 - [ ] Confirmar qué workers tienen Quick visible en la app (rollout en fases)
 - [ ] Validar canales in-app pop-up y WhatsApp con Producto y Compliance/CX
 
@@ -103,10 +112,12 @@ Si hay presión de flujo de caja (perfil gig), Quick es el producto más relevan
 > El hub genera el bloque de cada ciclo automáticamente desde el Paso 7 (Estrategia).
 
 ### Ciclo 0 — Baseline (Junio 2026)
-- Estado inicial documentado: 93% Starters, Builder+ al 1.5%.
+- Estado inicial documentado: 86% Starters, Builder+ al 1.5%.
 - Decisión estratégica: Fase 0 diagnóstico obligatoria antes de lanzar cualquier track.
 - Quick identificado como palanca de mayor impacto potencial — proceso Legal iniciado en paralelo.
 - Sin historial de ciclos activos aún.
+- Revisión estratégica (Jun 2026): tracks estandarizados A→D. Los antiguos "Caminos A/B/C" (Card/FF/Quick) ahora son enfoques de producto DENTRO del Track A, decididos por el diagnóstico. Se documentaron las 3 hipótesis del 86% inactivo. Guía de lenguaje formalizada.
+- Revisión estratégica 2 (Jun 2026): contribución al target cuantificada (~$15/mes, post-Fase 0). Quick como posible acelerador si el diagnóstico valida presión de liquidez.
 
 ---
 
@@ -116,6 +127,5 @@ Si hay presión de flujo de caja (perfil gig), Quick es el producto más relevan
 
 **Estado actual:** Fase 0 — diagnóstico pendiente.
 **Acción inmediata:** agendar conversación 30 min con HR de Ridetechnology para las 8 preguntas.
-**Decisión post-diagnóstico:** elegir Camino A, B o C según respuestas.
+**Decisión post-diagnóstico:** elegir enfoque de producto (Card / FF / Quick) para Track A según respuestas.
 **En paralelo:** escalar aprobación Legal para Quick (no bloquea el diagnóstico).
-
