@@ -6,16 +6,16 @@
 <title>Ontop Campaign Hub</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
-:root{--bg:#0e0f0f;--bg2:#161717;--bg3:#1e1f1f;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#f0ede8;--text2:#9a9590;--text3:#5a5550;--accent:#c8f04a;--accent2:#4af0b8;--accent3:#f04a8a;--warn:#f0a44a;--r:10px;--rlg:16px}
+:root{--bg:#0e0f0f;--bg2:#161717;--bg3:#1e1f1f;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#f0ede8;--text2:#b3aea7;--text3:#8f8981;--text-faint:#5a5550;--accent:#c8f04a;--accent2:#4af0b8;--accent3:#f04a8a;--warn:#f0a44a;--r:10px;--rlg:16px}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;overflow:hidden}
 /* SIDEBAR */
 .sidebar{width:220px;min-width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:20px 0;height:100vh;overflow-y:auto}
 .logo{padding:0 18px 20px;border-bottom:1px solid var(--border);margin-bottom:16px}
 .logo-mark{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--accent)}
-.logo-sub{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
-.nav-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);padding:0 18px 6px;font-weight:500}
-.nav-item{display:flex;align-items:center;gap:9px;padding:8px 18px;font-size:13px;color:var(--text2);cursor:pointer;border-left:2px solid transparent;transition:all .15s}
+.logo-sub{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.nav-label{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);padding:0 18px 6px;font-weight:500}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 18px;font-size:14px;color:var(--text2);cursor:pointer;border-left:2px solid transparent;transition:all .15s}
 .nav-item:hover{background:rgba(255,255,255,.03);color:var(--text)}
 .nav-item.active{color:var(--accent);border-left-color:var(--accent);background:rgba(200,240,74,.06);font-weight:500}
 .cdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
@@ -24,7 +24,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 /* MAIN */
 .main{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden}
 .topbar{display:flex;align-items:center;border-bottom:1px solid var(--border);padding:0 20px;background:var(--bg2);flex-shrink:0;overflow-x:auto}
-.step{display:flex;align-items:center;gap:7px;padding:13px 14px 12px;font-size:11px;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;font-weight:500;white-space:nowrap}
+.step{display:flex;align-items:center;gap:7px;padding:13px 14px 12px;font-size:12px;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;font-weight:500;white-space:nowrap}
 .step:hover{color:var(--text2)}
 .step.active{color:var(--accent);border-bottom-color:var(--accent)}
 .step.done{color:var(--text2)}
@@ -39,26 +39,26 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .panel{flex:1;overflow-y:auto;padding:24px}
 /* COMPONENTS */
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rlg);padding:18px;margin-bottom:14px}
-.clabel{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:10px;font-weight:500}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rlg);padding:20px;margin-bottom:16px}
+.clabel{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:10px;font-weight:500}
 .mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
 .metric{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:13px 15px}
-.mlabel{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.mlabel{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
 .mval{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;color:var(--text)}
-.msub{font-size:10px;color:var(--text3);margin-top:3px;font-family:'DM Mono',monospace}
-select,input[type=text],input[type=password],textarea{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 13px;transition:border-color .15s;-webkit-appearance:none}
+.msub{font-size:12px;color:var(--text3);margin-top:3px;font-family:'DM Mono',monospace}
+select,input[type=text],input[type=password],textarea{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;padding:9px 13px;transition:border-color .15s;-webkit-appearance:none}
 select:focus,input:focus,textarea:focus{outline:none;border-color:var(--accent)}
 select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a5550' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px}
 textarea{resize:vertical;min-height:70px;line-height:1.6}
 .field{margin-bottom:14px}
-.flabel{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;font-weight:500}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r);font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text2);transition:all .15s}
+.flabel{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r);font-size:14px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text2);transition:all .15s}
 .btn:hover{background:rgba(255,255,255,.05);color:var(--text)}
 .btn:disabled{opacity:.35;cursor:not-allowed}
 .btnp{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:600}
 .btnp:hover{background:#d8ff5a}
 .brow{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;font-weight:500;margin-left:5px;font-family:'DM Mono',monospace}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:99px;font-weight:500;margin-left:5px;font-family:'DM Mono',monospace}
 .ta{background:rgba(200,240,74,.12);color:var(--accent);border:1px solid rgba(200,240,74,.2)}
 .tw{background:rgba(240,164,74,.12);color:var(--warn);border:1px solid rgba(240,164,74,.2)}
 .td{background:rgba(240,74,138,.12);color:var(--accent3);border:1px solid rgba(240,74,138,.2)}
@@ -70,22 +70,22 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .email-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rlg);overflow:hidden}
 .email-card.editing{border-color:var(--accent)}
 .email-head{background:var(--bg2);border-bottom:1px solid var(--border);padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.email-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);white-space:nowrap}
-.email-subj{font-size:13px;font-weight:600;color:var(--text);font-family:'Syne',sans-serif;flex:1}
-.email-prev{font-size:11px;color:var(--text3);font-style:italic;padding:4px 16px 0}
-.email-body-disp{padding:14px 16px;font-size:13px;line-height:1.85;color:var(--text2);white-space:pre-wrap;min-height:100px}
+.email-num{font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);white-space:nowrap}
+.email-subj{font-size:14px;font-weight:600;color:var(--text);font-family:'Syne',sans-serif;flex:1}
+.email-prev{font-size:12px;color:var(--text3);font-style:italic;padding:4px 16px 0}
+.email-body-disp{padding:14px 16px;font-size:14px;line-height:1.85;color:var(--text2);white-space:pre-wrap;min-height:100px}
 .email-cta{display:inline-block;background:var(--accent);color:var(--bg);font-weight:600;font-size:12px;padding:8px 16px;border-radius:var(--r);font-family:'Syne',sans-serif;margin:0 16px 14px}
-.email-legal{font-size:10px;color:var(--accent3);padding:0 16px 12px;font-family:'DM Mono',monospace}
+.email-legal{font-size:12px;color:var(--accent3);padding:0 16px 12px;font-family:'DM Mono',monospace}
 .email-edit-area{padding:14px 16px;border-top:1px solid var(--border)}
 .email-edit-area textarea{min-height:140px;font-size:12px;font-family:'DM Mono',monospace;line-height:1.7}
-.status-sent{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:4px 10px;border-radius:99px;background:rgba(200,240,74,.12);color:var(--accent);border:1px solid rgba(200,240,74,.2);font-family:'DM Mono',monospace}
-.status-pending{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.06);color:var(--text3);border:1px solid var(--border);font-family:'DM Mono',monospace}
+.status-sent{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 10px;border-radius:99px;background:rgba(200,240,74,.12);color:var(--accent);border:1px solid rgba(200,240,74,.2);font-family:'DM Mono',monospace}
+.status-pending{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.06);color:var(--text3);border:1px solid var(--border);font-family:'DM Mono',monospace}
 /* PSYCH CHIPS with tooltip */
 .psych-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.pchip{font-size:11px;padding:4px 10px;border-radius:99px;background:rgba(74,240,184,.08);color:var(--accent2);border:1px solid rgba(74,240,184,.2);font-family:'DM Mono',monospace;cursor:pointer;transition:all .15s;position:relative}
+.pchip{font-size:12px;padding:4px 10px;border-radius:99px;background:rgba(74,240,184,.08);color:var(--accent2);border:1px solid rgba(74,240,184,.2);font-family:'DM Mono',monospace;cursor:pointer;transition:all .15s;position:relative}
 .pchip:hover{background:rgba(74,240,184,.15)}
 .pchip.sel{background:rgba(74,240,184,.2);border-color:var(--accent2)}
-.pchip .tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--text2);white-space:nowrap;z-index:100;font-family:'DM Sans',sans-serif;pointer-events:none;line-height:1.5}
+.pchip .tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--text2);white-space:nowrap;z-index:100;font-family:'DM Sans',sans-serif;pointer-events:none;line-height:1.5}
 .pchip:hover .tip{display:block}
 /* FRAMEWORKS */
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
@@ -93,19 +93,19 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .fcard:hover{border-color:var(--border2)}
 .fcard.active{border-color:var(--accent);background:rgba(200,240,74,.05)}
 .fcard-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px;font-family:'Syne',sans-serif}
-.fcard-desc{font-size:11px;color:var(--text3);line-height:1.5}
+.fcard-desc{font-size:12px;color:var(--text3);line-height:1.5}
 /* CHAT */
 .chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 120px)}
 .chat-msgs{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px}
 .msg{display:flex;gap:10px;align-items:flex-start}
 .msg.user{flex-direction:row-reverse}
-.mavatar{width:28px;height:28px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;color:var(--text2)}
-.mbubble{max-width:78%;padding:10px 14px;border-radius:var(--rlg);font-size:13px;line-height:1.65;color:var(--text);background:var(--bg2);border:1px solid var(--border)}
+.mavatar{width:28px;height:28px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0;color:var(--text2)}
+.mbubble{max-width:78%;padding:10px 14px;border-radius:var(--rlg);font-size:14px;line-height:1.65;color:var(--text);background:var(--bg2);border:1px solid var(--border)}
 .msg.user .mbubble{background:var(--accent);color:var(--bg);border-color:transparent}
 .chat-input-wrap{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:8px}
-.chat-inp{flex:1;padding:8px 12px;font-size:13px;border-radius:var(--r);border:1px solid var(--border2);background:var(--bg);color:var(--text);resize:none;font-family:'DM Sans',sans-serif;line-height:1.5}
+.chat-inp{flex:1;padding:8px 12px;font-size:14px;border-radius:var(--r);border:1px solid var(--border2);background:var(--bg);color:var(--text);resize:none;font-family:'DM Sans',sans-serif;line-height:1.5}
 .chat-inp:focus{outline:none;border-color:var(--accent)}
-.send-btn{padding:8px 14px;border-radius:var(--r);border:1px solid var(--border2);background:var(--accent);color:var(--bg);cursor:pointer;font-size:13px;font-weight:600;white-space:nowrap}
+.send-btn{padding:8px 14px;border-radius:var(--r);border:1px solid var(--border2);background:var(--accent);color:var(--bg);cursor:pointer;font-size:14px;font-weight:600;white-space:nowrap}
 .send-btn:hover{opacity:.85}
 .send-btn:disabled{opacity:.4;cursor:not-allowed}
 /* REPORT */
@@ -120,7 +120,7 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .tdot:nth-child(3){animation-delay:.36s}
 @keyframes tdot{0%,80%,100%{opacity:.2}40%{opacity:1}}
 /* TOAST */
-.toast{position:fixed;bottom:22px;right:22px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:11px 16px;font-size:13px;color:var(--text);opacity:0;transform:translateY(8px);transition:all .2s;pointer-events:none;z-index:9999;max-width:320px}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:11px 16px;font-size:14px;color:var(--text);opacity:0;transform:translateY(8px);transition:all .2s;pointer-events:none;z-index:9999;max-width:320px}
 .toast.show{opacity:1;transform:translateY(0)}
 .stitle{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:16px;letter-spacing:-.02em}
 .divider{height:1px;background:var(--border);margin:18px 0}
@@ -130,7 +130,7 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 /* TRACK CARD */
 .track-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .track-name{font-size:14px;font-weight:600;font-family:'Syne',sans-serif}
-.step-indicator{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text3);margin-bottom:12px}
+.step-indicator{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);margin-bottom:12px}
 .step-dot{width:6px;height:6px;border-radius:50%;background:var(--text3)}
 .step-dot.done{background:var(--accent)}
 .step-dot.active{background:var(--warn)}
@@ -138,7 +138,7 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .conn-row{display:flex;align-items:center;gap:8px;padding:6px 18px;font-size:12px;color:var(--text2);cursor:pointer;transition:background .15s}
 .conn-row:hover{background:rgba(255,255,255,.03)}
 .conn-row .conn-name{flex:1}
-.conn-row .conn-state{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3)}
+.conn-row .conn-state{font-size:12px;font-family:'DM Mono',monospace;color:var(--text3)}
 /* MODAL */
 .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);z-index:5000;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-backdrop.open{display:flex}
@@ -149,8 +149,8 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .modal-close:hover{color:var(--text);background:rgba(255,255,255,.06)}
 .conn-block{border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px;background:var(--bg3)}
 .conn-block .cb-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.conn-block .cb-name{font-size:13px;font-weight:600;font-family:'Syne',sans-serif}
-.conn-block .cb-desc{font-size:11px;color:var(--text3);line-height:1.6;margin-bottom:10px}
+.conn-block .cb-name{font-size:14px;font-weight:600;font-family:'Syne',sans-serif}
+.conn-block .cb-desc{font-size:12px;color:var(--text3);line-height:1.6;margin-bottom:10px}
 .conn-block input{font-family:'DM Mono',monospace;font-size:12px}
 /* EMPTY STATE */
 .empty{text-align:center;padding:46px 24px}
@@ -242,7 +242,7 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
     <div class="step" id="step6" onclick="goStep(6)" title="Registra migraciones, apertura y clicks por ciclo"><div class="snum">6</div>Resultados</div>
     <div class="step" id="step7" onclick="goStep(7)" title="Estrategia del cliente (.md) y chat con contexto"><div class="snum">7</div>Estrategia</div>
     <div class="tbar-right">
-      <div id="periodo-indicator" style="display:flex;align-items:center;gap:10px;font-size:10px;font-family:'DM Mono',monospace">
+      <div id="periodo-indicator" style="display:flex;align-items:center;gap:10px;font-size:12px;font-family:'DM Mono',monospace">
         <div style="display:flex;align-items:center;gap:5px;color:var(--text3)">
           <div class="skilldot" id="dot-sheets" style="background:var(--text3)"></div>
           <span id="sheets-label">sheets —</span>
@@ -309,7 +309,7 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
       </div>
       <button class="modal-close" onclick="closeModal('help-modal')" aria-label="Cerrar">✕</button>
     </div>
-    <div style="font-size:13px;color:var(--text2);line-height:1.8">
+    <div style="font-size:14px;color:var(--text2);line-height:1.8">
       <div style="margin-bottom:10px"><strong style="color:var(--accent)">1 · Resumen</strong> — métricas del cliente y sus tracks. Elige un track o configura todo desde aquí.</div>
       <div style="margin-bottom:10px"><strong style="color:var(--accent)">2 · Skills</strong> — canales (email/WhatsApp), framework de copy, principios de psicología y tono. Se aplican a todos los tracks.</div>
       <div style="margin-bottom:10px"><strong style="color:var(--accent)">3 · Generar</strong> — Claude crea las cadenas en inglés y español. Requiere la API key configurada.</div>
@@ -870,13 +870,13 @@ function renderBrief(){
         </div>
         <div style="text-align:right;min-width:80px;padding-left:12px">
           <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--accent)">${t.delta}</div>
-          <div style="font-size:10px;color:var(--text3);font-family:'DM Mono',monospace">/worker/mes</div>
+          <div style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">/worker/mes</div>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
-        <div style="font-size:11px;color:var(--text3)">Workers disponibles<div style="font-size:14px;font-weight:500;color:var(--text);margin-top:2px">${t.workers}</div></div>
-        <div style="font-size:11px;color:var(--text3)">Conversiones necesarias<div style="font-size:14px;font-weight:500;color:var(--accent);margin-top:2px">${t.need>0?t.need:'—'}</div></div>
-        <div style="font-size:11px;color:var(--text3)">Migraciones logradas<div style="font-size:14px;font-weight:500;margin-top:2px;color:${progColor}">${totalMig}${t.need>0?` / ${t.need}`:''}</div></div>
+        <div style="font-size:12px;color:var(--text3)">Workers disponibles<div style="font-size:14px;font-weight:500;color:var(--text);margin-top:2px">${t.workers}</div></div>
+        <div style="font-size:12px;color:var(--text3)">Conversiones necesarias<div style="font-size:14px;font-weight:500;color:var(--accent);margin-top:2px">${t.need>0?t.need:'—'}</div></div>
+        <div style="font-size:12px;color:var(--text3)">Migraciones logradas<div style="font-size:14px;font-weight:500;margin-top:2px;color:${progColor}">${totalMig}${t.need>0?` / ${t.need}`:''}</div></div>
       </div>
       ${t.need>0?`<div class="pgwrap" style="margin-bottom:10px"><div class="pgfill" style="width:${pct}%;background:${progColor}"></div></div>`:''}
       ${emailCount?`<div class="brow" style="margin-top:0">
@@ -923,7 +923,7 @@ function renderBrief(){
       <div class="metric">
         <div class="mlabel">Bucket predominante</div>
         <div class="mval" style="color:${bucketColor}">${dominantBucket}</div>
-        <div class="msub" style="font-size:11px;margin-top:4px">
+        <div class="msub" style="font-size:12px;margin-top:4px">
           <span style="color:${bucketColor};font-weight:500">${dominantCount}</span>
           <span style="color:var(--text3)"> / ${totalWorkers} workers · ${dominantPct}%</span>
         </div>
@@ -1020,7 +1020,7 @@ REMEMBER: All output text must be in ${langLabel.toUpperCase()}.`;
   try{
     // EN
     setProg(`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-        <span style="font-size:13px;font-weight:500">${t.label}</span>
+        <span style="font-size:14px;font-weight:500">${t.label}</span>
         <div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>
       </div>
       <div style="font-size:12px;color:var(--text3)">🇺🇸 Generando inglés... · ${S.framework} · ${S.channels.join('+')||'email'}</div>`);
@@ -1028,7 +1028,7 @@ REMEMBER: All output text must be in ${langLabel.toUpperCase()}.`;
 
     // ES
     setProg(`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-        <span style="font-size:13px;font-weight:500">${t.label}</span>
+        <span style="font-size:14px;font-weight:500">${t.label}</span>
         <div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>
       </div>
       <div style="font-size:12px;color:var(--text3)">🇺🇸 inglés ✓ · 🇨🇴 Generando español...</div>`);
@@ -1042,12 +1042,12 @@ REMEMBER: All output text must be in ${langLabel.toUpperCase()}.`;
     const waCount=base.filter(e=>e.type==='whatsapp').length;
     const countLabel=[emailCount?`${emailCount} emails`:'',waCount?`${waCount} WhatsApp`:''].filter(Boolean).join(' + ');
     setProg(`<div style="display:flex;align-items:center;justify-content:space-between">
-        <span style="font-size:13px;font-weight:500">${t.label}</span>
+        <span style="font-size:14px;font-weight:500">${t.label}</span>
         <span style="color:var(--accent);font-size:12px;font-family:'DM Mono',monospace">✓ ${countLabel} · 🇺🇸+🇨🇴</span>
       </div>`,'rgba(200,240,74,.3)');
   }catch(e){
-    setProg(`<div style="font-size:13px;color:var(--accent3);margin-bottom:8px">${t.label} — Error: ${e.message}</div>
-        <button class="btn" style="font-size:11px" onclick="retryTrack('${t.id}')">↻ Reintentar</button>`,'rgba(240,74,138,.3)');
+    setProg(`<div style="font-size:14px;color:var(--accent3);margin-bottom:8px">${t.label} — Error: ${e.message}</div>
+        <button class="btn" style="font-size:12px" onclick="retryTrack('${t.id}')">↻ Reintentar</button>`,'rgba(240,74,138,.3)');
     console.error('generateTrack error:',t.id,e);
   }
 }
@@ -1088,17 +1088,17 @@ function renderSkills(){
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
               <span style="font-size:16px">${ch.icon}</span>
               <div class="fcard-name">${ch.label}</div>
-              ${S.channels.includes(ch.key)?`<span style="margin-left:auto;color:var(--accent);font-size:11px">✓</span>`:''}
+              ${S.channels.includes(ch.key)?`<span style="margin-left:auto;color:var(--accent);font-size:12px">✓</span>`:''}
             </div>
             <div class="fcard-desc">${ch.desc}</div>
           </div>`).join('')}
       </div>
-      <div style="font-size:11px;color:var(--text3);margin-top:8px">Selecciona uno o más canales — se generará copy específico para cada uno.</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:8px">Selecciona uno o más canales — se generará copy específico para cada uno.</div>
     </div>
 
     <div class="card" style="background:rgba(74,240,184,.04);border-color:rgba(74,240,184,.2)">
       <div class="clabel">Idioma</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.6">Cada track se genera automáticamente en <strong style="color:var(--accent2)">🇺🇸 inglés y 🇨🇴 español</strong>. Podrás alternar y editar cada versión en el paso Editar, y el documento del cliente incluirá ambos.</div>
+      <div style="font-size:14px;color:var(--text2);line-height:1.6">Cada track se genera automáticamente en <strong style="color:var(--accent2)">🇺🇸 inglés y 🇨🇴 español</strong>. Podrás alternar y editar cada versión en el paso Editar, y el documento del cliente incluirá ambos.</div>
     </div>
 
     <div class="card">
@@ -1168,13 +1168,13 @@ async function renderGenerate(){
       <div class="stitle">Generando campaña <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name}</span></div>
       ${withChain.length?`<div class="card" style="background:rgba(74,240,184,.04);border-color:rgba(74,240,184,.2);margin-bottom:14px">
         <div class="clabel">Ya generados</div>
-        ${withChain.map(t=>`<div style="font-size:13px;color:var(--accent2);padding:4px 0">✓ ${t.label}</div>`).join('')}
+        ${withChain.map(t=>`<div style="font-size:14px;color:var(--accent2);padding:4px 0">✓ ${t.label}</div>`).join('')}
       </div>`:''}
       <div id="gen-progress">
         ${pending.map(t=>`<div class="card" style="margin-bottom:10px;opacity:.4" id="prog-${t.id}">
           <div style="display:flex;align-items:center;justify-content:space-between">
-            <span style="font-size:13px;font-weight:500">${t.label}</span>
-            <span style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace">en cola...</span>
+            <span style="font-size:14px;font-weight:500">${t.label}</span>
+            <span style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">en cola...</span>
           </div>
         </div>`).join('')}
       </div>`;
@@ -1207,7 +1207,7 @@ async function renderGenerate(){
     document.getElementById('panel').innerHTML=`
       <div class="stitle">Cadena existente <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · Track ${t.id}</span></div>
       <div class="card" style="background:rgba(200,240,74,.04);border-color:rgba(200,240,74,.15)">
-        <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Ya existe <strong>${countLabel}</strong> para este track.</div>
+        <div style="font-size:14px;color:var(--text2);margin-bottom:12px">Ya existe <strong>${countLabel}</strong> para este track.</div>
         <div class="brow">
           <button class="btn btnp" onclick="goStep(4)">Ver y editar →</button>
           <button class="btn" onclick="forceRegenerate()">↻ Regenerar</button>
@@ -1222,7 +1222,7 @@ async function renderGenerate(){
     <div id="gen-progress">
       <div class="card" id="prog-${t.id}">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-          <span style="font-size:13px;font-weight:500">${t.label}</span>
+          <span style="font-size:14px;font-weight:500">${t.label}</span>
           <div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>
         </div>
         <div style="font-size:12px;color:var(--text3)">Framework: ${S.framework} · ${S.psych.length} principios · Tono: ${S.tone}</div>
@@ -1291,18 +1291,18 @@ function renderEdit(){
           · ${em.sent?'<span style="color:var(--accent)">✓ Sent</span>':'Pending'}
         </span>
         <div style="display:flex;gap:6px">
-          <button class="btn" style="font-size:11px;padding:4px 10px" onclick="toggleEdit(${i})">${em.editMode?'Close':'Edit'}</button>
+          <button class="btn" style="font-size:12px;padding:4px 10px" onclick="toggleEdit(${i})">${em.editMode?'Close':'Edit'}</button>
         </div>
       </div>
       ${!isWA?`
         <div class="email-prev">${em.preview||''}</div>
         <div style="padding:11px 16px 6px;font-size:14px;font-weight:600;font-family:'Syne',sans-serif;color:var(--text)">${em.subject}</div>`:''}
-      <div class="${isWA?'':'email-body-disp'}" style="${isWA?'padding:12px 16px;font-size:13px;color:var(--text2);line-height:1.6;white-space:pre-wrap':''}">
+      <div class="${isWA?'':'email-body-disp'}" style="${isWA?'padding:12px 16px;font-size:14px;color:var(--text2);line-height:1.6;white-space:pre-wrap':''}">
         ${isWA?em.body:(em.body||'').replace(/\n/g,'<br>')}
       </div>
       ${!isWA&&em.cta?`<div class="email-cta">→ ${em.cta}</div>`:''}
       ${!isWA&&em.legal?`<div class="email-legal">⚠️ ${em.legal}</div>`:''}
-      ${isWA?`<div style="font-size:10px;color:var(--text3);padding:0 16px 12px;font-family:'DM Mono',monospace">${em.body.length} chars${em.body.length>160?' — ⚠️ exceeds 160':''}
+      ${isWA?`<div style="font-size:12px;color:var(--text3);padding:0 16px 12px;font-family:'DM Mono',monospace">${em.body.length} chars${em.body.length>160?' — ⚠️ exceeds 160':''}
       </div>`:''}
       ${em.editMode?`
         <div class="email-edit-area">
@@ -1315,9 +1315,9 @@ function renderEdit(){
           <div class="brow">
             <button class="btn" onclick="saveManualEdit(${i})">Save manual edit</button>
             <button class="btn btnp" onclick="iterateWithAI(${i})">Iterate with Claude</button>
-            <button class="btn" style="margin-left:auto;font-size:11px" onclick="resetEmail(${i})">Restore original</button>
+            <button class="btn" style="margin-left:auto;font-size:12px" onclick="resetEmail(${i})">Restore original</button>
           </div>
-          <div id="edit-status-${i}" style="font-size:11px;color:var(--text3);margin-top:8px;font-family:'DM Mono',monospace"></div>
+          <div id="edit-status-${i}" style="font-size:12px;color:var(--text3);margin-top:8px;font-family:'DM Mono',monospace"></div>
         </div>`:''}
     </div>`;
   }).join('');
@@ -1330,11 +1330,11 @@ function renderEdit(){
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <div class="stitle" style="margin-bottom:0">Editar — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
       <div style="display:flex;gap:4px;background:var(--bg2);border:1px solid var(--border);border-radius:99px;padding:3px">
-        <button class="btn ${S.viewLang==='en'?'btnp':''}" style="font-size:11px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('en')">🇺🇸 English</button>
-        <button class="btn ${S.viewLang==='es'?'btnp':''}" style="font-size:11px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('es')">🇨🇴 Español</button>
+        <button class="btn ${S.viewLang==='en'?'btnp':''}" style="font-size:12px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('en')">🇺🇸 English</button>
+        <button class="btn ${S.viewLang==='es'?'btnp':''}" style="font-size:12px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('es')">🇨🇴 Español</button>
       </div>
     </div>
-    <div style="font-size:11px;color:var(--text3);margin:6px 0 16px;font-family:'DM Mono',monospace">Editando versión en ${S.viewLang==='en'?'inglés':'español'} · ambos idiomas se guardan por separado</div>
+    <div style="font-size:12px;color:var(--text3);margin:6px 0 16px">Editando versión en ${S.viewLang==='en'?'inglés':'español'} · ambos idiomas se guardan por separado</div>
     ${trackSwitcher(t.id,4)}
     <div class="chain-wrap" id="chain-container">${chainsHtml}</div>
     <div class="brow">
@@ -1356,9 +1356,9 @@ function trackSwitcher(currentTrackId, step){
   const withContent=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
   if(withContent.length<=1) return '';
   return `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;align-items:center;padding:10px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r)">
-    <span style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-right:2px">Cambiar de track:</span>
+    <span style="font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-right:2px">Cambiar de track:</span>
     ${withContent.map(t=>`
-      <button class="btn ${t.id===currentTrackId?'btnp':''}" style="font-size:11px;padding:5px 12px"
+      <button class="btn ${t.id===currentTrackId?'btnp':''}" style="font-size:12px;padding:5px 12px"
         onclick="selectTrackAndGo('${t.id}',${step})" title="${t.label}">Track ${t.id}</button>`).join('')}
   </div>`;
 }
@@ -1559,7 +1559,7 @@ function renderStatus(){
         onmouseenter="this.style.borderColor='var(--border2)'" onmouseleave="this.style.borderColor='var(--border)'">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
           <div style="font-size:14px;font-weight:500">${t.label}</div>
-          <span style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:${color}">${sent}/${emails.length} <span style="font-size:11px;font-weight:400;color:var(--text3)">enviados</span></span>
+          <span style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:${color}">${sent}/${emails.length} <span style="font-size:12px;font-weight:400;color:var(--text3)">enviados</span></span>
         </div>
         <div class="pgwrap"><div class="pgfill" style="width:${pct}%;background:${color}"></div></div>
       </div>`;
@@ -1577,8 +1577,8 @@ function renderStatus(){
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <div class="stitle" style="margin-bottom:0">Status — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
       <div style="display:flex;gap:4px;background:var(--bg2);border:1px solid var(--border);border-radius:99px;padding:3px">
-        <button class="btn ${S.viewLang==='en'?'btnp':''}" style="font-size:11px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('en')">🇺🇸 EN</button>
-        <button class="btn ${S.viewLang==='es'?'btnp':''}" style="font-size:11px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('es')">🇨🇴 ES</button>
+        <button class="btn ${S.viewLang==='en'?'btnp':''}" style="font-size:12px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('en')">🇺🇸 EN</button>
+        <button class="btn ${S.viewLang==='es'?'btnp':''}" style="font-size:12px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('es')">🇨🇴 ES</button>
       </div>
     </div>
     <div style="height:12px"></div>
@@ -1589,7 +1589,7 @@ function renderStatus(){
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
         <div>
           <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:14px">${isWA?'💬 WhatsApp '+em.n:(em.subject||'Email '+em.n)}</div>
-          <div style="font-size:11px;color:var(--text3);margin-top:2px">${isWA?'Mensaje WhatsApp':'Email'} ${em.n}</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:2px">${isWA?'Mensaje WhatsApp':'Email'} ${em.n}</div>
         </div>
         ${em.sent?`<span class="status-sent">✓ Enviado</span>`:`<span class="status-pending">⏳ Pendiente</span>`}
       </div>
@@ -1605,7 +1605,7 @@ function renderStatus(){
   const sentCount=S.emailChain.filter(e=>e.sent).length;
   html+=`<div class="card" style="background:rgba(200,240,74,.04);border-color:rgba(200,240,74,.15)">
     <div class="clabel">Resumen de campaña</div>
-    <div style="font-size:13px;color:var(--text2);line-height:2">
+    <div style="font-size:14px;color:var(--text2);line-height:2">
       <div>Emails enviados: <strong style="color:var(--accent)">${sentCount} / ${S.emailChain.length}</strong></div>
       <div>Objetivo: <strong>${t.need} migraciones · ${t.delta}/worker</strong></div>
     </div>
@@ -1667,7 +1667,7 @@ function renderResultados(){
           </div>
           <div style="text-align:right">
             <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:${color}">${totalMig}/${t.need}</div>
-            <div style="font-size:10px;color:var(--text3)">migraciones</div>
+            <div style="font-size:12px;color:var(--text3)">migraciones</div>
           </div>
         </div>
         <div class="pgwrap"><div class="pgfill" style="width:${pct}%;background:${color}"></div></div>
@@ -1706,9 +1706,9 @@ function renderResultados(){
 
   <!-- Período indicator -->
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
-    <div style="background:rgba(200,240,74,.08);border:1px solid rgba(200,240,74,.2);border-radius:99px;padding:4px 12px;font-size:11px;font-family:'DM Mono',monospace;color:var(--accent)">${mesLabel.charAt(0).toUpperCase()+mesLabel.slice(1)}</div>
-    <div style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace">${daysLeft} días restantes en el período</div>
-    ${currData?`<div style="font-size:11px;color:var(--accent2);font-family:'DM Mono',monospace">✓ datos Sheets activos</div>`:'<div style="font-size:11px;color:var(--warn);font-family:\'DM Mono\',monospace">sin snapshot del mes</div>'}
+    <div style="background:rgba(200,240,74,.08);border:1px solid rgba(200,240,74,.2);border-radius:99px;padding:4px 12px;font-size:12px;font-family:'DM Mono',monospace;color:var(--accent)">${mesLabel.charAt(0).toUpperCase()+mesLabel.slice(1)}</div>
+    <div style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">${daysLeft} días restantes en el período</div>
+    ${currData?`<div style="font-size:12px;color:var(--accent2);font-family:'DM Mono',monospace">✓ datos Sheets activos</div>`:'<div style="font-size:12px;color:var(--warn);font-family:\'DM Mono\',monospace">sin snapshot del mes</div>'}
   </div>
 
   <div class="mgrid">
@@ -1742,27 +1742,27 @@ function renderResultados(){
          ['Power User',currData.power_user_count,currData.power_user_pct,prevData?.power_user_count],
          ['All-In',currData.allin_count,currData.allin_pct,prevData?.allin_count]].map(([label,count,pct,prev])=>{
         const diff = prev!==undefined ? count-prev : null;
-        const diffHtml = diff!==null ? `<div style="font-size:10px;font-family:'DM Mono',monospace;margin-top:2px;color:${diff>0?'var(--accent)':diff<0?'var(--accent3)':'var(--text3)'}">${diff>0?'+':''}${diff}</div>` : '';
+        const diffHtml = diff!==null ? `<div style="font-size:12px;font-family:'DM Mono',monospace;margin-top:2px;color:${diff>0?'var(--accent)':diff<0?'var(--accent3)':'var(--text3)'}">${diff>0?'+':''}${diff}</div>` : '';
         return `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:10px;text-align:center">
-          <div style="font-size:10px;color:var(--text3);margin-bottom:4px">${label}</div>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:4px">${label}</div>
           <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700">${count}</div>
-          <div style="font-size:10px;color:var(--text3)">${pct}%</div>
+          <div style="font-size:12px;color:var(--text3)">${pct}%</div>
           ${diffHtml}
         </div>`;
       }).join('')}
     </div>
-    ${prevData?`<div style="font-size:11px;color:var(--text3);margin-top:10px;font-family:'DM Mono',monospace">vs. ${getPrevYM(getCurrentYM())} — los números en verde/rojo son el delta del mes</div>`:'<div style="font-size:11px;color:var(--text3);margin-top:8px">Sin snapshot del mes anterior para comparar aún</div>'}
+    ${prevData?`<div style="font-size:12px;color:var(--text3);margin-top:10px">vs. ${getPrevYM(getCurrentYM())} — los números en verde/rojo son el delta del mes</div>`:'<div style="font-size:12px;color:var(--text3);margin-top:8px">Sin snapshot del mes anterior para comparar aún</div>'}
   </div>` : ''}`;
 
   // Form nuevo ciclo manual
   html+=`<div class="card">
     <div class="clabel">Registrar ciclo mensual</div>
     <div style="background:${autoMig!==null?'rgba(74,240,184,.06)':'rgba(240,164,74,.06)'};border:1px solid ${autoMig!==null?'rgba(74,240,184,.2)':'rgba(240,164,74,.2)'};border-radius:var(--r);padding:12px 14px;margin-bottom:14px">
-      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:6px">Migraciones del mes — calculado automáticamente de Sheets</div>
+      <div style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:6px">Migraciones del mes — calculado automáticamente de Sheets</div>
       ${autoMig!==null
-        ? `<div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--accent2)">${autoMig} <span style="font-size:13px;font-weight:400;color:var(--text3)">migraciones ${t.route} en ${mesLabel}</span></div>
-           <div style="font-size:11px;color:var(--text3);margin-top:4px;font-family:'DM Mono',monospace">delta del snapshot ${getCurrentYM()} vs ${getPrevYM(getCurrentYM())}</div>`
-        : `<div style="font-size:13px;color:var(--warn)">Aún no hay dos snapshots para calcular el delta. Se necesita el snapshot de este mes y el del mes anterior. Las migraciones se calcularán automáticamente cuando ambos existan.</div>`}
+        ? `<div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--accent2)">${autoMig} <span style="font-size:14px;font-weight:400;color:var(--text3)">migraciones ${t.route} en ${mesLabel}</span></div>
+           <div style="font-size:12px;color:var(--text3);margin-top:4px;font-family:'DM Mono',monospace">delta del snapshot ${getCurrentYM()} vs ${getPrevYM(getCurrentYM())}</div>`
+        : `<div style="font-size:14px;color:var(--warn)">Aún no hay dos snapshots para calcular el delta. Se necesita el snapshot de este mes y el del mes anterior. Las migraciones se calcularán automáticamente cuando ambos existan.</div>`}
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
       <div class="field"><div class="flabel">Período</div><input type="text" id="ci-fecha" placeholder="Ej: Junio 2026" value="${mesLabel.charAt(0).toUpperCase()+mesLabel.slice(1)}"></div>
@@ -1785,21 +1785,21 @@ function renderResultados(){
       const col=p>=100?'var(--accent)':p>=60?'var(--warn)':'var(--accent3)';
       html+=`<div class="card" style="margin-bottom:10px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <div style="font-size:13px;font-weight:500">${ci.fecha} · ${ci.canal}</div>
+          <div style="font-size:14px;font-weight:500">${ci.fecha} · ${ci.canal}</div>
           <span style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:${col}">${ci.migraciones}/${ci.targetMigraciones}</span>
         </div>
-        <div style="display:flex;gap:16px;font-size:11px;color:var(--text3);margin-bottom:8px">
+        <div style="display:flex;gap:16px;font-size:12px;color:var(--text3);margin-bottom:8px">
           <span>Apertura: <strong style="color:var(--text)">${ci.apertura||'—'}%</strong></span>
           <span>Clicks: <strong style="color:var(--text)">${ci.clicks||'—'}%</strong></span>
           ${ci.fromSheets?`<span style="color:var(--accent2)">✓ auto-Sheets</span>`:''}
         </div>
         ${ci.notas?`<div style="font-size:12px;color:var(--text2);padding:8px;background:var(--bg3);border-radius:var(--r);margin-bottom:8px">${ci.notas}</div>`:''}
-        ${ci.diagnostico?`<div style="border-top:1px solid var(--border);padding-top:10px;margin-top:4px"><div style="font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Diagnóstico Claude</div><div style="font-size:12px;color:var(--text2);line-height:1.7;white-space:pre-wrap">${ci.diagnostico}</div></div>`:''}
+        ${ci.diagnostico?`<div style="border-top:1px solid var(--border);padding-top:10px;margin-top:4px"><div style="font-size:12px;color:var(--accent2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Diagnóstico Claude</div><div style="font-size:12px;color:var(--text2);line-height:1.7;white-space:pre-wrap">${ci.diagnostico}</div></div>`:''}
         <div class="brow" style="margin-top:8px">
-        ${!ci.diagnostico?`<button class="btn btnp" style="font-size:11px;padding:5px 10px" onclick="diagnosticarCiclo(${idx})">Diagnosticar →</button>`:`
+        ${!ci.diagnostico?`<button class="btn btnp" style="font-size:12px;padding:5px 10px" onclick="diagnosticarCiclo(${idx})">Diagnosticar →</button>`:`
           <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <button class="btn" style="font-size:11px;padding:5px 10px" onclick="irAEstrategia()">Iterar estrategia →</button>
-            ${ci.mdBloque&&GITHUB.token?`<button class="btn btnp" style="font-size:11px;padding:5px 10px" onclick="pushCicloToMd(${idx})">↑ Guardar en .md</button>`:''}
+            <button class="btn" style="font-size:12px;padding:5px 10px" onclick="irAEstrategia()">Iterar estrategia →</button>
+            ${ci.mdBloque&&GITHUB.token?`<button class="btn btnp" style="font-size:12px;padding:5px 10px" onclick="pushCicloToMd(${idx})">↑ Guardar en .md</button>`:''}
           </div>`}
         </div>
       </div>`;
@@ -1958,16 +1958,16 @@ function mdToHtml(md){
       if(/^\|[\s\-:|]+\|$/.test(row.trim())) return; // separador
       const cells=row.split('|').slice(1,-1);
       out+='<tr>'+cells.map(cell=>ri===0
-        ?`<th style="text-align:left;padding:6px 10px;border-bottom:1px solid var(--border2);color:var(--accent);font-size:10px;text-transform:uppercase;letter-spacing:.05em">${cell.trim()}</th>`
+        ?`<th style="text-align:left;padding:6px 10px;border-bottom:1px solid var(--border2);color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.05em">${cell.trim()}</th>`
         :`<td style="padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text2)">${cell.trim()}</td>`).join('')+'</tr>';
     });
     return out+'</table>';
   });
-  h=h.replace(/^### (.+)$/gm,'<h4 style="font-family:Syne,sans-serif;color:var(--text);margin:16px 0 8px;font-size:13px">$1</h4>');
+  h=h.replace(/^### (.+)$/gm,'<h4 style="font-family:Syne,sans-serif;color:var(--text);margin:16px 0 8px;font-size:14px">$1</h4>');
   h=h.replace(/^## (.+)$/gm,'<h3 style="font-family:Syne,sans-serif;color:var(--accent);margin:22px 0 10px;font-size:15px;border-bottom:1px solid var(--border);padding-bottom:6px">$1</h3>');
   h=h.replace(/^# (.+)$/gm,'<h2 style="font-family:Syne,sans-serif;color:var(--text);margin:0 0 12px;font-size:18px">$1</h2>');
   h=h.replace(/^&gt; (.+)$/gm,'<div style="border-left:3px solid var(--accent2);padding:6px 12px;color:var(--text3);font-size:12px;margin:8px 0;background:rgba(74,240,184,.04)">$1</div>');
-  h=h.replace(/```([\s\S]*?)```/g,'<pre style="background:var(--bg);padding:12px;border-radius:8px;font-size:11px;overflow-x:auto;color:var(--text2)">$1</pre>');
+  h=h.replace(/```([\s\S]*?)```/g,'<pre style="background:var(--bg);padding:12px;border-radius:8px;font-size:12px;overflow-x:auto;color:var(--text2)">$1</pre>');
   h=h.replace(/\*\*(.+?)\*\*/g,'<strong style="color:var(--text)">$1</strong>');
   h=h.replace(/^- \[ \] (.+)$/gm,'<div style="padding:2px 0;color:var(--text2)">☐ $1</div>');
   h=h.replace(/^- \[x\] (.+)$/gm,'<div style="padding:2px 0;color:var(--accent2)">☑ $1</div>');
@@ -1981,8 +1981,8 @@ function mdToHtml(md){
 
 function strategyTabs(){
   return `<div style="display:flex;gap:4px;background:var(--bg2);border:1px solid var(--border);border-radius:99px;padding:3px;width:fit-content;margin-bottom:16px">
-    <button class="btn ${S.strategyTab==='md'?'btnp':''}" style="font-size:11px;padding:5px 16px;border:none;border-radius:99px" onclick="setStrategyTab('md')">📄 Estrategia (.md)</button>
-    <button class="btn ${S.strategyTab==='chat'?'btnp':''}" style="font-size:11px;padding:5px 16px;border:none;border-radius:99px" onclick="setStrategyTab('chat')">💬 Chat de estrategia</button>
+    <button class="btn ${S.strategyTab==='md'?'btnp':''}" style="font-size:12px;padding:5px 16px;border:none;border-radius:99px" onclick="setStrategyTab('md')">📄 Estrategia (.md)</button>
+    <button class="btn ${S.strategyTab==='chat'?'btnp':''}" style="font-size:12px;padding:5px 16px;border:none;border-radius:99px" onclick="setStrategyTab('chat')">💬 Chat de estrategia</button>
   </div>`;
 }
 
@@ -1995,10 +1995,10 @@ function renderStrategyMd(){
     ${!md?emptyState('📄',`La estrategia de ${c.name} no está cargada`,'El documento .md vive en GitHub. Configura el token con scope repo y el hub lo sincroniza automáticamente.','⚙ Configurar GitHub','openConfig(\'github\')'):`
     <div class="card" style="background:rgba(200,240,74,.03)">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap">
-        <div style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace">✓ cargado automáticamente desde GitHub · ${(md.length/1024).toFixed(1)} KB</div>
-        <button class="btn" style="font-size:11px" onclick="showToast('Recargando desde GitHub...',2000);loadMd()">↻ Recargar desde GitHub</button>
+        <div style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">✓ cargado automáticamente desde GitHub · ${(md.length/1024).toFixed(1)} KB</div>
+        <button class="btn" style="font-size:12px" onclick="showToast('Recargando desde GitHub...',2000);loadMd()">↻ Recargar desde GitHub</button>
       </div>
-      <div style="max-height:520px;overflow-y:auto;padding-right:8px;font-size:13px;line-height:1.7">${mdToHtml(md)}</div>
+      <div style="max-height:520px;overflow-y:auto;padding-right:8px;font-size:14px;line-height:1.7">${mdToHtml(md)}</div>
     </div>
 
     <div class="card" style="background:rgba(74,240,184,.04);border-color:rgba(74,240,184,.2)">
@@ -2008,7 +2008,7 @@ function renderStrategyMd(){
       <div class="brow">
         <button class="btn btnp" id="strategy-edit-btn" onclick="editarEstrategiaConIA()">Aplicar con Claude</button>
       </div>
-      <div id="strategy-edit-status" style="font-size:11px;color:var(--text3);margin-top:8px;font-family:'DM Mono',monospace"></div>
+      <div id="strategy-edit-status" style="font-size:12px;color:var(--text3);margin-top:8px;font-family:'DM Mono',monospace"></div>
       <div id="strategy-preview"></div>
     </div>`}`;
 }
@@ -2121,14 +2121,14 @@ function renderChatUI(step){
     <div class="chat-wrap">
       <div style="padding:16px 20px 0;border-bottom:1px solid var(--border);margin-bottom:0">
         <div class="stitle" style="margin-bottom:4px">Estrategia <span style="font-size:14px;color:var(--text3);font-weight:400">— revisión y nueva iteración</span></div>
-        <div style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:12px">Skills activos: marketing-psychology · marketing-ideas · marketing-plan · emails</div>
+        <div style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:12px">Skills activos: marketing-psychology · marketing-ideas · marketing-plan · emails</div>
       </div>
       <div class="chat-msgs" id="chat-msgs">${msgsHtml}</div>
       <div class="chat-input-wrap">
         <textarea class="chat-inp" id="chat-inp" rows="2" placeholder="Pregunta sobre resultados, pide ajuste de estrategia, solicita nuevo copy..."></textarea>
         <div style="display:flex;flex-direction:column;gap:6px">
           <button class="send-btn" id="send-btn" onclick="sendChat()">Enviar</button>
-          ${GITHUB.token&&S.client&&CLIENTS[S.client]?`<button class="btn" style="font-size:11px;padding:5px 10px;white-space:nowrap" onclick="guardarHipotesisDesdeChat()" title="Guarda la última respuesta de Claude como hipótesis del próximo ciclo en el .md">↑ Guardar en .md</button>`:''}
+          ${GITHUB.token&&S.client&&CLIENTS[S.client]?`<button class="btn" style="font-size:12px;padding:5px 10px;white-space:nowrap" onclick="guardarHipotesisDesdeChat()" title="Guarda la última respuesta de Claude como hipótesis del próximo ciclo en el .md">↑ Guardar en .md</button>`:''}
         </div>
       </div>
     </div>`;
