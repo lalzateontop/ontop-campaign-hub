@@ -199,14 +199,15 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
     <div class="logo-mark">Ontop Hub</div>
     <div class="logo-sub">Campaign Workspace</div>
   </div>
+  <div class="nav-item" onclick="setClient('portfolio')" id="snav-portfolio">⌂ Home</div>
+  <div class="nav-sep"></div>
   <div class="nav-label">Clientes</div>
-  <div class="nav-item active" onclick="setClient('edtech')" id="snav-edtech"><span class="cdot" style="background:#c8f04a"></span>Edtech Plus</div>
+  <div class="nav-item" onclick="setClient('edtech')" id="snav-edtech"><span class="cdot" style="background:#c8f04a"></span>Edtech Plus</div>
   <div class="nav-item" onclick="setClient('toloka')" id="snav-toloka"><span class="cdot" style="background:#f04a8a"></span>Toloka AI</div>
   <div class="nav-item" onclick="setClient('ride')" id="snav-ride"><span class="cdot" style="background:#f04a8a"></span>Ridetechnology</div>
   <div class="nav-item" onclick="setClient('nebius')" id="snav-nebius"><span class="cdot" style="background:#f04a8a"></span>Nebius</div>
   <div class="nav-sep"></div>
   <div class="nav-label">Vistas</div>
-  <div class="nav-item" onclick="setClient('portfolio')" id="snav-portfolio">◎ Portafolio</div>
   <div class="nav-item" onclick="setClient('estrategia')" id="snav-estrategia">↻ Estrategia</div>
   <div class="nav-sep"></div>
   <div class="nav-label">Skills activos</div>
@@ -815,6 +816,7 @@ function setClient(id){
   S.client=id; S.track=null; S.emailChain=[]; S.chatHistory=[]; S.strategyTab='md'; S._pendingStrategyMd=null;
   document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
   document.getElementById('snav-'+id)?.classList.add('active');
+  refreshClientDots();
   if(id==='portfolio'){clearStepIndicators();renderPortfolio();return;}
   if(id==='estrategia'){clearStepIndicators();renderEstrategia();return;}
   goStep(1);
@@ -830,6 +832,23 @@ function clearStepIndicators(){
     if(b) b.remove();
   });
   renderContextBar();
+}
+
+// Estado operativo real de un cliente (no color de marca) — usado por el dot del sidebar y Home
+function clientStatusColor(id){
+  const c=CLIENTS[id];
+  if(!c) return 'var(--text3)';
+  const anyCiclo=c.tracks.some(t=>getCiclos(id,t.id).length>0);
+  if(anyCiclo) return 'var(--accent2)';
+  const anyContent=c.tracks.some(t=>hasContent(getStatus(id,t.id)));
+  if(anyContent) return 'var(--warn)';
+  return 'var(--text3)';
+}
+function refreshClientDots(){
+  Object.keys(CLIENTS).forEach(id=>{
+    const dot=document.querySelector(`#snav-${id} .cdot`);
+    if(dot) dot.style.background=clientStatusColor(id);
+  });
 }
 
 // Estado real de cada paso (no posicional) — usado por el stepper y la barra de contexto
@@ -917,6 +936,7 @@ function activateStep(n){
     }
   });
   renderContextBar();
+  refreshClientDots();
 }
 
 function goStep(n){
@@ -2358,33 +2378,68 @@ function renderPortfolio(){
       'Builder':curr.builder_count,'Power User':curr.power_user_count,'All-In':curr.allin_count
     }[dominant]||0) : 0;
     const total = curr ? curr.total_workers : c.workers;
-    const pct = total>0 ? Math.round(dominantCount/total*100) : 0;
+    const bucketPct = total>0 ? Math.round(dominantCount/total*100) : 0;
     const col = bucketColor(dominant);
-    const totalMig=c.tracks.reduce((s,t)=>{const cics=getCiclos(id,t.id);return s+cics.reduce((ss,ci)=>ss+(parseInt(ci.migraciones)||0),0);},0);
-    return`<div class="clirow" onclick="setClient('${id}')">
-      <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:14px;min-width:150px">${c.name}</div>
-      <div style="font-size:12px;font-family:'DM Mono',monospace;min-width:80px;color:${col}">${dominant}</div>
-      <div style="flex:1;height:4px;background:var(--bg);border-radius:99px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${col};border-radius:99px"></div></div>
-      <div style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace"><span style="color:${col};font-weight:500">${dominantCount}</span>/${total}</div>
-      <div style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">${c.mrr}</div>
-      ${totalMig>0?`<span class="tag ta">${totalMig} mig</span>`:''}
+
+    const generadosCount = c.tracks.filter(t=>hasContent(getStatus(id,t.id))).length;
+    const completosCount = c.tracks.filter(t=>getCiclos(id,t.id).length>0).length;
+
+    const targetAgregado = c.tracks.reduce((s,t)=>s+(t.need>0?t.need:0),0);
+    const migLogradas = c.tracks.reduce((s,t)=>{const cics=getCiclos(id,t.id);return s+cics.reduce((ss,ci)=>ss+(parseInt(ci.migraciones)||0),0);},0);
+    const cyclePct = targetAgregado>0 ? Math.min(Math.round(migLogradas/targetAgregado*100),100) : 0;
+    const cycleColor = cyclePct>=100?'var(--accent)':cyclePct>=50?'var(--warn)':'var(--accent3)';
+    const statusColor = clientStatusColor(id);
+
+    return`<div class="card" style="cursor:pointer;margin-bottom:10px" onclick="setClient('${id}')" onmouseenter="this.style.borderColor='var(--border2)'" onmouseleave="this.style.borderColor='var(--border)'">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+        <div style="display:flex;align-items:center;gap:9px">
+          <span class="cdot" style="background:${statusColor}"></span>
+          <span style="font-family:'Syne',sans-serif;font-weight:600;font-size:16px">${c.name}</span>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700">${c.mrr}</div>
+          <div style="font-size:11px;color:var(--text3)">MRR B2C</div>
+        </div>
+      </div>
+      <div class="grid4">
+        <div>
+          <div class="mlabel">Bucket predominante</div>
+          <div style="font-size:14px;font-weight:500;color:${col}">${dominant}</div>
+          <div style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace">${dominantCount}/${total} · ${bucketPct}%</div>
+        </div>
+        <div>
+          <div class="mlabel">Tracks generados</div>
+          <div style="font-size:14px;font-weight:500">${generadosCount}/${c.tracks.length}</div>
+          <div style="font-size:11px;color:var(--text3)">${completosCount} con ciclo registrado</div>
+        </div>
+        <div>
+          <div class="mlabel">Avance del ciclo</div>
+          <div style="font-size:14px;font-weight:500;color:${cycleColor}">${targetAgregado?cyclePct+'%':'—'}</div>
+          <div class="pgwrap"><div class="pgfill" style="width:${cyclePct}%;background:${cycleColor}"></div></div>
+        </div>
+        <div>
+          <div class="mlabel">Migraciones</div>
+          <div style="font-size:14px;font-weight:500;color:var(--accent)">${migLogradas}${targetAgregado?`/${targetAgregado}`:''}</div>
+        </div>
+      </div>
     </div>`;
   }).join('');
 
   // Métricas globales desde snapshots reales si existen
   const snap = getSnapshot(getCurrentYM());
   const totalW = snap ? Object.values(snap.clients).reduce((s,cl)=>s+cl.total_workers,0) : 1089;
+  const mrrTotal = Object.values(CLIENTS).reduce((s,cl)=>s+(parseFloat(cl.mrr.replace(/[$,]/g,''))||0),0);
 
   document.getElementById('panel').innerHTML=`
-    <div class="stitle">Portafolio</div>
+    <div class="stitle">Home</div>
     <div class="mgrid">
       <div class="metric"><div class="mlabel">Total workers</div><div class="mval">${totalW.toLocaleString()}</div>${snap?`<div class="msub" style="color:var(--accent2)">✓ datos Sheets</div>`:''}</div>
-      <div class="metric"><div class="mlabel">MRR B2C</div><div class="mval" style="font-size:16px">$21,387</div></div>
+      <div class="metric"><div class="mlabel">MRR B2C</div><div class="mval" style="font-size:16px">$${mrrTotal.toLocaleString()}</div></div>
       <div class="metric"><div class="mlabel">PES baseline</div><div class="mval">1.24</div></div>
       <div class="metric"><div class="mlabel">Target</div><div class="mval" style="font-size:16px;color:var(--accent)">+$500</div><div class="msub">= +0.029 PES/mes</div></div>
     </div>
     <div class="divider"></div>
-    <div class="clabel" style="margin-bottom:10px">Bucket predominante por cliente</div>
+    <div class="clabel" style="margin-bottom:10px">Estado por cliente — clic para entrar a su workspace</div>
     ${rows}
     <div class="divider"></div>
     <div class="clabel" style="margin-bottom:10px">Mix del target — cómo se arma el +$500/mes</div>
@@ -2688,7 +2743,7 @@ async function checkMonthlySync(){
 async function init(){
   refreshConnStates();
   updatePeriodIndicator();
-  goStep(1);
+  setClient('portfolio');
   await Promise.all([
     loadMd(),
     checkMonthlySync(),
