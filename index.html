@@ -32,6 +32,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .step.active .snum{background:var(--accent);color:var(--bg);border-color:var(--accent)}
 .snum{width:17px;height:17px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'DM Mono',monospace}
 .tbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;padding-left:12px}
+.step-badge{margin-left:5px;font-size:12px;font-family:'DM Mono',monospace;color:var(--text3)}
+/* BARRA DE CONTEXTO */
+.context-bar{display:flex;align-items:center;gap:8px;padding:9px 20px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:12px;flex-shrink:0;flex-wrap:wrap;min-height:36px}
+.ctx-crumb{color:var(--text2)}
+.ctx-crumb.ctx-link{cursor:pointer;transition:color .15s;border-radius:4px}
+.ctx-crumb.ctx-link:hover{color:var(--accent)}
+.ctx-crumb.ctx-current{color:var(--text);font-weight:500}
+.ctx-sep{color:var(--text3)}
+.ctx-lang{color:var(--accent2);font-family:'DM Mono',monospace;margin-left:2px}
 .skilldot{width:6px;height:6px;border-radius:50%}
 .skilldot.ok{background:var(--accent2)}
 .skilldot.err{background:var(--accent3)}
@@ -161,7 +170,7 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .setup-banner{display:flex;align-items:center;gap:14px;background:rgba(240,164,74,.06);border:1px solid rgba(240,164,74,.25);border-radius:var(--rlg);padding:14px 18px;margin-bottom:16px;flex-wrap:wrap}
 .setup-banner .sb-txt{flex:1;min-width:220px;font-size:12.5px;color:var(--text2);line-height:1.6}
 /* A11Y + MOTION */
-.btn:focus-visible,.nav-item:focus-visible,.step:focus-visible,.conn-row:focus-visible,.send-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn:focus-visible,.nav-item:focus-visible,.step:focus-visible,.conn-row:focus-visible,.send-btn:focus-visible,.ctx-crumb.ctx-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 /* RESPONSIVE */
 .menu-btn{display:none;background:transparent;border:1px solid var(--border2);border-radius:8px;color:var(--text2);font-size:16px;padding:6px 10px;cursor:pointer;margin-right:8px;flex-shrink:0}
@@ -259,6 +268,7 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
       </div>
     </div>
   </div>
+  <div class="context-bar" id="context-bar"></div>
   <div class="panel" id="panel"></div>
 </div>
 <div class="toast" id="toast"></div>
@@ -805,9 +815,87 @@ function setClient(id){
   S.client=id; S.track=null; S.emailChain=[]; S.chatHistory=[]; S.strategyTab='md'; S._pendingStrategyMd=null;
   document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
   document.getElementById('snav-'+id)?.classList.add('active');
-  if(id==='portfolio'){renderPortfolio();return;}
-  if(id==='estrategia'){renderEstrategia();return;}
+  if(id==='portfolio'){clearStepIndicators();renderPortfolio();return;}
+  if(id==='estrategia'){clearStepIndicators();renderEstrategia();return;}
   goStep(1);
+}
+
+// Limpia el stepper (usado por vistas sin pasos: Portafolio, Estrategia general)
+function clearStepIndicators(){
+  [1,2,3,4,5,6,7].forEach(i=>{
+    const el=document.getElementById('step'+i);
+    if(!el) return;
+    el.classList.remove('active','done');
+    const b=el.querySelector('.step-badge');
+    if(b) b.remove();
+  });
+  renderContextBar();
+}
+
+// Estado real de cada paso (no posicional) — usado por el stepper y la barra de contexto
+function stepStatus(n){
+  const c=CLIENTS[S.client];
+  if(!c) return {done:false,badge:null};
+  if(!S.track){
+    // Sin track seleccionado: agregado de todos los tracks del cliente
+    if(n===3){
+      const withContent=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
+      return {done:withContent.length>0&&withContent.length===c.tracks.length, badge:withContent.length?`${withContent.length}/${c.tracks.length}`:null};
+    }
+    if(n===4){
+      const total=c.tracks.reduce((s,t)=>s+chainOf(getStatus(S.client,t.id),S.viewLang).length,0);
+      return {done:false, badge:total?String(total):null};
+    }
+    if(n===5){
+      let sent=0,total=0;
+      c.tracks.forEach(t=>{const chain=chainOf(getStatus(S.client,t.id),S.viewLang);total+=chain.length;sent+=chain.filter(e=>e.sent).length;});
+      return {done:total>0&&sent===total, badge:total?`${sent}/${total}`:null};
+    }
+    if(n===6){
+      const any=c.tracks.some(t=>getCiclos(S.client,t.id).length>0);
+      return {done:any, badge:null};
+    }
+    return {done:false,badge:null};
+  }
+  // Con track seleccionado: estado de ese track específico
+  const st=getStatus(S.client,S.track.id);
+  if(n===3) return {done:hasContent(st), badge:null};
+  if(n===4){
+    const cnt=chainOf(st,S.viewLang).length;
+    return {done:false, badge:cnt?String(cnt):null};
+  }
+  if(n===5){
+    const chain=chainOf(st,S.viewLang);
+    const sent=chain.filter(e=>e.sent).length;
+    return {done:chain.length>0&&sent===chain.length, badge:chain.length?`${sent}/${chain.length}`:null};
+  }
+  if(n===6){
+    const ciclos=getCiclos(S.client,S.track.id);
+    return {done:ciclos.length>0, badge:ciclos.length?String(ciclos.length):null};
+  }
+  return {done:false,badge:null};
+}
+
+// Breadcrumb persistente: cliente / track / idioma — siempre visible, resuelve "¿dónde estoy?"
+function renderContextBar(){
+  const bar=document.getElementById('context-bar');
+  if(!bar) return;
+  const c=CLIENTS[S.client];
+  if(!c){
+    const label=S.client==='portfolio'?'◎ Portafolio':S.client==='estrategia'?'↻ Estrategia':'';
+    bar.innerHTML=label?`<span class="ctx-crumb ctx-current">${label}</span>`:'';
+    return;
+  }
+  let html=`<span class="ctx-crumb ctx-link" tabindex="0" role="button" onclick="S.track=null;S.emailChain=[];goStep(1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();S.track=null;S.emailChain=[];goStep(1);}">${c.name}</span>`;
+  if(S.track){
+    html+=`<span class="ctx-sep">›</span><span class="ctx-crumb ctx-current">Track ${S.track.id} — ${S.track.route}</span>`;
+    if(S.step>=4&&S.step<=6){
+      html+=`<span class="ctx-sep">·</span><span class="ctx-lang">${S.viewLang==='en'?'🇺🇸 EN':'🇨🇴 ES'}</span>`;
+    }
+  }else{
+    html+=`<span class="ctx-sep">›</span><span class="ctx-crumb ctx-current" style="color:var(--text3)">sin track seleccionado</span>`;
+  }
+  bar.innerHTML=html;
 }
 
 function activateStep(n){
@@ -816,9 +904,19 @@ function activateStep(n){
     const el=document.getElementById('step'+i);
     if(!el) return;
     el.classList.remove('active','done');
-    if(i<n) el.classList.add('done');
-    else if(i===n) el.classList.add('active');
+    const oldBadge=el.querySelector('.step-badge');
+    if(oldBadge) oldBadge.remove();
+    if(i===n) el.classList.add('active');
+    const {done,badge}=stepStatus(i);
+    if(done) el.classList.add('done');
+    if(badge){
+      const b=document.createElement('span');
+      b.className='step-badge';
+      b.textContent=badge;
+      el.appendChild(b);
+    }
   });
+  renderContextBar();
 }
 
 function goStep(n){
@@ -1057,6 +1155,7 @@ async function retryTrack(trackId){
   const t=c.tracks.find(x=>x.id===trackId);
   if(!t) return;
   await generateTrack(t,c);
+  activateStep(S.step);
   // Si tras el reintento ya no queda ningún track sin contenido, avanzar a Editar
   const stillFailed=c.tracks.filter(x=>!hasContent(getStatus(S.client,x.id)));
   if(hasContent(getStatus(S.client,trackId)) && !stillFailed.length){
@@ -1346,6 +1445,7 @@ function renderEdit(){
 
 function setViewLang(lang){
   S.viewLang=lang;
+  activateStep(S.step);
   if(S.step===4) renderEdit();
   else if(S.step===5) renderStatus();
 }
@@ -1620,6 +1720,7 @@ function renderStatus(){
 function toggleSent(i){
   S.emailChain[i].sent=!S.emailChain[i].sent;
   persistChain();
+  activateStep(S.step);
   renderStatus();
   showToast(S.emailChain[i].sent?'✓ Email marcado como enviado':'Email marcado como pendiente',2000);
 }
@@ -1828,6 +1929,7 @@ function guardarCiclo(){
     diagnostico:null,ts:Date.now()
   });
   saveCiclos(S.client,t.id,ciclos);
+  activateStep(S.step);
   showToast(autoMig!==null?'✓ Ciclo guardado con migraciones de Sheets':'✓ Ciclo guardado (migraciones pendientes de snapshot)',3000);
   renderResultados();
 }
