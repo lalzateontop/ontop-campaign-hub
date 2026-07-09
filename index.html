@@ -33,6 +33,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .snum{width:17px;height:17px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'DM Mono',monospace}
 .tbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;padding-left:12px}
 .step-badge{margin-left:5px;font-size:12px;font-family:'DM Mono',monospace;color:var(--text3)}
+/* El topbar cambia de "tabs de cliente" (Resumen/Ajustes/Estrategia) a "flujo de track"
+   (Generar/Editar/Envíos/Resultados) según haya o no un track seleccionado. */
+.topbar:not(.mode-track) .step.tstep{display:none}
+.topbar.mode-track .step.ctab{display:none}
 /* BARRA DE CONTEXTO */
 .context-bar{display:flex;align-items:center;gap:8px;padding:9px 20px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:12px;flex-shrink:0;flex-wrap:wrap;min-height:36px}
 .ctx-crumb{color:var(--text2)}
@@ -207,9 +211,6 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
   <div class="nav-item" onclick="setClient('ride')" id="snav-ride"><span class="cdot" style="background:#f04a8a"></span>Ridetechnology</div>
   <div class="nav-item" onclick="setClient('nebius')" id="snav-nebius"><span class="cdot" style="background:#f04a8a"></span>Nebius</div>
   <div class="nav-sep"></div>
-  <div class="nav-label">Vistas</div>
-  <div class="nav-item" onclick="setClient('estrategia')" id="snav-estrategia">↻ Estrategia</div>
-  <div class="nav-sep"></div>
   <div class="nav-label">Skills activos</div>
   <div class="nav-item" style="cursor:default;font-size:12px"><span class="sbadge">PSY</span> Psychology</div>
   <div class="nav-item" style="cursor:default;font-size:12px"><span class="sbadge">EMAIL</span> Sequences</div>
@@ -244,13 +245,13 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 <div class="main">
   <div class="topbar">
     <button class="menu-btn" onclick="toggleSidebar()" aria-label="Abrir menú">☰</button>
-    <div class="step active" id="step1" onclick="goStep(1)" title="Métricas del cliente y tracks de campaña"><div class="snum">1</div>Resumen</div>
-    <div class="step" id="step2" onclick="goStep(2)" title="Configura canales, framework, psicología y tono"><div class="snum">2</div>Skills</div>
-    <div class="step" id="step3" onclick="goStep(3)" title="Genera emails y WhatsApp con Claude (EN + ES)"><div class="snum">3</div>Generar</div>
-    <div class="step" id="step4" onclick="goStep(4)" title="Revisa y edita cada mensaje, manual o con IA"><div class="snum">4</div>Editar</div>
-    <div class="step" id="step5" onclick="goStep(5)" title="Marca qué mensajes ya se enviaron"><div class="snum">5</div>Status</div>
-    <div class="step" id="step6" onclick="goStep(6)" title="Registra migraciones, apertura y clicks por ciclo"><div class="snum">6</div>Resultados</div>
-    <div class="step" id="step7" onclick="goStep(7)" title="Estrategia del cliente (.md) y chat con contexto"><div class="snum">7</div>Estrategia</div>
+    <div class="step active ctab" id="step1" onclick="goStep(1)" title="Resumen del cliente — métricas y tracks de campaña"><div class="snum">1</div>Resumen</div>
+    <div class="step ctab" id="step2" onclick="goStep(2)" title="Ajustes de generación — canales, framework, psicología y tono, aplican a todos los tracks del cliente"><div class="snum">2</div>Ajustes</div>
+    <div class="step tstep" id="step3" onclick="goStep(3)" title="Genera emails y WhatsApp con Claude (EN + ES)"><div class="snum">1</div>Generar</div>
+    <div class="step tstep" id="step4" onclick="goStep(4)" title="Revisa y edita cada mensaje, manual o con IA"><div class="snum">2</div>Editar</div>
+    <div class="step tstep" id="step5" onclick="goStep(5)" title="Marca qué mensajes ya se enviaron"><div class="snum">3</div>Envíos</div>
+    <div class="step tstep" id="step6" onclick="goStep(6)" title="Registra migraciones, apertura y clicks por ciclo"><div class="snum">4</div>Resultados</div>
+    <div class="step ctab" id="step7" onclick="goStep(7)" title="Estrategia del cliente (.md) y chat con contexto"><div class="snum">3</div>Estrategia</div>
     <div class="tbar-right">
       <div id="periodo-indicator" style="display:flex;align-items:center;gap:10px;font-size:12px;font-family:'DM Mono',monospace">
         <div style="display:flex;align-items:center;gap:5px;color:var(--text3)">
@@ -316,18 +317,20 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
     <div style="display:flex;align-items:flex-start">
       <div>
         <div class="modal-title">Cómo funciona el hub</div>
-        <div class="modal-sub">Un ciclo de campaña por cliente, en 7 pasos. Puedes saltar entre pasos con la barra superior.</div>
+        <div class="modal-sub">Home → workspace del cliente → flujo de track. Tres niveles, siempre visibles en el breadcrumb debajo de la barra superior.</div>
       </div>
       <button class="modal-close" onclick="closeModal('help-modal')" aria-label="Cerrar">✕</button>
     </div>
     <div style="font-size:14px;color:var(--text2);line-height:1.8">
-      <div style="margin-bottom:10px"><strong style="color:var(--accent)">1 · Resumen</strong> — métricas del cliente y sus tracks. Elige un track o configura todo desde aquí.</div>
-      <div style="margin-bottom:10px"><strong style="color:var(--accent)">2 · Skills</strong> — canales (email/WhatsApp), framework de copy, principios de psicología y tono. Se aplican a todos los tracks.</div>
-      <div style="margin-bottom:10px"><strong style="color:var(--accent)">3 · Generar</strong> — Claude crea las cadenas en inglés y español. Requiere la API key configurada.</div>
-      <div style="margin-bottom:10px"><strong style="color:var(--accent)">4 · Editar</strong> — revisa cada mensaje, edítalo a mano o pídele cambios a Claude. Exporta el documento Word del cliente.</div>
-      <div style="margin-bottom:10px"><strong style="color:var(--accent)">5 · Status</strong> — marca qué mensajes ya se enviaron.</div>
-      <div style="margin-bottom:10px"><strong style="color:var(--accent)">6 · Resultados</strong> — registra el ciclo (migraciones, apertura, clicks) y pide un diagnóstico a Claude.</div>
-      <div style="margin-bottom:14px"><strong style="color:var(--accent)">7 · Estrategia</strong> — el documento .md del cliente (desde GitHub) y un chat con todo el contexto para iterar la hipótesis del próximo ciclo.</div>
+      <div style="margin-bottom:6px;color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.08em">En el workspace del cliente (sin track seleccionado)</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">Resumen</strong> — métricas del cliente y sus tracks. Elige un track para trabajarlo.</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">Ajustes</strong> — canales (email/WhatsApp), framework de copy, principios de psicología y tono. Se aplican a todos los tracks del cliente.</div>
+      <div style="margin-bottom:14px"><strong style="color:var(--accent)">Estrategia</strong> — el documento .md del cliente (desde GitHub) y un chat con todo el contexto para iterar la hipótesis del próximo ciclo.</div>
+      <div style="margin-bottom:6px;color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.08em">Al seleccionar un track — flujo de 4 pasos</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">1 · Generar</strong> — Claude crea las cadenas en inglés y español. Requiere la API key configurada.</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">2 · Editar</strong> — revisa cada mensaje, edítalo a mano o pídele cambios a Claude. Exporta el documento Word del cliente.</div>
+      <div style="margin-bottom:10px"><strong style="color:var(--accent)">3 · Envíos</strong> — marca qué mensajes ya se enviaron.</div>
+      <div style="margin-bottom:14px"><strong style="color:var(--accent)">4 · Resultados</strong> — registra el ciclo (migraciones, apertura, clicks) y pide un diagnóstico a Claude.</div>
       <div style="font-size:12px;color:var(--text3);border-top:1px solid var(--border);padding-top:12px">Las migraciones se calculan solas comparando el snapshot de Sheets del mes actual contra el anterior. Los aprendizajes de cada ciclo se guardan en el .md de GitHub para que nada se pierda.</div>
     </div>
   </div>
@@ -824,6 +827,7 @@ function setClient(id){
 
 // Limpia el stepper (usado por vistas sin pasos: Portafolio, Estrategia general)
 function clearStepIndicators(){
+  document.querySelector('.topbar')?.classList.remove('mode-track');
   [1,2,3,4,5,6,7].forEach(i=>{
     const el=document.getElementById('step'+i);
     if(!el) return;
@@ -919,6 +923,7 @@ function renderContextBar(){
 
 function activateStep(n){
   S.step=n;
+  document.querySelector('.topbar')?.classList.toggle('mode-track',!!S.track);
   [1,2,3,4,5,6,7].forEach(i=>{
     const el=document.getElementById('step'+i);
     if(!el) return;
@@ -999,7 +1004,7 @@ function renderBrief(){
       ${t.need>0?`<div class="pgwrap" style="margin-bottom:10px"><div class="pgfill" style="width:${pct}%;background:${progColor}"></div></div>`:''}
       ${emailCount?`<div class="brow" style="margin-top:0">
         <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',4)">Editar cadena</button>
-        <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',5)">Status</button>
+        <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',5)">Envíos</button>
         <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',6)">Resultados</button>
       </div>`:`<div class="brow" style="margin-top:0">
         <button class="btn btnp" style="font-size:12px" onclick="selectTrackAndConfig('${t.id}')">⚙ Configurar y generar →</button>
@@ -1064,7 +1069,7 @@ function renderBrief(){
         <textarea id="extra-ctx" style="min-height:55px" placeholder="Ej: mencionar los 6 All-Ins como social proof. HR prefiere tono formal.">${S.extraCtx}</textarea>
       </div>
       <div class="brow" style="margin-top:8px">
-        <button class="btn btnp" onclick="goToSkillsAndSaveCtx()">⚙ Configurar Skills y Generar →</button>
+        <button class="btn btnp" onclick="goToSkillsAndSaveCtx()">⚙ Configurar Ajustes y Generar →</button>
       </div>
     </div>`;
 }
@@ -1197,7 +1202,7 @@ async function forceRegenerate(){
 // ══════════════════════════════════════════════
 function renderSkills(){
   document.getElementById('panel').innerHTML=`
-    <div class="stitle">Skills <span style="font-size:14px;color:var(--text3);font-weight:400">— configura la generación</span></div>
+    <div class="stitle">Ajustes de generación <span style="font-size:14px;color:var(--text3);font-weight:400">— aplican a todos los tracks de ${CLIENTS[S.client]?.name||'este cliente'}</span></div>
 
     <div class="card">
       <div class="clabel">Canales a generar</div>
@@ -1366,7 +1371,7 @@ function renderEdit(){
     if(!withChain.length){
       document.getElementById('panel').innerHTML=`
         <div class="stitle">Editar mensajes <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name}</span></div>
-        ${emptyState('✉','Aún no hay mensajes para editar',`Primero genera las cadenas de email y WhatsApp de ${c.name}. Configura los skills en el paso 2 y genera en el paso 3 — toma un par de minutos por track.`,'Ir a generar contenido →','goStep(2)')}`;
+        ${emptyState('✉','Aún no hay mensajes para editar',`Primero genera las cadenas de email y WhatsApp de ${c.name}. Revisa los ajustes de generación y luego entra al track para generar — toma un par de minutos por track.`,'Ir a Ajustes →','goStep(2)')}`;
       return;
     }
     let html=`<div class="stitle">Editar mensajes <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name} · selecciona un track</span></div>`;
@@ -1664,11 +1669,11 @@ function renderStatus(){
     const withChain=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
     if(!withChain.length){
       document.getElementById('panel').innerHTML=`
-        <div class="stitle">${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— Status de campaña</span></div>
-        ${emptyState('⏳','Nada que marcar todavía',`El status registra qué mensajes de ${c.name} ya se enviaron, pero aún no hay contenido generado.`,'Ir a generar contenido →','goStep(2)')}`;
+        <div class="stitle">${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— Envíos</span></div>
+        ${emptyState('⏳','Nada que marcar todavía',`Los envíos registran qué mensajes de ${c.name} ya se enviaron, pero aún no hay contenido generado.`,'Ir a generar contenido →','goStep(2)')}`;
       return;
     }
-    let html=`<div class="stitle">${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— Status de campaña</span></div>`;
+    let html=`<div class="stitle">${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— Envíos</span></div>`;
     withChain.forEach(t=>{
       const st=getStatus(S.client,t.id);
       const emails=chainOf(st,S.viewLang);
@@ -1695,7 +1700,7 @@ function renderStatus(){
       <span style="font-size:12px;color:var(--text3)">${c.name}</span>
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <div class="stitle" style="margin-bottom:0">Status — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
+      <div class="stitle" style="margin-bottom:0">Envíos — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
       <div style="display:flex;gap:4px;background:var(--bg2);border:1px solid var(--border);border-radius:99px;padding:3px">
         <button class="btn ${S.viewLang==='en'?'btnp':''}" style="font-size:12px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('en')">🇺🇸 EN</button>
         <button class="btn ${S.viewLang==='es'?'btnp':''}" style="font-size:12px;padding:5px 14px;border:none;border-radius:99px" onclick="setViewLang('es')">🇨🇴 ES</button>
@@ -1927,7 +1932,7 @@ function renderResultados(){
     });
   }
 
-  html+=`<div class="brow"><button class="btn" onclick="goStep(5)">← Status</button><button class="btn btnp" onclick="goStep(7)">Revisar estrategia →</button></div>`;
+  html+=`<div class="brow"><button class="btn" onclick="goStep(5)">← Envíos</button><button class="btn btnp" onclick="goStep(7)">Revisar estrategia →</button></div>`;
   document.getElementById('panel').innerHTML=html;
 }
 
