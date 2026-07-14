@@ -672,8 +672,8 @@ Headlines: [Beneficio]+[Diferenciador] | [Número]+[Outcome] | [Pregunta] | [Con
 CTAs Soft: "Ver cómo funciona" | CTAs Hard: "Activar mi Ontop Card" | "Empezar a ahorrar"
 
 ${md.context?'══ CONTEXTO PRODUCTO (product-marketing.md) ══\n'+md.context.slice(0,1800)+'\n':''}
-${md.edtech?'══ EDTECH CAMPAIGN ══\n'+md.edtech.slice(0,1200)+'\n':''}
-${md.toloka?'══ TOLOKA CAMPAIGN ══\n'+md.toloka.slice(0,800)+'\n':''}
+${md[S.client]?`══ CAMPAÑA — ${CLIENTS[S.client]?.name||S.client} (ÚNICO cliente relevante para esta generación) ══\n`+md[S.client].slice(0,1800)+'\n':''}
+‼️ Este documento de campaña es SOLO de este cliente. NUNCA menciones el nombre de otro cliente de Ontop (Edtech Plus, Toloka AI, Ridetechnology, Nebius) en el copy — ni siquiera como ejemplo de "otros workers ya lo usan". El social proof debe ser genérico ("workers como tú", "tus colegas") o basado en cifras del propio documento de este cliente.
 
 ══ REGLAS DE PRODUCTO ONTOP — NUNCA VIOLAR ══
 1. Ontop Card standalone: ONLY zero foreign transaction fees. ZERO cashback without Reserve.
@@ -727,6 +727,7 @@ Writing principles:
 - First line of each message: hook immediately. NEVER start with "Hi, we're Ontop" or corporate intro.
 - Always human signature: Luis Miguel, your Ontop CSM
 - Tone as instructed.
+- NEVER use an em dash / raya larga (—) to join two clauses in the middle of a sentence (e.g. "This matters — here's why" / "Esto importa — y por eso"). That is a giveaway of AI-written copy. Use a period, a comma, or a connector word ("and"/"y", "but"/"pero", "so"/"así que") instead — two short sentences beat one stitched together with a dash.
 
 ${'━'.repeat(40)}
 ‼️ FINAL REMINDER: Your output MUST be entirely in ${TARGET_LANG}. ${isEn?'Write everything in English, regardless of the Spanish instructions above.':'Escribe todo en español.'}
@@ -1290,6 +1291,13 @@ async function renderGenerate(){
 
     document.getElementById('panel').innerHTML=`
       <div class="stitle">Generando campaña <span style="font-size:14px;color:var(--text3);font-weight:400">— ${c.name}</span></div>
+      <div class="card" style="margin-bottom:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span class="clabel" style="margin-bottom:0">Progreso</span>
+          <span id="gen-overall-label" style="font-size:12px;font-family:'DM Mono',monospace;color:var(--text3)">0/${pending.length} tracks</span>
+        </div>
+        <div class="pgwrap"><div class="pgfill" id="gen-overall-fill" style="width:0%"></div></div>
+      </div>
       ${withChain.length?`<div class="card" style="background:rgba(74,240,184,.04);border-color:rgba(74,240,184,.2);margin-bottom:14px">
         <div class="clabel">Ya generados</div>
         ${withChain.map(t=>`<div style="font-size:14px;color:var(--accent2);padding:4px 0">✓ ${t.label}</div>`).join('')}
@@ -1306,8 +1314,14 @@ async function renderGenerate(){
     // Esperar a que el DOM esté listo
     await new Promise(r=>setTimeout(r,80));
 
+    let doneCount=0;
+    const overallLabel=document.getElementById('gen-overall-label');
+    const overallFill=document.getElementById('gen-overall-fill');
     for(const t of pending){
       await generateTrack(t, c);
+      doneCount++;
+      if(overallLabel) overallLabel.textContent=`${doneCount}/${pending.length} tracks`;
+      if(overallFill) overallFill.style.width=`${Math.round(doneCount/pending.length*100)}%`;
     }
     const failed=pending.filter(t=>!hasContent(getStatus(S.client,t.id)));
     if(failed.length){
@@ -1463,9 +1477,11 @@ function renderEdit(){
     <div class="chain-wrap" id="chain-container">${chainsHtml}</div>
     <div class="brow">
       <button class="btn btnp" onclick="goStep(5)">Marcar status →</button>
+      <button class="btn" onclick="rewriteChainNoDashes()">🧹 Reescribir sin rayas largas</button>
       <button class="btn" onclick="forceRegenerate()">↻ Regenerar este track</button>
       <button class="btn" onclick="exportClientDoc()" style="margin-left:auto">↓ Documento del cliente</button>
-    </div>`;
+    </div>
+    <div id="rewrite-status" style="font-size:12px;color:var(--text3);margin-top:8px;font-family:'DM Mono',monospace"></div>`;
 }
 
 function setViewLang(lang){
@@ -1641,6 +1657,71 @@ Reply in the same format: SUBJECT: / PREVIEW: / --- / body / --- / CTA: / LEGAL_
   }catch(e){
     if(statusEl) statusEl.textContent='Error: '+e.message;
   }
+}
+
+// Reescribe toda la cadena del track (idioma actual) para quitar rayas largas (—) usadas
+// como conector dentro de una oración — el mismo tic de escritura que ya evitamos en
+// buildSystem() para generaciones nuevas, aplicado aquí a mensajes ya generados.
+async function rewriteChainNoDashes(){
+  if(!S.apiKey){showToast('Falta la API key de Claude',2500);openConfig('api');return;}
+  const chain=S.emailChain;
+  if(!chain.length){showToast('No hay mensajes para reescribir',2000);return;}
+  const statusEl=document.getElementById('rewrite-status');
+  const langLabel=S.viewLang==='en'?'ENGLISH':'SPANISH';
+  for(let i=0;i<chain.length;i++){
+    const em=chain[i];
+    if(statusEl) statusEl.textContent=`Reescribiendo ${i+1}/${chain.length}...`;
+    let prompt;
+    if(em.type==='whatsapp'){
+      prompt=`Rewrite this Ontop WhatsApp campaign message to remove any em dash (—) used mid-sentence as a connector (e.g. "This matters — here's why"). Replace it with a period, comma, or connector word. Keep the exact same message, tone, length (under 160 chars) and language. WRITE IN ${langLabel}.
+
+CURRENT MESSAGE:
+${em.body}
+
+Reply with ONLY the revised message text, nothing else.`;
+    }else{
+      prompt=`Rewrite this Ontop campaign email to remove any em dash (—) used mid-sentence as a connector (e.g. "This matters — here's why"). Replace it with a period, comma, or connector word instead. Keep the exact same message, tone, length and language — do not change the meaning. WRITE EVERYTHING IN ${langLabel}.
+
+CURRENT EMAIL:
+SUBJECT: ${em.subject}
+---
+${em.body}
+---
+CTA: ${em.cta}
+
+Reply in the same format: SUBJECT: / PREVIEW: / --- / body / --- / CTA: / LEGAL_NOTE: (only if needed). Keep all product rules.`;
+    }
+    try{
+      const raw=await callClaude(prompt, buildSystem(S.viewLang));
+      if(!raw) continue;
+      if(em.type==='whatsapp'){
+        em.body=raw.trim();
+      }else{
+        const lines=raw.split('\n');
+        let subj=em.subject,prev=em.preview||'',bd='',cta=em.cta,legal='';
+        let inBody=false;
+        lines.forEach(l=>{
+          const t=l.trim();
+          if(t.startsWith('SUBJECT:')||t.startsWith('ASUNTO:')) subj=t.replace(/^(SUBJECT|ASUNTO):/,'').trim();
+          else if(t.startsWith('PREVIEW:')) prev=t.replace('PREVIEW:','').trim();
+          else if(t==='---'&&!inBody) inBody=true;
+          else if(t==='---'&&inBody) inBody=false;
+          else if(t.startsWith('CTA:')) cta=t.replace('CTA:','').trim();
+          else if(t.startsWith('LEGAL_NOTE:')||t.startsWith('NOTA_LEGAL:')) legal=t.replace(/^(LEGAL_NOTE|NOTA_LEGAL):/,'').trim();
+          else if(inBody) bd+=l+'\n';
+        });
+        em.subject=subj; em.preview=prev; em.body=bd.trim(); em.cta=cta; em.legal=legal;
+      }
+    }catch(e){
+      if(statusEl) statusEl.textContent=`Error en mensaje ${i+1}: ${e.message}`;
+      persistChain();
+      renderEdit();
+      return;
+    }
+  }
+  persistChain();
+  renderEdit();
+  showToast(`✓ ${chain.length} mensajes reescritos sin rayas largas`,3000);
 }
 
 function resetEmail(i){
