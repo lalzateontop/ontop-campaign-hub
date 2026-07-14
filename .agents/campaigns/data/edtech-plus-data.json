@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-14T20:06:43.657Z",
+  "updatedAt": "2026-07-14T20:06:45.198Z",
   "tracks": {
     "A": {
       "status": {
@@ -202,7 +202,102 @@
       "archive": []
     },
     "C": {
-      "status": null,
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "You're leaving money on every purchase",
+            "preview": "Your Ontop Card does more than you think. Here's what's missing.",
+            "body": "[First Name],\n\nEvery time you pay with your Ontop Card abroad, you save on foreign transaction fees. That part's working.\n\nBut here's what isn't: every purchase you make right now earns you nothing back.\n\nYour colleagues at TripleTen who activated cashback are getting 5–10% back on every transaction. You're using the same card and getting zero.\n\nThat's not a small difference. On $500/month in card spend, that's $25–$50 walking out the door every single month.\n\nThe fix takes less than two minutes. Activate Reserve and your card starts working harder on every purchase, automatically.\n\nYou've already done the hard part by getting the card. This is just turning it fully on.",
+            "cta": "Activate cashback now",
+            "legal": "Cashback (10%/5%) requires active Reserve membership at $14.99/month. Available to eligible Ontop Card holders.",
+            "raw": "\nSUBJECT: You're leaving money on every purchase\nPREVIEW: Your Ontop Card does more than you think. Here's what's missing.\n---\n[First Name],\n\nEvery time you pay with your Ontop Card abroad, you save on foreign transaction fees. That part's working.\n\nBut here's what isn't: every purchase you make right now earns you nothing back.\n\nYour colleagues at TripleTen who activated cashback are getting 5–10% back on every transaction. You're using the same card and getting zero.\n\nThat's not a small difference. On $500/month in card spend, that's $25–$50 walking out the door every single month.\n\nThe fix takes less than two minutes. Activate Reserve and your card starts working harder on every purchase, automatically.\n\nYou've already done the hard part by getting the card. This is just turning it fully on.\n---\nCTA: Activate cashback now\nLEGAL_NOTE: Cashback (10%/5%) requires active Reserve membership at $14.99/month. Available to eligible Ontop Card holders.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "42 of your colleagues already did this",
+            "preview": "They're earning back on every swipe. You're not. Yet.",
+            "body": "[First Name],\n\nQuick numbers from TripleTen workers who activated Reserve:\n\n42 of your colleagues are already earning cashback on every purchase with their Ontop Card. They made the switch. Their card now pays them back on groceries, subscriptions, travel, everything.\n\nYou're still at zero.\n\nHere's the uncomfortable math: if you spend $600/month on your card and wait three more months to activate, that's roughly $90–$180 in cashback you'll never get back. Gone.\n\nThere's no complicated setup. No paperwork. One tap, and every future purchase starts earning.\n\nThe only question is how much longer you want to leave it on the table.",
+            "cta": "Turn on cashback today",
+            "legal": "Cashback (10%/5%) requires active Reserve membership at $14.99/month. Available to eligible Ontop Card holders.",
+            "raw": "\nSUBJECT: 42 of your colleagues already did this\nPREVIEW: They're earning back on every swipe. You're not. Yet.\n---\n[First Name],\n\nQuick numbers from TripleTen workers who activated Reserve:\n\n42 of your colleagues are already earning cashback on every purchase with their Ontop Card. They made the switch. Their card now pays them back on groceries, subscriptions, travel, everything.\n\nYou're still at zero.\n\nHere's the uncomfortable math: if you spend $600/month on your card and wait three more months to activate, that's roughly $90–$180 in cashback you'll never get back. Gone.\n\nThere's no complicated setup. No paperwork. One tap, and every future purchase starts earning.\n\nThe only question is how much longer you want to leave it on the table.\n---\nCTA: Turn on cashback today\nLEGAL_NOTE: Cashback (10%/5%) requires active Reserve membership at $14.99/month. Available to eligible Ontop Card holders.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Last nudge on this, [First Name]",
+            "preview": "Still not earning cashback? Here's what that's cost you so far.",
+            "body": "[First Name],\n\nI'll keep this short.\n\nSince the first email we sent you, the average TripleTen worker with Reserve activated has earned cashback on every single purchase. You haven't.\n\nThat gap is real money. And it doesn't come back.\n\nYour Ontop Card is already in your wallet. Reserve doesn't change how you use it. It just makes sure every swipe counts.\n\nTwo minutes. That's the only thing standing between you and cashback on every purchase going forward.\n\nThis is the last time I'll bring it up. The decision is yours.",
+            "cta": "Activate Reserve now",
+            "legal": "Cashback (10%/5%) requires active Reserve membership at $14.99/month. Available to eligible Ontop Card holders.",
+            "raw": "\nSUBJECT: Last nudge on this, [First Name]\nPREVIEW: Still not earning cashback? Here's what that's cost you so far.\n---\n[First Name],\n\nI'll keep this short.\n\nSince the first email we sent you, the average TripleTen worker with Reserve activated has earned cashback on every single purchase. You haven't.\n\nThat gap is real money. And it doesn't come back.\n\nYour Ontop Card is already in your wallet. Reserve doesn't change how you use it. It just makes sure every swipe counts.\n\nTwo minutes. That's the only thing standing between you and cashback on every purchase going forward.\n\nThis is the last time I'll bring it up. The decision is yours.\n---\nCTA: Activate Reserve now\nLEGAL_NOTE: Cashback (10%/5%) requires active Reserve membership at $14.99/month. Available to eligible Ontop Card holders.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Tu tarjeta Ontop te cobra de más",
+            "preview": "Cada compra internacional te cuesta dinero extra. Aquí está la solución.",
+            "body": "[First Name], cada vez que usas tu tarjeta actual para pagar en otra moneda, el banco se queda con un porcentaje de tu compra. Sin que te avisen. Sin que puedas evitarlo.\n\nCon tu Ontop Card activada, esa comisión desaparece. Cero cargos por transacciones en moneda extranjera, en cada compra, siempre.\n\nMás de 40 de tus colegas en TripleTen ya activaron su tarjeta y dejaron de pagar esa comisión. Cada mes que pasa sin activarla es dinero que no recuperas.\n\nUn solo paso: activa tu Ontop Card hoy.",
+            "cta": "Activar mi Ontop Card",
+            "legal": "Ontop Card standalone: zero foreign transaction fees únicamente. Cashback no aplica sin Reserve activa.",
+            "raw": "\nSUBJECT: Tu tarjeta Ontop te cobra de más\nPREVIEW: Cada compra internacional te cuesta dinero extra. Aquí está la solución.\n---\n[First Name], cada vez que usas tu tarjeta actual para pagar en otra moneda, el banco se queda con un porcentaje de tu compra. Sin que te avisen. Sin que puedas evitarlo.\n\nCon tu Ontop Card activada, esa comisión desaparece. Cero cargos por transacciones en moneda extranjera, en cada compra, siempre.\n\nMás de 40 de tus colegas en TripleTen ya activaron su tarjeta y dejaron de pagar esa comisión. Cada mes que pasa sin activarla es dinero que no recuperas.\n\nUn solo paso: activa tu Ontop Card hoy.\n---\nCTA: Activar mi Ontop Card\nLEGAL_NOTE: Ontop Card standalone: zero foreign transaction fees únicamente. Cashback no aplica sin Reserve activa.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "¿Cuánto perdiste en comisiones este mes?",
+            "preview": "Tus colegas ya dejaron de pagarlo. Tú aún no.",
+            "body": "[First Name], haz el cálculo rápido.\n\nSi gastaste $500 en compras internacionales este mes con una tarjeta convencional, pagaste entre $10 y $15 en comisiones de cambio. Solo este mes. Solo en fees que no tenías que pagar.\n\nCon tu Ontop Card eso no ocurre. Cero comisiones en transacciones extranjeras, sin letra pequeña.\n\nMás de 40 workers de TripleTen ya activaron su tarjeta. El dinero que ellos ya no pierden en fees, tú todavía lo estás dejando ir.\n\nNo necesitas cambiar cómo gastas. Solo necesitas activar la tarjeta correcta.\n\nEl botón está abajo. Tarda menos de dos minutos.",
+            "cta": "Activar mi Ontop Card ahora",
+            "legal": "Ontop Card standalone: zero foreign transaction fees únicamente. Cashback no aplica sin Reserve activa.",
+            "raw": "\nSUBJECT: ¿Cuánto perdiste en comisiones este mes?\nPREVIEW: Tus colegas ya dejaron de pagarlo. Tú aún no.\n---\n[First Name], haz el cálculo rápido.\n\nSi gastaste $500 en compras internacionales este mes con una tarjeta convencional, pagaste entre $10 y $15 en comisiones de cambio. Solo este mes. Solo en fees que no tenías que pagar.\n\nCon tu Ontop Card eso no ocurre. Cero comisiones en transacciones extranjeras, sin letra pequeña.\n\nMás de 40 workers de TripleTen ya activaron su tarjeta. El dinero que ellos ya no pierden en fees, tú todavía lo estás dejando ir.\n\nNo necesitas cambiar cómo gastas. Solo necesitas activar la tarjeta correcta.\n\nEl botón está abajo. Tarda menos de dos minutos.\n---\nCTA: Activar mi Ontop Card ahora\nLEGAL_NOTE: Ontop Card standalone: zero foreign transaction fees únicamente. Cashback no aplica sin Reserve activa.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Último aviso: tus fees siguen corriendo",
+            "preview": "Cada semana sin activar tu Ontop Card es dinero que no vuelve.",
+            "body": "[First Name], te escribí dos veces porque el número importa.\n\nSi llevas tres meses pagando comisiones en compras internacionales, probablemente ya perdiste $30 o $40 que no tenías que perder. El mes que viene serán $10 o $15 más.\n\nTus colegas de TripleTen que ya activaron su Ontop Card no vuelven atrás. No porque sea complicado, sino porque simplemente funciona: cero fees, sin trámites, sin letra pequeña.\n\nActivar tarda dos minutos. No activar te cuesta cada mes.\n\nEste es el último recordatorio. El siguiente fee te lo cobra tu tarjeta actual, no nosotros.",
+            "cta": "Activar mi Ontop Card",
+            "legal": "Ontop Card standalone: zero foreign transaction fees únicamente. Cashback no aplica sin Reserve activa.",
+            "raw": "\nSUBJECT: Último aviso: tus fees siguen corriendo\nPREVIEW: Cada semana sin activar tu Ontop Card es dinero que no vuelve.\n---\n[First Name], te escribí dos veces porque el número importa.\n\nSi llevas tres meses pagando comisiones en compras internacionales, probablemente ya perdiste $30 o $40 que no tenías que perder. El mes que viene serán $10 o $15 más.\n\nTus colegas de TripleTen que ya activaron su Ontop Card no vuelven atrás. No porque sea complicado, sino porque simplemente funciona: cero fees, sin trámites, sin letra pequeña.\n\nActivar tarda dos minutos. No activar te cuesta cada mes.\n\nEste es el último recordatorio. El siguiente fee te lo cobra tu tarjeta actual, no nosotros.\n---\nCTA: Activar mi Ontop Card\nLEGAL_NOTE: Ontop Card standalone: zero foreign transaction fees únicamente. Cashback no aplica sin Reserve activa.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email"
+        ],
+        "generatedAt": "2026-07-14T20:06:45.198Z",
+        "cycle": 1
+      },
       "ciclos": [],
       "archive": []
     },
