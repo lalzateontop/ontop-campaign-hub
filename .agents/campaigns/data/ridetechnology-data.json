@@ -1,6 +1,6 @@
 {
   "client": "ride",
-  "updatedAt": "2026-07-14T20:33:34.833Z",
+  "updatedAt": "2026-07-14T20:34:31.398Z",
   "tracks": {
     "DX": {
       "status": {
@@ -362,7 +362,139 @@
       "archive": []
     },
     "C": {
-      "status": null,
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Your card is ready. Most don't use it.",
+            "preview": "Every time you pay abroad without it, you're leaving money on the table.",
+            "body": "[First Name],\n\nEvery international purchase you make without your Ontop Card has a cost. Foreign transaction fees, conversion markups, hidden charges. They add up faster than you'd think.\n\nYour Ontop Card is already available to you. Zero foreign transaction fees. Every time you swipe abroad, what you see is what you pay.\n\nYour colleagues who activated it stopped thinking about fees on international purchases. You can do the same today in a few minutes.\n\nOne tap to activate. No paperwork. No waiting.\n\nThe fees you paid last month won't come back. But the ones next month? Those are still yours to keep.",
+            "cta": "Activate my Ontop Card",
+            "legal": "Zero foreign transaction fees applies to card transactions. No cashback feature is included without an active Reserve membership.",
+            "raw": "\nSUBJECT: Your card is ready. Most don't use it.\nPREVIEW: Every time you pay abroad without it, you're leaving money on the table.\n---\n[First Name],\n\nEvery international purchase you make without your Ontop Card has a cost. Foreign transaction fees, conversion markups, hidden charges. They add up faster than you'd think.\n\nYour Ontop Card is already available to you. Zero foreign transaction fees. Every time you swipe abroad, what you see is what you pay.\n\nYour colleagues who activated it stopped thinking about fees on international purchases. You can do the same today in a few minutes.\n\nOne tap to activate. No paperwork. No waiting.\n\nThe fees you paid last month won't come back. But the ones next month? Those are still yours to keep.\n---\nCTA: Activate my Ontop Card\nLEGAL_NOTE: Zero foreign transaction fees applies to card transactions. No cashback feature is included without an active Reserve membership.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "What are you paying on every purchase?",
+            "preview": "Your card eliminates one of the most common fees workers like you forget to check.",
+            "body": "[First Name],\n\nForeign transaction fees are easy to ignore. They show up as small percentages on your statement and most people never question them.\n\nHere is the problem. On every international purchase, those fees can run between 1.5% and 3%. On a $500 purchase, that is up to $15 gone. Every single time.\n\nWorkers at Yango who activated their Ontop Card stopped paying that. It costs nothing to activate. The card is already part of your account.\n\nYou are not getting a worse deal by activating it. You are getting a worse deal by not.\n\nTakes two minutes. No forms. Just activate and start using it on your next purchase.",
+            "cta": "Stop paying foreign fees",
+            "legal": "Foreign transaction fee elimination applies to eligible card transactions. No cashback without Reserve membership.",
+            "raw": "\nSUBJECT: What are you paying on every purchase?\nPREVIEW: Your card eliminates one of the most common fees workers like you forget to check.\n---\n[First Name],\n\nForeign transaction fees are easy to ignore. They show up as small percentages on your statement and most people never question them.\n\nHere is the problem. On every international purchase, those fees can run between 1.5% and 3%. On a $500 purchase, that is up to $15 gone. Every single time.\n\nWorkers at Yango who activated their Ontop Card stopped paying that. It costs nothing to activate. The card is already part of your account.\n\nYou are not getting a worse deal by activating it. You are getting a worse deal by not.\n\nTakes two minutes. No forms. Just activate and start using it on your next purchase.\n---\nCTA: Stop paying foreign fees\nLEGAL_NOTE: Foreign transaction fee elimination applies to eligible card transactions. No cashback without Reserve membership.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Last call: your card is still sitting there",
+            "preview": "One click separates you from zero fees on every international purchase. That's it.",
+            "body": "[First Name],\n\nQuick one.\n\nYour Ontop Card has been available for a while now and it is not activated yet.\n\nEvery purchase you make internationally without it is a purchase where you paid fees you did not have to.\n\nMost of your colleagues at Yango have already made the switch. They are not doing anything different. They just activated.\n\nThis is the last nudge. After this, the fees keep coming out of your pocket on every transaction.\n\nTwo minutes. One tap. Done.",
+            "cta": "Activate now",
+            "legal": "Zero foreign transaction fees on eligible card transactions. Cashback requires active Reserve membership and is not included in this offer.",
+            "raw": "\nSUBJECT: Last call: your card is still sitting there\nPREVIEW: One click separates you from zero fees on every international purchase. That's it.\n---\n[First Name],\n\nQuick one.\n\nYour Ontop Card has been available for a while now and it is not activated yet.\n\nEvery purchase you make internationally without it is a purchase where you paid fees you did not have to.\n\nMost of your colleagues at Yango have already made the switch. They are not doing anything different. They just activated.\n\nThis is the last nudge. After this, the fees keep coming out of your pocket on every transaction.\n\nTwo minutes. One tap. Done.\n---\nCTA: Activate now\nLEGAL_NOTE: Zero foreign transaction fees on eligible card transactions. Cashback requires active Reserve membership and is not included in this offer.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hey [First Name], your Ontop Card is ready but not activated yet. Every purchase abroad without it costs you in fees. Takes 2 min to fix. Want the link? 👋",
+            "raw": "Hey [First Name], your Ontop Card is ready but not activated yet. Every purchase abroad without it costs you in fees. Takes 2 min to fix. Want the link? 👋",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], quick follow-up. Your colleagues already activated their Ontop Card and stopped paying foreign fees on every purchase. Yours is still waiting. Activate here: [link] 💳",
+            "raw": "[First Name], quick follow-up. Your colleagues already activated their Ontop Card and stopped paying foreign fees on every purchase. Yours is still waiting. Activate here: [link] 💳",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Cada compra en el extranjero te está costando de más",
+            "preview": "Tus colegas ya dejaron de pagar fees innecesarios. Tú también puedes.",
+            "body": "[First Name], cada vez que usas otra tarjeta para pagar en moneda extranjera, pierdes entre 2% y 3% de tu propio dinero en fees de conversión.\n\nNo es un monto pequeño. En un año, eso puede ser cientos de dólares que simplemente desaparecen.\n\nTu Ontop Card elimina esos cargos por transacciones internacionales. Cero fees. Cada compra, siempre.\n\nWorkers como tú en Yango ya la activaron y dejaron de regalar dinero en cada pago.\n\nEl único paso es activarla. No hay costos de apertura, no hay letra chica.\n\nUn clic y empieza a proteger lo que ganaste.",
+            "cta": "Activar mi Ontop Card",
+            "legal": "La Ontop Card standalone ofrece cero fees por transacciones internacionales. El cashback aplica únicamente con membresía Reserve activa, no incluida en este plan.",
+            "raw": "\nSUBJECT: Cada compra en el extranjero te está costando de más\nPREVIEW: Tus colegas ya dejaron de pagar fees innecesarios. Tú también puedes.\n---\n[First Name], cada vez que usas otra tarjeta para pagar en moneda extranjera, pierdes entre 2% y 3% de tu propio dinero en fees de conversión.\n\nNo es un monto pequeño. En un año, eso puede ser cientos de dólares que simplemente desaparecen.\n\nTu Ontop Card elimina esos cargos por transacciones internacionales. Cero fees. Cada compra, siempre.\n\nWorkers como tú en Yango ya la activaron y dejaron de regalar dinero en cada pago.\n\nEl único paso es activarla. No hay costos de apertura, no hay letra chica.\n\nUn clic y empieza a proteger lo que ganaste.\n---\nCTA: Activar mi Ontop Card\nLEGAL_NOTE: La Ontop Card standalone ofrece cero fees por transacciones internacionales. El cashback aplica únicamente con membresía Reserve activa, no incluida en este plan.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "¿Cuánto perdiste en fees este mes?",
+            "preview": "La cifra exacta puede sorprenderte. Aquí te lo explicamos.",
+            "body": "[First Name], hagamos la cuenta rápida.\n\nSi gastaste $500 en compras internacionales este mes con otra tarjeta, pagaste hasta $15 en fees que no tenías por qué pagar.\n\nEn seis meses: $90. En un año: más de $180. Dinero tuyo, cobrado sin que lo notes.\n\nCon tu Ontop Card esa cifra es cero. Siempre.\n\nVarios de tus colegas ya activaron la suya y cada mes retienen ese dinero en su bolsillo. No lo donaron a un banco.\n\nLa tarjeta ya está disponible para ti. Solo falta que la actives.\n\nNo pierdas otro mes pagando de más por algo que ya tienes resuelto.",
+            "cta": "Activar ahora, sin costo",
+            "legal": "La Ontop Card standalone ofrece cero fees por transacciones internacionales. El cashback aplica únicamente con membresía Reserve activa.",
+            "raw": "\nSUBJECT: ¿Cuánto perdiste en fees este mes?\nPREVIEW: La cifra exacta puede sorprenderte. Aquí te lo explicamos.\n---\n[First Name], hagamos la cuenta rápida.\n\nSi gastaste $500 en compras internacionales este mes con otra tarjeta, pagaste hasta $15 en fees que no tenías por qué pagar.\n\nEn seis meses: $90. En un año: más de $180. Dinero tuyo, cobrado sin que lo notes.\n\nCon tu Ontop Card esa cifra es cero. Siempre.\n\nVarios de tus colegas ya activaron la suya y cada mes retienen ese dinero en su bolsillo. No lo donaron a un banco.\n\nLa tarjeta ya está disponible para ti. Solo falta que la actives.\n\nNo pierdas otro mes pagando de más por algo que ya tienes resuelto.\n---\nCTA: Activar ahora, sin costo\nLEGAL_NOTE: La Ontop Card standalone ofrece cero fees por transacciones internacionales. El cashback aplica únicamente con membresía Reserve activa.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Última vez que te digo esto, [First Name]",
+            "preview": "Cada mes sin activarla es dinero que no recuperas. Ya.",
+            "body": "[First Name], no voy a seguir insistiéndote después de hoy.\n\nPero sí quiero ser claro: cada mes que pasa sin activar tu Ontop Card es dinero que pierdes y que no vuelve.\n\nNo hay trámite complicado. No hay costo de activación. No hay letra chica.\n\nEs literalmente: un clic, y dejas de pagar fees en cada compra internacional.\n\nTus colegas que ya la activaron llevan meses sin pagar esos cargos. Tú decides si este mes sigues en el otro lado de esa estadística.\n\nLa tarjeta ya está en tu cuenta. Solo necesita que tú le digas que sí.",
+            "cta": "Activar mi tarjeta hoy",
+            "legal": "La Ontop Card standalone ofrece cero fees por transacciones internacionales. El cashback aplica únicamente con membresía Reserve activa.",
+            "raw": "\nSUBJECT: Última vez que te digo esto, [First Name]\nPREVIEW: Cada mes sin activarla es dinero que no recuperas. Ya.\n---\n[First Name], no voy a seguir insistiéndote después de hoy.\n\nPero sí quiero ser claro: cada mes que pasa sin activar tu Ontop Card es dinero que pierdes y que no vuelve.\n\nNo hay trámite complicado. No hay costo de activación. No hay letra chica.\n\nEs literalmente: un clic, y dejas de pagar fees en cada compra internacional.\n\nTus colegas que ya la activaron llevan meses sin pagar esos cargos. Tú decides si este mes sigues en el otro lado de esa estadística.\n\nLa tarjeta ya está en tu cuenta. Solo necesita que tú le digas que sí.\n---\nCTA: Activar mi tarjeta hoy\nLEGAL_NOTE: La Ontop Card standalone ofrece cero fees por transacciones internacionales. El cashback aplica únicamente con membresía Reserve activa.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hola [Nombre], cada compra en moneda extranjera con otra tarjeta te cobra entre 2% y 3% de más. Tu Ontop Card lo elimina. Sin costo. ¿La activamos? 👉 [link]",
+            "raw": "Hola [Nombre], cada compra en moneda extranjera con otra tarjeta te cobra entre 2% y 3% de más. Tu Ontop Card lo elimina. Sin costo. ¿La activamos? 👉 [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[Nombre], tus colegas en Yango ya dejaron de pagar fees en pagos internacionales. Tu tarjeta está lista, solo falta activarla. Un clic: [link] 🔒 Cero cargos, siempre.",
+            "raw": "[Nombre], tus colegas en Yango ya dejaron de pagar fees en pagos internacionales. Tu tarjeta está lista, solo falta activarla. Un clic: [link] 🔒 Cero cargos, siempre.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email",
+          "whatsapp"
+        ],
+        "generatedAt": "2026-07-14T20:34:31.398Z",
+        "cycle": 1
+      },
       "ciclos": [],
       "archive": []
     },
