@@ -1,6 +1,6 @@
 {
   "client": "ride",
-  "updatedAt": "2026-07-14T20:34:31.398Z",
+  "updatedAt": "2026-07-14T20:35:15.432Z",
   "tracks": {
     "DX": {
       "status": {
@@ -499,7 +499,113 @@
       "archive": []
     },
     "D": {
-      "status": null,
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "You're leaving money on the table",
+            "preview": "Every purchase you made this month could have earned you something back.",
+            "body": "[First Name], you've been using Ontop long enough to know how it works.\n\nBut here's what most workers don't realize until someone tells them: every dollar you spend internationally is a dollar that could be earning cashback. Right now, it isn't.\n\nOntop Reserve unlocks 10% cashback on qualifying purchases and 5% on everything else. For someone spending $300/month abroad, that's real money left uncollected every single month you wait.\n\nYour card is already in your wallet. Reserve is the switch that makes it work harder.\n\nOne activation. No complicated steps.",
+            "cta": "Activate Reserve now",
+            "legal": "Reserve membership is $14.90/month. Cashback applies to qualifying purchases per Ontop's current terms. Confirm eligibility in-app before activating.",
+            "raw": "\nSUBJECT: You're leaving money on the table\nPREVIEW: Every purchase you made this month could have earned you something back.\n---\n[First Name], you've been using Ontop long enough to know how it works.\n\nBut here's what most workers don't realize until someone tells them: every dollar you spend internationally is a dollar that could be earning cashback. Right now, it isn't.\n\nOntop Reserve unlocks 10% cashback on qualifying purchases and 5% on everything else. For someone spending $300/month abroad, that's real money left uncollected every single month you wait.\n\nYour card is already in your wallet. Reserve is the switch that makes it work harder.\n\nOne activation. No complicated steps.\n---\nCTA: Activate Reserve now\nLEGAL_NOTE: Reserve membership is $14.90/month. Cashback applies to qualifying purchases per Ontop's current terms. Confirm eligibility in-app before activating.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "Workers using Reserve don't look back",
+            "preview": "Here's what actually changes when you turn it on.",
+            "body": "[First Name], a quick follow-up because this is worth saying plainly.\n\nWorkers who activate Reserve consistently tell us the same thing: they wish they'd done it sooner.\n\nThe math is straightforward. At $14.90/month, Reserve pays for itself the moment your cashback on international spending crosses that threshold. After that, everything else is yours.\n\n10% back on qualifying purchases. 5% on the rest. Month after month, automatically.\n\nThe workers who don't activate it aren't saving money. They're spending the same amount and getting nothing back for it.\n\nYou've already built the habit of using Ontop. Reserve just rewards you for it.",
+            "cta": "Turn on Reserve today",
+            "legal": "Cashback rates apply to qualifying purchases per Ontop's current terms. $14.90/month membership fee applies.",
+            "raw": "\nSUBJECT: Workers using Reserve don't look back\nPREVIEW: Here's what actually changes when you turn it on.\n---\n[First Name], a quick follow-up because this is worth saying plainly.\n\nWorkers who activate Reserve consistently tell us the same thing: they wish they'd done it sooner.\n\nThe math is straightforward. At $14.90/month, Reserve pays for itself the moment your cashback on international spending crosses that threshold. After that, everything else is yours.\n\n10% back on qualifying purchases. 5% on the rest. Month after month, automatically.\n\nThe workers who don't activate it aren't saving money. They're spending the same amount and getting nothing back for it.\n\nYou've already built the habit of using Ontop. Reserve just rewards you for it.\n---\nCTA: Turn on Reserve today\nLEGAL_NOTE: Cashback rates apply to qualifying purchases per Ontop's current terms. $14.90/month membership fee applies.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hey [First Name], quick one: your Ontop card could be earning cashback on every purchase. Reserve unlocks it. Takes 2 min to activate. Worth it. 👉 [link]",
+            "raw": "Hey [First Name], quick one: your Ontop card could be earning cashback on every purchase. Reserve unlocks it. Takes 2 min to activate. Worth it. 👉 [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], still haven't activated Reserve? Every month without it is cashback you don't get back. $14.90/mo, pays for itself fast. Tap here 👉 [link]",
+            "raw": "[First Name], still haven't activated Reserve? Every month without it is cashback you don't get back. $14.90/mo, pays for itself fast. Tap here 👉 [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Tu Ontop Card puede hacer más por ti",
+            "preview": "Hay un beneficio que ya tienes disponible y que probablemente no estás usando.",
+            "body": "Hola [First Name],\n\nCada vez que usas tu Ontop Card en el extranjero, ahorras en comisiones. Eso ya lo sabes.\n\nLo que quizás no sabes: hay workers de Yango que además reciben hasta 10% de cashback en sus compras con tarjeta, cada mes.\n\nLa diferencia es Reserve, nuestra membresía mensual diseñada para quienes ya usan Ontop de forma activa, exactamente como tú.\n\nPor $14.99 al mes recuperas ese costo con una sola compra mediana. Todo lo que gastes de ahí en adelante genera retorno real.\n\nSin Reserve, cada compra es dinero que se va sin volver. Con Reserve, cada compra trabaja para ti.\n\n¿Quieres ver cuánto podrías estar recuperando?\n\nLuis Miguel\nTu CSM en Ontop",
+            "cta": "Calcular mi cashback potencial",
+            "legal": "Reserve disponible exclusivamente para usuarios activos de Ontop Card con historial de uso calificado.",
+            "raw": "\nSUBJECT: Tu Ontop Card puede hacer más por ti\nPREVIEW: Hay un beneficio que ya tienes disponible y que probablemente no estás usando.\n---\nHola [First Name],\n\nCada vez que usas tu Ontop Card en el extranjero, ahorras en comisiones. Eso ya lo sabes.\n\nLo que quizás no sabes: hay workers de Yango que además reciben hasta 10% de cashback en sus compras con tarjeta, cada mes.\n\nLa diferencia es Reserve, nuestra membresía mensual diseñada para quienes ya usan Ontop de forma activa, exactamente como tú.\n\nPor $14.99 al mes recuperas ese costo con una sola compra mediana. Todo lo que gastes de ahí en adelante genera retorno real.\n\nSin Reserve, cada compra es dinero que se va sin volver. Con Reserve, cada compra trabaja para ti.\n\n¿Quieres ver cuánto podrías estar recuperando?\n\nLuis Miguel\nTu CSM en Ontop\n---\nCTA: Calcular mi cashback potencial\nLEGAL_NOTE: Reserve disponible exclusivamente para usuarios activos de Ontop Card con historial de uso calificado.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "¿Cuánto cashback dejaste ir este mes?",
+            "preview": "Tus compras ya ocurrieron. La pregunta es si te generaron retorno.",
+            "body": "Hola [First Name],\n\nPiénsalo así: si gastaste $300 este mes con tu Ontop Card, sin Reserve ese dinero simplemente se fue.\n\nCon Reserve activo, hasta $30 habrían vuelto a tu bolsillo. Automáticamente.\n\nWorkers de Yango que activaron Reserve recuperan el costo de la membresía en días, no en meses. El resto del mes es ganancia neta sobre lo que ya iban a gastar de todas formas.\n\nNo te pido que gastes más. Te propongo que lo que ya gastas empiece a trabajar para ti.\n\nCada mes sin Reserve es un mes de compras sin retorno. Y eso no cambia solo.\n\nEl siguiente paso toma menos de dos minutos.\n\nLuis Miguel\nTu CSM en Ontop",
+            "cta": "Activar Reserve ahora",
+            "legal": "Cashback del 10% en compras calificadas con Reserve activo. Reserve: $14.99/mes. Disponible para usuarios activos elegibles.",
+            "raw": "\nSUBJECT: ¿Cuánto cashback dejaste ir este mes?\nPREVIEW: Tus compras ya ocurrieron. La pregunta es si te generaron retorno.\n---\nHola [First Name],\n\nPiénsalo así: si gastaste $300 este mes con tu Ontop Card, sin Reserve ese dinero simplemente se fue.\n\nCon Reserve activo, hasta $30 habrían vuelto a tu bolsillo. Automáticamente.\n\nWorkers de Yango que activaron Reserve recuperan el costo de la membresía en días, no en meses. El resto del mes es ganancia neta sobre lo que ya iban a gastar de todas formas.\n\nNo te pido que gastes más. Te propongo que lo que ya gastas empiece a trabajar para ti.\n\nCada mes sin Reserve es un mes de compras sin retorno. Y eso no cambia solo.\n\nEl siguiente paso toma menos de dos minutos.\n\nLuis Miguel\nTu CSM en Ontop\n---\nCTA: Activar Reserve ahora\nLEGAL_NOTE: Cashback del 10% en compras calificadas con Reserve activo. Reserve: $14.99/mes. Disponible para usuarios activos elegibles.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hola [First Name], ¿sabías que hay workers de Yango que recuperan hasta 10% de sus compras con tarjeta cada mes? Te cuento cómo en 2 min 👇",
+            "raw": "Hola [First Name], ¿sabías que hay workers de Yango que recuperan hasta 10% de sus compras con tarjeta cada mes? Te cuento cómo en 2 min 👇",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], cada mes sin Reserve es cashback que ya no recuperas. El costo de activarlo lo cubres con una sola compra. ¿Lo activamos hoy?",
+            "raw": "[First Name], cada mes sin Reserve es cashback que ya no recuperas. El costo de activarlo lo cubres con una sola compra. ¿Lo activamos hoy?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email",
+          "whatsapp"
+        ],
+        "generatedAt": "2026-07-14T20:35:15.431Z",
+        "cycle": 1
+      },
       "ciclos": [],
       "archive": []
     }
