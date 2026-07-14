@@ -817,7 +817,7 @@ function saveCiclos(cid,tid,arr){try{localStorage.setItem(ciclosKey(cid,tid),JSO
 // NAV
 // ══════════════════════════════════════════════
 function setClient(id){
-  S.client=id; S.track=null; S.emailChain=[]; S.chatHistory=[]; S.strategyTab='md'; S._pendingStrategyMd=null;
+  S.client=id; S.track=null; S.emailChain=[]; S.chatHistory=[]; S.strategyTab='md'; S._pendingStrategyMd=null; S.resultadosYM=null;
   document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
   document.getElementById('snav-'+id)?.classList.add('active');
   refreshClientDots();
@@ -1886,21 +1886,26 @@ function renderResultados(){
 
   const t=S.track;
   const ciclos=getCiclos(S.client,t.id);
-  const autoMig = getAutoMigraciones(S.client, t.route);
+  const ym = S.resultadosYM || getCurrentYM();
+  const autoMig = getMigracionesForPeriod(S.client, t.route, ym);
   const totalMig = ciclos.reduce((s,ci)=>s+(parseInt(ci.migraciones)||0),0);
   const totalMigDisplay = autoMig !== null ? autoMig : totalMig;
   const pct=t.need>0?Math.min(Math.round(totalMigDisplay/t.need*100),100):0;
   const color=pct>=100?'var(--accent)':pct>=60?'var(--warn)':'var(--accent3)';
 
-  // Período actual
+  // Período seleccionado — por defecto el mes en curso, pero se puede ver cualquier
+  // mes que ya tenga snapshot sincronizado (se acumulan uno por mes en localStorage).
+  const isCurrentPeriod = ym===getCurrentYM();
+  const mesLabel = ymLabel(ym);
   const now = new Date();
-  const mesLabel = now.toLocaleDateString('es-CO',{month:'long',year:'numeric'});
   const lastDay = new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
   const daysLeft = lastDay - now.getDate();
+  const periods = availablePeriods();
+  if(!periods.includes(ym)) periods.unshift(ym);
 
-  // Datos del snapshot actual vs anterior
-  const currSnap = getSnapshot(getCurrentYM());
-  const prevSnap = getSnapshot(getPrevYM(getCurrentYM()));
+  // Datos del snapshot del período seleccionado vs el anterior
+  const currSnap = getSnapshot(ym);
+  const prevSnap = getSnapshot(getPrevYM(ym));
   const currData = currSnap?.clients?.[S.client];
   const prevData = prevSnap?.clients?.[S.client];
 
@@ -1911,16 +1916,21 @@ function renderResultados(){
   <div class="stitle">Resultados — Track ${t.id} <span style="font-size:14px;color:var(--text3);font-weight:400">— ${t.route}</span></div>
   ${trackSwitcher(t.id,6)}
 
-  <!-- Período indicator -->
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
-    <div style="background:rgba(200,240,74,.08);border:1px solid rgba(200,240,74,.2);border-radius:99px;padding:4px 12px;font-size:12px;font-family:'DM Mono',monospace;color:var(--accent)">${mesLabel.charAt(0).toUpperCase()+mesLabel.slice(1)}</div>
-    <div style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">${daysLeft} días restantes en el período</div>
-    ${currData?`<div style="font-size:12px;color:var(--accent2);font-family:'DM Mono',monospace">✓ datos Sheets activos</div>`:'<div style="font-size:12px;color:var(--warn);font-family:\'DM Mono\',monospace">sin snapshot del mes</div>'}
+  <!-- Período indicator + selector -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:7px">
+      <span style="font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em">Período</span>
+      <select onchange="setResultadosPeriodo(this.value)" style="width:auto;padding:6px 30px 6px 12px;font-size:12px">
+        ${periods.map(p=>`<option value="${p}" ${p===ym?'selected':''}>${ymLabel(p)}</option>`).join('')}
+      </select>
+    </div>
+    ${isCurrentPeriod?`<div style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">${daysLeft} días restantes en el período</div>`:`<span class="tag tw">período cerrado</span>`}
+    ${currData?`<div style="font-size:12px;color:var(--accent2);font-family:'DM Mono',monospace">✓ datos Sheets de ${mesLabel}</div>`:`<div style="font-size:12px;color:var(--warn);font-family:'DM Mono',monospace">sin snapshot de ${mesLabel}</div>`}
   </div>
 
   <div class="mgrid">
     <div class="metric">
-      <div class="mlabel">Migraciones del mes</div>
+      <div class="mlabel">Migraciones del período</div>
       <div class="mval" style="color:${color}">${totalMigDisplay}</div>
       <div class="msub">target: ${t.need}${autoMig!==null?' · auto-Sheets':' · manual'}</div>
     </div>
@@ -1958,21 +1968,21 @@ function renderResultados(){
         </div>`;
       }).join('')}
     </div>
-    ${prevData?`<div style="font-size:12px;color:var(--text3);margin-top:10px">vs. ${getPrevYM(getCurrentYM())} — los números en verde/rojo son el delta del mes</div>`:'<div style="font-size:12px;color:var(--text3);margin-top:8px">Sin snapshot del mes anterior para comparar aún</div>'}
+    ${prevData?`<div style="font-size:12px;color:var(--text3);margin-top:10px">vs. ${getPrevYM(ym)} — los números en verde/rojo son el delta del período</div>`:'<div style="font-size:12px;color:var(--text3);margin-top:8px">Sin snapshot del mes anterior para comparar aún</div>'}
   </div>` : ''}`;
 
   // Form nuevo ciclo manual
   html+=`<div class="card">
-    <div class="clabel">Registrar ciclo mensual</div>
+    <div class="clabel">Registrar ciclo — ${mesLabel}</div>
     <div style="background:${autoMig!==null?'rgba(74,240,184,.06)':'rgba(240,164,74,.06)'};border:1px solid ${autoMig!==null?'rgba(74,240,184,.2)':'rgba(240,164,74,.2)'};border-radius:var(--r);padding:12px 14px;margin-bottom:14px">
-      <div style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:6px">Migraciones del mes — calculado automáticamente de Sheets</div>
+      <div style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:6px">Migraciones del período — calculado automáticamente de Sheets</div>
       ${autoMig!==null
         ? `<div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--accent2)">${autoMig} <span style="font-size:14px;font-weight:400;color:var(--text3)">migraciones ${t.route} en ${mesLabel}</span></div>
-           <div style="font-size:12px;color:var(--text3);margin-top:4px;font-family:'DM Mono',monospace">delta del snapshot ${getCurrentYM()} vs ${getPrevYM(getCurrentYM())}</div>`
-        : `<div style="font-size:14px;color:var(--warn)">Aún no hay dos snapshots para calcular el delta. Se necesita el snapshot de este mes y el del mes anterior. Las migraciones se calcularán automáticamente cuando ambos existan.</div>`}
+           <div style="font-size:12px;color:var(--text3);margin-top:4px;font-family:'DM Mono',monospace">delta del snapshot ${ym} vs ${getPrevYM(ym)}</div>`
+        : `<div style="font-size:14px;color:var(--warn)">Aún no hay dos snapshots para ${mesLabel} para calcular el delta. Se necesita el snapshot de ese mes y el del anterior. Elige otro período arriba o espera a que se sincronicen ambos.</div>`}
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-      <div class="field"><div class="flabel">Período</div><input type="text" id="ci-fecha" placeholder="Ej: Junio 2026" value="${mesLabel.charAt(0).toUpperCase()+mesLabel.slice(1)}"></div>
+      <div class="field"><div class="flabel">Período</div><input type="text" id="ci-fecha" placeholder="Ej: Junio 2026" value="${mesLabel}"></div>
       <div class="field"><div class="flabel">Canal usado</div><select id="ci-canal"><option>Email vía HR</option><option>Email plataforma Ontop</option><option>WhatsApp</option><option>In-app pop-up</option><option>Combinado</option></select></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
@@ -1992,7 +2002,7 @@ function renderResultados(){
       const col=p>=100?'var(--accent)':p>=60?'var(--warn)':'var(--accent3)';
       html+=`<div class="card" style="margin-bottom:10px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <div style="font-size:14px;font-weight:500">${ci.fecha} · ${ci.canal}</div>
+          <div style="font-size:14px;font-weight:500">${ci.periodo?ymLabel(ci.periodo):ci.fecha} · ${ci.canal}</div>
           <span style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:${col}">${ci.migraciones}/${ci.targetMigraciones}</span>
         </div>
         <div style="display:flex;gap:16px;font-size:12px;color:var(--text3);margin-bottom:8px">
@@ -2021,9 +2031,11 @@ function guardarCiclo(){
   const c=CLIENTS[S.client];
   const t=S.track;
   const ciclos=getCiclos(S.client,t.id);
-  const autoMig = getAutoMigraciones(S.client, t.route);
+  const ym = S.resultadosYM || getCurrentYM();
+  const autoMig = getMigracionesForPeriod(S.client, t.route, ym);
   const migVal = autoMig!==null ? autoMig : 0; // siempre del cálculo de snapshots
   ciclos.push({
+    periodo: ym,
     fecha:document.getElementById('ci-fecha')?.value||'',
     canal:document.getElementById('ci-canal')?.value||'',
     migraciones: migVal,
@@ -2790,6 +2802,40 @@ function getAutoMigraciones(clientId, trackRoute){
   if(trackRoute.includes('Builder → Power'))     return d.builderToPower;
   if(trackRoute.includes('Power User → All-In')) return d.powerToAllin;
   return null;
+}
+
+// ══════════════════════════════════════════════
+// SELECTOR DE PERÍODO — Resultados
+// ══════════════════════════════════════════════
+// Lista de meses con snapshot guardado, más reciente primero.
+function availablePeriods(){
+  return Object.keys(localStorage)
+    .filter(k=>k.startsWith('ontop_snapshot_'))
+    .map(k=>k.replace('ontop_snapshot_',''))
+    .sort().reverse();
+}
+function ymLabel(ym){
+  const [y,m]=ym.split('-').map(Number);
+  const label=new Date(y,m-1,1).toLocaleDateString('es-CO',{month:'long',year:'numeric'});
+  return label.charAt(0).toUpperCase()+label.slice(1);
+}
+// Igual que getAutoMigraciones pero para un período arbitrario, sin depender del
+// CLIENTS[].deltaActual (que solo refleja el mes en curso) — calcula directo desde
+// los snapshots guardados de ese mes y el anterior, sin mutar estado global.
+function getMigracionesForPeriod(clientId, trackRoute, ym){
+  const curr=getSnapshot(ym)?.clients?.[clientId];
+  const prev=getSnapshot(getPrevYM(ym))?.clients?.[clientId];
+  const d=calcDelta(prev,curr);
+  if(!d) return null;
+  if(trackRoute.includes('Starter → Explorer'))  return d.starterToExplorer;
+  if(trackRoute.includes('Explorer → Builder'))  return d.explorerToBuilder;
+  if(trackRoute.includes('Builder → Power'))     return d.builderToPower;
+  if(trackRoute.includes('Power User → All-In')) return d.powerToAllin;
+  return null;
+}
+function setResultadosPeriodo(ym){
+  S.resultadosYM=ym;
+  renderResultados();
 }
 
 function promptSheetsUrl(){
