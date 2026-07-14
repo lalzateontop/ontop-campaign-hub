@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-14T20:06:58.666Z",
+  "updatedAt": "2026-07-14T20:07:04.863Z",
   "tracks": {
     "A": {
       "status": null,
@@ -208,7 +208,102 @@
       "archive": []
     },
     "D": {
-      "status": null,
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "You're leaving money on the table",
+            "preview": "Every purchase you make abroad is costing you more than it should.",
+            "body": "[First Name],\n\nYou already use your Ontop Card for international purchases. That's smart.\n\nBut right now, every time you pay with it, you're getting zero back. No cashback. Nothing.\n\nYour colleagues at TripleTen who activated Reserve are earning 10% cashback on every purchase. You're doing the same transactions. The difference is they're getting paid back for them and you're not.\n\nReserve costs $14.90/month. If you spend $150/month on purchases, you're already ahead. Most workers cover it in their first week.\n\nEvery month you wait is money you've already spent, and didn't get back.\n\nOne activation. That's all it takes.\n\nLuis Miguel, your Ontop CSM",
+            "cta": "Activate Reserve now",
+            "legal": "Reserve ($14.90/mo) is available to eligible Ontop Card users. Cashback rates: 10% on eligible purchases with active Reserve membership. Confirm eligibility in-app before activating.",
+            "raw": "\nSUBJECT: You're leaving money on the table\nPREVIEW: Every purchase you make abroad is costing you more than it should.\n---\n[First Name],\n\nYou already use your Ontop Card for international purchases. That's smart.\n\nBut right now, every time you pay with it, you're getting zero back. No cashback. Nothing.\n\nYour colleagues at TripleTen who activated Reserve are earning 10% cashback on every purchase. You're doing the same transactions. The difference is they're getting paid back for them and you're not.\n\nReserve costs $14.90/month. If you spend $150/month on purchases, you're already ahead. Most workers cover it in their first week.\n\nEvery month you wait is money you've already spent, and didn't get back.\n\nOne activation. That's all it takes.\n\nLuis Miguel, your Ontop CSM\n---\nCTA: Activate Reserve now\nLEGAL_NOTE: Reserve ($14.90/mo) is available to eligible Ontop Card users. Cashback rates: 10% on eligible purchases with active Reserve membership. Confirm eligibility in-app before activating.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "[First Name], here's what you missed last month",
+            "preview": "Your card worked. Your cashback didn't. Here's the fix.",
+            "body": "[First Name],\n\nLet's make this concrete.\n\nSay you spent $300 last month on purchases with your Ontop Card. With Reserve active, you'd have earned $30 back. That's $30 that paid for two Reserve memberships and still left change.\n\nWithout it? You earned $0.\n\nOver three months, that gap becomes $90 in cashback you didn't collect. Over six months, $180.\n\nYour card is already in your wallet. The purchases are already happening. The only thing missing is the membership that turns those purchases into money coming back to you.\n\nOver two-thirds of the TripleTen workers who activated Reserve covered the monthly fee with cashback within their first month.\n\nDon't let next month look like last month.\n\nLuis Miguel, your Ontop CSM",
+            "cta": "Activate Reserve and start earning",
+            "legal": "Cashback (10%/5%) applies only with active Reserve membership. $14.90/mo. Verify eligible purchase categories in-app.",
+            "raw": "\nSUBJECT: [First Name], here's what you missed last month\nPREVIEW: Your card worked. Your cashback didn't. Here's the fix.\n---\n[First Name],\n\nLet's make this concrete.\n\nSay you spent $300 last month on purchases with your Ontop Card. With Reserve active, you'd have earned $30 back. That's $30 that paid for two Reserve memberships and still left change.\n\nWithout it? You earned $0.\n\nOver three months, that gap becomes $90 in cashback you didn't collect. Over six months, $180.\n\nYour card is already in your wallet. The purchases are already happening. The only thing missing is the membership that turns those purchases into money coming back to you.\n\nOver two-thirds of the TripleTen workers who activated Reserve covered the monthly fee with cashback within their first month.\n\nDon't let next month look like last month.\n\nLuis Miguel, your Ontop CSM\n---\nCTA: Activate Reserve and start earning\nLEGAL_NOTE: Cashback (10%/5%) applies only with active Reserve membership. $14.90/mo. Verify eligible purchase categories in-app.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Last call, [First Name]",
+            "preview": "This is the only reminder you'll get. After this, it's on you.",
+            "body": "[First Name],\n\nI'm not going to send you another email about this.\n\nYou have an Ontop Card. You're already making purchases. Everything is set up. The only step left is activating Reserve so those purchases start generating cashback instead of nothing.\n\nThe math is straightforward. The activation takes under two minutes.\n\nWhat I can't do is make the decision for you.\n\nWhat I can tell you is this: every TripleTen worker who activated Reserve in the last 30 days is now earning on every purchase they were already making. They didn't change their spending. They just stopped leaving money behind.\n\nYou still can. But this is the last nudge from me.\n\nLuis Miguel, your Ontop CSM",
+            "cta": "Activate Reserve — I'm ready",
+            "legal": "Reserve ($14.90/mo). Cashback only with active membership. Eligibility confirmed in-app. Offer subject to product availability.",
+            "raw": "\nSUBJECT: Last call, [First Name]\nPREVIEW: This is the only reminder you'll get. After this, it's on you.\n---\n[First Name],\n\nI'm not going to send you another email about this.\n\nYou have an Ontop Card. You're already making purchases. Everything is set up. The only step left is activating Reserve so those purchases start generating cashback instead of nothing.\n\nThe math is straightforward. The activation takes under two minutes.\n\nWhat I can't do is make the decision for you.\n\nWhat I can tell you is this: every TripleTen worker who activated Reserve in the last 30 days is now earning on every purchase they were already making. They didn't change their spending. They just stopped leaving money behind.\n\nYou still can. But this is the last nudge from me.\n\nLuis Miguel, your Ontop CSM\n---\nCTA: Activate Reserve — I'm ready\nLEGAL_NOTE: Reserve ($14.90/mo). Cashback only with active membership. Eligibility confirmed in-app. Offer subject to product availability.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Tu tarjeta ya genera rendimiento. Pero hay más.",
+            "preview": "Cada compra que hiciste este mes te pudo devolver dinero. Hoy puedes activarlo.",
+            "body": "[First Name], tu Ontop Card ya te ahorra comisiones en cada compra internacional. Eso es real y ya lo estás usando.\n\nPero hay algo que probablemente no sabías: cada vez que pagaste con tu tarjeta este mes, podrías haber recuperado hasta un 10% de cashback en tus compras principales.\n\nNo lo recuperaste porque aún no activaste Reserve.\n\nTus colegas de TripleTen que ya lo hicieron están recibiendo ese dinero de vuelta, en cada ciclo de pago, sin hacer nada diferente a lo que tú ya haces.\n\nReserve cuesta $14.90/mes. Si compraste más de $150 este mes con tu tarjeta, ya se pagó solo.\n\nUn clic para activarlo. Ningún costo oculto.",
+            "cta": "Activar Reserve ahora",
+            "legal": "Reserve disponible únicamente para workers con Ontop Card activa. $14.90/mes. Cashback: 10% en categoría principal, 5% en categorías secundarias (aplican condiciones).",
+            "raw": "\nSUBJECT: Tu tarjeta ya genera rendimiento. Pero hay más.\nPREVIEW: Cada compra que hiciste este mes te pudo devolver dinero. Hoy puedes activarlo.\n---\n[First Name], tu Ontop Card ya te ahorra comisiones en cada compra internacional. Eso es real y ya lo estás usando.\n\nPero hay algo que probablemente no sabías: cada vez que pagaste con tu tarjeta este mes, podrías haber recuperado hasta un 10% de cashback en tus compras principales.\n\nNo lo recuperaste porque aún no activaste Reserve.\n\nTus colegas de TripleTen que ya lo hicieron están recibiendo ese dinero de vuelta, en cada ciclo de pago, sin hacer nada diferente a lo que tú ya haces.\n\nReserve cuesta $14.90/mes. Si compraste más de $150 este mes con tu tarjeta, ya se pagó solo.\n\nUn clic para activarlo. Ningún costo oculto.\n---\nCTA: Activar Reserve ahora\nLEGAL_NOTE: Reserve disponible únicamente para workers con Ontop Card activa. $14.90/mes. Cashback: 10% en categoría principal, 5% en categorías secundarias (aplican condiciones).\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "¿Cuánto cashback dejaste en la mesa este mes?",
+            "preview": "Tus compras ya estaban ahí. Solo faltaba un paso para recuperar ese dinero.",
+            "body": "[First Name], hagamos el cálculo rápido.\n\nSi gastaste $300 este mes con tu Ontop Card, y tienes Reserve activa, recuperas hasta $30 de cashback. Sin Reserve, recuperas $0.\n\nLa diferencia entre los dos es $14.90 al mes. La cuenta es directa.\n\nMás del 60% de tus colegas que activaron Reserve en los últimos 90 días ya recuperaron el costo en el primer mes de uso.\n\nNo estamos hablando de un beneficio futuro. Estamos hablando de dinero que cada mes no estás recuperando porque falta un paso.\n\nReserve ya está disponible para tu cuenta. Solo necesitas activarla.",
+            "cta": "Activar mi Reserve y empezar a recuperar",
+            "legal": "Porcentajes de cashback sujetos a categorías elegibles. Consulta términos en la plataforma Ontop.",
+            "raw": "\nSUBJECT: ¿Cuánto cashback dejaste en la mesa este mes?\nPREVIEW: Tus compras ya estaban ahí. Solo faltaba un paso para recuperar ese dinero.\n---\n[First Name], hagamos el cálculo rápido.\n\nSi gastaste $300 este mes con tu Ontop Card, y tienes Reserve activa, recuperas hasta $30 de cashback. Sin Reserve, recuperas $0.\n\nLa diferencia entre los dos es $14.90 al mes. La cuenta es directa.\n\nMás del 60% de tus colegas que activaron Reserve en los últimos 90 días ya recuperaron el costo en el primer mes de uso.\n\nNo estamos hablando de un beneficio futuro. Estamos hablando de dinero que cada mes no estás recuperando porque falta un paso.\n\nReserve ya está disponible para tu cuenta. Solo necesitas activarla.\n---\nCTA: Activar mi Reserve y empezar a recuperar\nLEGAL_NOTE: Porcentajes de cashback sujetos a categorías elegibles. Consulta términos en la plataforma Ontop.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Último aviso: esto cierra pronto",
+            "preview": "El cashback que no activaste este mes es dinero que no vuelve. Actúa hoy.",
+            "body": "[First Name], este es el tercer mensaje que te envío sobre Reserve, y lo entiendo: estás ocupado.\n\nPero quiero ser directo: cada mes que pasa sin Reserve activa es un mes de cashback que no recuperas. Ese dinero no se acumula, no se transfiere, no regresa.\n\nWorkers de TripleTen que activaron Reserve hace tres meses han recuperado en promedio entre $60 y $90 en cashback desde entonces. Eso ya pagó más de cinco meses de membresía.\n\nTu tarjeta está activa. Tu cuenta está lista. Solo falta este paso.\n\nActívalo hoy y el cashback de este mes ya cuenta.",
+            "cta": "Activar Reserve antes de que cierre el mes",
+            "legal": "Reserve $14.90/mes. El cashback aplica sobre compras elegibles desde la fecha de activación. No retroactivo. Sujeto a términos y condiciones vigentes.",
+            "raw": "\nSUBJECT: Último aviso: esto cierra pronto\nPREVIEW: El cashback que no activaste este mes es dinero que no vuelve. Actúa hoy.\n---\n[First Name], este es el tercer mensaje que te envío sobre Reserve, y lo entiendo: estás ocupado.\n\nPero quiero ser directo: cada mes que pasa sin Reserve activa es un mes de cashback que no recuperas. Ese dinero no se acumula, no se transfiere, no regresa.\n\nWorkers de TripleTen que activaron Reserve hace tres meses han recuperado en promedio entre $60 y $90 en cashback desde entonces. Eso ya pagó más de cinco meses de membresía.\n\nTu tarjeta está activa. Tu cuenta está lista. Solo falta este paso.\n\nActívalo hoy y el cashback de este mes ya cuenta.\n---\nCTA: Activar Reserve antes de que cierre el mes\nLEGAL_NOTE: Reserve $14.90/mes. El cashback aplica sobre compras elegibles desde la fecha de activación. No retroactivo. Sujeto a términos y condiciones vigentes.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email"
+        ],
+        "generatedAt": "2026-07-14T20:07:04.863Z",
+        "cycle": 1
+      },
       "ciclos": [],
       "archive": []
     }
