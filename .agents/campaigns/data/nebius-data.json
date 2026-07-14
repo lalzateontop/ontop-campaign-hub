@@ -1,6 +1,6 @@
 {
   "client": "nebius",
-  "updatedAt": "2026-07-14T20:38:26.197Z",
+  "updatedAt": "2026-07-14T20:39:08.150Z",
   "tracks": {
     "A": {
       "status": {
@@ -140,7 +140,139 @@
       "archive": []
     },
     "B": {
-      "status": null,
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "You're leaving money on the table",
+            "preview": "Every international purchase is costing you extra. Here's the fix.",
+            "body": "Hey [First Name],\n\nEvery time you spend abroad or pay in a foreign currency, fees eat into your paycheck. Quietly. Every single time.\n\nThe Ontop Card eliminates those foreign transaction fees entirely. Zero. On every purchase, in any currency.\n\nYour card is already available through Nebius. You just haven't activated it yet.\n\nMeanwhile, your colleagues who activated theirs stopped paying those fees months ago.\n\nOne step to fix it: activate your Ontop Card today. No monthly fee, no hidden costs.\n\nEvery purchase you make before activating is money you're not getting back.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my Ontop Card",
+            "legal": "Ontop Card standalone benefit is zero foreign transaction fees only. Cashback requires a separate Reserve membership, which is not available at this stage.",
+            "raw": "\nSUBJECT: You're leaving money on the table\nPREVIEW: Every international purchase is costing you extra. Here's the fix.\n---\nHey [First Name],\n\nEvery time you spend abroad or pay in a foreign currency, fees eat into your paycheck. Quietly. Every single time.\n\nThe Ontop Card eliminates those foreign transaction fees entirely. Zero. On every purchase, in any currency.\n\nYour card is already available through Nebius. You just haven't activated it yet.\n\nMeanwhile, your colleagues who activated theirs stopped paying those fees months ago.\n\nOne step to fix it: activate your Ontop Card today. No monthly fee, no hidden costs.\n\nEvery purchase you make before activating is money you're not getting back.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my Ontop Card\nLEGAL_NOTE: Ontop Card standalone benefit is zero foreign transaction fees only. Cashback requires a separate Reserve membership, which is not available at this stage.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "Your money could be earning 3–4% APR right now",
+            "preview": "It's sitting idle. Your Nebius colleagues already moved theirs.",
+            "body": "Hey [First Name],\n\nYou activated your Ontop Card. Good. Now there's one more thing worth knowing.\n\nYour Ontop balance can earn interest. Right now, it isn't.\n\nFuture Fund gives you two options:\n\n**Flex:** 3% APR. Withdraw anytime. No lock-in.\n**+30:** 4% APR. Lock for 30 days, earn more.\n\nThe workers at Nebius who set this up aren't doing anything complicated. They picked an option, confirmed their amount, and their balance started working for them.\n\nYours isn't working yet.\n\nPick the option that fits how you use your money, and set it up in under two minutes.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Start earning on my balance",
+            "legal": "Future Fund eligibility must be confirmed before this email is sent. Do not deploy until eligibility is verified for these workers.",
+            "raw": "\nSUBJECT: Your money could be earning 3–4% APR right now\nPREVIEW: It's sitting idle. Your Nebius colleagues already moved theirs.\n---\nHey [First Name],\n\nYou activated your Ontop Card. Good. Now there's one more thing worth knowing.\n\nYour Ontop balance can earn interest. Right now, it isn't.\n\nFuture Fund gives you two options:\n\n**Flex:** 3% APR. Withdraw anytime. No lock-in.\n**+30:** 4% APR. Lock for 30 days, earn more.\n\nThe workers at Nebius who set this up aren't doing anything complicated. They picked an option, confirmed their amount, and their balance started working for them.\n\nYours isn't working yet.\n\nPick the option that fits how you use your money, and set it up in under two minutes.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Start earning on my balance\nLEGAL_NOTE: Future Fund eligibility must be confirmed before this email is sent. Do not deploy until eligibility is verified for these workers.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Last nudge: fees paid + interest missed",
+            "preview": "Two things adding up against you. Both fixable today.",
+            "body": "Hey [First Name],\n\nQuick recap of what's still happening if you haven't acted:\n\nForeign transaction fees on every international purchase. Still charging you.\n\nYour balance earning 0% APR. Still doing nothing.\n\nBoth of those are fixable in under five minutes total. Most of your Nebius colleagues have already done it.\n\nActivate your Ontop Card and choose your Future Fund option today. Flex at 3% APR if you want flexibility. +30 at 4% APR if you can lock for a month.\n\nThe only version of this you'll regret is waiting another month.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Fix both now",
+            "legal": "Future Fund eligibility must be confirmed before deployment. Ontop Card standalone benefit is zero foreign transaction fees only.",
+            "raw": "\nSUBJECT: Last nudge: fees paid + interest missed\nPREVIEW: Two things adding up against you. Both fixable today.\n---\nHey [First Name],\n\nQuick recap of what's still happening if you haven't acted:\n\nForeign transaction fees on every international purchase. Still charging you.\n\nYour balance earning 0% APR. Still doing nothing.\n\nBoth of those are fixable in under five minutes total. Most of your Nebius colleagues have already done it.\n\nActivate your Ontop Card and choose your Future Fund option today. Flex at 3% APR if you want flexibility. +30 at 4% APR if you can lock for a month.\n\nThe only version of this you'll regret is waiting another month.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Fix both now\nLEGAL_NOTE: Future Fund eligibility must be confirmed before deployment. Ontop Card standalone benefit is zero foreign transaction fees only.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hey [First Name], every cross-currency purchase is costing you extra. Your Ontop Card removes those fees completely. Activate yours today 👉 [link]",
+            "raw": "Hey [First Name], every cross-currency purchase is costing you extra. Your Ontop Card removes those fees completely. Activate yours today 👉 [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], your balance is earning 0% right now. Future Fund pays 3–4% APR. Takes 2 min to set up. Your Nebius teammates already did it 👉 [link]",
+            "raw": "[First Name], your balance is earning 0% right now. Future Fund pays 3–4% APR. Takes 2 min to set up. Your Nebius teammates already did it 👉 [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Tu salario trabaja menos de lo que debería",
+            "preview": "Cada mes que pasa sin esto, estás dejando dinero sobre la mesa. Aquí está la solución.",
+            "body": "[First Name], una pregunta directa:\n\n¿Cuánto pagaste en comisiones y fees el último mes solo por usar tu dinero?\n\nLa mayoría de workers en Nebius no lo calculan, pero el monto suma más de lo que parece.\n\nTu Ontop Card ya está disponible. Úsala en cualquier compra internacional y paga cero comisiones por transacción extranjera. Sin sorpresas en el estado de cuenta.\n\nUn solo clic para activarla. Sin costo de emisión.\n\nTus colegas en Nebius ya la están usando. El que no la activa sigue pagando fees que no debería pagar.\n\nNo hay un momento mejor que hoy para dejar de regalárselo a tu banco.\n\nLuis Miguel\nTu CSM en Ontop",
+            "cta": "Activar mi Ontop Card",
+            "legal": "Ontop Card standalone incluye zero foreign transaction fees. El cashback aplica únicamente con membresía Reserve activa.",
+            "raw": "\nSUBJECT: Tu salario trabaja menos de lo que debería\nPREVIEW: Cada mes que pasa sin esto, estás dejando dinero sobre la mesa. Aquí está la solución.\n---\n[First Name], una pregunta directa:\n\n¿Cuánto pagaste en comisiones y fees el último mes solo por usar tu dinero?\n\nLa mayoría de workers en Nebius no lo calculan, pero el monto suma más de lo que parece.\n\nTu Ontop Card ya está disponible. Úsala en cualquier compra internacional y paga cero comisiones por transacción extranjera. Sin sorpresas en el estado de cuenta.\n\nUn solo clic para activarla. Sin costo de emisión.\n\nTus colegas en Nebius ya la están usando. El que no la activa sigue pagando fees que no debería pagar.\n\nNo hay un momento mejor que hoy para dejar de regalárselo a tu banco.\n\nLuis Miguel\nTu CSM en Ontop\n---\nCTA: Activar mi Ontop Card\nLEGAL_NOTE: Ontop Card standalone incluye zero foreign transaction fees. El cashback aplica únicamente con membresía Reserve activa.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "¿Tu sueldo genera algo mientras esperas el próximo pago?",
+            "preview": "Tus colegas ya lo hacen. Tu saldo puede crecer solo, sin riesgo ni complicaciones.",
+            "body": "[First Name], ya activaste tu tarjeta. Bien hecho.\n\nAhora el siguiente paso: hacer que tu saldo no se quede quieto.\n\nCon Future Fund tienes dos opciones:\n\n**Flex:** 3% APR, retira cuando quieras.\n**+30:** 4% APR, con un plazo de 30 días.\n\nTú decides según tu liquidez. Pero ninguna de las dos opciones cobra comisión de entrada.\n\nLo que sí tiene costo es no hacer nada: ese saldo parado en tu cuenta no genera nada. Cada mes que pasa es interés que no ganaste.\n\nTus compañeros en Nebius que ya tienen Future Fund activo lo entienden bien.\n\nEl primer paso toma menos de dos minutos.\n\nLuis Miguel\nTu CSM en Ontop",
+            "cta": "Activar Future Fund",
+            "legal": "Disponibilidad de Future Fund sujeta a elegibilidad confirmada. Ontop verificará tu acceso antes de activar el producto.",
+            "raw": "\nSUBJECT: ¿Tu sueldo genera algo mientras esperas el próximo pago?\nPREVIEW: Tus colegas ya lo hacen. Tu saldo puede crecer solo, sin riesgo ni complicaciones.\n---\n[First Name], ya activaste tu tarjeta. Bien hecho.\n\nAhora el siguiente paso: hacer que tu saldo no se quede quieto.\n\nCon Future Fund tienes dos opciones:\n\n**Flex:** 3% APR, retira cuando quieras.\n**+30:** 4% APR, con un plazo de 30 días.\n\nTú decides según tu liquidez. Pero ninguna de las dos opciones cobra comisión de entrada.\n\nLo que sí tiene costo es no hacer nada: ese saldo parado en tu cuenta no genera nada. Cada mes que pasa es interés que no ganaste.\n\nTus compañeros en Nebius que ya tienen Future Fund activo lo entienden bien.\n\nEl primer paso toma menos de dos minutos.\n\nLuis Miguel\nTu CSM en Ontop\n---\nCTA: Activar Future Fund\nLEGAL_NOTE: Disponibilidad de Future Fund sujeta a elegibilidad confirmada. Ontop verificará tu acceso antes de activar el producto.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Última llamada: esto cierra pronto para nuevos accesos",
+            "preview": "No queremos que seas de los que dice \"debí haberlo hecho antes\". Quedan pocos días.",
+            "body": "[First Name], te escribo por última vez sobre esto.\n\nDos productos. Cero fees de activación. Un saldo que puede crecer en lugar de estancarse.\n\nLa Ontop Card ya te evita pagar comisiones en cada transacción internacional. Future Fund le pone a trabajar lo que ya tienes.\n\nLos workers en Nebius que los activaron hace semanas ya llevan ese tiempo sin perder en fees y con intereses sumando.\n\nTú aún estás a tiempo, pero el acceso prioritario para nuevos usuarios tiene fecha límite.\n\nNo se trata de una promesa vaga. Se trata de dinero concreto que sale o entra de tu bolsillo cada mes.\n\n¿Qué decides?\n\nLuis Miguel\nTu CSM en Ontop",
+            "cta": "Activar ahora",
+            "legal": "Disponibilidad de Future Fund sujeta a elegibilidad confirmada. Ontop Card standalone incluye zero foreign transaction fees únicamente.",
+            "raw": "\nSUBJECT: Última llamada: esto cierra pronto para nuevos accesos\nPREVIEW: No queremos que seas de los que dice \"debí haberlo hecho antes\". Quedan pocos días.\n---\n[First Name], te escribo por última vez sobre esto.\n\nDos productos. Cero fees de activación. Un saldo que puede crecer en lugar de estancarse.\n\nLa Ontop Card ya te evita pagar comisiones en cada transacción internacional. Future Fund le pone a trabajar lo que ya tienes.\n\nLos workers en Nebius que los activaron hace semanas ya llevan ese tiempo sin perder en fees y con intereses sumando.\n\nTú aún estás a tiempo, pero el acceso prioritario para nuevos usuarios tiene fecha límite.\n\nNo se trata de una promesa vaga. Se trata de dinero concreto que sale o entra de tu bolsillo cada mes.\n\n¿Qué decides?\n\nLuis Miguel\nTu CSM en Ontop\n---\nCTA: Activar ahora\nLEGAL_NOTE: Disponibilidad de Future Fund sujeta a elegibilidad confirmada. Ontop Card standalone incluye zero foreign transaction fees únicamente.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hola [First Name], ¿ya activaste tu Ontop Card? Cero fees en compras internacionales. Tus colegas en Nebius ya la usan. Un clic y listo 👉 [link]",
+            "raw": "Hola [First Name], ¿ya activaste tu Ontop Card? Cero fees en compras internacionales. Tus colegas en Nebius ya la usan. Un clic y listo 👉 [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], tu saldo puede generar hasta 4% APR con Future Fund. Cada mes que esperas es interés que no ganaste. Actívalo hoy en 2 min 👉 [link]",
+            "raw": "[First Name], tu saldo puede generar hasta 4% APR con Future Fund. Cada mes que esperas es interés que no ganaste. Actívalo hoy en 2 min 👉 [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email",
+          "whatsapp"
+        ],
+        "generatedAt": "2026-07-14T20:39:08.150Z",
+        "cycle": 1
+      },
       "ciclos": [],
       "archive": []
     },
