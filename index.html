@@ -206,9 +206,9 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
   <div class="nav-item" onclick="setClient('portfolio')" id="snav-portfolio">⌂ Home</div>
   <div class="nav-sep"></div>
   <div class="nav-label">Clientes</div>
-  <div class="nav-item" onclick="setClient('edtech')" id="snav-edtech"><span class="cdot" style="background:#c8f04a"></span>Edtech Plus</div>
+  <div class="nav-item" onclick="setClient('edtech')" id="snav-edtech"><span class="cdot" style="background:#c8f04a"></span>TripleTen</div>
   <div class="nav-item" onclick="setClient('toloka')" id="snav-toloka"><span class="cdot" style="background:#f04a8a"></span>Toloka AI</div>
-  <div class="nav-item" onclick="setClient('ride')" id="snav-ride"><span class="cdot" style="background:#f04a8a"></span>Ridetechnology</div>
+  <div class="nav-item" onclick="setClient('ride')" id="snav-ride"><span class="cdot" style="background:#f04a8a"></span>Yango</div>
   <div class="nav-item" onclick="setClient('nebius')" id="snav-nebius"><span class="cdot" style="background:#f04a8a"></span>Nebius</div>
   <div class="nav-sep"></div>
   <div class="nav-label">Skills activos</div>
@@ -341,7 +341,7 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 // DATA
 // ══════════════════════════════════════════════
 const CLIENTS = {
-  edtech:{name:'Edtech Plus',workers:866,builderPlus:20.8,gap:0,contract:'PPT',mrr:'$21,387',color:'#c8f04a',
+  edtech:{name:'TripleTen',legalName:'Edtech Plus',workers:866,builderPlus:20.8,gap:0,contract:'PPT',mrr:'$21,387',color:'#c8f04a',
     tracks:[
       {id:'A',label:'Track A — Starter→Explorer',route:'Starter → Explorer',workers:414,delta:'$3.06',need:163,priority:'alta',products:['Ontop Card']},
       {id:'B',label:'Track B — Explorer→Builder',route:'Explorer → Builder',workers:272,delta:'$6.55',need:76,priority:'máxima',products:['Ontop Card','Future Fund Flex','Future Fund +30']},
@@ -355,7 +355,7 @@ const CLIENTS = {
       {id:'C',label:'Track C — Builder→Power User',route:'Builder → Power User',workers:10,delta:'$11.26',need:3,priority:'media',products:['Ontop Card']},
       {id:'D',label:'Track D — Power User→All-In',route:'Power User → All-In',workers:0,delta:'$19.31',need:0,priority:'sin base — construir Power Users primero',products:['Reserve']},
     ]},
-  ride:{name:'Ridetechnology',workers:65,builderPlus:1.5,gap:11,contract:'Tradicional',mrr:'$952',color:'#f04a8a',
+  ride:{name:'Yango',legalName:'Ridetechnology',workers:65,builderPlus:1.5,gap:11,contract:'Tradicional',mrr:'$952',color:'#f04a8a',
     tracks:[
       {id:'DX',label:'Fase 0 — Diagnóstico HR',route:'CSM → HR',workers:65,delta:'—',need:0,priority:'obligatoria primero',products:[]},
       {id:'A',label:'Track A — Starter→Explorer',route:'Starter → Explorer',workers:56,delta:'$3.06',need:11,priority:'pendiente diagnóstico',products:['Ontop Card','Future Fund Flex','Future Fund +30']},
@@ -673,13 +673,14 @@ CTAs Soft: "Ver cómo funciona" | CTAs Hard: "Activar mi Ontop Card" | "Empezar 
 
 ${md.context?'══ CONTEXTO PRODUCTO (product-marketing.md) ══\n'+md.context.slice(0,1800)+'\n':''}
 ${md[S.client]?`══ CAMPAÑA — ${CLIENTS[S.client]?.name||S.client} (ÚNICO cliente relevante para esta generación) ══\n`+md[S.client].slice(0,1800)+'\n':''}
-‼️ Este documento de campaña es SOLO de este cliente. NUNCA menciones el nombre de otro cliente de Ontop (Edtech Plus, Toloka AI, Ridetechnology, Nebius) en el copy — ni siquiera como ejemplo de "otros workers ya lo usan". El social proof debe ser genérico ("workers como tú", "tus colegas") o basado en cifras del propio documento de este cliente.
+‼️ Este documento de campaña es SOLO de este cliente. NUNCA menciones el nombre de otro cliente de Ontop (TripleTen, Toloka AI, Yango, Nebius — ni sus nombres legales Edtech Plus / Ridetechnology) en el copy, ni siquiera como ejemplo de "otros workers ya lo usan". El social proof debe ser genérico ("workers como tú", "tus colegas") o basado en cifras del propio documento de este cliente.
+NOTA DE MARCA: Si necesitas nombrar a la empresa del worker, usa SIEMPRE el nombre comercial "${CLIENTS[S.client]?.name||''}"${CLIENTS[S.client]?.legalName?` (el nombre legal "${CLIENTS[S.client].legalName}" es solo interno — NUNCA lo uses en el copy)`:''}.
 
 ══ REGLAS DE PRODUCTO ONTOP — NUNCA VIOLAR ══
 1. Ontop Card standalone: ONLY zero foreign transaction fees. ZERO cashback without Reserve.
 2. Cashback (10%/5%) ONLY with active Reserve membership.
 3. Future Fund: ALWAYS present as two options — Flex (3% APR, flexible withdrawal) OR +30 (4% APR, 30-day lock).
-4. Quick: ONLY traditional contracts (Ridetechnology only). Requires written Legal approval.
+4. Quick: ONLY traditional contracts (Yango / Ridetechnology only). Requires written Legal approval.
 5. Reserve ($14.9/mo): ONLY for existing Power Users.
 6. PPT contracts: NEVER offer Quick.
 
@@ -1056,7 +1057,10 @@ function renderBrief(){
       <div class="metric"><div class="mlabel">MRR B2C</div><div class="mval" style="font-size:16px">${c.mrr}</div></div>
       <div class="metric"><div class="mlabel">Contrato</div><div class="mval" style="font-size:16px">${c.contract}</div>${S.mdLoaded&&S.campaignMd[S.client]?`<div class="msub" style="color:var(--accent2)">✓ .md activo</div>`:''}</div>
     </div>
-    <div class="clabel" style="margin-bottom:12px">Tracks de campaña — selecciona uno para trabajar</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+      <div class="clabel" style="margin-bottom:0">Tracks de campaña — selecciona uno para trabajar</div>
+      ${c.tracks.some(t=>hasContent(getStatus(S.client,t.id)))?`<button class="btn" style="font-size:12px" onclick="regenerateAllTracks()">↻ Regenerar todos los tracks</button>`:''}
+    </div>
     ${c.tracks.map(t=>tierBar(t)).join('')}
     <div class="divider"></div>
     <div class="card" style="background:rgba(200,240,74,.04);border-color:rgba(200,240,74,.15)">
@@ -1103,7 +1107,7 @@ async function generateTrack(t, c){
   const channelInstructions=[];
   if(S.channels.includes('email')){
     channelInstructions.push(t.id==='DX'
-      ? 'Generate 1 email from Luis Miguel to Ridetechnology HR contact (not workers). Include the 8 diagnostic questions.'
+      ? `Generate 1 email from Luis Miguel to the ${c.name} HR contact (not workers). Include the 8 diagnostic questions.`
       : 'Generate an email chain of 2 emails (3 if there is a clear sequence). Funnel: activation → value/proof → urgency if applicable. Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END');
   }
   if(S.channels.includes('whatsapp')){
@@ -1194,6 +1198,21 @@ async function retryTrack(trackId){
 
 async function forceRegenerate(){
   saveStatus(S.client,S.track.id,null);
+  S.emailChain=[];
+  await renderGenerate();
+}
+
+// Regenera TODOS los tracks del cliente: borra las cadenas existentes y vuelve a
+// generarlas de cero (destructivo — pide confirmación). Útil tras cambiar los
+// Ajustes de generación o cuando se corrigió un problema de fondo (p. ej. el fix
+// de contaminación cruzada) y hay que rehacer todo el copy del cliente.
+async function regenerateAllTracks(){
+  const c=CLIENTS[S.client];
+  const conContenido=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
+  if(!conContenido.length){showToast('No hay tracks generados para regenerar',2500);return;}
+  if(!confirm(`Regenerar TODOS los tracks de ${c.name} borrará las ${conContenido.length} cadenas ya generadas (y sus ediciones) para volver a crearlas desde cero. ¿Continuar?`)) return;
+  conContenido.forEach(t=>saveStatus(S.client,t.id,null));
+  S.track=null;
   S.emailChain=[];
   await renderGenerate();
 }
@@ -2249,7 +2268,7 @@ REGLAS DEL DOCUMENTO:
 - La Sección 2 (Estado actual) se actualiza automáticamente desde Sheets — NO la modifiques salvo que la instrucción lo pida explícitamente.
 - La Sección 5 (Aprendizajes por ciclo) es append-only — nunca borres entradas existentes.
 - Mantén el formato, estructura de secciones y estilo del documento.
-- Reglas de producto inviolables: Card standalone = solo zero foreign fees sin cashback; Future Fund = siempre Flex (3%) o +30 (4%); Quick solo Ridetechnology con aprobación Legal; Reserve solo Power Users.
+- Reglas de producto inviolables: Card standalone = solo zero foreign fees sin cashback; Future Fund = siempre Flex (3%) o +30 (4%); Quick solo Yango / Ridetechnology con aprobación Legal; Reserve solo Power Users.
 - Los nombres de tiers (Starter, Explorer, etc.) son SOLO para uso interno en estos documentos — el documento puede usarlos, pero cualquier copy de ejemplo dentro del documento NO debe usarlos.
 
 Responde ÚNICAMENTE con el documento markdown completo actualizado. Sin preámbulo, sin explicaciones, sin backticks de código alrededor.`;
@@ -2543,12 +2562,12 @@ function renderPortfolio(){
     <div class="clabel" style="margin-bottom:10px">Mix del target — cómo se arma el +$500/mes</div>
     <div class="card" style="background:rgba(200,240,74,.03)">
       <div class="grid4" style="margin-bottom:12px">
-        <div class="metric" style="border-color:rgba(200,240,74,.3)"><div class="mlabel">Edtech Plus</div><div class="mval" style="font-size:18px;color:var(--accent)">~$393</div><div class="msub">4 tracks en paralelo · 79%</div></div>
+        <div class="metric" style="border-color:rgba(200,240,74,.3)"><div class="mlabel">TripleTen</div><div class="mval" style="font-size:18px;color:var(--accent)">~$393</div><div class="msub">4 tracks en paralelo · 79%</div></div>
         <div class="metric"><div class="mlabel">Toloka</div><div class="mval" style="font-size:18px">~$50</div><div class="msub">B cruza umbral 20%</div></div>
         <div class="metric"><div class="mlabel">Nebius</div><div class="mval" style="font-size:18px">~$19</div><div class="msub">umbral con 2 conv · 1-1</div></div>
-        <div class="metric"><div class="mlabel">Ridetech</div><div class="mval" style="font-size:18px">~$15</div><div class="msub">post-Fase 0</div></div>
+        <div class="metric"><div class="mlabel">Yango</div><div class="mval" style="font-size:18px">~$15</div><div class="msub">post-Fase 0</div></div>
       </div>
-      <div style="font-size:12px;color:var(--text2);line-height:1.6">El target solo se alcanza si <strong style="color:var(--accent)">Edtech corre los 4 tracks cada ciclo</strong> — Track B solo no llega. Toloka y Nebius valen por el umbral de retención (3× menos churn), no por el MRR. Detalle completo en la Estrategia (.md) de cada cliente.</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.6">El target solo se alcanza si <strong style="color:var(--accent)">TripleTen corre los 4 tracks cada ciclo</strong>. Track B solo no llega. Toloka y Nebius valen por el umbral de retención (3× menos churn), no por el MRR. Detalle completo en la Estrategia (.md) de cada cliente.</div>
     </div>
     <div class="divider"></div>
     <div class="clabel" style="margin-bottom:10px">Economics de rutas</div>
