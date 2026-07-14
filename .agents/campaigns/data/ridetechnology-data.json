@@ -1,0 +1,111 @@
+{
+  "client": "ride",
+  "updatedAt": "2026-07-14T20:31:44.931Z",
+  "tracks": {
+    "DX": {
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Quick question about your team's Ontop experience",
+            "preview": "8 questions that will help us make Ontop more useful for your workers — takes 5 minutes.",
+            "body": "Hi [HR Contact Name],\n\nI've been reviewing how your team is using Ontop, and I want to be straight with you: most of your workers haven't activated any financial products yet.\n\nThat means they're leaving real money on the table. Zero-fee international payments, savings tools, and financial flexibility that's already included in their contract but sitting unused.\n\nBefore I assume I know why, I'd rather ask you directly. You know your team better than anyone.\n\nI put together 8 short questions. Your answers will shape exactly what we do next so we're not guessing and your workers aren't missing out.\n\nTakes about 5 minutes. Answers below or reply however works for you.\n\nLooking forward to it.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Reply with your answers",
+            "legal": "No worker personal data is requested. All questions are about team-level behavior and communication preferences only.",
+            "raw": "\nSUBJECT: Quick question about your team's Ontop experience\nPREVIEW: 8 questions that will help us make Ontop more useful for your workers — takes 5 minutes.\n---\nHi [HR Contact Name],\n\nI've been reviewing how your team is using Ontop, and I want to be straight with you: most of your workers haven't activated any financial products yet.\n\nThat means they're leaving real money on the table. Zero-fee international payments, savings tools, and financial flexibility that's already included in their contract but sitting unused.\n\nBefore I assume I know why, I'd rather ask you directly. You know your team better than anyone.\n\nI put together 8 short questions. Your answers will shape exactly what we do next so we're not guessing and your workers aren't missing out.\n\nTakes about 5 minutes. Answers below or reply however works for you.\n\nLooking forward to it.\n\nLuis Miguel\nYour Ontop CSM\n\n---\n\n**DIAGNOSTIC QUESTIONS — Yango Workers · Ontop Financial Products**\n\n1. **Awareness:** Have your workers been formally introduced to the Ontop financial products available to them (Ontop Card, Future Fund)? If yes, through what channel?\n\n2. **Onboarding friction:** In your experience, do workers complete the Ontop app setup fully after receiving their contract? Or do most stop at payment setup only?\n\n3. **Communication preference:** What channel reaches your workers most reliably right now? (WhatsApp, company email, team chat, in-person, other)\n\n4. **Language and clarity:** Are there workers who may have difficulty navigating the app in English? Is language a barrier to activation?\n\n5. **Trust and perception:** Have you heard any concerns or skepticism from workers about Ontop's financial products? (e.g. fees, security, \"what's the catch\")\n\n6. **Timing:** Is there a moment in the month when workers are most receptive to financial information? (e.g. right after payday, before payday)\n\n7. **Influence:** Who do workers tend to trust for financial or work-related guidance on your team? Is there an informal leader or point of contact?\n\n8. **Barriers we haven't covered:** In your opinion, what is the single biggest reason a worker on your team hasn't activated their Ontop Card or savings products yet?\n\n---\n\nCTA: Reply with your answers\nLEGAL_NOTE: No worker personal data is requested. All questions are about team-level behavior and communication preferences only.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hi [Name], it's Luis Miguel from Ontop. I sent you an email with 8 quick questions about your team. Worth 5 min — helps us make sure no one's missing out on what they already have access to. Did it land in your inbox? 👋",
+            "raw": "Hi [Name], it's Luis Miguel from Ontop. I sent you an email with 8 quick questions about your team. Worth 5 min — helps us make sure no one's missing out on what they already have access to. Did it land in your inbox? 👋",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Following up on that email, [Name]. Your workers have financial tools available right now that most haven't activated yet. Your answers help us fix that fast. Can you take a look today? 🙏",
+            "raw": "Following up on that email, [Name]. Your workers have financial tools available right now that most haven't activated yet. Your answers help us fix that fast. Can you take a look today? 🙏",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Pregunta rápida sobre tus workers en Ontop",
+            "preview": "Llevo semanas revisando los datos y hay algo que quiero confirmar contigo antes de actuar.",
+            "body": "Hola [Nombre],\n\nRevisando el uso de la plataforma en el equipo de Yango, noto que la gran mayoría de sus workers aún no ha activado ningún beneficio financiero disponible para ellos: cero comisiones en compras internacionales, rendimiento sobre su saldo, adelanto de pago, entre otros.\n\nEsto me preocupa porque cada mes que pasa sin activación es dinero que sus workers están dejando sobre la mesa. Y cuando los trabajadores no perciben valor de la plataforma, el riesgo de deserción sube.\n\nAntes de diseñar cualquier comunicación hacia ellos, necesito entender el contexto desde tu lado. Son solo 8 preguntas. Te toma menos de 10 minutos.\n\n**Las preguntas:**\n\n1. ¿Los workers reciben actualmente alguna comunicación directa de Ontop, o todo pasa por HR?\n2. ¿Hay restricciones internas para que Ontop les escriba directamente por email o WhatsApp?\n3. ¿Qué canal usan más los workers para recibir novedades del trabajo: email corporativo, WhatsApp personal, grupo de Telegram, otro?\n4. ¿Saben los workers que tienen una Ontop Card disponible y que no tiene comisión en compras internacionales?\n5. ¿Has escuchado alguna queja o comentario de workers sobre pagos, conversión de divisas o acceso a su dinero?\n6. ¿Hay algún grupo o perfil de workers con necesidades distintas: por país, por seniority, por tipo de contrato?\n7. ¿Existe alguna figura interna (líder de equipo, community manager) que tenga más llegada con los workers que el canal oficial de HR?\n8. ¿Qué nos ha faltado a nosotros como plataforma para que la adopción haya sido baja hasta ahora?\n\nCon estas respuestas puedo armar una comunicación que tenga sentido real para tu equipo, no mensajes genéricos que nadie abre.\n\n¿Podemos agendar 20 minutos esta semana, o prefieres responderme por aquí?\n\nLuis Miguel\nCustomer Success Manager, Ontop",
+            "cta": "Agendar llamada o responder por escrito",
+            "legal": "Ninguna restricción crítica aplica a este email. Es comunicación CSM-HR, no copy directo a workers.",
+            "raw": "\nSUBJECT: Pregunta rápida sobre tus workers en Ontop\nPREVIEW: Llevo semanas revisando los datos y hay algo que quiero confirmar contigo antes de actuar.\n---\nHola [Nombre],\n\nRevisando el uso de la plataforma en el equipo de Yango, noto que la gran mayoría de sus workers aún no ha activado ningún beneficio financiero disponible para ellos: cero comisiones en compras internacionales, rendimiento sobre su saldo, adelanto de pago, entre otros.\n\nEsto me preocupa porque cada mes que pasa sin activación es dinero que sus workers están dejando sobre la mesa. Y cuando los trabajadores no perciben valor de la plataforma, el riesgo de deserción sube.\n\nAntes de diseñar cualquier comunicación hacia ellos, necesito entender el contexto desde tu lado. Son solo 8 preguntas. Te toma menos de 10 minutos.\n\n**Las preguntas:**\n\n1. ¿Los workers reciben actualmente alguna comunicación directa de Ontop, o todo pasa por HR?\n2. ¿Hay restricciones internas para que Ontop les escriba directamente por email o WhatsApp?\n3. ¿Qué canal usan más los workers para recibir novedades del trabajo: email corporativo, WhatsApp personal, grupo de Telegram, otro?\n4. ¿Saben los workers que tienen una Ontop Card disponible y que no tiene comisión en compras internacionales?\n5. ¿Has escuchado alguna queja o comentario de workers sobre pagos, conversión de divisas o acceso a su dinero?\n6. ¿Hay algún grupo o perfil de workers con necesidades distintas: por país, por seniority, por tipo de contrato?\n7. ¿Existe alguna figura interna (líder de equipo, community manager) que tenga más llegada con los workers que el canal oficial de HR?\n8. ¿Qué nos ha faltado a nosotros como plataforma para que la adopción haya sido baja hasta ahora?\n\nCon estas respuestas puedo armar una comunicación que tenga sentido real para tu equipo, no mensajes genéricos que nadie abre.\n\n¿Podemos agendar 20 minutos esta semana, o prefieres responderme por aquí?\n\nLuis Miguel\nCustomer Success Manager, Ontop\n---\nCTA: Agendar llamada o responder por escrito\nLEGAL_NOTE: Ninguna restricción crítica aplica a este email. Es comunicación CSM-HR, no copy directo a workers.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hola [Nombre], soy Luis Miguel de Ontop. Vi que la mayoría del equipo aún no usa los beneficios disponibles. ¿Me das 10 min para entender por qué? Tengo 8 preguntas cortas.",
+            "raw": "Hola [Nombre], soy Luis Miguel de Ontop. Vi que la mayoría del equipo aún no usa los beneficios disponibles. ¿Me das 10 min para entender por qué? Tengo 8 preguntas cortas.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[Nombre], cada mes sin activación es dinero que tus workers no están aprovechando. Antes de escribirles, necesito tu contexto. ¿Cuándo hablamos?",
+            "raw": "[Nombre], cada mes sin activación es dinero que tus workers no están aprovechando. Antes de escribirles, necesito tu contexto. ¿Cuándo hablamos?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email",
+          "whatsapp"
+        ],
+        "generatedAt": "2026-07-14T20:31:44.930Z",
+        "cycle": 1
+      },
+      "ciclos": [],
+      "archive": []
+    },
+    "A": {
+      "status": null,
+      "ciclos": [],
+      "archive": []
+    },
+    "B": {
+      "status": null,
+      "ciclos": [],
+      "archive": []
+    },
+    "C": {
+      "status": null,
+      "ciclos": [],
+      "archive": []
+    },
+    "D": {
+      "status": null,
+      "ciclos": [],
+      "archive": []
+    }
+  }
+}
