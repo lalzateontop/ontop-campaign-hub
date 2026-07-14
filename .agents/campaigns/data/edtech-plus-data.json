@@ -1,0 +1,215 @@
+{
+  "client": "edtech",
+  "updatedAt": "2026-07-14T20:06:43.657Z",
+  "tracks": {
+    "A": {
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Your Ontop Card is ready. Activate it.",
+            "preview": "Every international purchase you make without it costs you more than it should.",
+            "body": "[First Name],\n\nEvery time you pay online in a foreign currency without your Ontop Card, you're handing money to your bank in fees.\n\nIt adds up faster than you think.\n\nYour Ontop Card is already waiting for you. Zero foreign transaction fees, on every purchase. No hidden charges, no conversion markups, no surprises on your statement.\n\nActivating takes less than two minutes. That's it.\n\nMore than 400 of your Edtech Plus colleagues already have theirs active. They stopped paying unnecessary fees. You can too, starting today.\n\nOne tap. Two minutes. No more wasted money on every transaction.\n\n**Activate your Ontop Card now and keep what you earn.**\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my Ontop Card",
+            "legal": "Ontop Card standalone includes zero foreign transaction fees. Cashback benefits require an active Reserve membership, not included in this offer.",
+            "raw": "\nSUBJECT: Your Ontop Card is ready. Activate it.\nPREVIEW: Every international purchase you make without it costs you more than it should.\n---\n[First Name],\n\nEvery time you pay online in a foreign currency without your Ontop Card, you're handing money to your bank in fees.\n\nIt adds up faster than you think.\n\nYour Ontop Card is already waiting for you. Zero foreign transaction fees, on every purchase. No hidden charges, no conversion markups, no surprises on your statement.\n\nActivating takes less than two minutes. That's it.\n\nMore than 400 of your Edtech Plus colleagues already have theirs active. They stopped paying unnecessary fees. You can too, starting today.\n\nOne tap. Two minutes. No more wasted money on every transaction.\n\n**Activate your Ontop Card now and keep what you earn.**\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my Ontop Card\nLEGAL_NOTE: Ontop Card standalone includes zero foreign transaction fees. Cashback benefits require an active Reserve membership, not included in this offer.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "Still paying bank fees on every purchase?",
+            "preview": "Here's exactly what that's costing you every month.",
+            "body": "[First Name],\n\nA typical international bank charges 2–3% on every foreign currency transaction.\n\nIf you spend $500/month on international purchases, that's up to $180 a year going straight to your bank, for no reason.\n\nYour Ontop Card eliminates that charge completely. Zero foreign transaction fees, on every single purchase.\n\nIt takes two minutes to activate. You've already done the harder part by earning your income through Ontop.\n\nOver 400 of your Edtech Plus colleagues made the switch. They're not paying those fees anymore. The workers who haven't activated yet are the ones still paying.\n\nWhich side do you want to be on?\n\nYour card is ready. Your money should stay yours.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my Ontop Card now",
+            "legal": "Ontop Card standalone includes zero foreign transaction fees. Cashback benefits require an active Reserve membership, not included in this offer.",
+            "raw": "\nSUBJECT: Still paying bank fees on every purchase?\nPREVIEW: Here's exactly what that's costing you every month.\n---\n[First Name],\n\nA typical international bank charges 2–3% on every foreign currency transaction.\n\nIf you spend $500/month on international purchases, that's up to $180 a year going straight to your bank, for no reason.\n\nYour Ontop Card eliminates that charge completely. Zero foreign transaction fees, on every single purchase.\n\nIt takes two minutes to activate. You've already done the harder part by earning your income through Ontop.\n\nOver 400 of your Edtech Plus colleagues made the switch. They're not paying those fees anymore. The workers who haven't activated yet are the ones still paying.\n\nWhich side do you want to be on?\n\nYour card is ready. Your money should stay yours.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my Ontop Card now\nLEGAL_NOTE: Ontop Card standalone includes zero foreign transaction fees. Cashback benefits require an active Reserve membership, not included in this offer.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Last nudge: your fee-free card is still waiting",
+            "preview": "Most of your colleagues already activated. Here's what you're still losing.",
+            "body": "[First Name],\n\nI'll be direct.\n\nEvery week you go without your Ontop Card is another week of paying fees you don't have to pay.\n\nMost of your Edtech Plus colleagues have already activated theirs. They did it in two minutes and stopped overpaying on every international purchase immediately.\n\nYou're one step behind, and that step is costing you real money.\n\nZero foreign transaction fees. Zero setup cost. Zero reasons to wait.\n\nThis is the last reminder I'll send. Your card is ready, your account is ready, the only thing missing is two minutes of your time.\n\nStop leaving money on the table.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my card now",
+            "legal": "Ontop Card standalone includes zero foreign transaction fees. Cashback benefits require an active Reserve membership, not included in this offer.",
+            "raw": "\nSUBJECT: Last nudge: your fee-free card is still waiting\nPREVIEW: Most of your colleagues already activated. Here's what you're still losing.\n---\n[First Name],\n\nI'll be direct.\n\nEvery week you go without your Ontop Card is another week of paying fees you don't have to pay.\n\nMost of your Edtech Plus colleagues have already activated theirs. They did it in two minutes and stopped overpaying on every international purchase immediately.\n\nYou're one step behind, and that step is costing you real money.\n\nZero foreign transaction fees. Zero setup cost. Zero reasons to wait.\n\nThis is the last reminder I'll send. Your card is ready, your account is ready, the only thing missing is two minutes of your time.\n\nStop leaving money on the table.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my card now\nLEGAL_NOTE: Ontop Card standalone includes zero foreign transaction fees. Cashback benefits require an active Reserve membership, not included in this offer.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Tu Ontop Card está lista, [First Name]",
+            "preview": "Cada compra internacional que haces sin ella te está costando dinero real.",
+            "body": "[First Name], cada vez que pagas algo en dólares o en otra moneda, tu banco te cobra una comisión de conversión. Normalmente entre 2% y 3% por transacción.\n\nSi gastas $300 al mes en compras internacionales, estás regalando hasta $9 cada mes. Son $108 al año que salen de tu bolsillo sin que lo notes.\n\nTu Ontop Card elimina esa comisión completamente. Cero cargos por transacciones en moneda extranjera. La tarjeta ya está disponible para ti, solo necesitas activarla.\n\nMás de 270 de tus colegas en Edtech Plus ya la usan. No tiene costo de activación y toma menos de 3 minutos.",
+            "cta": "Activar mi Ontop Card ahora",
+            "legal": "Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.",
+            "raw": "\nSUBJECT: Tu Ontop Card está lista, [First Name]\nPREVIEW: Cada compra internacional que haces sin ella te está costando dinero real.\n---\n[First Name], cada vez que pagas algo en dólares o en otra moneda, tu banco te cobra una comisión de conversión. Normalmente entre 2% y 3% por transacción.\n\nSi gastas $300 al mes en compras internacionales, estás regalando hasta $9 cada mes. Son $108 al año que salen de tu bolsillo sin que lo notes.\n\nTu Ontop Card elimina esa comisión completamente. Cero cargos por transacciones en moneda extranjera. La tarjeta ya está disponible para ti, solo necesitas activarla.\n\nMás de 270 de tus colegas en Edtech Plus ya la usan. No tiene costo de activación y toma menos de 3 minutos.\n---\nCTA: Activar mi Ontop Card ahora\nLEGAL_NOTE: Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "$108 al año. ¿Los quieres o los regalas?",
+            "preview": "Esto es exactamente lo que pierdes cada año sin tu Ontop Card activa.",
+            "body": "[First Name], hace unos días te escribí sobre tu Ontop Card.\n\nQuiero ser directo: sin ella, cada pago en moneda extranjera incluye un cargo que no aparece como línea separada en tu estado de cuenta, pero está ahí. Tu banco lo cobra dentro del tipo de cambio.\n\nEl número exacto depende de cuánto gastas, pero el promedio entre tus colegas que ya activaron su tarjeta es claro: dejaron de pagar comisiones que no tenían por qué pagar.\n\nLa diferencia es simple. Con tu Ontop Card: cero cargos por transacciones internacionales. Sin ella: sigues pagando.\n\nNo hay trámites complicados. No hay costo de activación. Solo un paso.",
+            "cta": "Activar mi tarjeta gratis",
+            "legal": "Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.",
+            "raw": "\nSUBJECT: $108 al año. ¿Los quieres o los regalas?\nPREVIEW: Esto es exactamente lo que pierdes cada año sin tu Ontop Card activa.\n---\n[First Name], hace unos días te escribí sobre tu Ontop Card.\n\nQuiero ser directo: sin ella, cada pago en moneda extranjera incluye un cargo que no aparece como línea separada en tu estado de cuenta, pero está ahí. Tu banco lo cobra dentro del tipo de cambio.\n\nEl número exacto depende de cuánto gastas, pero el promedio entre tus colegas que ya activaron su tarjeta es claro: dejaron de pagar comisiones que no tenían por qué pagar.\n\nLa diferencia es simple. Con tu Ontop Card: cero cargos por transacciones internacionales. Sin ella: sigues pagando.\n\nNo hay trámites complicados. No hay costo de activación. Solo un paso.\n---\nCTA: Activar mi tarjeta gratis\nLEGAL_NOTE: Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Último aviso: tu tarjeta sigue sin activar",
+            "preview": "Tus colegas ya ahorran. Tú todavía no.",
+            "body": "[First Name], esta es mi última nota sobre tu Ontop Card.\n\nMás del 31% de tus colegas en Edtech Plus ya la activaron y dejaron de pagar comisiones en cada transacción internacional. Tú todavía no.\n\nNo te pido que cambies cómo cobras ni cómo gastas. Solo activa la tarjeta. Un paso, menos de 3 minutos, sin costo.\n\nCada mes que pasa sin activarla es un mes pagando comisiones que no deberías pagar. El banco no te va a avisar. Yo sí.\n\nSi tienes alguna duda, responde este correo directamente y te ayudo en minutos.",
+            "cta": "Activar ahora, es gratis",
+            "legal": "Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.",
+            "raw": "\nSUBJECT: Último aviso: tu tarjeta sigue sin activar\nPREVIEW: Tus colegas ya ahorran. Tú todavía no.\n---\n[First Name], esta es mi última nota sobre tu Ontop Card.\n\nMás del 31% de tus colegas en Edtech Plus ya la activaron y dejaron de pagar comisiones en cada transacción internacional. Tú todavía no.\n\nNo te pido que cambies cómo cobras ni cómo gastas. Solo activa la tarjeta. Un paso, menos de 3 minutos, sin costo.\n\nCada mes que pasa sin activarla es un mes pagando comisiones que no deberías pagar. El banco no te va a avisar. Yo sí.\n\nSi tienes alguna duda, responde este correo directamente y te ayudo en minutos.\n---\nCTA: Activar ahora, es gratis\nLEGAL_NOTE: Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email"
+        ],
+        "generatedAt": "2026-07-14T19:01:53.729Z"
+      },
+      "ciclos": [],
+      "archive": []
+    },
+    "B": {
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Your balance is earning nothing right now",
+            "preview": "Every day without Future Fund is interest you'll never get back.",
+            "body": "[First Name],\n\nRight now, your salary sits in your Ontop account and earns zero.\n\nNot a little. Zero.\n\nMeanwhile, hundreds of your TripleTen colleagues already have their money working for them through Future Fund, earning up to 4% APR on the same balance they already have.\n\nYou don't need to move to a new bank. You don't need to deposit extra money. You just need to activate it.\n\nTwo options, both free to open:\n\n- **Future Fund Flex** — 3% APR, withdraw anytime\n- **Future Fund +30** — 4% APR, funds available after 30 days\n\nPick the one that fits how you handle money. That's it.\n\nEvery week you wait is interest you won't recover.",
+            "cta": "Start earning on my balance",
+            "legal": "Future Fund is an interest-bearing savings product. APR figures are current rates and may be subject to change. No minimum balance required to activate.",
+            "raw": "\nSUBJECT: Your balance is earning nothing right now\nPREVIEW: Every day without Future Fund is interest you'll never get back.\n---\n[First Name],\n\nRight now, your salary sits in your Ontop account and earns zero.\n\nNot a little. Zero.\n\nMeanwhile, hundreds of your TripleTen colleagues already have their money working for them through Future Fund, earning up to 4% APR on the same balance they already have.\n\nYou don't need to move to a new bank. You don't need to deposit extra money. You just need to activate it.\n\nTwo options, both free to open:\n\n- **Future Fund Flex** — 3% APR, withdraw anytime\n- **Future Fund +30** — 4% APR, funds available after 30 days\n\nPick the one that fits how you handle money. That's it.\n\nEvery week you wait is interest you won't recover.\n---\nCTA: Start earning on my balance\nLEGAL_NOTE: Future Fund is an interest-bearing savings product. APR figures are current rates and may be subject to change. No minimum balance required to activate.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "What 241 workers are quietly doing with their pay",
+            "preview": "They activated something most people overlook. Here's what it does.",
+            "body": "[First Name],\n\nMost workers get paid, cover their expenses, and leave the rest sitting idle.\n\nA growing number of your TripleTen colleagues decided that wasn't good enough. They activated Future Fund and turned their idle balance into a steady return, without changing anything else about how they use Ontop.\n\nHere's what they're getting:\n\n- **3% APR** with Future Fund Flex (withdraw whenever you need to)\n- **4% APR** with Future Fund +30 (slightly better rate, 30-day hold)\n\nAnd if you use your **Ontop Card** for purchases abroad, you're already paying zero foreign transaction fees. Pairing it with Future Fund means your money earns while you spend.\n\nThat combination costs nothing to set up.\n\nThe only thing stopping you is not having clicked yet.",
+            "cta": "Activate Future Fund now",
+            "legal": "Future Fund Flex and Future Fund +30 are available to eligible Ontop workers on PPT contracts. Ontop Card foreign transaction fee waiver applies to eligible card transactions. Rates current as of campaign date.",
+            "raw": "\nSUBJECT: What 241 workers are quietly doing with their pay\nPREVIEW: They activated something most people overlook. Here's what it does.\n---\n[First Name],\n\nMost workers get paid, cover their expenses, and leave the rest sitting idle.\n\nA growing number of your TripleTen colleagues decided that wasn't good enough. They activated Future Fund and turned their idle balance into a steady return, without changing anything else about how they use Ontop.\n\nHere's what they're getting:\n\n- **3% APR** with Future Fund Flex (withdraw whenever you need to)\n- **4% APR** with Future Fund +30 (slightly better rate, 30-day hold)\n\nAnd if you use your **Ontop Card** for purchases abroad, you're already paying zero foreign transaction fees. Pairing it with Future Fund means your money earns while you spend.\n\nThat combination costs nothing to set up.\n\nThe only thing stopping you is not having clicked yet.\n---\nCTA: Activate Future Fund now\nLEGAL_NOTE: Future Fund Flex and Future Fund +30 are available to eligible Ontop workers on PPT contracts. Ontop Card foreign transaction fee waiver applies to eligible card transactions. Rates current as of campaign date.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Last nudge — your balance still hasn't moved",
+            "preview": "This isn't a countdown. It's just math that keeps not working in your favor.",
+            "body": "[First Name],\n\nI'll keep this short.\n\nEvery month you don't have Future Fund active is a month of interest you can't recover. It doesn't roll over. It doesn't wait for you. It just disappears.\n\nWorkers who activated it two months ago have already earned on their balance twice. You haven't started yet.\n\nTwo options, one decision:\n\n- **Future Fund Flex** — 3% APR, full flexibility\n- **Future Fund +30** — 4% APR, 30-day hold for a better rate\n\nNo fees. No fine print. No reason to wait.\n\nClick below, pick your option, and you're done in under two minutes.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate Future Fund today",
+            "legal": "Interest accrual begins from the date of activation. Past earnings are not recoverable for prior periods. Rates subject to change.",
+            "raw": "\nSUBJECT: Last nudge — your balance still hasn't moved\nPREVIEW: This isn't a countdown. It's just math that keeps not working in your favor.\n---\n[First Name],\n\nI'll keep this short.\n\nEvery month you don't have Future Fund active is a month of interest you can't recover. It doesn't roll over. It doesn't wait for you. It just disappears.\n\nWorkers who activated it two months ago have already earned on their balance twice. You haven't started yet.\n\nTwo options, one decision:\n\n- **Future Fund Flex** — 3% APR, full flexibility\n- **Future Fund +30** — 4% APR, 30-day hold for a better rate\n\nNo fees. No fine print. No reason to wait.\n\nClick below, pick your option, and you're done in under two minutes.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate Future Fund today\nLEGAL_NOTE: Interest accrual begins from the date of activation. Past earnings are not recoverable for prior periods. Rates subject to change.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Tu saldo en Ontop no está trabajando para ti",
+            "preview": "Cada semana que pasa sin rendimiento es dinero que se queda en la mesa.",
+            "body": "[First Name], tu Ontop Card ya está activa. Eso es un buen inicio.\n\nPero hay algo que probablemente no sabías: el saldo que guardas en tu cuenta Ontop puede generar rendimiento real, todos los meses, sin que tengas que hacer nada especial.\n\nHoy no lo está haciendo.\n\nMás de 100 de tus colegas en TripleTen ya combinan su tarjeta con Future Fund y acumulan intereses sobre lo que reciben cada pago. Tú estás dejando ese dinero quieto.\n\nFuture Fund tiene dos opciones:\n- **Flex:** 3% APR, retiras cuando quieras.\n- **+30:** 4% APR, con 30 días de plazo.\n\nTú decides cuánto comprometer y por cuánto tiempo. El primer paso tarda menos de 3 minutos.",
+            "cta": "Activar Future Fund ahora",
+            "legal": "APR anualizado. Rendimientos no garantizados. Future Fund no es un depósito bancario.",
+            "raw": "\nSUBJECT: Tu saldo en Ontop no está trabajando para ti\nPREVIEW: Cada semana que pasa sin rendimiento es dinero que se queda en la mesa.\n---\n[First Name], tu Ontop Card ya está activa. Eso es un buen inicio.\n\nPero hay algo que probablemente no sabías: el saldo que guardas en tu cuenta Ontop puede generar rendimiento real, todos los meses, sin que tengas que hacer nada especial.\n\nHoy no lo está haciendo.\n\nMás de 100 de tus colegas en TripleTen ya combinan su tarjeta con Future Fund y acumulan intereses sobre lo que reciben cada pago. Tú estás dejando ese dinero quieto.\n\nFuture Fund tiene dos opciones:\n- **Flex:** 3% APR, retiras cuando quieras.\n- **+30:** 4% APR, con 30 días de plazo.\n\nTú decides cuánto comprometer y por cuánto tiempo. El primer paso tarda menos de 3 minutos.\n---\nCTA: Activar Future Fund ahora\nLEGAL_NOTE: APR anualizado. Rendimientos no garantizados. Future Fund no es un depósito bancario.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "¿Cuánto perdiste el mes pasado sin rendimiento?",
+            "preview": "Haz el cálculo rápido. La respuesta va a molestarte un poco.",
+            "body": "[First Name], un ejercicio simple:\n\nToma lo que recibes cada mes y multiplícalo por 0.03. Eso es lo que podrías estar ganando cada año con Future Fund Flex, solo por activarlo.\n\nSi son $1,000 al mes, hablamos de $30 al año en Flex, o $40 con la opción +30. No es una fortuna, pero tampoco es dinero que debería quedarse parado sin trabajar por ti.\n\nCada mes que pasa sin activarlo es un mes de rendimiento que no recuperas.\n\nTus colegas que ya lo activaron llevan ventaja. Tú puedes alcanzarlos hoy mismo.\n\nElige tu opción:\n- **Future Fund Flex** (3% APR, retiro flexible)\n- **Future Fund +30** (4% APR, mayor rendimiento, 30 días)\n\nUn clic. Tres minutos. Sin costos de activación.",
+            "cta": "Empezar a ganar rendimiento",
+            "legal": "APR anualizado. Rendimientos no garantizados. Future Fund no es un depósito bancario.",
+            "raw": "\nSUBJECT: ¿Cuánto perdiste el mes pasado sin rendimiento?\nPREVIEW: Haz el cálculo rápido. La respuesta va a molestarte un poco.\n---\n[First Name], un ejercicio simple:\n\nToma lo que recibes cada mes y multiplícalo por 0.03. Eso es lo que podrías estar ganando cada año con Future Fund Flex, solo por activarlo.\n\nSi son $1,000 al mes, hablamos de $30 al año en Flex, o $40 con la opción +30. No es una fortuna, pero tampoco es dinero que debería quedarse parado sin trabajar por ti.\n\nCada mes que pasa sin activarlo es un mes de rendimiento que no recuperas.\n\nTus colegas que ya lo activaron llevan ventaja. Tú puedes alcanzarlos hoy mismo.\n\nElige tu opción:\n- **Future Fund Flex** (3% APR, retiro flexible)\n- **Future Fund +30** (4% APR, mayor rendimiento, 30 días)\n\nUn clic. Tres minutos. Sin costos de activación.\n---\nCTA: Empezar a ganar rendimiento\nLEGAL_NOTE: APR anualizado. Rendimientos no garantizados. Future Fund no es un depósito bancario.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Última vez que te lo digo, [First Name]",
+            "preview": "No es presión. Es que no quiero que sigas dejando rendimiento sin cobrar.",
+            "body": "[First Name], te escribí hace una semana sobre Future Fund. No quiero que esto se pierda en tu bandeja.\n\nEl punto es sencillo: tienes dinero que llega cada mes a tu cuenta Ontop y no está generando nada. Eso tiene un costo real, aunque no lo veas en ningún estado de cuenta.\n\nMás de 100 workers de TripleTen ya lo activaron. No necesitaron saber de inversiones. Solo eligieron una opción y confirmaron.\n\nDos opciones, una decisión:\n- **Flex:** 3% APR, retiras cuando quieras. Sin ataduras.\n- **+30:** 4% APR, bloqueas 30 días, ganas más.\n\nSi no activas hoy, el mes que viene vuelves a empezar desde cero. Los que ya están dentro llevan meses de ventaja.\n\nEste es el momento.",
+            "cta": "Activar Future Fund hoy",
+            "legal": "APR anualizado. Rendimientos no garantizados. Future Fund no es un depósito bancario.",
+            "raw": "\nSUBJECT: Última vez que te lo digo, [First Name]\nPREVIEW: No es presión. Es que no quiero que sigas dejando rendimiento sin cobrar.\n---\n[First Name], te escribí hace una semana sobre Future Fund. No quiero que esto se pierda en tu bandeja.\n\nEl punto es sencillo: tienes dinero que llega cada mes a tu cuenta Ontop y no está generando nada. Eso tiene un costo real, aunque no lo veas en ningún estado de cuenta.\n\nMás de 100 workers de TripleTen ya lo activaron. No necesitaron saber de inversiones. Solo eligieron una opción y confirmaron.\n\nDos opciones, una decisión:\n- **Flex:** 3% APR, retiras cuando quieras. Sin ataduras.\n- **+30:** 4% APR, bloqueas 30 días, ganas más.\n\nSi no activas hoy, el mes que viene vuelves a empezar desde cero. Los que ya están dentro llevan meses de ventaja.\n\nEste es el momento.\n---\nCTA: Activar Future Fund hoy\nLEGAL_NOTE: APR anualizado. Rendimientos no garantizados. Future Fund no es un depósito bancario.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email"
+        ],
+        "generatedAt": "2026-07-14T20:06:43.656Z",
+        "cycle": 1
+      },
+      "ciclos": [],
+      "archive": []
+    },
+    "C": {
+      "status": null,
+      "ciclos": [],
+      "archive": []
+    },
+    "D": {
+      "status": null,
+      "ciclos": [],
+      "archive": []
+    }
+  }
+}
