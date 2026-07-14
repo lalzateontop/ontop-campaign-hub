@@ -1,6 +1,6 @@
 {
   "client": "nebius",
-  "updatedAt": "2026-07-14T20:40:00.438Z",
+  "updatedAt": "2026-07-14T20:40:40.047Z",
   "tracks": {
     "A": {
       "status": {
@@ -419,56 +419,11 @@
           {
             "n": 1,
             "type": "email",
-            "subject": "You've unlocked something most haven't",
-            "preview": "Your Ontop account now gives you access to a benefit your colleagues don't have yet.",
-            "body": "[First Name],\n\nMost Nebius workers on Ontop are leaving real money on the table every month. You don't have to.\n\nBecause of how you use your account, you now have access to Reserve — Ontop's membership that turns your card into a cashback machine. We're talking 10% back on your top spending category and 5% on everything else.\n\nEvery purchase you make without it is a purchase you're not getting paid back on.\n\nOne activation. No complicated setup.\n\nYour colleagues who've already turned it on won't go back. Once you see the cashback adding up, you'll wonder why you waited.\n\nReady to stop leaving money behind?\n\nLuis Miguel\nYour Ontop CSM",
-            "cta": "Activate Reserve now",
-            "legal": "Reserve ($14.90/mo) is available exclusively to eligible Ontop users. Cashback rates apply as per current Ontop terms.",
-            "raw": "\nSUBJECT: You've unlocked something most haven't\nPREVIEW: Your Ontop account now gives you access to a benefit your colleagues don't have yet.\n---\n[First Name],\n\nMost Nebius workers on Ontop are leaving real money on the table every month. You don't have to.\n\nBecause of how you use your account, you now have access to Reserve — Ontop's membership that turns your card into a cashback machine. We're talking 10% back on your top spending category and 5% on everything else.\n\nEvery purchase you make without it is a purchase you're not getting paid back on.\n\nOne activation. No complicated setup.\n\nYour colleagues who've already turned it on won't go back. Once you see the cashback adding up, you'll wonder why you waited.\n\nReady to stop leaving money behind?\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate Reserve now\nLEGAL_NOTE: Reserve ($14.90/mo) is available exclusively to eligible Ontop users. Cashback rates apply as per current Ontop terms.\n",
-            "sent": false,
-            "editMode": false,
-            "editBody": ""
-          },
-          {
-            "n": 2,
-            "type": "email",
-            "subject": "Here's what you missed last month",
-            "preview": "Without Reserve active, that cashback went to zero. It doesn't have to next month.",
-            "body": "[First Name],\n\nLet me be direct.\n\nEvery month you spend on your Ontop Card without Reserve, you get 0% back. With Reserve active, that same spending earns you 10% on your top category and 5% on the rest.\n\nThat gap compounds fast. A few hundred dollars in monthly spending adds up to real cash over a year. Cash that should be yours.\n\nWorkers who activated Reserve last quarter are already seeing it in their balances. It takes less than two minutes to turn on. The cost is $14.90/month. For most people, the cashback covers that in the first week.\n\nNext month looks exactly like last month, or it looks different. That's the only decision here.\n\nLuis Miguel\nYour Ontop CSM",
-            "cta": "Turn on Reserve",
-            "legal": "Reserve is available to eligible users only. $14.90/month. Cashback subject to Ontop's current terms and spending categories.",
-            "raw": "\nSUBJECT: Here's what you missed last month\nPREVIEW: Without Reserve active, that cashback went to zero. It doesn't have to next month.\n---\n[First Name],\n\nLet me be direct.\n\nEvery month you spend on your Ontop Card without Reserve, you get 0% back. With Reserve active, that same spending earns you 10% on your top category and 5% on the rest.\n\nThat gap compounds fast. A few hundred dollars in monthly spending adds up to real cash over a year. Cash that should be yours.\n\nWorkers who activated Reserve last quarter are already seeing it in their balances. It takes less than two minutes to turn on. The cost is $14.90/month. For most people, the cashback covers that in the first week.\n\nNext month looks exactly like last month, or it looks different. That's the only decision here.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Turn on Reserve\nLEGAL_NOTE: Reserve is available to eligible users only. $14.90/month. Cashback subject to Ontop's current terms and spending categories.\n",
-            "sent": false,
-            "editMode": false,
-            "editBody": ""
-          },
-          {
-            "n": 3,
-            "type": "email",
-            "subject": "Last call: this one's time-sensitive",
-            "preview": "Your window to activate Reserve and earn back this month is closing soon.",
-            "body": "[First Name],\n\nQuick and direct: if you activate Reserve before the end of this billing cycle, your cashback starts counting immediately on every purchase you make.\n\nIf you wait, you lose another full month.\n\nYou've already put in the work to get here. This is the last step. Workers who took it are earning back on every transaction — groceries, subscriptions, anything on the card.\n\n$14.90/month. Covered fast by what you earn back.\n\nNo forms. No waiting. Just activate and your card starts working harder than it does right now.\n\nThis one's on you, [First Name]. Don't hand back another month of cashback you've already earned the right to.\n\nLuis Miguel\nYour Ontop CSM",
-            "cta": "Activate Reserve before this cycle closes",
-            "legal": "Reserve is available to eligible users only. $14.90/month. Cashback rates and categories subject to current Ontop terms.",
-            "raw": "\nSUBJECT: Last call: this one's time-sensitive\nPREVIEW: Your window to activate Reserve and earn back this month is closing soon.\n---\n[First Name],\n\nQuick and direct: if you activate Reserve before the end of this billing cycle, your cashback starts counting immediately on every purchase you make.\n\nIf you wait, you lose another full month.\n\nYou've already put in the work to get here. This is the last step. Workers who took it are earning back on every transaction — groceries, subscriptions, anything on the card.\n\n$14.90/month. Covered fast by what you earn back.\n\nNo forms. No waiting. Just activate and your card starts working harder than it does right now.\n\nThis one's on you, [First Name]. Don't hand back another month of cashback you've already earned the right to.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate Reserve before this cycle closes\nLEGAL_NOTE: Reserve is available to eligible users only. $14.90/month. Cashback rates and categories subject to current Ontop terms.\n",
-            "sent": false,
-            "editMode": false,
-            "editBody": ""
-          },
-          {
-            "n": 1,
-            "type": "whatsapp",
-            "body": "Hey [First Name], you've unlocked Reserve on Ontop. Most workers here don't have it yet. Activate and earn cashback on every card purchase. Takes 2 min 👉 [link]",
-            "raw": "Hey [First Name], you've unlocked Reserve on Ontop. Most workers here don't have it yet. Activate and earn cashback on every card purchase. Takes 2 min 👉 [link]",
-            "sent": false,
-            "editMode": false,
-            "editBody": ""
-          },
-          {
-            "n": 2,
-            "type": "whatsapp",
-            "body": "[First Name], another month without Reserve = another month at 0% cashback. $14.90 to turn it on. Most people earn that back in days. Want the link?",
-            "raw": "[First Name], another month without Reserve = another month at 0% cashback. $14.90 to turn it on. Most people earn that back in days. Want the link?",
+            "subject": "Track D — Power User→All-In",
+            "preview": "",
+            "body": "**⚠️ CAMPAIGN BLOCK — TRACK D / NEBIUS**\n\nBefore generating copy, a critical product rule conflict has been flagged:\n\n---\n\n**WHY THIS TRACK CANNOT RUN AS REQUESTED:**\n\n| Check | Status |\n|---|---|\n| Target workers (Power Users at Nebius) | **0** |\n| Reserve eligibility | Power Users only |\n| Nebius contract type | PPT |\n| Conversion target | 0 workers |\n\n**Reserve is only available to existing Power Users.** Nebius currently has **zero Power Users**. There is no eligible audience for a Reserve activation campaign at this client. Sending Reserve messaging to non-Power-User workers would violate product eligibility rules and could create false expectations or compliance issues.\n\n---\n\n**RECOMMENDED ACTION:**\n\nDo not activate Track D for Nebius at this time. The prerequisite audience does not exist yet.\n\n**The correct sequencing for Nebius is:**\n\n```\nTrack A → Track B → Track C → Track D\n(Starter→Explorer) (Explorer→Builder) (Builder→Power User) (Power User→All-In)\n```\n\nNebius currently needs **Track B** (moving 2 Explorers to Builder) as the immediate priority. Track D becomes relevant only after Track C successfully converts workers to Power User status.\n\n---\n\n**WHAT YOU SHOULD DO INSTEAD:**\n\nRun **Track B** copy for Nebius now. That is the highest-leverage action: 2 conversions move Builder+ from 11.8% to 23.5%, crossing the retention threshold. Want me to generate Track B copy for Nebius with PAS framework and Loss Aversion + Social Proof applied?",
+            "cta": "",
+            "legal": "",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -478,12 +433,12 @@
           {
             "n": 1,
             "type": "email",
-            "subject": "Tu Ontop Card ya hace más de lo que crees",
-            "preview": "Hay un beneficio que tus colegas ya están aprovechando y tú todavía no.",
-            "body": "[First Name], cada vez que usas tu Ontop Card en el exterior pagas cero comisiones por transacción. Eso ya lo sabes.\n\nLo que quizás no sabes: hay una membresía que activa cashback del 10% en tus compras. Cada mes que pasa sin ella es dinero que sale de tu bolsillo y no vuelve.\n\nTus colegas que ya la tienen ahorran en cada transacción, sin cambiar cómo gastan.\n\nUn solo paso activa el acceso. ¿Le echamos un vistazo juntos?\n\nLuis Miguel\nTu CSM en Ontop",
-            "cta": "Ver cómo funciona",
-            "legal": "Reserve ($14.99/mes) disponible para workers que cumplen criterios de elegibilidad. Confirmar elegibilidad individual antes de activar comunicación.",
-            "raw": "\nSUBJECT: Tu Ontop Card ya hace más de lo que crees\nPREVIEW: Hay un beneficio que tus colegas ya están aprovechando y tú todavía no.\n---\n[First Name], cada vez que usas tu Ontop Card en el exterior pagas cero comisiones por transacción. Eso ya lo sabes.\n\nLo que quizás no sabes: hay una membresía que activa cashback del 10% en tus compras. Cada mes que pasa sin ella es dinero que sale de tu bolsillo y no vuelve.\n\nTus colegas que ya la tienen ahorran en cada transacción, sin cambiar cómo gastan.\n\nUn solo paso activa el acceso. ¿Le echamos un vistazo juntos?\n\nLuis Miguel\nTu CSM en Ontop\n---\nCTA: Ver cómo funciona\nLEGAL_NOTE: Reserve ($14.99/mes) disponible para workers que cumplen criterios de elegibilidad. Confirmar elegibilidad individual antes de activar comunicación.\n",
+            "subject": "[First Name], tu tarjeta Ontop puede hacer más",
+            "preview": "Hay un beneficio que tienes disponible y que aún no estás aprovechando.",
+            "body": "[First Name], usas tu Ontop Card para comprar. Bien. Pero cada compra que haces hoy sin Reserve es dinero que no está volviendo a tu bolsillo.\n\nCon Reserve activo, cada dólar que gastas genera cashback real: 10% en comercios seleccionados, 5% en el resto. Sin topes artificiales.\n\nTus colegas en Nebius que ya lo activaron lo notan en cada transacción. Tú también puedes.\n\nEl costo es $14.90 al mes. Si usas tu tarjeta con regularidad, se paga solo en las primeras compras.\n\nUn solo clic activa todo.",
+            "cta": "Activar Reserve ahora",
+            "legal": "Reserve disponible exclusivamente para workers con historial de uso activo en Ontop Card. Tarifa fija de $14.90/mes.",
+            "raw": "**\nSUBJECT: [First Name], tu tarjeta Ontop puede hacer más\nPREVIEW: Hay un beneficio que tienes disponible y que aún no estás aprovechando.\n\n---\n[First Name], usas tu Ontop Card para comprar. Bien. Pero cada compra que haces hoy sin Reserve es dinero que no está volviendo a tu bolsillo.\n\nCon Reserve activo, cada dólar que gastas genera cashback real: 10% en comercios seleccionados, 5% en el resto. Sin topes artificiales.\n\nTus colegas en Nebius que ya lo activaron lo notan en cada transacción. Tú también puedes.\n\nEl costo es $14.90 al mes. Si usas tu tarjeta con regularidad, se paga solo en las primeras compras.\n\nUn solo clic activa todo.\n\n---\nCTA: Activar Reserve ahora\nLEGAL_NOTE: Reserve disponible exclusivamente para workers con historial de uso activo en Ontop Card. Tarifa fija de $14.90/mes.\n\n**",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -491,12 +446,12 @@
           {
             "n": 2,
             "type": "email",
-            "subject": "¿Cuánto dejaste de ganar este mes?",
-            "preview": "No es un reproche. Es una cuenta rápida que vale la pena hacer.",
-            "body": "[First Name], hagamos el cálculo en frío.\n\nSi gastas $300/mes con tu Ontop Card y tienes cashback del 10%, son $30 de vuelta. En un año: $360.\n\nSin la membresía, ese dinero simplemente no existe para ti.\n\nReserve cuesta $14.99 al mes. El cashback lo cubre y lo supera con margen desde el primer mes de uso real.\n\nLos workers que ya activaron esto no lo desactivaron. Una vez que ves el número, es difícil ignorarlo.\n\nSi quieres saber si ya calificas, responde este email y lo revisamos hoy.\n\nLuis Miguel\nTu CSM en Ontop",
-            "cta": "Revisar si califico",
-            "legal": "Cashback del 10% exclusivo con membresía Reserve activa. Elegibilidad sujeta a revisión individual.",
-            "raw": "\nSUBJECT: ¿Cuánto dejaste de ganar este mes?\nPREVIEW: No es un reproche. Es una cuenta rápida que vale la pena hacer.\n---\n[First Name], hagamos el cálculo en frío.\n\nSi gastas $300/mes con tu Ontop Card y tienes cashback del 10%, son $30 de vuelta. En un año: $360.\n\nSin la membresía, ese dinero simplemente no existe para ti.\n\nReserve cuesta $14.99 al mes. El cashback lo cubre y lo supera con margen desde el primer mes de uso real.\n\nLos workers que ya activaron esto no lo desactivaron. Una vez que ves el número, es difícil ignorarlo.\n\nSi quieres saber si ya calificas, responde este email y lo revisamos hoy.\n\nLuis Miguel\nTu CSM en Ontop\n---\nCTA: Revisar si califico\nLEGAL_NOTE: Cashback del 10% exclusivo con membresía Reserve activa. Elegibilidad sujeta a revisión individual.\n",
+            "subject": "¿Cuánto cashback perdiste este mes?",
+            "preview": "No es un cargo extra. Es lo que dejaste de ganar.",
+            "body": "[First Name], seamos directos.\n\nCada compra que hiciste este mes con tu Ontop Card sin Reserve fue una oportunidad de recuperar dinero que no aprovechaste.\n\nNo hablamos de centavos: si gastas $300/mes, Reserve te devuelve hasta $30. El plan cuesta $14.90. La diferencia es tuya.\n\nOtros workers de tu empresa ya activaron Reserve después de hacer ese mismo cálculo. La mayoría dice que fue la decisión más fácil.\n\nEl mes que ya pasó no lo recuperas. El próximo empieza cuando tú decidas.",
+            "cta": "Calcular mi cashback y activar",
+            "legal": "El porcentaje de cashback (10%/5%) aplica según comercio. Beneficio disponible únicamente con membresía Reserve activa ($14.90/mes).",
+            "raw": "**\nSUBJECT: ¿Cuánto cashback perdiste este mes?\nPREVIEW: No es un cargo extra. Es lo que dejaste de ganar.\n\n---\n[First Name], seamos directos.\n\nCada compra que hiciste este mes con tu Ontop Card sin Reserve fue una oportunidad de recuperar dinero que no aprovechaste.\n\nNo hablamos de centavos: si gastas $300/mes, Reserve te devuelve hasta $30. El plan cuesta $14.90. La diferencia es tuya.\n\nOtros workers de tu empresa ya activaron Reserve después de hacer ese mismo cálculo. La mayoría dice que fue la decisión más fácil.\n\nEl mes que ya pasó no lo recuperas. El próximo empieza cuando tú decidas.\n\n---\nCTA: Calcular mi cashback y activar\nLEGAL_NOTE: El porcentaje de cashback (10%/5%) aplica según comercio. Beneficio disponible únicamente con membresía Reserve activa ($14.90/mes).\n\n**",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -504,12 +459,12 @@
           {
             "n": 3,
             "type": "email",
-            "subject": "Última vez que te escribo sobre esto",
-            "preview": "Si el momento no es ahora, sin problema. Pero quiero que tengas el número claro.",
-            "body": "[First Name], no voy a insistir más después de esto.\n\nSolo quiero dejarte un dato: cada mes sin cashback activo es entre $20 y $50 que no recuperas, dependiendo de cuánto usas tu card.\n\nNo es un gasto que se nota en el día a día. Por eso es fácil ignorarlo. Pero se acumula.\n\nSi en algún momento decides revisarlo, escríbeme y en menos de 24 horas te confirmo si ya tienes acceso.\n\nEl beneficio está ahí. Solo falta activarlo.\n\nLuis Miguel\nTu CSM en Ontop",
-            "cta": "Escribirle a Luis Miguel",
-            "legal": "Reserve ($14.99/mes). Beneficios activos únicamente con membresía vigente y criterios de elegibilidad cumplidos.",
-            "raw": "\nSUBJECT: Última vez que te escribo sobre esto\nPREVIEW: Si el momento no es ahora, sin problema. Pero quiero que tengas el número claro.\n---\n[First Name], no voy a insistir más después de esto.\n\nSolo quiero dejarte un dato: cada mes sin cashback activo es entre $20 y $50 que no recuperas, dependiendo de cuánto usas tu card.\n\nNo es un gasto que se nota en el día a día. Por eso es fácil ignorarlo. Pero se acumula.\n\nSi en algún momento decides revisarlo, escríbeme y en menos de 24 horas te confirmo si ya tienes acceso.\n\nEl beneficio está ahí. Solo falta activarlo.\n\nLuis Miguel\nTu CSM en Ontop\n---\nCTA: Escribirle a Luis Miguel\nLEGAL_NOTE: Reserve ($14.99/mes). Beneficios activos únicamente con membresía vigente y criterios de elegibilidad cumplidos.\n",
+            "subject": "Última vez que te digo esto, [First Name]",
+            "preview": "No voy a seguir recordándote lo que estás dejando ir.",
+            "body": "[First Name], te envié esto porque vi que tienes Reserve disponible y no lo has activado.\n\nNo voy a insistir indefinidamente, pero sí quiero ser claro: cada mes sin Reserve es cashback perdido para siempre. No se acumula, no se recupera.\n\nTus compras ya las estás haciendo. La única diferencia es si ese dinero vuelve a ti o se queda en el aire.\n\nActivarlo toma menos de dos minutos. Si tienes alguna duda, responde este email y te ayudo directamente.",
+            "cta": "Activar Reserve en 2 minutos",
+            "legal": "Disponibilidad de Reserve sujeta a elegibilidad según historial de uso en plataforma Ontop.",
+            "raw": "**\nSUBJECT: Última vez que te digo esto, [First Name]\nPREVIEW: No voy a seguir recordándote lo que estás dejando ir.\n\n---\n[First Name], te envié esto porque vi que tienes Reserve disponible y no lo has activado.\n\nNo voy a insistir indefinidamente, pero sí quiero ser claro: cada mes sin Reserve es cashback perdido para siempre. No se acumula, no se recupera.\n\nTus compras ya las estás haciendo. La única diferencia es si ese dinero vuelve a ti o se queda en el aire.\n\nActivarlo toma menos de dos minutos. Si tienes alguna duda, responde este email y te ayudo directamente.\n\n---\nCTA: Activar Reserve en 2 minutos\nLEGAL_NOTE: Disponibilidad de Reserve sujeta a elegibilidad según historial de uso en plataforma Ontop.\n\n**",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -517,8 +472,8 @@
           {
             "n": 1,
             "type": "whatsapp",
-            "body": "Hola [First Name], ¿sabías que tu Ontop Card puede darte cashback del 10%? Cada mes sin activarlo es plata que no vuelve. ¿Te cuento cómo?",
-            "raw": "Hola [First Name], ¿sabías que tu Ontop Card puede darte cashback del 10%? Cada mes sin activarlo es plata que no vuelve. ¿Te cuento cómo?",
+            "body": "**\nHola [Nombre], ¿sabías que tu Ontop Card puede devolverte hasta 10% de cashback? Solo necesitas activar Reserve. ¿Te cuento cómo?\n\n**",
+            "raw": "**\nHola [Nombre], ¿sabías que tu Ontop Card puede devolverte hasta 10% de cashback? Solo necesitas activar Reserve. ¿Te cuento cómo?\n\n**",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -526,8 +481,8 @@
           {
             "n": 2,
             "type": "whatsapp",
-            "body": "[First Name], un dato rápido: si gastas $300/mes con tu card, son $30 de vuelta cada mes con la membresía activa. ¿Revisamos si ya calificas hoy?",
-            "raw": "[First Name], un dato rápido: si gastas $300/mes con tu card, son $30 de vuelta cada mes con la membresía activa. ¿Revisamos si ya calificas hoy?",
+            "body": "**\n[Nombre], cada mes sin Reserve es cashback que no recuperas. Son $14.90 que pueden pagarse solos en tus primeras compras. ¿Lo activamos hoy?\n\n**",
+            "raw": "**\n[Nombre], cada mes sin Reserve es cashback que no recuperas. Son $14.90 que pueden pagarse solos en tus primeras compras. ¿Lo activamos hoy?\n\n**",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -544,7 +499,7 @@
           "email",
           "whatsapp"
         ],
-        "generatedAt": "2026-07-14T20:38:26.196Z",
+        "generatedAt": "2026-07-14T20:40:40.046Z",
         "cycle": 1
       },
       "ciclos": [],
