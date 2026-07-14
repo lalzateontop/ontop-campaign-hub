@@ -1,0 +1,113 @@
+{
+  "client": "nebius",
+  "updatedAt": "2026-07-14T20:37:33.113Z",
+  "tracks": {
+    "A": {
+      "status": null,
+      "ciclos": [],
+      "archive": []
+    },
+    "B": {
+      "status": null,
+      "ciclos": [],
+      "archive": []
+    },
+    "C": {
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "You're leaving money on the table",
+            "preview": "Every international purchase is costing you more than it should.",
+            "body": "[First Name],\n\nEvery time you pay in a foreign currency without the right card, you're paying a fee you don't have to.\n\nForeign transaction fees add up fast. Most workers don't notice them until they check their statement. By then, the damage is done.\n\nYour Ontop Card eliminates them completely. Zero foreign transaction fees on every purchase, every time. Nothing hidden.\n\nWorkers at companies like yours have already activated it and stopped losing money to fees they never agreed to pay.\n\nIt takes less than two minutes to activate. Your card is already waiting.\n\nStop paying fees that don't need to exist.",
+            "cta": "Activate my Ontop Card",
+            "legal": "None applicable.",
+            "raw": "\nSUBJECT: You're leaving money on the table\nPREVIEW: Every international purchase is costing you more than it should.\n---\n[First Name],\n\nEvery time you pay in a foreign currency without the right card, you're paying a fee you don't have to.\n\nForeign transaction fees add up fast. Most workers don't notice them until they check their statement. By then, the damage is done.\n\nYour Ontop Card eliminates them completely. Zero foreign transaction fees on every purchase, every time. Nothing hidden.\n\nWorkers at companies like yours have already activated it and stopped losing money to fees they never agreed to pay.\n\nIt takes less than two minutes to activate. Your card is already waiting.\n\nStop paying fees that don't need to exist.\n---\nCTA: Activate my Ontop Card\nLEGAL_NOTE: None applicable.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "Still paying foreign transaction fees?",
+            "preview": "Here's exactly what that's costing you every month.",
+            "body": "[First Name],\n\nA 3% foreign transaction fee sounds small. On $500 in monthly purchases, that's $15 gone. Every month. $180 a year.\n\nThat's money leaving your account for no reason other than not having the right card.\n\nYour Ontop Card charges zero. Not a reduced rate. Zero.\n\nYour colleagues have already made the switch. They're not paying those fees anymore. You still are.\n\nThis isn't a complicated product to evaluate. The math is straightforward: every purchase you make internationally without your Ontop Card costs you money it doesn't have to.\n\nTwo minutes to activate. Zero fees from that point forward.\n\nThe only question is how long you want to keep paying.",
+            "cta": "Activate now and stop the fees",
+            "legal": "None applicable.",
+            "raw": "\nSUBJECT: Still paying foreign transaction fees?\nPREVIEW: Here's exactly what that's costing you every month.\n---\n[First Name],\n\nA 3% foreign transaction fee sounds small. On $500 in monthly purchases, that's $15 gone. Every month. $180 a year.\n\nThat's money leaving your account for no reason other than not having the right card.\n\nYour Ontop Card charges zero. Not a reduced rate. Zero.\n\nYour colleagues have already made the switch. They're not paying those fees anymore. You still are.\n\nThis isn't a complicated product to evaluate. The math is straightforward: every purchase you make internationally without your Ontop Card costs you money it doesn't have to.\n\nTwo minutes to activate. Zero fees from that point forward.\n\nThe only question is how long you want to keep paying.\n---\nCTA: Activate now and stop the fees\nLEGAL_NOTE: None applicable.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Last reminder: your card, your savings",
+            "preview": "This is the last time I'll bring this up. The fees aren't going anywhere.",
+            "body": "[First Name],\n\nI've sent you two emails about your Ontop Card. I'll keep this one short.\n\nForeign transaction fees are still hitting your account on every international purchase. That's not changing on its own.\n\nYour Ontop Card is already available. Zero fees. Ready to activate right now.\n\nYour colleagues activated weeks ago. They've already saved on every purchase since.\n\nI'm not going to keep nudging you after this. But I'd hate for you to look back in six months and realize how much you paid in fees you didn't have to.\n\nTwo minutes. Zero fees. That's the whole pitch.",
+            "cta": "Activate my card now",
+            "legal": "None applicable.",
+            "raw": "\nSUBJECT: Last reminder: your card, your savings\nPREVIEW: This is the last time I'll bring this up. The fees aren't going anywhere.\n---\n[First Name],\n\nI've sent you two emails about your Ontop Card. I'll keep this one short.\n\nForeign transaction fees are still hitting your account on every international purchase. That's not changing on its own.\n\nYour Ontop Card is already available. Zero fees. Ready to activate right now.\n\nYour colleagues activated weeks ago. They've already saved on every purchase since.\n\nI'm not going to keep nudging you after this. But I'd hate for you to look back in six months and realize how much you paid in fees you didn't have to.\n\nTwo minutes. Zero fees. That's the whole pitch.\n---\nCTA: Activate my card now\nLEGAL_NOTE: None applicable.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hey [First Name], every foreign purchase is costing you extra fees right now. Your Ontop Card removes them completely. 2 min to activate. Worth it.",
+            "raw": "Hey [First Name], every foreign purchase is costing you extra fees right now. Your Ontop Card removes them completely. 2 min to activate. Worth it.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], your colleagues already activated and stopped paying those fees. Yours is still waiting. Tap here to activate: [link]",
+            "raw": "[First Name], your colleagues already activated and stopped paying those fees. Yours is still waiting. Tap here to activate: [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Track C — Builder→Power User",
+            "preview": "",
+            "body": "⚠️ **BLOQUEO DE GENERACIÓN — VIOLACIÓN DE REGLA DE PRODUCTO**\n\n---\n\nAntes de generar cualquier copy, debo señalar un conflicto crítico entre los parámetros de esta solicitud y las reglas de producto vigentes.\n\n---\n\n## Problema detectado\n\n| Campo | Valor en la solicitud | Regla vigente |\n|---|---|---|\n| Cliente | Nebius | PPT contract |\n| Track | Builder → Power User | Requiere Reserve ($14.99/mo) para acceder a beneficios Power User |\n| Contrato | **PPT** | **Quick: NUNCA ofrecer a contratos PPT** |\n| Reserve | Implícito en Power User | **Reserve: SOLO para Power Users existentes** |\n\n**El problema específico:**\n\nEl Track Builder → Power User implica adopción de **Reserve** como producto ancla (es el producto que define el salto a Power User y desbloquea cashback en la Ontop Card). Sin embargo:\n\n1. **Nebius es contrato PPT** — Quick está explícitamente prohibido, pero eso no es el bloqueador aquí.\n2. **Reserve ($14.99/mo)** está restringido a workers que **ya son Power Users**. No se puede ofrecer Reserve para *convertirse* en Power User. Es un producto para Power Users existentes, no un vehículo de upgrade.\n3. Esto crea un **loop lógico**: el worker no puede activar Reserve para llegar a Power User si Reserve solo está disponible cuando ya es Power User.\n\n**Adicionalmente:**\n\n- Con **1 solo worker** en este track y **Ontop Card standalone** como único producto listado, el copy de Social Proof (\"otros workers ya lo usan\") tiene fricción de credibilidad interna: no hay masa crítica real en este cliente para ese claim.\n\n---\n\n## Lo que necesito para desbloquear la generación\n\nPor favor confirma uno de los siguientes escenarios:\n\n**Opción A — Ajustar el track:**\nCambiar a **Explorer → Builder** (activación de Ontop Card + Future Fund), que sí es ejecutable con contrato PPT sin restricciones de Reserve.\n\n**Opción B — Confirmar elegibilidad de Reserve:**\nSi este worker tiene acceso confirmado a Reserve (caso edge documentado por Producto), compartir esa confirmación para proceder.\n\n**Opción C — Limitar el copy a Ontop Card standalone:**\nGenerar campaña únicamente sobre **zero foreign transaction fees** de la Ontop Card, sin implicar beneficios de Reserve ni cashback. El track quedaría como activación de tarjeta, no como upgrade a Power User completo.\n\n---\n\nIndícame cuál de las tres opciones aplicar y genero el copy completo de inmediato.",
+            "cta": "",
+            "legal": "",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email",
+          "whatsapp"
+        ],
+        "generatedAt": "2026-07-14T20:37:33.113Z",
+        "cycle": 1
+      },
+      "ciclos": [],
+      "archive": []
+    },
+    "D": {
+      "status": null,
+      "ciclos": [],
+      "archive": []
+    }
+  }
+}
