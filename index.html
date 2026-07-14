@@ -450,6 +450,16 @@ const MD_FILES = {
   context: '.agents/product-marketing.md',
 };
 
+// Respaldo de datos generados (cadenas activas, ciclos, archivo de ciclos cerrados) —
+// vive en el mismo repo, separado de la estrategia .md. Es un respaldo best-effort:
+// si falla o no hay token, la app sigue funcionando normal con localStorage.
+const DATA_FILES = {
+  edtech:  '.agents/campaigns/data/edtech-plus-data.json',
+  toloka:  '.agents/campaigns/data/toloka-data.json',
+  ride:    '.agents/campaigns/data/ridetechnology-data.json',
+  nebius:  '.agents/campaigns/data/nebius-data.json',
+};
+
 // ══════════════════════════════════════════════
 // UTF-8 / TILDES
 // atob() decodifica base64 como Latin-1, no UTF-8 → "Lógica" se volvía "LÃ³gica".
@@ -510,10 +520,11 @@ async function ghRead(path){
   return{content:fixMojibake(b64DecodeUtf8(data.content)), sha:data.sha};
 }
 
-// Escribe un archivo en GitHub API (append o reemplazar sección)
+// Escribe un archivo en GitHub API (append, reemplazar sección, o crear si no existe aún)
 async function ghWrite(path, newContent, commitMsg){
-  // Primero leer el SHA actual
-  const {sha}=await ghRead(path);
+  // Leer el SHA actual si el archivo ya existe — si no existe (404), se crea sin sha
+  let sha;
+  try{ ({sha}=await ghRead(path)); }catch(e){ /* archivo nuevo — se creará */ }
   const url=`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/contents/${path}`;
   const res=await fetch(url,{
     method:'PUT',
@@ -525,7 +536,7 @@ async function ghWrite(path, newContent, commitMsg){
     body:JSON.stringify({
       message: commitMsg,
       content: btoa(unescape(encodeURIComponent(newContent))),
-      sha: sha,
+      ...(sha?{sha}:{}),
       branch: GITHUB.branch
     })
   });
@@ -823,6 +834,70 @@ function getArchive(cid,tid){try{const raw=localStorage.getItem(archiveKey(cid,t
 function saveArchive(cid,tid,arr){try{localStorage.setItem(archiveKey(cid,tid),JSON.stringify(arr));}catch{}}
 
 // ══════════════════════════════════════════════
+// RESPALDO EN GITHUB — cadenas activas, ciclos y archivo por cliente
+// ══════════════════════════════════════════════
+function buildClientBackup(clientId){
+  const c=CLIENTS[clientId];
+  if(!c) return null;
+  const tracks={};
+  c.tracks.forEach(t=>{
+    tracks[t.id]={
+      status: getStatus(clientId,t.id),
+      ciclos: getCiclos(clientId,t.id),
+      archive: getArchive(clientId,t.id),
+    };
+  });
+  return {client:clientId, updatedAt:new Date().toISOString(), tracks};
+}
+
+// Respaldo automático, best-effort — se llama tras generar, guardar un ciclo o
+// cerrar un ciclo. Si no hay token o falla, no interrumpe el flujo principal.
+async function backupClientToGithub(clientId){
+  if(!GITHUB.token) return;
+  const path=DATA_FILES[clientId];
+  if(!path) return;
+  try{
+    const payload=buildClientBackup(clientId);
+    if(!payload) return;
+    await ghWrite(path, JSON.stringify(payload,null,2), `Backup automático — ${CLIENTS[clientId]?.name||clientId} — ${new Date().toLocaleString('es-CO')}`);
+    localStorage.setItem(`ontop_backup_ts_${clientId}`, new Date().toISOString());
+  }catch(e){
+    console.error('backupClientToGithub error:', clientId, e);
+  }
+}
+
+function lastBackupLabel(clientId){
+  const ts=localStorage.getItem(`ontop_backup_ts_${clientId}`);
+  if(!ts) return 'nunca sincronizado';
+  return `última sync ${new Date(ts).toLocaleString('es-CO',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}`;
+}
+
+// Restauración manual y explícita — sobrescribe localStorage con lo que haya en
+// GitHub. Deliberadamente NO es automática, para no pisar ediciones locales
+// recientes que aún no se hayan respaldado.
+async function restoreClientFromGithub(clientId){
+  if(!GITHUB.token){showToast('Configura el token de GitHub primero',3000);openConfig('github');return;}
+  const path=DATA_FILES[clientId];
+  if(!path) return;
+  const nombre=CLIENTS[clientId]?.name||clientId;
+  if(!confirm(`Restaurar ${nombre} desde el respaldo de GitHub sobrescribirá lo que tengas guardado en este navegador (cadenas activas, ciclos y archivo) con la última versión respaldada. ¿Continuar?`)) return;
+  showToast('Restaurando desde GitHub...',2000);
+  try{
+    const {content}=await ghRead(path);
+    const payload=JSON.parse(content);
+    Object.entries(payload.tracks||{}).forEach(([trackId,data])=>{
+      if(data.status) saveStatus(clientId,trackId,data.status);
+      if(data.ciclos) saveCiclos(clientId,trackId,data.ciclos);
+      if(data.archive) saveArchive(clientId,trackId,data.archive);
+    });
+    showToast(`✓ ${nombre} restaurado desde GitHub`,3000);
+    if(S.client===clientId) goStep(S.step||1);
+  }catch(e){
+    showToast('Error al restaurar: '+e.message,4000);
+  }
+}
+
+// ══════════════════════════════════════════════
 // NAV
 // ══════════════════════════════════════════════
 function setClient(id){
@@ -1051,6 +1126,10 @@ function renderBrief(){
       <button class="btn btnp" style="font-size:12px" onclick="openConfig()">⚙ Configurar conexiones</button>
     </div>`:''}
     <div class="stitle">${c.name} <span style="font-size:14px;color:var(--text3);font-weight:400">— Resumen de campaña</span></div>
+    ${GITHUB.token?`<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">☁ Respaldo en GitHub — ${lastBackupLabel(S.client)}</span>
+      <button class="btn" style="font-size:12px;padding:4px 10px" onclick="restoreClientFromGithub('${S.client}')" title="Sobrescribe lo local con la última copia guardada en GitHub">↻ Restaurar desde GitHub</button>
+    </div>`:''}
     <div class="mgrid">
       <div class="metric"><div class="mlabel">Workers totales</div><div class="mval">${totalWorkers.toLocaleString()}</div></div>
       <div class="metric">
@@ -1174,6 +1253,7 @@ REMEMBER: All output text must be in ${langLabel.toUpperCase()}.`;
     saveStatus(S.client,t.id,{emails_en,emails_es,sentCount:0,framework:S.framework,psych:S.psych,tone:S.tone,channels:S.channels,generatedAt:new Date().toISOString(),cycle:cycleNum});
     if(S.cycleCtx) delete S.cycleCtx[t.id]; // consumir el contexto de ciclo una sola vez
     if(S.track?.id===t.id) S.emailChain=chainOf({emails_en,emails_es},S.viewLang);
+    await backupClientToGithub(S.client);
 
     const base=emails_en;
     const emailCount=base.filter(e=>e.type==='email').length;
@@ -1257,6 +1337,7 @@ async function startNextCycle(trackId){
     archivedAt:new Date().toISOString()
   });
   saveArchive(S.client,trackId,archive);
+  await backupClientToGithub(S.client); // respaldar el archivo antes de generar lo nuevo
   // Preparar contexto para la nueva generación y lanzar
   S.cycleCtx[trackId]=buildCycleContext(cur,lastCiclo,cycleNum+1);
   saveStatus(S.client,trackId,null);
@@ -2142,7 +2223,7 @@ function renderResultados(){
   document.getElementById('panel').innerHTML=html;
 }
 
-function guardarCiclo(){
+async function guardarCiclo(){
   const c=CLIENTS[S.client];
   const t=S.track;
   const ciclos=getCiclos(S.client,t.id);
@@ -2165,6 +2246,7 @@ function guardarCiclo(){
   activateStep(S.step);
   showToast(autoMig!==null?'✓ Ciclo guardado con migraciones de Sheets':'✓ Ciclo guardado (migraciones pendientes de snapshot)',3000);
   renderResultados();
+  await backupClientToGithub(S.client);
 }
 
 async function diagnosticarCiclo(idx){
