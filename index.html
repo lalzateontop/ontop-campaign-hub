@@ -410,6 +410,7 @@ let S = {
   trackStatus:{}, chatHistory:[],
   viewLang:'en',   // idioma que se está viendo/editando (se genera siempre EN+ES)
   channels:['email'],
+  cycleCtx:{},     // contexto del ciclo anterior por track, para generación del próximo ciclo
 };
 
 // Helpers de contenido bilingüe
@@ -814,6 +815,13 @@ function ciclosKey(cid,tid){return`ontop_ciclos_${cid}_${tid}`;}
 function getCiclos(cid,tid){try{const raw=localStorage.getItem(ciclosKey(cid,tid));return raw?JSON.parse(fixMojibake(raw)):[];}catch{return[];}}
 function saveCiclos(cid,tid,arr){try{localStorage.setItem(ciclosKey(cid,tid),JSON.stringify(arr));}catch{}}
 
+// Archivo de cadenas por ciclo — cada vez que se cierra un ciclo y se inicia uno nuevo,
+// la cadena enviada se guarda aquí junto con sus resultados. NO es destructivo: la
+// cadena "activa" sigue viviendo en getStatus; esto es el historial.
+function archiveKey(cid,tid){return`ontop_archive_${cid}_${tid}`;}
+function getArchive(cid,tid){try{const raw=localStorage.getItem(archiveKey(cid,tid));return raw?JSON.parse(fixMojibake(raw)):[];}catch{return[];}}
+function saveArchive(cid,tid,arr){try{localStorage.setItem(archiveKey(cid,tid),JSON.stringify(arr));}catch{}}
+
 // ══════════════════════════════════════════════
 // NAV
 // ══════════════════════════════════════════════
@@ -1126,7 +1134,7 @@ Contract type: ${c.contract}
 Framework: ${S.framework}
 Tone: ${S.tone}
 ${S.extraCtx?'Additional context: '+S.extraCtx:''}
-
+${S.cycleCtx&&S.cycleCtx[t.id]?'\n'+S.cycleCtx[t.id]+'\n':''}
 Psychological principles to apply:
 ${psychDesc}
 
@@ -1162,7 +1170,9 @@ REMEMBER: All output text must be in ${langLabel.toUpperCase()}.`;
       <div style="font-size:12px;color:var(--text3)">🇺🇸 inglés ✓ · 🇨🇴 Generando español...</div>`);
     const emails_es=await genOne('es');
 
-    saveStatus(S.client,t.id,{emails_en,emails_es,sentCount:0,framework:S.framework,psych:S.psych,tone:S.tone,channels:S.channels,generatedAt:new Date().toISOString()});
+    const cycleNum=getArchive(S.client,t.id).length+1;
+    saveStatus(S.client,t.id,{emails_en,emails_es,sentCount:0,framework:S.framework,psych:S.psych,tone:S.tone,channels:S.channels,generatedAt:new Date().toISOString(),cycle:cycleNum});
+    if(S.cycleCtx) delete S.cycleCtx[t.id]; // consumir el contexto de ciclo una sola vez
     if(S.track?.id===t.id) S.emailChain=chainOf({emails_en,emails_es},S.viewLang);
 
     const base=emails_en;
@@ -1199,6 +1209,59 @@ async function retryTrack(trackId){
 async function forceRegenerate(){
   saveStatus(S.client,S.track.id,null);
   S.emailChain=[];
+  await renderGenerate();
+}
+
+// Arma el bloque de contexto del ciclo anterior para alimentar la generación del
+// próximo ciclo: ángulos/asuntos ya usados (para no repetir) + resultados + diagnóstico.
+function buildCycleContext(archivedChain, lastCiclo, cycleNum){
+  const en=archivedChain.emails_en||[];
+  const asuntos=en.filter(e=>e.type==='email'&&e.subject).map(e=>`"${e.subject}"`).join(', ');
+  const waPrev=en.filter(e=>e.type==='whatsapp').map(e=>`"${(e.body||'').slice(0,60)}..."`).join(', ');
+  const r=lastCiclo||{};
+  const resultLines=[
+    r.migraciones!=null?`- Migraciones logradas: ${r.migraciones}${r.targetMigraciones?` de ${r.targetMigraciones} objetivo`:''}`:'',
+    r.apertura?`- Apertura de email: ${r.apertura}%`:'',
+    r.clicks?`- Clicks: ${r.clicks}%`:'',
+    r.notas?`- Feedback de HR/workers: ${r.notas}`:'',
+    r.diagnostico?`- Diagnóstico del ciclo anterior: ${r.diagnostico.slice(0,600)}`:'',
+  ].filter(Boolean).join('\n');
+  return `══ CONTEXTO DEL CICLO ANTERIOR (este es el ciclo #${cycleNum} — ITERA, no repitas) ══
+La cadena del ciclo anterior YA se envió. Genera copy NUEVO con ángulos y hooks DISTINTOS.
+${asuntos?`- Asuntos de email ya usados (NO los repitas ni los parafrasees): ${asuntos}`:''}
+${waPrev?`- Mensajes de WhatsApp ya usados: ${waPrev}`:''}
+${resultLines?'\nResultados del ciclo anterior (úsalos para decidir qué reforzar y qué cambiar):\n'+resultLines:''}
+La hipótesis del próximo ciclo puede estar en el documento de estrategia del cliente (arriba). Refuerza lo que funcionó, cambia el enfoque de lo que no.`;
+}
+
+// Cierra el ciclo actual de un track: archiva su cadena (con los resultados del último
+// ciclo registrado) y genera una cadena NUEVA, informada por lo que pasó. No destructivo:
+// la cadena vieja queda en el historial (getArchive), no se pierde.
+async function startNextCycle(trackId){
+  const c=CLIENTS[S.client];
+  const t=c.tracks.find(x=>x.id===trackId);
+  const cur=getStatus(S.client,trackId);
+  if(!hasContent(cur)){showToast('No hay cadena activa para cerrar',2500);return;}
+  const ciclos=getCiclos(S.client,trackId);
+  const lastCiclo=ciclos[ciclos.length-1];
+  const archive=getArchive(S.client,trackId);
+  const cycleNum=archive.length+1;
+  if(!confirm(`Iniciar el próximo ciclo de Track ${trackId}:\n\n• La cadena actual se archivará en el historial (ciclo #${cycleNum}) con sus resultados.\n• Se generará una cadena NUEVA, distinta, informada por el diagnóstico y las métricas del ciclo anterior.\n\n¿Continuar?`)) return;
+  // Archivar cadena actual + resultados del último ciclo
+  archive.push({
+    cycle:cycleNum,
+    periodo:lastCiclo?.periodo||getCurrentYM(),
+    emails_en:cur.emails_en||[],
+    emails_es:cur.emails_es||[],
+    results:lastCiclo?{migraciones:lastCiclo.migraciones,targetMigraciones:lastCiclo.targetMigraciones,apertura:lastCiclo.apertura,clicks:lastCiclo.clicks,diagnostico:lastCiclo.diagnostico,notas:lastCiclo.notas}:null,
+    archivedAt:new Date().toISOString()
+  });
+  saveArchive(S.client,trackId,archive);
+  // Preparar contexto para la nueva generación y lanzar
+  S.cycleCtx[trackId]=buildCycleContext(cur,lastCiclo,cycleNum+1);
+  saveStatus(S.client,trackId,null);
+  S.track=t; S.emailChain=[];
+  showToast(`Ciclo #${cycleNum} archivado — generando cadena del ciclo #${cycleNum+1}`,3500);
   await renderGenerate();
 }
 
@@ -2042,7 +2105,40 @@ function renderResultados(){
     });
   }
 
-  html+=`<div class="brow"><button class="btn" onclick="goStep(5)">← Envíos</button><button class="btn btnp" onclick="goStep(7)">Revisar estrategia →</button></div>`;
+  // Historial de cadenas archivadas (ciclos cerrados)
+  const archive=getArchive(S.client,t.id);
+  if(archive.length){
+    html+=`<div class="clabel" style="margin:18px 0 10px">Cadenas de ciclos anteriores — historial</div>`;
+    archive.slice().reverse().forEach(a=>{
+      const en=a.emails_en||[];
+      const asuntos=en.filter(e=>e.type==='email'&&e.subject).map(e=>e.subject);
+      const r=a.results||{};
+      html+=`<details class="card" style="margin-bottom:10px">
+        <summary style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none">
+          <span style="font-size:14px;font-weight:500">Ciclo #${a.cycle} · ${a.periodo?ymLabel(a.periodo):''}</span>
+          <span style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">${en.length} mensajes${r.migraciones!=null?` · ${r.migraciones} mig`:''} · ver ▾</span>
+        </summary>
+        <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:12px">
+          ${r.migraciones!=null||r.apertura||r.clicks?`<div style="font-size:12px;color:var(--text3);margin-bottom:10px;display:flex;gap:14px;flex-wrap:wrap">
+            ${r.migraciones!=null?`<span>Migraciones: <strong style="color:var(--text)">${r.migraciones}${r.targetMigraciones?`/${r.targetMigraciones}`:''}</strong></span>`:''}
+            ${r.apertura?`<span>Apertura: <strong style="color:var(--text)">${r.apertura}%</strong></span>`:''}
+            ${r.clicks?`<span>Clicks: <strong style="color:var(--text)">${r.clicks}%</strong></span>`:''}
+          </div>`:''}
+          ${asuntos.length?`<div style="font-size:12px;color:var(--text2);line-height:1.9">${asuntos.map((s,i)=>`<div>✉ <strong style="color:var(--text)">${i+1}.</strong> ${escapeHtml(s)}</div>`).join('')}</div>`:'<div style="font-size:12px;color:var(--text3)">Sin asuntos registrados</div>'}
+          ${r.diagnostico?`<div style="font-size:12px;color:var(--text2);line-height:1.7;margin-top:10px;padding:10px;background:var(--bg3);border-radius:var(--r);white-space:pre-wrap">${escapeHtml(r.diagnostico)}</div>`:''}
+        </div>
+      </details>`;
+    });
+  }
+
+  // Acción de cierre de ciclo — solo si hay cadena activa y al menos un ciclo registrado
+  const hayCadena=hasContent(getStatus(S.client,t.id));
+  const hayCiclo=ciclos.length>0;
+  html+=`<div class="brow" style="align-items:center">
+    <button class="btn" onclick="goStep(5)">← Envíos</button>
+    <button class="btn btnp" onclick="goStep(7)">Revisar estrategia →</button>
+    ${hayCadena&&hayCiclo?`<button class="btn" style="margin-left:auto" onclick="startNextCycle('${t.id}')" title="Archiva la cadena actual y genera una nueva informada por los resultados de este ciclo">↻ Iniciar próximo ciclo</button>`:''}
+  </div>`;
   document.getElementById('panel').innerHTML=html;
 }
 
