@@ -1,9 +1,104 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-14T20:07:04.863Z",
+  "updatedAt": "2026-07-14T20:07:33.327Z",
   "tracks": {
     "A": {
-      "status": null,
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "You're leaving money on the table",
+            "preview": "Every international purchase is costing you more than it should.",
+            "body": "[First Name],\n\nEvery time you pay with a regular card abroad or in a foreign currency, you're charged a foreign transaction fee. It's quiet. It's automatic. And it adds up fast.\n\nYour Ontop Card eliminates that fee entirely. Zero. Every purchase, every time.\n\nNo hidden charges. No percentage skimmed off the top. Just the price you see is the price you pay.\n\nMore than 100 of your TripleTen colleagues have already activated theirs and stopped paying fees they never should have been paying in the first place.\n\nActivating takes under two minutes. Your card is already waiting for you inside the app.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my Ontop Card",
+            "legal": "Ontop Card zero foreign transaction fees apply to card transactions. No cashback without active Reserve membership.",
+            "raw": "\nSUBJECT: You're leaving money on the table\nPREVIEW: Every international purchase is costing you more than it should.\n---\n[First Name],\n\nEvery time you pay with a regular card abroad or in a foreign currency, you're charged a foreign transaction fee. It's quiet. It's automatic. And it adds up fast.\n\nYour Ontop Card eliminates that fee entirely. Zero. Every purchase, every time.\n\nNo hidden charges. No percentage skimmed off the top. Just the price you see is the price you pay.\n\nMore than 100 of your TripleTen colleagues have already activated theirs and stopped paying fees they never should have been paying in the first place.\n\nActivating takes under two minutes. Your card is already waiting for you inside the app.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my Ontop Card\nLEGAL_NOTE: Ontop Card zero foreign transaction fees apply to card transactions. No cashback without active Reserve membership.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "Still paying foreign transaction fees?",
+            "preview": "Here's exactly what that's costing your TripleTen colleagues each month.",
+            "body": "[First Name],\n\nA typical foreign transaction fee runs between 1.5% and 3% per purchase. On a $500 month of spending, that's up to $15 gone. Every single month. For no reason.\n\nThat's $180 a year paid to a bank just for using your own money.\n\nYour Ontop Card charges you zero. Not a reduced fee. Zero.\n\nOver 100 of your colleagues at TripleTen already made the switch. The workers who haven't activated yet are still paying fees the others stopped paying months ago.\n\nTwo minutes to activate. Zero cost to hold the card. The only thing you lose by waiting is money you didn't have to spend.\n\nYour card is ready inside the app right now.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my Ontop Card now",
+            "legal": "Ontop Card zero foreign transaction fees apply to card transactions. No cashback without active Reserve membership.",
+            "raw": "\nSUBJECT: Still paying foreign transaction fees?\nPREVIEW: Here's exactly what that's costing your TripleTen colleagues each month.\n---\n[First Name],\n\nA typical foreign transaction fee runs between 1.5% and 3% per purchase. On a $500 month of spending, that's up to $15 gone. Every single month. For no reason.\n\nThat's $180 a year paid to a bank just for using your own money.\n\nYour Ontop Card charges you zero. Not a reduced fee. Zero.\n\nOver 100 of your colleagues at TripleTen already made the switch. The workers who haven't activated yet are still paying fees the others stopped paying months ago.\n\nTwo minutes to activate. Zero cost to hold the card. The only thing you lose by waiting is money you didn't have to spend.\n\nYour card is ready inside the app right now.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my Ontop Card now\nLEGAL_NOTE: Ontop Card zero foreign transaction fees apply to card transactions. No cashback without active Reserve membership.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Last nudge on this, [First Name]",
+            "preview": "You've already paid fees this month that your colleagues didn't.",
+            "body": "[First Name],\n\nThis is the last time I'll bring this up.\n\nIf you made any international purchases this month with a regular card, you paid fees that over 100 of your TripleTen colleagues paid zero on. Because they activated their Ontop Card.\n\nThere's no catch. No monthly fee for the card. No complicated setup. Just zero foreign transaction fees on every purchase, starting the moment you activate.\n\nThe card is sitting there in your app, unused. Every day it stays inactive is a day you're paying a fee you don't have to.\n\nThirty seconds to open the app. Under two minutes to activate.\n\nThat's it.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my card now",
+            "legal": "Ontop Card zero foreign transaction fees apply to card transactions. No cashback without active Reserve membership.",
+            "raw": "\nSUBJECT: Last nudge on this, [First Name]\nPREVIEW: You've already paid fees this month that your colleagues didn't.\n---\n[First Name],\n\nThis is the last time I'll bring this up.\n\nIf you made any international purchases this month with a regular card, you paid fees that over 100 of your TripleTen colleagues paid zero on. Because they activated their Ontop Card.\n\nThere's no catch. No monthly fee for the card. No complicated setup. Just zero foreign transaction fees on every purchase, starting the moment you activate.\n\nThe card is sitting there in your app, unused. Every day it stays inactive is a day you're paying a fee you don't have to.\n\nThirty seconds to open the app. Under two minutes to activate.\n\nThat's it.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my card now\nLEGAL_NOTE: Ontop Card zero foreign transaction fees apply to card transactions. No cashback without active Reserve membership.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Tu tarjeta Ontop te está esperando",
+            "preview": "Cada compra internacional que haces sin ella te está costando dinero.",
+            "body": "[First Name], cada vez que pagas con tu tarjeta actual en dólares o en el extranjero, te cobran una comisión que nunca ves venir.\n\nCon tu Ontop Card no pagas ninguna comisión por transacciones internacionales. Cero. Y ya está disponible para ti, sin costo de activación.\n\nTus colegas de TripleTen ya la están usando para pagar suscripciones, herramientas de trabajo y compras del día a día sin perder dinero en cada transacción.\n\nActivarla toma menos de dos minutos. Solo necesitas confirmar tus datos en la app.\n\nCada mes que pasa sin activarla es dinero que sigues regalando en comisiones.",
+            "cta": "Activar mi Ontop Card",
+            "legal": "Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.",
+            "raw": "\nSUBJECT: Tu tarjeta Ontop te está esperando\nPREVIEW: Cada compra internacional que haces sin ella te está costando dinero.\n---\n[First Name], cada vez que pagas con tu tarjeta actual en dólares o en el extranjero, te cobran una comisión que nunca ves venir.\n\nCon tu Ontop Card no pagas ninguna comisión por transacciones internacionales. Cero. Y ya está disponible para ti, sin costo de activación.\n\nTus colegas de TripleTen ya la están usando para pagar suscripciones, herramientas de trabajo y compras del día a día sin perder dinero en cada transacción.\n\nActivarla toma menos de dos minutos. Solo necesitas confirmar tus datos en la app.\n\nCada mes que pasa sin activarla es dinero que sigues regalando en comisiones.\n---\nCTA: Activar mi Ontop Card\nLEGAL_NOTE: Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "¿Cuánto llevas pagando de más?",
+            "preview": "Haz el cálculo. El resultado probablemente te va a molestar.",
+            "body": "[First Name], hagamos un ejercicio rápido.\n\nSi gastas $200 al mes en suscripciones, software o compras internacionales, y tu banco cobra el típico 3% de comisión por transacción extranjera, estás perdiendo $6 cada mes. Eso son $72 al año.\n\nCon la Ontop Card ese cargo desaparece. Completamente.\n\nMás de la mitad de tus colegas de TripleTen que ya la activaron dijeron que lo habrían hecho antes si hubieran sabido lo sencillo que era.\n\nNo hay trámite complicado. No hay costos ocultos. Solo activas, y empiezas a ahorrar desde la primera compra.\n\n¿Cuánto más vas a esperar?",
+            "cta": "Activar mi Ontop Card ahora",
+            "legal": "Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.",
+            "raw": "\nSUBJECT: ¿Cuánto llevas pagando de más?\nPREVIEW: Haz el cálculo. El resultado probablemente te va a molestar.\n---\n[First Name], hagamos un ejercicio rápido.\n\nSi gastas $200 al mes en suscripciones, software o compras internacionales, y tu banco cobra el típico 3% de comisión por transacción extranjera, estás perdiendo $6 cada mes. Eso son $72 al año.\n\nCon la Ontop Card ese cargo desaparece. Completamente.\n\nMás de la mitad de tus colegas de TripleTen que ya la activaron dijeron que lo habrían hecho antes si hubieran sabido lo sencillo que era.\n\nNo hay trámite complicado. No hay costos ocultos. Solo activas, y empiezas a ahorrar desde la primera compra.\n\n¿Cuánto más vas a esperar?\n---\nCTA: Activar mi Ontop Card ahora\nLEGAL_NOTE: Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Último aviso: esto te sigue costando",
+            "preview": "No lo decimos para presionarte. Lo decimos porque es literal.",
+            "body": "[First Name], te escribimos por última vez sobre esto.\n\nCada semana sin tu Ontop Card activa es una semana pagando comisiones que no deberías pagar.\n\nNo hay ningún requisito pendiente de tu parte. La tarjeta ya está disponible en tu cuenta. Solo falta que la actives.\n\nLos workers de TripleTen que la activaron este mes ya dejaron de regalar dinero en cada compra internacional. Tú puedes hacer lo mismo hoy.\n\nDos minutos. Sin costo. Sin comisiones desde la primera transacción.\n\nDespués de este correo, el siguiente paso es tuyo.",
+            "cta": "Activar mi tarjeta ahora",
+            "legal": "Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.",
+            "raw": "\nSUBJECT: Último aviso: esto te sigue costando\nPREVIEW: No lo decimos para presionarte. Lo decimos porque es literal.\n---\n[First Name], te escribimos por última vez sobre esto.\n\nCada semana sin tu Ontop Card activa es una semana pagando comisiones que no deberías pagar.\n\nNo hay ningún requisito pendiente de tu parte. La tarjeta ya está disponible en tu cuenta. Solo falta que la actives.\n\nLos workers de TripleTen que la activaron este mes ya dejaron de regalar dinero en cada compra internacional. Tú puedes hacer lo mismo hoy.\n\nDos minutos. Sin costo. Sin comisiones desde la primera transacción.\n\nDespués de este correo, el siguiente paso es tuyo.\n---\nCTA: Activar mi tarjeta ahora\nLEGAL_NOTE: Ontop Card no incluye cashback sin membresía Reserve activa. Beneficio aplicable: zero foreign transaction fees.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email"
+        ],
+        "generatedAt": "2026-07-14T20:07:33.326Z",
+        "cycle": 1
+      },
       "ciclos": [],
       "archive": []
     },
