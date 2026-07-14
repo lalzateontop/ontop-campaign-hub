@@ -1,9 +1,141 @@
 {
   "client": "nebius",
-  "updatedAt": "2026-07-14T20:37:33.113Z",
+  "updatedAt": "2026-07-14T20:38:07.985Z",
   "tracks": {
     "A": {
-      "status": null,
+      "status": {
+        "emails_en": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "You're leaving money on the table, [First Name]",
+            "preview": "Every international purchase is costing you more than it should.",
+            "body": "[First Name],\n\nEvery time you pay with a regular card abroad, you're handing money to your bank in foreign transaction fees. Most workers don't notice. It adds up fast.\n\nYour Ontop Card eliminates those fees completely. Zero foreign transaction fees. No surprises on your statement.\n\nIt's already available to you. You just haven't activated it yet.\n\nMost of your Nebius colleagues who activated it did it in under two minutes. They stopped paying fees on day one.\n\nYou're one step away from the same thing.\n\nHit the button below and activate your card today.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my Ontop Card",
+            "legal": "Ontop Card standalone benefit is zero foreign transaction fees only. Cashback requires Reserve membership (Power Users only, not applicable here).",
+            "raw": "\nSUBJECT: You're leaving money on the table, [First Name]\nPREVIEW: Every international purchase is costing you more than it should.\n---\n[First Name],\n\nEvery time you pay with a regular card abroad, you're handing money to your bank in foreign transaction fees. Most workers don't notice. It adds up fast.\n\nYour Ontop Card eliminates those fees completely. Zero foreign transaction fees. No surprises on your statement.\n\nIt's already available to you. You just haven't activated it yet.\n\nMost of your Nebius colleagues who activated it did it in under two minutes. They stopped paying fees on day one.\n\nYou're one step away from the same thing.\n\nHit the button below and activate your card today.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my Ontop Card\nLEGAL_NOTE: Ontop Card standalone benefit is zero foreign transaction fees only. Cashback requires Reserve membership (Power Users only, not applicable here).\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "Still paying bank fees on your purchases?",
+            "preview": "Your colleagues already stopped. Here's what they did.",
+            "body": "[First Name],\n\nQuick follow-up.\n\nMost Nebius workers who activated their Ontop Card did it because they got tired of seeing unexpected charges on their statements. Foreign transaction fees are small. They're predictable. And they're completely avoidable.\n\nThe Ontop Card cuts them to zero. That's not a discount. It's a permanent change to how much every international purchase costs you.\n\nYou already have access. There's nothing to sign up for. No new account to open.\n\nEvery week you wait is another week of paying fees you didn't have to pay.\n\nTwo minutes to activate. Zero fees from that point forward.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my card now",
+            "legal": "None additional.",
+            "raw": "\nSUBJECT: Still paying bank fees on your purchases?\nPREVIEW: Your colleagues already stopped. Here's what they did.\n---\n[First Name],\n\nQuick follow-up.\n\nMost Nebius workers who activated their Ontop Card did it because they got tired of seeing unexpected charges on their statements. Foreign transaction fees are small. They're predictable. And they're completely avoidable.\n\nThe Ontop Card cuts them to zero. That's not a discount. It's a permanent change to how much every international purchase costs you.\n\nYou already have access. There's nothing to sign up for. No new account to open.\n\nEvery week you wait is another week of paying fees you didn't have to pay.\n\nTwo minutes to activate. Zero fees from that point forward.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my card now\nLEGAL_NOTE: None additional.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Last nudge — your card, zero fees",
+            "preview": "This one's short. Activate once, save every time you spend abroad.",
+            "body": "[First Name],\n\nI'll keep this brief.\n\nYou have an Ontop Card waiting. It charges zero foreign transaction fees. Several of your Nebius colleagues activated theirs weeks ago and they're already saving on every purchase.\n\nYou haven't activated yours yet.\n\nI don't know what's holding you back, but I do know this: the fees don't stop until you do.\n\nOne tap. Two minutes. Done.\n\nLuis Miguel\nYour Ontop CSM",
+            "cta": "Activate my Ontop Card",
+            "legal": "None additional.",
+            "raw": "\nSUBJECT: Last nudge — your card, zero fees\nPREVIEW: This one's short. Activate once, save every time you spend abroad.\n---\n[First Name],\n\nI'll keep this brief.\n\nYou have an Ontop Card waiting. It charges zero foreign transaction fees. Several of your Nebius colleagues activated theirs weeks ago and they're already saving on every purchase.\n\nYou haven't activated yours yet.\n\nI don't know what's holding you back, but I do know this: the fees don't stop until you do.\n\nOne tap. Two minutes. Done.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my Ontop Card\nLEGAL_NOTE: None additional.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hey [First Name] 👋 Your Ontop Card is ready to activate. Zero fees on every international purchase. Takes 2 min. Want the link?",
+            "raw": "Hey [First Name] 👋 Your Ontop Card is ready to activate. Zero fees on every international purchase. Takes 2 min. Want the link?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], a few of your Nebius colleagues already activated and stopped paying bank fees 💳 Yours is still waiting. Here's the link: [link]",
+            "raw": "[First Name], a few of your Nebius colleagues already activated and stopped paying bank fees 💳 Yours is still waiting. Here's the link: [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "emails_es": [
+          {
+            "n": 1,
+            "type": "email",
+            "subject": "Tu Ontop Card ya está lista, [First Name]",
+            "preview": "Cada compra en el exterior te está costando más de lo que crees. Esto lo soluciona.",
+            "body": "[First Name], ¿sabías que la mayoría de tarjetas cobran entre 3% y 5% extra en cada compra fuera de tu país?\n\nEs dinero que pagas sin notarlo, en cada suscripción, en cada compra online, en cada viaje.\n\nTu Ontop Card no tiene comisión por transacciones internacionales. Cero. Y ya está disponible para ti.\n\nTus colegas de Nebius que ya la activaron llevan meses sin pagar esas comisiones de más. Tú puedes hacer lo mismo hoy, en menos de dos minutos.\n\nNo necesitas cambiar cómo recibes tu pago. Solo activar.",
+            "cta": "Activar mi Ontop Card",
+            "legal": "Ontop Card standalone no incluye cashback. El beneficio aplicable es zero foreign transaction fees.",
+            "raw": "\nSUBJECT: Tu Ontop Card ya está lista, [First Name]\nPREVIEW: Cada compra en el exterior te está costando más de lo que crees. Esto lo soluciona.\n---\n[First Name], ¿sabías que la mayoría de tarjetas cobran entre 3% y 5% extra en cada compra fuera de tu país?\n\nEs dinero que pagas sin notarlo, en cada suscripción, en cada compra online, en cada viaje.\n\nTu Ontop Card no tiene comisión por transacciones internacionales. Cero. Y ya está disponible para ti.\n\nTus colegas de Nebius que ya la activaron llevan meses sin pagar esas comisiones de más. Tú puedes hacer lo mismo hoy, en menos de dos minutos.\n\nNo necesitas cambiar cómo recibes tu pago. Solo activar.\n---\nCTA: Activar mi Ontop Card\nLEGAL_NOTE: Ontop Card standalone no incluye cashback. El beneficio aplicable es zero foreign transaction fees.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "email",
+            "subject": "Cuánto pierdes cada mes sin saberlo",
+            "preview": "Hicimos el cálculo. El número sorprende.",
+            "body": "[First Name], un worker que gasta $500/mes en compras internacionales pierde hasta $25 solo en comisiones de su tarjeta habitual.\n\nSon $300 al año. Sin recibir nada a cambio.\n\nCon tu Ontop Card ese costo es cero. No hay letra pequeña, no hay comisión oculta, no hay sorpresas al revisar el estado de cuenta.\n\nVarios de tus colegas ya activaron la suya después de ver este número. El proceso toma menos de dos minutos desde la app.\n\nTu tarjeta sigue disponible. Solo falta que la actives.",
+            "cta": "Activar ahora, sin costo",
+            "legal": "Zero foreign transaction fees aplica a transacciones internacionales con Ontop Card. Sin cashback en modalidad standalone.",
+            "raw": "\nSUBJECT: Cuánto pierdes cada mes sin saberlo\nPREVIEW: Hicimos el cálculo. El número sorprende.\n---\n[First Name], un worker que gasta $500/mes en compras internacionales pierde hasta $25 solo en comisiones de su tarjeta habitual.\n\nSon $300 al año. Sin recibir nada a cambio.\n\nCon tu Ontop Card ese costo es cero. No hay letra pequeña, no hay comisión oculta, no hay sorpresas al revisar el estado de cuenta.\n\nVarios de tus colegas ya activaron la suya después de ver este número. El proceso toma menos de dos minutos desde la app.\n\nTu tarjeta sigue disponible. Solo falta que la actives.\n---\nCTA: Activar ahora, sin costo\nLEGAL_NOTE: Zero foreign transaction fees aplica a transacciones internacionales con Ontop Card. Sin cashback en modalidad standalone.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 3,
+            "type": "email",
+            "subject": "Última vez que te escribo sobre esto, [First Name]",
+            "preview": "No quiero que sigas pagando de más. La decisión es tuya.",
+            "body": "[First Name], te escribí hace unos días porque vi que tu Ontop Card todavía no está activa.\n\nNo te voy a mandar más recordatorios después de este. Pero sí quiero ser directo: cada mes que pasa sin activarla es un mes más pagando comisiones que no tendrías que pagar.\n\nLa mayoría de tus colegas en Nebius ya la tienen activa. El proceso es simple, sin formularios largos, sin esperas.\n\nSi tienes alguna duda antes de activar, responde este email. Te contesto personalmente.\n\nDe lo contrario, el botón de abajo te lleva directo.",
+            "cta": "Activar mi tarjeta ahora",
+            "legal": "Zero foreign transaction fees aplica a transacciones internacionales. Sin cashback en modalidad standalone.",
+            "raw": "\nSUBJECT: Última vez que te escribo sobre esto, [First Name]\nPREVIEW: No quiero que sigas pagando de más. La decisión es tuya.\n---\n[First Name], te escribí hace unos días porque vi que tu Ontop Card todavía no está activa.\n\nNo te voy a mandar más recordatorios después de este. Pero sí quiero ser directo: cada mes que pasa sin activarla es un mes más pagando comisiones que no tendrías que pagar.\n\nLa mayoría de tus colegas en Nebius ya la tienen activa. El proceso es simple, sin formularios largos, sin esperas.\n\nSi tienes alguna duda antes de activar, responde este email. Te contesto personalmente.\n\nDe lo contrario, el botón de abajo te lleva directo.\n---\nCTA: Activar mi tarjeta ahora\nLEGAL_NOTE: Zero foreign transaction fees aplica a transacciones internacionales. Sin cashback en modalidad standalone.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hola [First Name], ¿sabías que tu Ontop Card ya está disponible? Úsala en compras internacionales sin pagar comisiones extra. Tus colegas ya la tienen activa. ¿Te ayudo a activarla hoy?",
+            "raw": "Hola [First Name], ¿sabías que tu Ontop Card ya está disponible? Úsala en compras internacionales sin pagar comisiones extra. Tus colegas ya la tienen activa. ¿Te ayudo a activarla hoy?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], solo un recordatorio rápido: tu Ontop Card sigue sin activarse. Cada compra sin ella te cuesta de más. Son 2 minutos en la app. ¿Lo hacemos ahora?",
+            "raw": "[First Name], solo un recordatorio rápido: tu Ontop Card sigue sin activarse. Cada compra sin ella te cuesta de más. Son 2 minutos en la app. ¿Lo hacemos ahora?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          }
+        ],
+        "sentCount": 0,
+        "framework": "PAS",
+        "psych": [
+          "loss_aversion",
+          "social_proof"
+        ],
+        "tone": "Direct and concrete",
+        "channels": [
+          "email",
+          "whatsapp"
+        ],
+        "generatedAt": "2026-07-14T20:38:07.985Z",
+        "cycle": 1
+      },
       "ciclos": [],
       "archive": []
     },
