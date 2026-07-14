@@ -1,6 +1,6 @@
 {
   "client": "ride",
-  "updatedAt": "2026-07-14T20:35:44.614Z",
+  "updatedAt": "2026-07-14T20:36:50.095Z",
   "tracks": {
     "DX": {
       "status": {
@@ -230,12 +230,12 @@
           {
             "n": 1,
             "type": "email",
-            "subject": "Your Ontop Card isn't working for you yet",
-            "preview": "Every international purchase is costing you money you don't have to spend.",
-            "body": "[First Name],\n\nEvery time you pay in a foreign currency, fees eat into your paycheck. A percentage here, a conversion markup there. It adds up fast, and most workers never notice until they do the math.\n\nYour Ontop Card eliminates foreign transaction fees entirely. Zero. Every purchase abroad costs you exactly what it should cost — nothing extra.\n\nActivating takes two minutes inside the app. Workers at Yango who activated it are already keeping more of what they earn on every single transaction.\n\nYou've already done the hard part by joining Ontop. This is the step that puts your card to actual use.\n\nTwo minutes. Zero fees on every international purchase, starting today.",
-            "cta": "Activate My Ontop Card",
-            "legal": "Ontop Card standalone provides zero foreign transaction fees only. Cashback is not available without an active Reserve membership.",
-            "raw": "\nSUBJECT: Your Ontop Card isn't working for you yet\nPREVIEW: Every international purchase is costing you money you don't have to spend.\n---\n[First Name],\n\nEvery time you pay in a foreign currency, fees eat into your paycheck. A percentage here, a conversion markup there. It adds up fast, and most workers never notice until they do the math.\n\nYour Ontop Card eliminates foreign transaction fees entirely. Zero. Every purchase abroad costs you exactly what it should cost — nothing extra.\n\nActivating takes two minutes inside the app. Workers at Yango who activated it are already keeping more of what they earn on every single transaction.\n\nYou've already done the hard part by joining Ontop. This is the step that puts your card to actual use.\n\nTwo minutes. Zero fees on every international purchase, starting today.\n\n---\nCTA: Activate My Ontop Card\nLEGAL_NOTE: Ontop Card standalone provides zero foreign transaction fees only. Cashback is not available without an active Reserve membership.\n",
+            "subject": "Your money is losing ground every day",
+            "preview": "You're already using Ontop. Here's what you're leaving on the table.",
+            "body": "[First Name],\n\nEvery day you keep your earnings sitting idle, they lose value.\n\nYou're already on Ontop. But right now, your balance isn't working for you. It's not earning interest. And every international purchase you make is still being taxed by hidden fees.\n\nWorkers like you on Ontop have already fixed both of those things with two moves: activating the Ontop Card and putting their savings into Future Fund.\n\nZero foreign transaction fees on every purchase. Plus interest rates up to 4% APR on your balance, with two options that fit how you save.\n\nIt takes less than 5 minutes to set up. The cost of waiting? Real money you won't get back.\n\nYour next step is right here.\n\nLuis Miguel, your Ontop CSM",
+            "cta": "Activate Now",
+            "legal": "Future Fund eligibility subject to confirmation. Present both options: Flex (3% APR, flexible withdrawal) and +30 (4% APR, 30-day lock).",
+            "raw": "\nSUBJECT: Your money is losing ground every day\nPREVIEW: You're already using Ontop. Here's what you're leaving on the table.\n---\n[First Name],\n\nEvery day you keep your earnings sitting idle, they lose value.\n\nYou're already on Ontop. But right now, your balance isn't working for you. It's not earning interest. And every international purchase you make is still being taxed by hidden fees.\n\nWorkers like you on Ontop have already fixed both of those things with two moves: activating the Ontop Card and putting their savings into Future Fund.\n\nZero foreign transaction fees on every purchase. Plus interest rates up to 4% APR on your balance, with two options that fit how you save.\n\nIt takes less than 5 minutes to set up. The cost of waiting? Real money you won't get back.\n\nYour next step is right here.\n\nLuis Miguel, your Ontop CSM\n---\nCTA: Activate Now\nLEGAL_NOTE: Future Fund eligibility subject to confirmation. Present both options: Flex (3% APR, flexible withdrawal) and +30 (4% APR, 30-day lock).\n",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -243,12 +243,12 @@
           {
             "n": 2,
             "type": "email",
-            "subject": "You're losing money on every purchase right now",
-            "preview": "The math is simple. Here's what inaction is actually costing you.",
-            "body": "[First Name],\n\nLet's be direct. If you're using another card for international purchases, you're paying fees every single time. That's money leaving your pocket on transactions that should cost you nothing.\n\nOn top of that, the balance sitting idle in your account earns zero interest.\n\nFuture Fund changes that. Choose Flex at 3% APR and withdraw anytime. Or lock for 30 days with +30 at 4% APR. Either way, your money grows while you work.\n\nYour colleagues are already using both. They activated their card, put their savings to work, and stopped leaving money on the table.\n\nEvery month you wait is a month of fees paid and interest not earned. That's the real cost of doing nothing.",
-            "cta": "Start Earning on My Balance",
-            "legal": "Future Fund eligibility subject to confirmation. Always present both options: Flex (3% APR) and +30 (4% APR, 30-day lock).",
-            "raw": "\nSUBJECT: You're losing money on every purchase right now\nPREVIEW: The math is simple. Here's what inaction is actually costing you.\n---\n[First Name],\n\nLet's be direct. If you're using another card for international purchases, you're paying fees every single time. That's money leaving your pocket on transactions that should cost you nothing.\n\nOn top of that, the balance sitting idle in your account earns zero interest.\n\nFuture Fund changes that. Choose Flex at 3% APR and withdraw anytime. Or lock for 30 days with +30 at 4% APR. Either way, your money grows while you work.\n\nYour colleagues are already using both. They activated their card, put their savings to work, and stopped leaving money on the table.\n\nEvery month you wait is a month of fees paid and interest not earned. That's the real cost of doing nothing.\n\n---\nCTA: Start Earning on My Balance\nLEGAL_NOTE: Future Fund eligibility subject to confirmation. Always present both options: Flex (3% APR) and +30 (4% APR, 30-day lock).\n",
+            "subject": "Real numbers. Real workers. Real savings.",
+            "preview": "Here's exactly what two Ontop products can do for your balance.",
+            "body": "[First Name],\n\nLet's make this concrete.\n\nSay you keep $2,000 in Future Fund +30. At 4% APR, that's $80/year in interest you'd otherwise have zero chance of earning sitting in a regular account.\n\nAdd the Ontop Card. Every international purchase you made last month? Those foreign transaction fees are now gone. Completely.\n\nWorkers at companies like yours are already doing this. Not because it's complicated. Because it isn't.\n\nYou don't need to change how you work or how you spend. You activate two products, and your money starts doing more on its own.\n\nThe only thing that changes if you wait? The interest you didn't earn. The fees you already paid.\n\nTwo steps. Under five minutes.\n\nLuis Miguel, your Ontop CSM",
+            "cta": "Set Up Future Fund",
+            "legal": "Always present both Future Fund options: Flex (3% APR, flexible) and +30 (4% APR, 30-day lock). Worker chooses based on their preference.",
+            "raw": "\nSUBJECT: Real numbers. Real workers. Real savings.\nPREVIEW: Here's exactly what two Ontop products can do for your balance.\n---\n[First Name],\n\nLet's make this concrete.\n\nSay you keep $2,000 in Future Fund +30. At 4% APR, that's $80/year in interest you'd otherwise have zero chance of earning sitting in a regular account.\n\nAdd the Ontop Card. Every international purchase you made last month? Those foreign transaction fees are now gone. Completely.\n\nWorkers at companies like yours are already doing this. Not because it's complicated. Because it isn't.\n\nYou don't need to change how you work or how you spend. You activate two products, and your money starts doing more on its own.\n\nThe only thing that changes if you wait? The interest you didn't earn. The fees you already paid.\n\nTwo steps. Under five minutes.\n\nLuis Miguel, your Ontop CSM\n---\nCTA: Set Up Future Fund\nLEGAL_NOTE: Always present both Future Fund options: Flex (3% APR, flexible) and +30 (4% APR, 30-day lock). Worker chooses based on their preference.\n",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -256,12 +256,12 @@
           {
             "n": 3,
             "type": "email",
-            "subject": "Last nudge — your money is still sitting idle",
-            "preview": "Two products. Five minutes. No more fees, no more zero-interest balance.",
-            "body": "[First Name],\n\nQuick recap, because this is worth repeating.\n\nRight now you're paying fees you don't owe and earning nothing on your savings. Both problems have a fix that's already available to you inside the Ontop app.\n\nActivate your Ontop Card and pay zero on every international purchase.\n\nOpen a Future Fund — Flex at 3% APR if you want flexibility, +30 at 4% APR if you can lock for 30 days — and your balance starts earning immediately.\n\nWorkers at Yango who made these two moves stopped losing money and started growing it. The only difference between them and where you are right now is five minutes in the app.\n\nThat window is still open. Use it.",
-            "cta": "Activate Both in the App",
-            "legal": "Future Fund eligibility subject to confirmation. Ontop Card standalone: zero foreign transaction fees only, no cashback without Reserve.",
-            "raw": "\nSUBJECT: Last nudge — your money is still sitting idle\nPREVIEW: Two products. Five minutes. No more fees, no more zero-interest balance.\n---\n[First Name],\n\nQuick recap, because this is worth repeating.\n\nRight now you're paying fees you don't owe and earning nothing on your savings. Both problems have a fix that's already available to you inside the Ontop app.\n\nActivate your Ontop Card and pay zero on every international purchase.\n\nOpen a Future Fund — Flex at 3% APR if you want flexibility, +30 at 4% APR if you can lock for 30 days — and your balance starts earning immediately.\n\nWorkers at Yango who made these two moves stopped losing money and started growing it. The only difference between them and where you are right now is five minutes in the app.\n\nThat window is still open. Use it.\n\n---\nCTA: Activate Both in the App\nLEGAL_NOTE: Future Fund eligibility subject to confirmation. Ontop Card standalone: zero foreign transaction fees only, no cashback without Reserve.\n",
+            "subject": "Still sitting on this, [First Name]?",
+            "preview": "A quick reminder of what's been accumulating while you wait.",
+            "body": "[First Name],\n\nQuick math.\n\nEvery month you wait to activate Future Fund, you lose roughly one month of interest on your balance. At 4% APR on $2,000, that's about $6.70 you simply won't recover.\n\nSmall number. But it's yours, and right now it's going nowhere.\n\nMeanwhile, your Ontop Card is still unactivated. That means every international transaction still costs you in fees that should already be zero.\n\nMost Nebius workers who activated both products said the same thing afterward: they wished they'd done it sooner.\n\nYou're one step away. Choose the Future Fund option that fits your rhythm. Flex if you want flexibility. +30 if you want the higher rate.\n\nEither way, start today.\n\nLuis Miguel, your Ontop CSM",
+            "cta": "Activate Both Products",
+            "legal": "Future Fund eligibility must be confirmed before send. Do not deploy Email 3 without verifying worker qualifies for Future Fund.",
+            "raw": "\nSUBJECT: Still sitting on this, [First Name]?\nPREVIEW: A quick reminder of what's been accumulating while you wait.\n---\n[First Name],\n\nQuick math.\n\nEvery month you wait to activate Future Fund, you lose roughly one month of interest on your balance. At 4% APR on $2,000, that's about $6.70 you simply won't recover.\n\nSmall number. But it's yours, and right now it's going nowhere.\n\nMeanwhile, your Ontop Card is still unactivated. That means every international transaction still costs you in fees that should already be zero.\n\nMost Nebius workers who activated both products said the same thing afterward: they wished they'd done it sooner.\n\nYou're one step away. Choose the Future Fund option that fits your rhythm. Flex if you want flexibility. +30 if you want the higher rate.\n\nEither way, start today.\n\nLuis Miguel, your Ontop CSM\n---\nCTA: Activate Both Products\nLEGAL_NOTE: Future Fund eligibility must be confirmed before send. Do not deploy Email 3 without verifying worker qualifies for Future Fund.\n",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -269,8 +269,8 @@
           {
             "n": 1,
             "type": "whatsapp",
-            "body": "Hey [First Name] — your Ontop Card is ready but still inactive. Every purchase abroad is costing you fees that should be zero. Two minutes to fix it 👉 [link]",
-            "raw": "Hey [First Name] — your Ontop Card is ready but still inactive. Every purchase abroad is costing you fees that should be zero. Two minutes to fix it 👉 [link]",
+            "body": "Hey [First Name], your Ontop balance isn't earning interest yet. Takes 5 min to fix. Want me to walk you through it? 👋",
+            "raw": "Hey [First Name], your Ontop balance isn't earning interest yet. Takes 5 min to fix. Want me to walk you through it? 👋",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -278,8 +278,8 @@
           {
             "n": 2,
             "type": "whatsapp",
-            "body": "[First Name], your balance earns nothing sitting still. Future Fund pays 3–4% APR. Your Yango colleagues are already in. Takes 5 min to set up 👉 [link]",
-            "raw": "[First Name], your balance earns nothing sitting still. Future Fund pays 3–4% APR. Your Yango colleagues are already in. Takes 5 min to set up 👉 [link]",
+            "body": "[First Name], quick one: the fees you're paying on international purchases are avoidable. Your Ontop Card makes them zero. Activate it today 👉 [link]",
+            "raw": "[First Name], quick one: the fees you're paying on international purchases are avoidable. Your Ontop Card makes them zero. Activate it today 👉 [link]",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -289,12 +289,12 @@
           {
             "n": 1,
             "type": "email",
-            "subject": "[First Name], estás perdiendo intereses cada mes",
-            "preview": "Tu saldo en Ontop puede estar generando dinero. Hoy no lo está haciendo.",
-            "body": "[First Name], cada mes que tu saldo queda quieto es dinero que no estás ganando.\n\nTus colegas de Yango ya están usando Future Fund para que su pago mensual no pierda valor mientras esperan el siguiente. Tú también puedes hacerlo hoy.\n\nTienes dos opciones:\n\n**Future Fund Flex** — 3% APR. Retiras cuando quieras, sin penalización.\n\n**Future Fund +30** — 4% APR. Bloqueas 30 días y ganas más.\n\nEl primer mes de intereses perdidos no vuelve. El segundo, tampoco.\n\nActiva el tuyo ahora. Son menos de 3 minutos desde la app.",
-            "cta": "Empezar a ganar intereses",
-            "legal": "Confirmar elegibilidad de Future Fund para workers de Yango antes de envío.",
-            "raw": "\nSUBJECT: [First Name], estás perdiendo intereses cada mes\nPREVIEW: Tu saldo en Ontop puede estar generando dinero. Hoy no lo está haciendo.\n---\n[First Name], cada mes que tu saldo queda quieto es dinero que no estás ganando.\n\nTus colegas de Yango ya están usando Future Fund para que su pago mensual no pierda valor mientras esperan el siguiente. Tú también puedes hacerlo hoy.\n\nTienes dos opciones:\n\n**Future Fund Flex** — 3% APR. Retiras cuando quieras, sin penalización.\n\n**Future Fund +30** — 4% APR. Bloqueas 30 días y ganas más.\n\nEl primer mes de intereses perdidos no vuelve. El segundo, tampoco.\n\nActiva el tuyo ahora. Son menos de 3 minutos desde la app.\n---\nCTA: Empezar a ganar intereses\nLEGAL_NOTE: Confirmar elegibilidad de Future Fund para workers de Yango antes de envío.\n",
+            "subject": "Tu dinero está parado. Esto lo cambia.",
+            "preview": "Cada semana sin Future Fund es interés que no estás ganando. Un paso y listo.",
+            "body": "[First Name], tienes tu cuenta Ontop activa. Bien. Pero hay algo que probablemente no estás haciendo: hacer que ese dinero trabaje mientras esperas tu próximo pago.\n\nCon Future Fund puedes elegir lo que mejor te funciona:\n\n**Flex:** 3% APR, retiras cuando quieres.\n**+30:** 4% APR, bloqueas 30 días y ganas más.\n\nDos de tus colegas en Nebius ya lo activaron este mes. Cada día que lo dejas para después es interés que se queda sin ganar. No es complicado de calcular.\n\nUn clic y eliges tu opción. No hay letra pequeña.\n\nLuis Miguel, tu CSM en Ontop",
+            "cta": "Activar Future Fund ahora",
+            "legal": "Las tasas APR (3% Flex / 4% +30) deben verificarse con el equipo de producto antes de enviar. Confirmar elegibilidad de workers PPT para Future Fund.",
+            "raw": "\nSUBJECT: Tu dinero está parado. Esto lo cambia.\nPREVIEW: Cada semana sin Future Fund es interés que no estás ganando. Un paso y listo.\n---\n[First Name], tienes tu cuenta Ontop activa. Bien. Pero hay algo que probablemente no estás haciendo: hacer que ese dinero trabaje mientras esperas tu próximo pago.\n\nCon Future Fund puedes elegir lo que mejor te funciona:\n\n**Flex:** 3% APR, retiras cuando quieres.\n**+30:** 4% APR, bloqueas 30 días y ganas más.\n\nDos de tus colegas en Nebius ya lo activaron este mes. Cada día que lo dejas para después es interés que se queda sin ganar. No es complicado de calcular.\n\nUn clic y eliges tu opción. No hay letra pequeña.\n\nLuis Miguel, tu CSM en Ontop\n---\nCTA: Activar Future Fund ahora\nLEGAL_NOTE: Las tasas APR (3% Flex / 4% +30) deben verificarse con el equipo de producto antes de enviar. Confirmar elegibilidad de workers PPT para Future Fund.\n",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -302,12 +302,12 @@
           {
             "n": 2,
             "type": "email",
-            "subject": "Tu tarjeta Ontop: ¿la estás aprovechando afuera?",
-            "preview": "Cada compra internacional sin tu Ontop Card te cobra de más. Míralo así.",
-            "body": "[First Name], si usas otra tarjeta para compras en dólares o en el extranjero, estás pagando comisiones que no deberías.\n\nCon tu **Ontop Card** no hay cargos por transacciones internacionales. Cero. Lo que ves es lo que pagas.\n\nTus colegas que ya la activaron dejaron de regalar dinero al banco en cada compra fuera de Colombia. Tú puedes hacer lo mismo ahora.\n\nY si ya la tienes activa: combínala con Future Fund y tu dinero trabaja en dos frentes al mismo tiempo.\n\nUn paso a la vez. Empieza por lo que más te duele hoy: las comisiones o el saldo quieto.",
+            "subject": "¿Cuánto perdiste en fees el mes pasado?",
+            "preview": "Si compraste en dólares o pagaste algo en otra moneda, la respuesta te va a molestar.",
+            "body": "[First Name], una pregunta directa: ¿cuánto te cobró tu banco por compras en moneda extranjera el mes pasado?\n\nEl promedio es entre 3% y 5% por transacción. En un mes normal de gastos, eso son decenas de dólares que se van sin que te des cuenta.\n\nLa Ontop Card no te cobra nada por transacciones en el extranjero. Cero. Y la tienes disponible hoy.\n\nTus colegas que ya la activaron dejaron de pagar esos fees desde el primer uso. Tú todavía los estás pagando.\n\nActívala en menos de dos minutos. No hay costo de activación.\n\nLuis Miguel, tu CSM en Ontop",
             "cta": "Activar mi Ontop Card",
-            "legal": "Ontop Card standalone: comunicar únicamente zero foreign transaction fees. Sin cashback sin membresía Reserve activa.",
-            "raw": "\nSUBJECT: Tu tarjeta Ontop: ¿la estás aprovechando afuera?\nPREVIEW: Cada compra internacional sin tu Ontop Card te cobra de más. Míralo así.\n---\n[First Name], si usas otra tarjeta para compras en dólares o en el extranjero, estás pagando comisiones que no deberías.\n\nCon tu **Ontop Card** no hay cargos por transacciones internacionales. Cero. Lo que ves es lo que pagas.\n\nTus colegas que ya la activaron dejaron de regalar dinero al banco en cada compra fuera de Colombia. Tú puedes hacer lo mismo ahora.\n\nY si ya la tienes activa: combínala con Future Fund y tu dinero trabaja en dos frentes al mismo tiempo.\n\nUn paso a la vez. Empieza por lo que más te duele hoy: las comisiones o el saldo quieto.\n---\nCTA: Activar mi Ontop Card\nLEGAL_NOTE: Ontop Card standalone: comunicar únicamente zero foreign transaction fees. Sin cashback sin membresía Reserve activa.\n",
+            "legal": "Ontop Card standalone: solo zero foreign transaction fees. No mencionar cashback. Sin Reserve no hay cashback.",
+            "raw": "\nSUBJECT: ¿Cuánto perdiste en fees el mes pasado?\nPREVIEW: Si compraste en dólares o pagaste algo en otra moneda, la respuesta te va a molestar.\n---\n[First Name], una pregunta directa: ¿cuánto te cobró tu banco por compras en moneda extranjera el mes pasado?\n\nEl promedio es entre 3% y 5% por transacción. En un mes normal de gastos, eso son decenas de dólares que se van sin que te des cuenta.\n\nLa Ontop Card no te cobra nada por transacciones en el extranjero. Cero. Y la tienes disponible hoy.\n\nTus colegas que ya la activaron dejaron de pagar esos fees desde el primer uso. Tú todavía los estás pagando.\n\nActívala en menos de dos minutos. No hay costo de activación.\n\nLuis Miguel, tu CSM en Ontop\n---\nCTA: Activar mi Ontop Card\nLEGAL_NOTE: Ontop Card standalone: solo zero foreign transaction fees. No mencionar cashback. Sin Reserve no hay cashback.\n",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -315,12 +315,12 @@
           {
             "n": 3,
             "type": "email",
-            "subject": "Última vez: esto no espera otro mes, [First Name]",
-            "preview": "Dos productos. Cero costo de activación. Cada semana sin usarlos cuesta.",
-            "body": "[First Name], te escribo por última vez sobre esto porque vale la pena insistir.\n\nCada semana sin Future Fund son intereses que no se acumulan. Cada compra internacional sin Ontop Card es una comisión que regalas.\n\nNo hay costo de activación. No hay trámite complejo. Solo entras a la app y lo activas.\n\nMás de la mitad de tus colegas de Yango que tomaron este paso dicen que desearían haberlo hecho antes. La diferencia entre ellos y quien no lo hizo no fue tiempo ni dinero. Fue dar el primer clic.\n\n¿Cuál de los dos activas primero?",
-            "cta": "Abrir la app y activar",
-            "legal": "Future Fund: presentar siempre las dos opciones (Flex 3% APR / +30 4% APR). Confirmar elegibilidad antes del envío. Social proof debe mantenerse genérico; no atribuir cifras exactas sin datos validados.",
-            "raw": "\nSUBJECT: Última vez: esto no espera otro mes, [First Name]\nPREVIEW: Dos productos. Cero costo de activación. Cada semana sin usarlos cuesta.\n---\n[First Name], te escribo por última vez sobre esto porque vale la pena insistir.\n\nCada semana sin Future Fund son intereses que no se acumulan. Cada compra internacional sin Ontop Card es una comisión que regalas.\n\nNo hay costo de activación. No hay trámite complejo. Solo entras a la app y lo activas.\n\nMás de la mitad de tus colegas de Yango que tomaron este paso dicen que desearían haberlo hecho antes. La diferencia entre ellos y quien no lo hizo no fue tiempo ni dinero. Fue dar el primer clic.\n\n¿Cuál de los dos activas primero?\n---\nCTA: Abrir la app y activar\nLEGAL_NOTE: Future Fund: presentar siempre las dos opciones (Flex 3% APR / +30 4% APR). Confirmar elegibilidad antes del envío. Social proof debe mantenerse genérico; no atribuir cifras exactas sin datos validados.\n",
+            "subject": "Último aviso: esto cierra la brecha",
+            "preview": "Ya tienes la cuenta. Ya tienes acceso. Solo falta un paso para no seguir perdiendo dinero.",
+            "body": "[First Name], te escribí dos veces porque creo que vale la pena.\n\nTienes acceso a dos herramientas que la mayoría de workers remotos no tiene: una tarjeta sin fees internacionales y un fondo que te genera interés real sobre tu saldo.\n\nLa mayoría de tus colegas que los activaron tardó menos de tres minutos. El que más dudó me dijo después: \"Ojalá lo hubiera hecho antes.\"\n\nCada mes que pasa sin activarlos es un mes de fees pagados y de interés no ganado. Ya sabes lo que pierdes. Ahora sabes cómo pararlo.\n\n¿Empezamos?\n\nLuis Miguel, tu CSM en Ontop",
+            "cta": "Activar ambos productos hora",
+            "legal": "Verificar elegibilidad PPT para Future Fund antes de enviar Email 3. No incluir Quick bajo ningún concepto.",
+            "raw": "\nSUBJECT: Último aviso: esto cierra la brecha\nPREVIEW: Ya tienes la cuenta. Ya tienes acceso. Solo falta un paso para no seguir perdiendo dinero.\n---\n[First Name], te escribí dos veces porque creo que vale la pena.\n\nTienes acceso a dos herramientas que la mayoría de workers remotos no tiene: una tarjeta sin fees internacionales y un fondo que te genera interés real sobre tu saldo.\n\nLa mayoría de tus colegas que los activaron tardó menos de tres minutos. El que más dudó me dijo después: \"Ojalá lo hubiera hecho antes.\"\n\nCada mes que pasa sin activarlos es un mes de fees pagados y de interés no ganado. Ya sabes lo que pierdes. Ahora sabes cómo pararlo.\n\n¿Empezamos?\n\nLuis Miguel, tu CSM en Ontop\n---\nCTA: Activar ambos productos hora\nLEGAL_NOTE: Verificar elegibilidad PPT para Future Fund antes de enviar Email 3. No incluir Quick bajo ningún concepto.\n",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -328,8 +328,8 @@
           {
             "n": 1,
             "type": "whatsapp",
-            "body": "[First Name], tu saldo en Ontop no está generando nada hoy. Future Fund te da hasta 4% APR sin complicaciones. ¿Lo activamos? 👉 [link]",
-            "raw": "[First Name], tu saldo en Ontop no está generando nada hoy. Future Fund te da hasta 4% APR sin complicaciones. ¿Lo activamos? 👉 [link]",
+            "body": "Hola [Nombre], ¿sabías que tus compras en dólares te cobran hasta 5% de fee? La Ontop Card lo elimina. Ya la tienes disponible. ¿La activamos hoy?",
+            "raw": "Hola [Nombre], ¿sabías que tus compras en dólares te cobran hasta 5% de fee? La Ontop Card lo elimina. Ya la tienes disponible. ¿La activamos hoy?",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -337,8 +337,8 @@
           {
             "n": 2,
             "type": "whatsapp",
-            "body": "Cada compra afuera con otra tarjeta te cuesta de más. Tu Ontop Card no cobra fees internacionales. Actívala ya, son 2 minutos. 👉 [link]",
-            "raw": "Cada compra afuera con otra tarjeta te cuesta de más. Tu Ontop Card no cobra fees internacionales. Actívala ya, son 2 minutos. 👉 [link]",
+            "body": "[Nombre], 2 de tus colegas en Nebius ya activaron Future Fund este mes y están ganando interés sobre su saldo. Tú puedes hacer lo mismo hoy. ¿Te ayudo?",
+            "raw": "[Nombre], 2 de tus colegas en Nebius ya activaron Future Fund este mes y están ganando interés sobre su saldo. Tú puedes hacer lo mismo hoy. ¿Te ayudo?",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -355,7 +355,7 @@
           "email",
           "whatsapp"
         ],
-        "generatedAt": "2026-07-14T20:33:34.833Z",
+        "generatedAt": "2026-07-14T20:36:50.094Z",
         "cycle": 1
       },
       "ciclos": [],
