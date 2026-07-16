@@ -1198,7 +1198,10 @@ function renderBrief(){
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap">
       <div class="clabel" style="margin-bottom:0">Tracks de campaña — selecciona uno para trabajar</div>
-      ${c.tracks.some(t=>hasContent(getStatus(S.client,t.id)))?`<button class="btn" style="font-size:12px" onclick="regenerateAllTracks()">↻ Regenerar todos los tracks</button>`:''}
+      ${c.tracks.some(t=>hasContent(getStatus(S.client,t.id)))?`<div class="brow" style="margin-top:0">
+        <button class="btn" style="font-size:12px" onclick="improveAllTracksForClient()" title="Aplica el framework de calidad a todos los tracks de este cliente, EN + ES, de una sola vez">✨ Mejorar escritura — todo ${c.name}</button>
+        <button class="btn" style="font-size:12px" onclick="regenerateAllTracks()">↻ Regenerar todos los tracks</button>
+      </div>`:''}
     </div>
     ${c.tracks.map(t=>tierBar(t)).join('')}
     <div class="divider"></div>
@@ -1693,7 +1696,7 @@ function renderEdit(){
     <div class="chain-wrap" id="chain-container">${chainsHtml}</div>
     <div class="brow">
       <button class="btn btnp" onclick="goStep(5)">Marcar status →</button>
-      <button class="btn" onclick="improveChainWriting()">✨ Mejorar escritura de la cadena</button>
+      <button class="btn" onclick="improveChainWriting()" title="Mejora los mensajes de este track en inglés y español a la vez">✨ Mejorar escritura del track (EN + ES)</button>
       <button class="btn" onclick="forceRegenerate()">↻ Regenerar este track</button>
       <button class="btn" onclick="exportClientDoc()" style="margin-left:auto">↓ Documento del cliente</button>
     </div>
@@ -1848,24 +1851,7 @@ Reply in the same format: SUBJECT: / PREVIEW: / --- / body / --- / CTA: / LEGAL_
   try{
     const raw=await callClaude(prompt, buildSystem(S.viewLang));
     if(!raw) return;
-    if(em.type==='whatsapp'){
-      em.body=raw.trim();
-    } else {
-      const lines=raw.split('\n');
-      let subj=em.subject,prev=em.preview||'',bd='',cta=em.cta,legal='';
-      let inBody=false;
-      lines.forEach(l=>{
-        const t=l.trim();
-        if(t.startsWith('SUBJECT:')||t.startsWith('ASUNTO:')) subj=t.replace(/^(SUBJECT|ASUNTO):/,'').trim();
-        else if(t.startsWith('PREVIEW:')) prev=t.replace('PREVIEW:','').trim();
-        else if(t==='---'&&!inBody) inBody=true;
-        else if(t==='---'&&inBody) inBody=false;
-        else if(t.startsWith('CTA:')) cta=t.replace('CTA:','').trim();
-        else if(t.startsWith('LEGAL_NOTE:')||t.startsWith('NOTA_LEGAL:')) legal=t.replace(/^(LEGAL_NOTE|NOTA_LEGAL):/,'').trim();
-        else if(inBody) bd+=l+'\n';
-      });
-      em.subject=subj; em.preview=prev; em.body=bd.trim(); em.cta=cta; em.legal=legal;
-    }
+    applyImproved(em, raw);
     em.editMode=false;
     persistChain();
     renderEdit();
@@ -1925,16 +1911,33 @@ function stripEmDash(s){
   return typeof s==='string' ? s.replace(/\s*[—–]\s*/g,', ').replace(/, ,/g,',') : s;
 }
 
+// Limpia una respuesta de WhatsApp: quita marcadores de formato que el modelo pueda
+// haber añadido (WHATSAPP_1:, EMAIL_END, etc.) y, si devolvió un bloque tipo email,
+// extrae solo el cuerpo entre los separadores.
+function cleanWhatsAppReply(raw){
+  let t=(raw||'').replace(/WHATSAPP_\d+:/gi,'').replace(/WHATSAPP_END/gi,'')
+                 .replace(/EMAIL_\d+:/gi,'').replace(/EMAIL_END/gi,'').trim();
+  if(/(SUBJECT:|ASUNTO:)/i.test(t) && t.includes('---')){
+    const parts=t.split('---');
+    if(parts[1] && parts[1].trim()) t=parts[1].trim();
+  }
+  return t;
+}
+
+// Aplica una reescritura SIN destruir contenido: si un campo vuelve vacío (respuesta
+// malformada del modelo, formato inesperado, etc.) se CONSERVA el original. Esto evita
+// que "mejorar escritura" pueda borrar un mensaje.
 function applyImproved(em, raw){
   if(em.type==='whatsapp'){
-    em.body=stripEmDash(raw.trim());
+    const cleaned=stripEmDash(cleanWhatsAppReply(raw));
+    if(cleaned) em.body=cleaned;
   }else{
     const p=parseRewrittenEmail(raw,em);
-    em.subject=stripEmDash(p.subject);
-    em.preview=stripEmDash(p.preview);
-    em.body=stripEmDash(p.body);
-    em.cta=stripEmDash(p.cta);
-    em.legal=p.legal;
+    if(p.subject) em.subject=stripEmDash(p.subject);
+    if(p.preview) em.preview=stripEmDash(p.preview);
+    if(p.body)    em.body=stripEmDash(p.body);
+    if(p.cta)     em.cta=stripEmDash(p.cta);
+    if(p.legal)   em.legal=p.legal;
   }
 }
 
@@ -1955,26 +1958,60 @@ async function improveEmailWriting(i){
   }catch(e){ if(statusEl) statusEl.textContent='Error: '+e.message; }
 }
 
-// Mejora toda la cadena del track (idioma actual)
+// Mejora los mensajes de un track en AMBOS idiomas (EN + ES) directamente sobre el
+// status guardado. Reutilizable por el botón de cadena y por el de cliente completo.
+// onProgress(hechos,total) opcional para mostrar avance. Devuelve nº de mensajes tocados.
+const _LANG_KEYS={emails_en:'ENGLISH', emails_es:'SPANISH', emails:'SPANISH'};
+async function improveTrackChains(clientId, trackId, onProgress){
+  const st=getStatus(clientId,trackId);
+  if(!st) return 0;
+  const jobs=[];
+  Object.keys(_LANG_KEYS).forEach(key=>{ if(Array.isArray(st[key])) st[key].forEach(em=>jobs.push({em,label:_LANG_KEYS[key],lang:key==='emails_en'?'en':'es'})); });
+  let done=0;
+  for(const j of jobs){
+    if(onProgress) onProgress(done,jobs.length);
+    const raw=await callClaude(rubricRewritePrompt(j.em,j.label), buildSystem(j.lang));
+    if(raw) applyImproved(j.em, raw);
+    done++;
+  }
+  saveStatus(clientId,trackId,st);
+  return done;
+}
+
+// Botón de la vista Editar: mejora el track actual completo (EN + ES) de una vez.
 async function improveChainWriting(){
   if(!S.apiKey){showToast('Falta la API key de Claude',2500);openConfig('api');return;}
-  const chain=S.emailChain;
-  if(!chain.length){showToast('No hay mensajes para mejorar',2000);return;}
+  if(!S.track){showToast('No hay track seleccionado',2000);return;}
   const statusEl=document.getElementById('rewrite-status');
-  const langLabel=S.viewLang==='en'?'ENGLISH':'SPANISH';
-  for(let i=0;i<chain.length;i++){
-    if(statusEl) statusEl.textContent=`Mejorando ${i+1}/${chain.length}...`;
-    try{
-      const raw=await callClaude(rubricRewritePrompt(chain[i],langLabel), buildSystem(S.viewLang));
-      if(raw) applyImproved(chain[i], raw);
-    }catch(e){
-      if(statusEl) statusEl.textContent=`Error en mensaje ${i+1}: ${e.message}`;
-      persistChain(); renderEdit(); return;
-    }
+  try{
+    const n=await improveTrackChains(S.client, S.track.id, (d,t)=>{ if(statusEl) statusEl.textContent=`Mejorando ${d+1}/${t} (EN + ES)...`; });
+    S.emailChain=chainOf(getStatus(S.client,S.track.id),S.viewLang);
+    renderEdit();
+    showToast(`✓ ${n} mensajes mejorados (inglés y español)`,3000);
+    backupClientToGithub(S.client);
+  }catch(e){ if(statusEl) statusEl.textContent='Error: '+e.message; }
+}
+
+// Botón del Resumen: mejora TODOS los tracks del cliente (EN + ES) en una sola acción.
+async function improveAllTracksForClient(){
+  if(!S.apiKey){showToast('Falta la API key de Claude',2500);openConfig('api');return;}
+  const c=CLIENTS[S.client];
+  const conContenido=c.tracks.filter(t=>hasContent(getStatus(S.client,t.id)));
+  if(!conContenido.length){showToast('No hay tracks generados para mejorar',2500);return;}
+  // Contar mensajes totales para avisar del tamaño de la operación
+  let totalMsgs=0;
+  conContenido.forEach(t=>{const st=getStatus(S.client,t.id);Object.keys(_LANG_KEYS).forEach(k=>{if(Array.isArray(st[k]))totalMsgs+=st[k].length;});});
+  if(!confirm(`Mejorar la escritura de TODOS los tracks de ${c.name} reescribirá ${totalMsgs} mensajes (inglés y español, ${conContenido.length} tracks) con Claude. Puede tardar un par de minutos. ¿Continuar?`)) return;
+  let tracksHechos=0;
+  for(const t of conContenido){
+    showToast(`Mejorando Track ${t.id} — ${++tracksHechos}/${conContenido.length} tracks...`,60000);
+    try{ await improveTrackChains(S.client, t.id); }
+    catch(e){ showToast(`Error en Track ${t.id}: ${e.message}`,4000); return; }
   }
-  persistChain();
-  renderEdit();
-  showToast(`✓ ${chain.length} mensajes mejorados`,3000);
+  if(S.track) S.emailChain=chainOf(getStatus(S.client,S.track.id),S.viewLang);
+  goStep(S.step||1);
+  showToast(`✓ ${conContenido.length} tracks mejorados (inglés y español)`,4000);
+  backupClientToGithub(S.client);
 }
 
 function resetEmail(i){
