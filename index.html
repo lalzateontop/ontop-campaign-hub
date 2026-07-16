@@ -740,7 +740,24 @@ Writing principles:
 - First line of each message: hook immediately. NEVER start with "Hi, we're Ontop" or corporate intro.
 - Always human signature: Luis Miguel, your Ontop CSM
 - Tone as instructed.
-- NEVER use an em dash / raya larga (—) to join two clauses in the middle of a sentence (e.g. "This matters — here's why" / "Esto importa — y por eso"). That is a giveaway of AI-written copy. Use a period, a comma, or a connector word ("and"/"y", "but"/"pero", "so"/"así que") instead — two short sentences beat one stitched together with a dash.
+
+══ SKILL: email-scoring v1.0 — apunta a 5/5 en cada email ══
+Cada email se juzga como un embudo. Escríbelo para que puntúe alto en las 7 dimensiones:
+1. ASUNTO (lo más importante): 30-50 caracteres, específico y concreto. Incluye un número, monto, dato o beneficio real. "Tienes $340 sin comisión" gana a "Revisa tu saldo". CERO palabras spam (mayúsculas sostenidas, GRATIS, $$$, exceso de emojis). Nunca engañar: el cuerpo debe cumplir lo que promete el asunto.
+2. PREHEADER/PREVIEW: 40-90 caracteres. NO repite el asunto — agrega un segundo argumento o remata la curiosidad. Asunto + preheader = un titular de dos líneas.
+3. GANCHO: la primera línea engancha en menos de 10 palabras, hablando del dinero/tiempo/beneficio concreto del worker. Nada de relleno ("Esperamos que estés bien").
+4. CLARIDAD: frases cortas, párrafos de 1-2 líneas, UNA sola idea central, escaneable en móvil. Negritas/bullets con moderación.
+5. VALOR + MOTIVACIÓN: beneficio concreto y personal (ahorra una comisión, accede a su dinero antes, gana control) + una razón genuina para actuar ahora, SIN urgencia falsa.
+6. CTA: UNO solo primario, verbo primero en clave de beneficio ("Activar mi tarjeta", "Retirar sin comisión"). Baja la fricción (di qué pasa y cuánto toma). Si hay acción secundaria, que sea claramente menor.
+7. HUMANIZADA: suena a persona real, no a IA. Frases de largo variable. En inglés casual usa contracciones (you'll, don't, here's).
+
+SEÑALES DE IA A EVITAR (bajan la confianza y la conversión):
+- El em dash / raya larga (—) para unir cláusulas en medio de una oración. REGLA DURA: cero em dashes. Usa punto, coma, dos puntos, paréntesis o una conjunción ("and"/"y", "but"/"pero"). Dos frases cortas ganan a una cosida con raya.
+- "No solo X, sino también Y" / "Not only X, but also Y".
+- Relleno corporativo: "Es importante destacar", "En el mundo actual", "It's worth noting", "Rest assured".
+- Entusiasmo genérico: "Descubre el increíble mundo de", "Unlock", "Elevate", "Dive in", "Embark on".
+- Hedging excesivo: "puede que", "es posible que", "generally", "typically".
+- Cierres de plantilla: "¡Esperamos verte pronto!", "We hope to see you soon!".
 
 ${'━'.repeat(40)}
 ‼️ FINAL REMINDER: Your output MUST be entirely in ${TARGET_LANG}. ${isEn?'Write everything in English, regardless of the Spanish instructions above.':'Escribe todo en español.'}
@@ -1616,6 +1633,7 @@ function renderEdit(){
           <div class="brow">
             <button class="btn" onclick="saveManualEdit(${i})">Save manual edit</button>
             <button class="btn btnp" onclick="iterateWithAI(${i})">Iterate with Claude</button>
+            <button class="btn" onclick="improveEmailWriting(${i})" title="Aplica el framework de calidad y devuelve la mejor versión posible">✨ Mejorar escritura</button>
             <button class="btn" style="margin-left:auto;font-size:12px" onclick="resetEmail(${i})">Restore original</button>
           </div>
           <div id="edit-status-${i}" style="font-size:12px;color:var(--text3);margin-top:8px;font-family:'DM Mono',monospace"></div>
@@ -1640,7 +1658,7 @@ function renderEdit(){
     <div class="chain-wrap" id="chain-container">${chainsHtml}</div>
     <div class="brow">
       <button class="btn btnp" onclick="goStep(5)">Marcar status →</button>
-      <button class="btn" onclick="rewriteChainNoDashes()">🧹 Reescribir sin rayas largas</button>
+      <button class="btn" onclick="improveChainWriting()">✨ Mejorar escritura de la cadena</button>
       <button class="btn" onclick="forceRegenerate()">↻ Regenerar este track</button>
       <button class="btn" onclick="exportClientDoc()" style="margin-left:auto">↓ Documento del cliente</button>
     </div>
@@ -1822,69 +1840,106 @@ Reply in the same format: SUBJECT: / PREVIEW: / --- / body / --- / CTA: / LEGAL_
   }
 }
 
-// Reescribe toda la cadena del track (idioma actual) para quitar rayas largas (—) usadas
-// como conector dentro de una oración — el mismo tic de escritura que ya evitamos en
-// buildSystem() para generaciones nuevas, aplicado aquí a mensajes ya generados.
-async function rewriteChainNoDashes(){
+// ══════════════════════════════════════════════
+// MEJORA DE ESCRITURA — aplica el framework de calidad (7 dimensiones + anti-IA,
+// ver "SKILL: email-scoring" en buildSystem) a mensajes ya generados. La calificación
+// es interna: al usuario solo se le entrega el mejor copy posible, sin mostrar puntajes.
+// ══════════════════════════════════════════════
+function rubricRewritePrompt(em, langLabel){
+  if(em.type==='whatsapp'){
+    return `Rewrite this Ontop WhatsApp message to the highest possible quality, following ALL the writing principles and the email-scoring rubric in your instructions (strong hook in the first words, one concrete benefit, one clear CTA, human voice, ZERO em dashes, under 160 chars). Do NOT invent data, amounts, products or benefits that aren't already present. Keep the core message and the language ${langLabel}. Reply with ONLY the revised message text, nothing else.
+
+CURRENT MESSAGE:
+${em.body}`;
+  }
+  return `Rewrite this Ontop campaign email to the highest possible quality, following ALL the writing principles and the email-scoring rubric in your instructions. Push every dimension to its best: a specific 30-50 char subject with a concrete number/amount/benefit, a preheader that complements (never repeats) the subject, a hook in under 10 words about the worker's money or benefit, short scannable paragraphs of 1-2 lines, one concrete personal benefit with a genuine reason to act now (no fake urgency), exactly ONE primary verb-first CTA, and a natural human voice. ZERO em dashes.
+
+Do NOT invent data, amounts, products or benefits that aren't in the original. Keep exactly ONE primary CTA. Keep the language ${langLabel}. WRITE EVERYTHING IN ${langLabel}.
+
+CURRENT EMAIL:
+SUBJECT: ${em.subject||''}
+PREVIEW: ${em.preview||''}
+---
+${em.body||''}
+---
+CTA: ${em.cta||''}
+
+Reply in the same format: SUBJECT: / PREVIEW: / --- / body / --- / CTA: / LEGAL_NOTE: (only if a critical product restriction applies). No preamble, no scores, no explanation.`;
+}
+
+function parseRewrittenEmail(raw, em){
+  const lines=raw.split('\n');
+  let subj=em.subject,prev=em.preview||'',bd='',cta=em.cta,legal='';
+  let inBody=false;
+  lines.forEach(l=>{
+    const t=l.trim();
+    if(t.startsWith('SUBJECT:')||t.startsWith('ASUNTO:')) subj=t.replace(/^(SUBJECT|ASUNTO):/,'').trim();
+    else if(t.startsWith('PREVIEW:')) prev=t.replace('PREVIEW:','').trim();
+    else if(t==='---'&&!inBody) inBody=true;
+    else if(t==='---'&&inBody) inBody=false;
+    else if(t.startsWith('CTA:')) cta=t.replace('CTA:','').trim();
+    else if(t.startsWith('LEGAL_NOTE:')||t.startsWith('NOTA_LEGAL:')) legal=t.replace(/^(LEGAL_NOTE|NOTA_LEGAL):/,'').trim();
+    else if(inBody) bd+=l+'\n';
+  });
+  return {subject:subj,preview:prev,body:bd.trim(),cta,legal};
+}
+
+// Red de seguridad determinista: elimina cualquier raya larga (— / –) que el modelo
+// haya dejado pasar, sustituyéndola por coma. La "regla dura" del framework.
+function stripEmDash(s){
+  return typeof s==='string' ? s.replace(/\s*[—–]\s*/g,', ').replace(/, ,/g,',') : s;
+}
+
+function applyImproved(em, raw){
+  if(em.type==='whatsapp'){
+    em.body=stripEmDash(raw.trim());
+  }else{
+    const p=parseRewrittenEmail(raw,em);
+    em.subject=stripEmDash(p.subject);
+    em.preview=stripEmDash(p.preview);
+    em.body=stripEmDash(p.body);
+    em.cta=stripEmDash(p.cta);
+    em.legal=p.legal;
+  }
+}
+
+// Mejora un solo mensaje (idioma actual)
+async function improveEmailWriting(i){
+  if(!S.apiKey){showToast('Falta la API key de Claude',2500);openConfig('api');return;}
+  const em=S.emailChain[i];
+  const statusEl=document.getElementById(`edit-status-${i}`);
+  if(statusEl) statusEl.innerHTML='<div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>';
+  try{
+    const raw=await callClaude(rubricRewritePrompt(em,S.viewLang==='en'?'ENGLISH':'SPANISH'), buildSystem(S.viewLang));
+    if(!raw) return;
+    applyImproved(em, raw);
+    em.editMode=false;
+    persistChain();
+    renderEdit();
+    showToast('✓ Escritura mejorada',2000);
+  }catch(e){ if(statusEl) statusEl.textContent='Error: '+e.message; }
+}
+
+// Mejora toda la cadena del track (idioma actual)
+async function improveChainWriting(){
   if(!S.apiKey){showToast('Falta la API key de Claude',2500);openConfig('api');return;}
   const chain=S.emailChain;
-  if(!chain.length){showToast('No hay mensajes para reescribir',2000);return;}
+  if(!chain.length){showToast('No hay mensajes para mejorar',2000);return;}
   const statusEl=document.getElementById('rewrite-status');
   const langLabel=S.viewLang==='en'?'ENGLISH':'SPANISH';
   for(let i=0;i<chain.length;i++){
-    const em=chain[i];
-    if(statusEl) statusEl.textContent=`Reescribiendo ${i+1}/${chain.length}...`;
-    let prompt;
-    if(em.type==='whatsapp'){
-      prompt=`Rewrite this Ontop WhatsApp campaign message to remove any em dash (—) used mid-sentence as a connector (e.g. "This matters — here's why"). Replace it with a period, comma, or connector word. Keep the exact same message, tone, length (under 160 chars) and language. WRITE IN ${langLabel}.
-
-CURRENT MESSAGE:
-${em.body}
-
-Reply with ONLY the revised message text, nothing else.`;
-    }else{
-      prompt=`Rewrite this Ontop campaign email to remove any em dash (—) used mid-sentence as a connector (e.g. "This matters — here's why"). Replace it with a period, comma, or connector word instead. Keep the exact same message, tone, length and language — do not change the meaning. WRITE EVERYTHING IN ${langLabel}.
-
-CURRENT EMAIL:
-SUBJECT: ${em.subject}
----
-${em.body}
----
-CTA: ${em.cta}
-
-Reply in the same format: SUBJECT: / PREVIEW: / --- / body / --- / CTA: / LEGAL_NOTE: (only if needed). Keep all product rules.`;
-    }
+    if(statusEl) statusEl.textContent=`Mejorando ${i+1}/${chain.length}...`;
     try{
-      const raw=await callClaude(prompt, buildSystem(S.viewLang));
-      if(!raw) continue;
-      if(em.type==='whatsapp'){
-        em.body=raw.trim();
-      }else{
-        const lines=raw.split('\n');
-        let subj=em.subject,prev=em.preview||'',bd='',cta=em.cta,legal='';
-        let inBody=false;
-        lines.forEach(l=>{
-          const t=l.trim();
-          if(t.startsWith('SUBJECT:')||t.startsWith('ASUNTO:')) subj=t.replace(/^(SUBJECT|ASUNTO):/,'').trim();
-          else if(t.startsWith('PREVIEW:')) prev=t.replace('PREVIEW:','').trim();
-          else if(t==='---'&&!inBody) inBody=true;
-          else if(t==='---'&&inBody) inBody=false;
-          else if(t.startsWith('CTA:')) cta=t.replace('CTA:','').trim();
-          else if(t.startsWith('LEGAL_NOTE:')||t.startsWith('NOTA_LEGAL:')) legal=t.replace(/^(LEGAL_NOTE|NOTA_LEGAL):/,'').trim();
-          else if(inBody) bd+=l+'\n';
-        });
-        em.subject=subj; em.preview=prev; em.body=bd.trim(); em.cta=cta; em.legal=legal;
-      }
+      const raw=await callClaude(rubricRewritePrompt(chain[i],langLabel), buildSystem(S.viewLang));
+      if(raw) applyImproved(chain[i], raw);
     }catch(e){
       if(statusEl) statusEl.textContent=`Error en mensaje ${i+1}: ${e.message}`;
-      persistChain();
-      renderEdit();
-      return;
+      persistChain(); renderEdit(); return;
     }
   }
   persistChain();
   renderEdit();
-  showToast(`✓ ${chain.length} mensajes reescritos sin rayas largas`,3000);
+  showToast(`✓ ${chain.length} mensajes mejorados`,3000);
 }
 
 function resetEmail(i){
