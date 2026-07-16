@@ -442,6 +442,10 @@ const GITHUB = {
   get token(){ return localStorage.getItem('ontop_github_token')||''; },
 };
 
+// Los respaldos de datos (cadenas/ciclos/archive) viven en su propia rama, separada
+// de main, para no llenar el historial de código con commits de "Backup automático".
+const DATA_BRANCH = 'data-backups';
+
 const MD_FILES = {
   edtech:  '.agents/campaigns/edtech-plus-campaign.md',
   toloka:  '.agents/campaigns/toloka-campaign.md',
@@ -509,8 +513,9 @@ function fixMojibake(s){
 }
 
 // Lee un archivo desde GitHub API
-async function ghRead(path){
-  const url=`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/contents/${path}?ref=${GITHUB.branch}&t=${Date.now()}`;
+async function ghRead(path, branch){
+  const ref=branch||GITHUB.branch;
+  const url=`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/contents/${path}?ref=${ref}&t=${Date.now()}`;
   const res=await fetch(url,{headers:{
     'Authorization':`token ${GITHUB.token}`,
     'Accept':'application/vnd.github.v3+json'
@@ -520,11 +525,14 @@ async function ghRead(path){
   return{content:fixMojibake(b64DecodeUtf8(data.content)), sha:data.sha};
 }
 
-// Escribe un archivo en GitHub API (append, reemplazar sección, o crear si no existe aún)
-async function ghWrite(path, newContent, commitMsg){
+// Escribe un archivo en GitHub API (append, reemplazar sección, o crear si no existe aún).
+// branch es opcional — por defecto GITHUB.branch (main); los respaldos de datos pasan
+// DATA_BRANCH explícitamente para no tocar main.
+async function ghWrite(path, newContent, commitMsg, branch){
+  const ref=branch||GITHUB.branch;
   // Leer el SHA actual si el archivo ya existe — si no existe (404), se crea sin sha
   let sha;
-  try{ ({sha}=await ghRead(path)); }catch(e){ /* archivo nuevo — se creará */ }
+  try{ ({sha}=await ghRead(path, ref)); }catch(e){ /* archivo nuevo — se creará */ }
   const url=`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/contents/${path}`;
   const res=await fetch(url,{
     method:'PUT',
@@ -537,7 +545,7 @@ async function ghWrite(path, newContent, commitMsg){
       message: commitMsg,
       content: btoa(unescape(encodeURIComponent(newContent))),
       ...(sha?{sha}:{}),
-      branch: GITHUB.branch
+      branch: ref
     })
   });
   if(!res.ok){
@@ -867,16 +875,43 @@ function buildClientBackup(clientId){
   return {client:clientId, updatedAt:new Date().toISOString(), tracks};
 }
 
+// Crea la rama DATA_BRANCH si todavía no existe (apuntando al HEAD actual de
+// GITHUB.branch). Se llama antes de cada backup — si ya existe, es una sola
+// llamada GET y no hace nada más.
+let _dataBranchReady=false;
+async function ensureDataBranch(){
+  if(_dataBranchReady) return;
+  const headers={'Authorization':`token ${GITHUB.token}`,'Accept':'application/vnd.github.v3+json'};
+  const check=await fetch(`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/git/ref/heads/${DATA_BRANCH}`,{headers});
+  if(check.ok){ _dataBranchReady=true; return; }
+  if(check.status!==404) throw new Error(`Error verificando rama ${DATA_BRANCH}: ${check.status}`);
+  const mainRef=await fetch(`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/git/ref/heads/${GITHUB.branch}`,{headers});
+  if(!mainRef.ok) throw new Error(`No se pudo leer HEAD de ${GITHUB.branch}`);
+  const {object}=await mainRef.json();
+  const create=await fetch(`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/git/refs`,{
+    method:'POST', headers:{...headers,'Content-Type':'application/json'},
+    body:JSON.stringify({ref:`refs/heads/${DATA_BRANCH}`, sha:object.sha})
+  });
+  if(!create.ok){
+    const err=await create.json();
+    throw new Error(err.message||`No se pudo crear la rama ${DATA_BRANCH}`);
+  }
+  _dataBranchReady=true;
+}
+
 // Respaldo automático, best-effort — se llama tras generar, guardar un ciclo o
-// cerrar un ciclo. Si no hay token o falla, no interrumpe el flujo principal.
+// cerrar un ciclo. Vive en su propia rama (DATA_BRANCH), separada de main, para
+// no llenar el historial de código con commits de "Backup automático". Si no
+// hay token o falla, no interrumpe el flujo principal.
 async function backupClientToGithub(clientId){
   if(!GITHUB.token) return;
   const path=DATA_FILES[clientId];
   if(!path) return;
   try{
+    await ensureDataBranch();
     const payload=buildClientBackup(clientId);
     if(!payload) return;
-    await ghWrite(path, JSON.stringify(payload,null,2), `Backup automático — ${CLIENTS[clientId]?.name||clientId} — ${new Date().toLocaleString('es-CO')}`);
+    await ghWrite(path, JSON.stringify(payload,null,2), `Backup automático — ${CLIENTS[clientId]?.name||clientId} — ${new Date().toLocaleString('es-CO')}`, DATA_BRANCH);
     localStorage.setItem(`ontop_backup_ts_${clientId}`, new Date().toISOString());
   }catch(e){
     console.error('backupClientToGithub error:', clientId, e);
@@ -900,7 +935,7 @@ async function restoreClientFromGithub(clientId){
   if(!confirm(`Restaurar ${nombre} desde el respaldo de GitHub sobrescribirá lo que tengas guardado en este navegador (cadenas activas, ciclos y archivo) con la última versión respaldada. ¿Continuar?`)) return;
   showToast('Restaurando desde GitHub...',2000);
   try{
-    const {content}=await ghRead(path);
+    const {content}=await ghRead(path, DATA_BRANCH);
     const payload=JSON.parse(content);
     Object.entries(payload.tracks||{}).forEach(([trackId,data])=>{
       if(data.status) saveStatus(clientId,trackId,data.status);
