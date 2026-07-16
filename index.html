@@ -1693,14 +1693,14 @@ function exportClientDoc(){
       if(em.type==='whatsapp'){
         out+=`<div style="border-left:3px solid #4af0b8;padding:8px 14px;margin:12px 0;background:#f0fffa">
           <p style="font-family:Arial;font-size:9pt;color:#2a9d7f;margin:0 0 6px;font-weight:bold">💬 WHATSAPP ${em.n}</p>
-          <p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:0;white-space:pre-wrap">${escapeHtml(em.body)}</p>
+          <p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:0">${escapeHtml(em.body).replace(/\n/g,'<br>')}</p>
         </div>`;
       } else {
         out+=`<div style="border:1px solid #ddd;border-radius:6px;padding:14px;margin:12px 0">
           <p style="font-family:Arial;font-size:9pt;color:#888;margin:0 0 4px;font-weight:bold">✉ EMAIL ${em.n}</p>
           ${em.subject?`<p style="font-family:Arial;font-size:12pt;color:#1a1a1a;margin:4px 0;font-weight:bold">Subject: ${escapeHtml(em.subject)}</p>`:''}
           ${em.preview?`<p style="font-family:Arial;font-size:10pt;color:#888;margin:0 0 8px;font-style:italic">Preview: ${escapeHtml(em.preview)}</p>`:''}
-          <p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:8px 0;white-space:pre-wrap;line-height:1.5">${escapeHtml(em.body)}</p>
+          <p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:8px 0;line-height:1.5">${escapeHtml(em.body).replace(/\n/g,'<br>')}</p>
           ${em.cta?`<p style="font-family:Arial;font-size:11pt;color:#1a1a1a;margin:8px 0"><strong>CTA:</strong> <span style="background:#c8f04a;padding:3px 10px;border-radius:4px">${escapeHtml(em.cta)}</span></p>`:''}
           ${em.legal?`<p style="font-family:Arial;font-size:9pt;color:#cc3366;margin:8px 0">⚠️ ${escapeHtml(em.legal)}</p>`:''}
         </div>`;
