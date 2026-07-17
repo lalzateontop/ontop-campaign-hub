@@ -1143,6 +1143,7 @@ function renderBrief(){
         <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',4)">Editar cadena</button>
         <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',5)">Envíos</button>
         <button class="btn" style="font-size:12px" onclick="selectTrackAndGo('${t.id}',6)">Resultados</button>
+        ${missingChannelsForTrack(S.client,t.id).map(ch=>`<button class="btn" style="font-size:12px" onclick="addChannelToTrack('${t.id}','${ch}')" title="Genera solo este canal y lo agrega a la cadena existente, sin tocar lo demás">+ Agregar ${ch==='whatsapp'?'WhatsApp':'Email'}</button>`).join('')}
       </div>`:`<div class="brow" style="margin-top:0">
         <button class="btn btnp" style="font-size:12px" onclick="selectTrackAndConfig('${t.id}')">⚙ Configurar y generar →</button>
       </div>`}
@@ -1241,20 +1242,26 @@ function selectTrackAndConfig(trackId){
   goStep(2); // ir a Skills para configurar antes de generar
 }
 
+// Instrucción de generación para un solo canal — compartida entre generateTrack
+// (genera todos los canales configurados) y addChannelToTrack (genera solo el
+// canal que falte en un track ya existente), para que nunca queden desalineadas.
+function channelInstructionFor(channel, t, c){
+  if(channel==='email'){
+    return t.id==='DX'
+      ? `Generate 1 email from Luis Miguel to the ${c.name} HR contact (not workers). Include the 8 diagnostic questions.`
+      : 'Generate an email chain of 2 emails (3 if there is a clear sequence). Funnel: activation → value/proof → urgency if applicable. Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END';
+  }
+  return 'Generate 2 WhatsApp messages (short, conversational, max 160 chars each). Format: WHATSAPP_1: ... WHATSAPP_END / WHATSAPP_2: ... WHATSAPP_END';
+}
+
 async function generateTrack(t, c){
   const el=document.getElementById(`prog-${t.id}`);
   const setProg=(html,border)=>{ if(el){el.innerHTML=html; if(border)el.style.borderColor=border; el.style.opacity='1';} };
 
   const psychDesc=S.psych.map(k=>PSYCH.find(p=>p.key===k)).filter(Boolean).map(p=>`- ${p.label}: ${p.desc}`).join('\n');
   const channelInstructions=[];
-  if(S.channels.includes('email')){
-    channelInstructions.push(t.id==='DX'
-      ? `Generate 1 email from Luis Miguel to the ${c.name} HR contact (not workers). Include the 8 diagnostic questions.`
-      : 'Generate an email chain of 2 emails (3 if there is a clear sequence). Funnel: activation → value/proof → urgency if applicable. Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END');
-  }
-  if(S.channels.includes('whatsapp')){
-    channelInstructions.push('Generate 2 WhatsApp messages (short, conversational, max 160 chars each). Format: WHATSAPP_1: ... WHATSAPP_END / WHATSAPP_2: ... WHATSAPP_END');
-  }
+  if(S.channels.includes('email')) channelInstructions.push(channelInstructionFor('email',t,c));
+  if(S.channels.includes('whatsapp')) channelInstructions.push(channelInstructionFor('whatsapp',t,c));
 
   const buildPrompt=(langLabel)=>`Generate trade marketing campaign copy for Ontop. WRITE EVERYTHING IN ${langLabel.toUpperCase()}.
 
@@ -1322,6 +1329,76 @@ REMEMBER: All output text must be in ${langLabel.toUpperCase()}.`;
     setProg(`<div style="font-size:14px;color:var(--accent3);margin-bottom:8px">${t.label} — Error: ${e.message}</div>
         <button class="btn" style="font-size:12px" onclick="retryTrack('${t.id}')">↻ Reintentar</button>`,'rgba(240,74,138,.3)');
     console.error('generateTrack error:',t.id,e);
+  }
+}
+
+// Canales ('email'/'whatsapp') que un track YA GENERADO todavía no tiene —
+// independiente de lo que esté marcado en Ajustes ahora mismo. Resuelve el caso
+// de "olvidé generar WhatsApp": no hace falta regenerar todo, solo agregar lo que falta.
+function missingChannelsForTrack(clientId, trackId){
+  const st=getStatus(clientId,trackId);
+  if(!hasContent(st)) return [];
+  const items=[...(st.emails_en||[]),...(st.emails_es||[])];
+  const present=new Set(items.map(e=>e.type));
+  return ['email','whatsapp'].filter(ch=>!present.has(ch));
+}
+
+// Genera SOLO el canal indicado y lo AGREGA a la cadena existente de un track
+// (en ambos idiomas) — no toca los mensajes ya generados, ediciones o status de envío.
+async function addChannelToTrack(trackId, channel){
+  if(!S.apiKey){showToast('Falta la API key de Claude',2500);openConfig('api');return;}
+  const c=CLIENTS[S.client];
+  const t=c?.tracks.find(x=>x.id===trackId);
+  const st=getStatus(S.client,trackId);
+  if(!t||!st){showToast('No hay cadena activa en este track',2500);return;}
+
+  const psychDesc=S.psych.map(k=>PSYCH.find(p=>p.key===k)).filter(Boolean).map(p=>`- ${p.label}: ${p.desc}`).join('\n');
+  const buildAddPrompt=(langLabel)=>`Generate trade marketing campaign copy for Ontop. WRITE EVERYTHING IN ${langLabel.toUpperCase()}.
+
+Client: ${c.name}
+Track: ${t.label}
+Route: ${t.route}
+Products: ${t.products.length?t.products.join(', '):'HR diagnostic — include 8 questions'}
+Target workers: ${t.workers}
+Conversions needed: ${t.need}
+Contract type: ${c.contract}
+Framework: ${S.framework}
+Tone: ${S.tone}
+${S.extraCtx?'Additional context: '+S.extraCtx:''}
+
+Psychological principles to apply:
+${psychDesc}
+
+${S.client==='toloka'?'IMPORTANT: Toloka has 6 All-In workers — use them as social proof.':''}
+
+This track already has other channels generated and sent — you are ONLY adding a channel that was missed. Generate ONLY this NEW channel, consistent in message and tone with the rest of the campaign:
+${channelInstructionFor(channel,t,c)}
+
+CRITICAL: Never mention internal segmentation names (Starter, Explorer, Builder, Power User, All-In, tier, track) in the copy — those are for your context only. The worker only sees products and benefits.
+REMEMBER: All output text must be in ${langLabel.toUpperCase()}.`;
+
+  const genOne=async(lang)=>{
+    const raw=await callClaude(buildAddPrompt(lang==='en'?'English':'Spanish'), buildSystem(lang));
+    if(!raw) throw new Error('Respuesta vacía de la API');
+    return channel==='email'?parseChain(raw):parseWhatsApp(raw);
+  };
+
+  showToast(`Generando ${channel==='whatsapp'?'WhatsApp':'email'} para Track ${trackId} (EN + ES)...`,20000);
+  try{
+    const newEn=await genOne('en');
+    const newEs=await genOne('es');
+    if(!newEn.length&&!newEs.length){showToast('No se pudo generar contenido nuevo — intenta de nuevo',3000);return;}
+    st.emails_en=[...(st.emails_en||[]),...newEn];
+    st.emails_es=[...(st.emails_es||[]),...newEs];
+    st.channels=Array.from(new Set([...(st.channels||[]),channel]));
+    saveStatus(S.client,trackId,st);
+    if(S.track?.id===trackId) S.emailChain=chainOf(st,S.viewLang);
+    await backupClientToGithub(S.client);
+    showToast(`✓ ${channel==='whatsapp'?'WhatsApp':'Email'} agregado al Track ${trackId}`,3000);
+    if(S.step===4) renderEdit();
+    else if(S.step===1) renderBrief();
+  }catch(e){
+    showToast('Error agregando canal: '+e.message,4000);
   }
 }
 
@@ -1697,6 +1774,7 @@ function renderEdit(){
     <div class="brow">
       <button class="btn btnp" onclick="goStep(5)">Marcar status →</button>
       <button class="btn" onclick="improveChainWriting()" title="Mejora los mensajes de este track en inglés y español a la vez">✨ Mejorar escritura del track (EN + ES)</button>
+      ${missingChannelsForTrack(S.client,t.id).map(ch=>`<button class="btn" onclick="addChannelToTrack('${t.id}','${ch}')" title="Genera solo este canal y lo agrega a la cadena existente, sin tocar lo demás">+ Agregar ${ch==='whatsapp'?'WhatsApp':'Email'}</button>`).join('')}
       <button class="btn" onclick="forceRegenerate()">↻ Regenerar este track</button>
       <button class="btn" onclick="exportClientDoc()" style="margin-left:auto">↓ Documento del cliente</button>
     </div>
