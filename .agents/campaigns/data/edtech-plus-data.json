@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-22T16:31:22.061Z",
+  "updatedAt": "2026-07-22T16:31:28.749Z",
   "tracks": {
     "A": {
       "status": {
@@ -458,8 +458,8 @@
           {
             "n": 1,
             "type": "whatsapp",
-            "body": "[First Name], your Ontop Card is missing cashback. Your TripleTen colleagues already activated Reserve and earn 10% back. Takes 2 min to set up.",
-            "raw": "[First Name], your Ontop Card is missing cashback. Your TripleTen colleagues already activated Reserve and earn 10% back. Takes 2 min to set up.",
+            "body": "Your Ontop Card is leaving money on the table. Your colleagues are getting 10% cashback on every purchase — you're not. Takes 2 min to fix.",
+            "raw": "Your Ontop Card is leaving money on the table. Your colleagues are getting 10% cashback on every purchase — you're not. Takes 2 min to fix.",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -467,8 +467,8 @@
           {
             "n": 2,
             "type": "whatsapp",
-            "body": "Every purchase without Reserve = cashback you're leaving on the table. $14.9/mo pays for itself fast. Want me to walk you through it?",
-            "raw": "Every purchase without Reserve = cashback you're leaving on the table. $14.9/mo pays for itself fast. Want me to walk you through it?",
+            "body": "26 of your TripleTen teammates already activated Reserve. Cashback, perks, full benefits. You're one step away. Want the link?",
+            "raw": "26 of your TripleTen teammates already activated Reserve. Cashback, perks, full benefits. You're one step away. Want the link?",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -517,8 +517,8 @@
           {
             "n": 1,
             "type": "whatsapp",
-            "body": "[First Name], tus compras internacionales ya no pagan comisión. Pero tus colegas están sacando cashback de hasta 10% en cada una. Tú no. ¿Lo activamos?",
-            "raw": "[First Name], tus compras internacionales ya no pagan comisión. Pero tus colegas están sacando cashback de hasta 10% en cada una. Tú no. ¿Lo activamos?",
+            "body": "[Nombre], tus compras en el extranjero ya no pagan comisión. Pero el cashback del 10% lo están activando tus colegas y tú aún no. ¿Lo revisamos?",
+            "raw": "[Nombre], tus compras en el extranjero ya no pagan comisión. Pero el cashback del 10% lo están activando tus colegas y tú aún no. ¿Lo revisamos?",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -526,8 +526,8 @@
           {
             "n": 2,
             "type": "whatsapp",
-            "body": "Reserve ya está disponible para ti. Cada mes sin activarlo es cashback que se queda en la mesa. Un clic y listo: [link]",
-            "raw": "Reserve ya está disponible para ti. Cada mes sin activarlo es cashback que se queda en la mesa. Un clic y listo: [link]",
+            "body": "Cada compra sin Reserve te cuesta cashback real. 26 de tus colegas en TripleTen ya lo tienen. Actívalo hoy: es un solo paso desde tu app.",
+            "raw": "Cada compra sin Reserve te cuesta cashback real. 26 de tus colegas en TripleTen ya lo tienen. Actívalo hoy: es un solo paso desde tu app.",
             "sent": false,
             "editMode": false,
             "editBody": ""
