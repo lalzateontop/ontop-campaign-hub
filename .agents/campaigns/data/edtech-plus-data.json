@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-22T16:31:13.565Z",
+  "updatedAt": "2026-07-22T16:31:22.061Z",
   "tracks": {
     "A": {
       "status": {
@@ -454,6 +454,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[First Name], your Ontop Card is missing cashback. Your TripleTen colleagues already activated Reserve and earn 10% back. Takes 2 min to set up.",
+            "raw": "[First Name], your Ontop Card is missing cashback. Your TripleTen colleagues already activated Reserve and earn 10% back. Takes 2 min to set up.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Every purchase without Reserve = cashback you're leaving on the table. $14.9/mo pays for itself fast. Want me to walk you through it?",
+            "raw": "Every purchase without Reserve = cashback you're leaving on the table. $14.9/mo pays for itself fast. Want me to walk you through it?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "emails_es": [
@@ -495,6 +513,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[First Name], tus compras internacionales ya no pagan comisión. Pero tus colegas están sacando cashback de hasta 10% en cada una. Tú no. ¿Lo activamos?",
+            "raw": "[First Name], tus compras internacionales ya no pagan comisión. Pero tus colegas están sacando cashback de hasta 10% en cada una. Tú no. ¿Lo activamos?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Reserve ya está disponible para ti. Cada mes sin activarlo es cashback que se queda en la mesa. Un clic y listo: [link]",
+            "raw": "Reserve ya está disponible para ti. Cada mes sin activarlo es cashback que se queda en la mesa. Un clic y listo: [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "sentCount": 0,
@@ -505,7 +541,8 @@
         ],
         "tone": "Direct and concrete",
         "channels": [
-          "email"
+          "email",
+          "whatsapp"
         ],
         "generatedAt": "2026-07-14T20:07:04.863Z",
         "cycle": 1
