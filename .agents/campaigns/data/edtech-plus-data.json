@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-22T16:30:54.621Z",
+  "updatedAt": "2026-07-22T16:31:06.165Z",
   "tracks": {
     "A": {
       "status": {
@@ -180,6 +180,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Your Ontop Card is active — but your balance isn't earning anything. Hundreds of your TripleTen colleagues already moved their savings to Future Fund. Don't leave that interest on the table.",
+            "raw": "Your Ontop Card is active — but your balance isn't earning anything. Hundreds of your TripleTen colleagues already moved their savings to Future Fund. Don't leave that interest on the table.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Every month without Future Fund is a month your balance earns zero. Takes 2 minutes to set up — Flex (3% APR) or +30 (4% APR). Your call: ontop.com/futurefund",
+            "raw": "Every month without Future Fund is a month your balance earns zero. Takes 2 minutes to set up — Flex (3% APR) or +30 (4% APR). Your call: ontop.com/futurefund",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "emails_es": [
@@ -221,6 +239,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[First Name], tus compañeros en TripleTen ya ganan rendimiento sobre su saldo en Ontop. ¿Tú todavía no? Actívalo hoy: [link]",
+            "raw": "[First Name], tus compañeros en TripleTen ya ganan rendimiento sobre su saldo en Ontop. ¿Tú todavía no? Actívalo hoy: [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Cada mes sin Future Fund es dinero que no crece. Tu tarjeta ya está lista, solo falta tu fondo. Empiézalo aquí: [link]",
+            "raw": "Cada mes sin Future Fund es dinero que no crece. Tu tarjeta ya está lista, solo falta tu fondo. Empiézalo aquí: [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "sentCount": 0,
@@ -231,7 +267,8 @@
         ],
         "tone": "Direct and concrete",
         "channels": [
-          "email"
+          "email",
+          "whatsapp"
         ],
         "generatedAt": "2026-07-14T20:06:43.656Z",
         "cycle": 1
