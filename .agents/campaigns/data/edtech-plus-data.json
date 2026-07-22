@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-22T16:31:06.165Z",
+  "updatedAt": "2026-07-22T16:31:13.565Z",
   "tracks": {
     "A": {
       "status": {
@@ -317,6 +317,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Every time you pay abroad with your card, you're leaving money on the table. Your TripleTen colleagues already switched. Zero fees on every international purchase — takes 2 min to activate.",
+            "raw": "Every time you pay abroad with your card, you're leaving money on the table. Your TripleTen colleagues already switched. Zero fees on every international purchase — takes 2 min to activate.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Still paying foreign transaction fees? Your card can already cover that — for free. Hundreds of your colleagues made the switch. Don't be the one still paying extra.",
+            "raw": "Still paying foreign transaction fees? Your card can already cover that — for free. Hundreds of your colleagues made the switch. Don't be the one still paying extra.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "emails_es": [
@@ -358,6 +376,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[First Name], cada compra en el extranjero con tu tarjeta Ontop ya no te cobra comisión. Tus colegas de TripleTen ya lo aprovechan. ¿Tú aún pagas de más?",
+            "raw": "[First Name], cada compra en el extranjero con tu tarjeta Ontop ya no te cobra comisión. Tus colegas de TripleTen ya lo aprovechan. ¿Tú aún pagas de más?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "El zero fee en compras internacionales está en tu cuenta. Solo falta activarlo. Toma menos de 2 minutos. No lo dejes pasar otro mes.",
+            "raw": "El zero fee en compras internacionales está en tu cuenta. Solo falta activarlo. Toma menos de 2 minutos. No lo dejes pasar otro mes.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "sentCount": 0,
@@ -368,7 +404,8 @@
         ],
         "tone": "Direct and concrete",
         "channels": [
-          "email"
+          "email",
+          "whatsapp"
         ],
         "generatedAt": "2026-07-14T20:06:58.666Z",
         "cycle": 1
