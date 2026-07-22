@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-16T22:10:11.781Z",
+  "updatedAt": "2026-07-22T16:30:54.621Z",
   "tracks": {
     "A": {
       "status": {
@@ -40,6 +40,24 @@
             "cta": "Activate my card",
             "legal": "Ontop Card offers zero foreign transaction fees as a standalone benefit. Cashback requires an active Reserve membership (available to eligible users only).",
             "raw": "\nSUBJECT: Last nudge on this, [First Name]\nPREVIEW: You've already paid fees this month that your colleagues didn't.\n---\n[First Name],\n\nThis is the last time I'll bring this up.\n\nIf you made any international purchases this month with a regular card, you paid fees that over 100 of your TripleTen colleagues paid zero on. Because they activated their Ontop Card.\n\nThere's no catch. No monthly fee for the card. No complicated setup. Just zero foreign transaction fees on every purchase, starting the moment you activate.\n\nThe card is sitting there in your app, unused. Every day it stays inactive is a day you're paying a fee you don't have to.\n\nThirty seconds to open the app. Under two minutes to activate.\n\nThat's it.\n\nLuis Miguel\nYour Ontop CSM\n---\nCTA: Activate my card now\nLEGAL_NOTE: Ontop Card zero foreign transaction fees apply to card transactions. No cashback without active Reserve membership.\n",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Hey [First Name] — your Ontop Card is ready to activate. Zero fees on every international transaction. Takes 2 minutes. Your colleagues are already using it.",
+            "raw": "Hey [First Name] — your Ontop Card is ready to activate. Zero fees on every international transaction. Takes 2 minutes. Your colleagues are already using it.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], every purchase abroad without your Ontop Card costs you extra. Activate it free today and stop paying fees you don't have to.",
+            "raw": "[First Name], every purchase abroad without your Ontop Card costs you extra. Activate it free today and stop paying fees you don't have to.",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -84,6 +102,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[First Name], ¿sabías que cada compra internacional te cobra comisión? Con tu Ontop Card pagas cero. Tus colegas ya la activaron. ¿Tú también?",
+            "raw": "[First Name], ¿sabías que cada compra internacional te cobra comisión? Con tu Ontop Card pagas cero. Tus colegas ya la activaron. ¿Tú también?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "[First Name], la tarjeta sin comisiones internacionales ya está disponible para ti. Cada día sin activarla es dinero que sigues pagando de más.",
+            "raw": "[First Name], la tarjeta sin comisiones internacionales ya está disponible para ti. Cada día sin activarla es dinero que sigues pagando de más.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "sentCount": 0,
@@ -94,7 +130,8 @@
         ],
         "tone": "Direct and concrete",
         "channels": [
-          "email"
+          "email",
+          "whatsapp"
         ],
         "generatedAt": "2026-07-14T20:07:33.326Z",
         "cycle": 1
