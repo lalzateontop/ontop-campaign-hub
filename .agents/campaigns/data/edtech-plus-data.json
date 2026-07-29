@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-29T22:28:30.610Z",
+  "updatedAt": "2026-07-29T22:29:59.574Z",
   "tracks": {
     "A": {
       "status": {
@@ -317,6 +317,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "Your Ontop Card is missing one feature. Your colleagues are already saving on every purchase abroad. Takes 2 min to set up.",
+            "raw": "Your Ontop Card is missing one feature. Your colleagues are already saving on every purchase abroad. Takes 2 min to set up.",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Every month without it = fees you're still paying. Activate the full card experience now: [link]",
+            "raw": "Every month without it = fees you're still paying. Activate the full card experience now: [link]",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "emails_es": [
@@ -358,6 +376,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[First Name], cada compra fuera de EE.UU. te cuesta de más. Tus colegas en TripleTen ya pagan cero comisión con su Ontop Card. ¿La tuyas está activa?",
+            "raw": "[First Name], cada compra fuera de EE.UU. te cuesta de más. Tus colegas en TripleTen ya pagan cero comisión con su Ontop Card. ¿La tuyas está activa?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "44 de tus compañeros ya ahorraron en comisiones este mes. Activar toma 2 minutos. ¿Lo hacemos hoy?",
+            "raw": "44 de tus compañeros ya ahorraron en comisiones este mes. Activar toma 2 minutos. ¿Lo hacemos hoy?",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "sentCount": 0,
@@ -368,7 +404,8 @@
         ],
         "tone": "Direct and concrete",
         "channels": [
-          "email"
+          "email",
+          "whatsapp"
         ],
         "generatedAt": "2026-07-29T22:28:30.125Z",
         "cycle": 1
