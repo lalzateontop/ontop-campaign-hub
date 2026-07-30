@@ -1242,18 +1242,15 @@ function selectTrackAndConfig(trackId){
   goStep(2); // ir a Skills para configurar antes de generar
 }
 
-// Instrucción de generación para un solo canal — compartida entre generateTrack
-// (genera todos los canales configurados) y addChannelToTrack (genera solo el
-// canal que falte en un track ya existente), para que nunca queden desalineadas.
-// Colapsa Future Fund Flex + Future Fund +30 en UN solo tema cuando ambos están
-// presentes (siempre se ofrecen juntos como opción a elegir, regla de producto #3).
-// Si un track solo tiene uno de los dos (p. ej. Track C con solo +30), queda como
-// su propio tema — eso es una decisión de negocio explícita del track, no un error.
 // One-pager con los 5 productos financieros de Ontop (Card, Reserve, Future Fund,
-// Transfer, Bills) en una sola página. Destino natural del CTA cuando un mensaje
-// forma parte de una secuencia que habla de varios productos.
+// Transfer, Bills) en una sola página. Destino del CTA cuando un track habla de
+// varios productos a la vez, en lugar de profundizar en cada uno por separado.
 const ONE_PAGER_URL='https://onepager-workersprod.vercel.app/';
 
+// Colapsa Future Fund Flex + Future Fund +30 en UN solo tema cuando ambos están
+// presentes (siempre se ofrecen juntos como opción a elegir, regla de producto #3),
+// para contar bien cuántos productos distintos tiene el track — no para generar un
+// email por tema (ver nota abajo).
 function distinctProductThemes(products){
   const hasBoth=products.includes('Future Fund Flex')&&products.includes('Future Fund +30');
   if(!hasBoth) return [...products];
@@ -1266,25 +1263,26 @@ function distinctProductThemes(products){
   return themes;
 }
 
-// Cuando un track tiene más de un tema de producto, el framework de "un solo CTA
-// por email" (SKILL: email-scoring) hacía que el modelo eligiera UN producto y
-// descartara los demás. Fix: pedir explícitamente un mensaje por tema, cada uno
-// con su propio CTA — así ningún producto se pierde, sin violar la regla de un
-// solo CTA por mensaje.
+// Instrucción de generación para un solo canal — compartida entre generateTrack
+// (genera todos los canales configurados) y addChannelToTrack (genera solo el
+// canal que falte en un track ya existente), para que nunca queden desalineadas.
+//
+// NOTA: se intentó pedirle al modelo, en una sola llamada, "genera N emails, uno
+// por producto" cuando un track tenía varios productos — en un prompt ya largo
+// (psicología, framework, reglas anti-IA, reglas de producto...) el modelo real no
+// siempre obedecía esa instrucción intermedia y colapsaba todo en un solo producto
+// (visto en producción: Track C terminó hablando solo de Reserve). Se descartó ese
+// enfoque. En su lugar: cuando hay varios productos, la cadena los menciona a nivel
+// general (sin profundizar feature por feature en cada uno) y el CTA lleva al
+// one-pager, donde el worker puede explorar cada producto por su cuenta.
 function channelInstructionFor(channel, t, c){
   const themes=distinctProductThemes(t.products);
-  const multiProductCtaNote=themes.length>1?` This message covers only ONE of several products this campaign talks about across the sequence — keep the CTA focused on THIS message's product/action, but add this exact link right after it as a "learn more" reference where the worker can see this and other Ontop benefits explained: ${ONE_PAGER_URL}`:'';
+  const multiNote=themes.length>1?` This track has several eligible products (${themes.join(', ')}) — mention them together at a general/overview level (e.g. framed as "get more out of your Ontop account"), do NOT deep-dive feature-by-feature into each one individually. Since there are multiple products, the CTA should invite the worker to explore all of them and end with this exact link: ${ONE_PAGER_URL}`:'';
   if(channel==='email'){
     if(t.id==='DX') return `Generate 1 email from Luis Miguel to the ${c.name} HR contact (not workers). Include the 8 diagnostic questions.`;
-    if(themes.length>1){
-      return `Generate an email chain of exactly ${themes.length} emails, ONE per product theme, in this order: ${themes.join(' → ')}. Each email has its OWN single focused CTA for just that one theme — do NOT cram multiple product themes or multiple CTAs into the same email, and do not drop any theme.${multiProductCtaNote} Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END`;
-    }
-    return 'Generate an email chain of 2 emails (3 if there is a clear sequence). Funnel: activation → value/proof → urgency if applicable. Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END';
+    return `Generate an email chain of 2 emails (3 if there is a clear sequence). Funnel: activation → value/proof → urgency if applicable.${multiNote} Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END`;
   }
-  if(themes.length>1){
-    return `Generate ${themes.length} WhatsApp messages, ONE per product theme, in this order: ${themes.join(' → ')} — short, conversational, max 160 chars each, one clear action per message, do not drop any theme. Format: WHATSAPP_1: ... WHATSAPP_END / WHATSAPP_2: ... WHATSAPP_END`;
-  }
-  return 'Generate 2 WhatsApp messages (short, conversational, max 160 chars each). Format: WHATSAPP_1: ... WHATSAPP_END / WHATSAPP_2: ... WHATSAPP_END';
+  return `Generate 2 WhatsApp messages (short, conversational, max 160 chars each).${multiNote} Format: WHATSAPP_1: ... WHATSAPP_END / WHATSAPP_2: ... WHATSAPP_END`;
 }
 
 async function generateTrack(t, c){
