@@ -1245,11 +1245,38 @@ function selectTrackAndConfig(trackId){
 // Instrucción de generación para un solo canal — compartida entre generateTrack
 // (genera todos los canales configurados) y addChannelToTrack (genera solo el
 // canal que falte en un track ya existente), para que nunca queden desalineadas.
+// Colapsa Future Fund Flex + Future Fund +30 en UN solo tema cuando ambos están
+// presentes (siempre se ofrecen juntos como opción a elegir, regla de producto #3).
+// Si un track solo tiene uno de los dos (p. ej. Track C con solo +30), queda como
+// su propio tema — eso es una decisión de negocio explícita del track, no un error.
+function distinctProductThemes(products){
+  const hasBoth=products.includes('Future Fund Flex')&&products.includes('Future Fund +30');
+  if(!hasBoth) return [...products];
+  const themes=[];
+  products.forEach(p=>{
+    if(p==='Future Fund Flex'||p==='Future Fund +30'){
+      if(!themes.includes('Future Fund (Flex or +30 — present both, worker chooses)')) themes.push('Future Fund (Flex or +30 — present both, worker chooses)');
+    }else themes.push(p);
+  });
+  return themes;
+}
+
+// Cuando un track tiene más de un tema de producto, el framework de "un solo CTA
+// por email" (SKILL: email-scoring) hacía que el modelo eligiera UN producto y
+// descartara los demás. Fix: pedir explícitamente un mensaje por tema, cada uno
+// con su propio CTA — así ningún producto se pierde, sin violar la regla de un
+// solo CTA por mensaje.
 function channelInstructionFor(channel, t, c){
+  const themes=distinctProductThemes(t.products);
   if(channel==='email'){
-    return t.id==='DX'
-      ? `Generate 1 email from Luis Miguel to the ${c.name} HR contact (not workers). Include the 8 diagnostic questions.`
-      : 'Generate an email chain of 2 emails (3 if there is a clear sequence). Funnel: activation → value/proof → urgency if applicable. Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END';
+    if(t.id==='DX') return `Generate 1 email from Luis Miguel to the ${c.name} HR contact (not workers). Include the 8 diagnostic questions.`;
+    if(themes.length>1){
+      return `Generate an email chain of exactly ${themes.length} emails, ONE per product theme, in this order: ${themes.join(' → ')}. Each email has its OWN single focused CTA for just that one theme — do NOT cram multiple product themes or multiple CTAs into the same email, and do not drop any theme. Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END`;
+    }
+    return 'Generate an email chain of 2 emails (3 if there is a clear sequence). Funnel: activation → value/proof → urgency if applicable. Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END';
+  }
+  if(themes.length>1){
+    return `Generate ${themes.length} WhatsApp messages, ONE per product theme, in this order: ${themes.join(' → ')} — short, conversational, max 160 chars each, one clear action per message, do not drop any theme. Format: WHATSAPP_1: ... WHATSAPP_END / WHATSAPP_2: ... WHATSAPP_END`;
   }
   return 'Generate 2 WhatsApp messages (short, conversational, max 160 chars each). Format: WHATSAPP_1: ... WHATSAPP_END / WHATSAPP_2: ... WHATSAPP_END';
 }
