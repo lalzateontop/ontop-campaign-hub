@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-30T21:20:23.951Z",
+  "updatedAt": "2026-07-30T21:21:25.291Z",
   "tracks": {
     "A": {
       "status": {
@@ -317,6 +317,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[First Name], your Ontop account has features most of your colleagues are already using — and you're leaving them on the table. See what you're missing: https://onepager-workersprod.vercel.app/",
+            "raw": "[First Name], your Ontop account has features most of your colleagues are already using — and you're leaving them on the table. See what you're missing: https://onepager-workersprod.vercel.app/",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Card, savings, and more — your full Ontop setup is one step away. Your coworkers are already saving. Are you? https://onepager-workersprod.vercel.app/",
+            "raw": "Card, savings, and more — your full Ontop setup is one step away. Your coworkers are already saving. Are you? https://onepager-workersprod.vercel.app/",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "emails_es": [
@@ -345,6 +363,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[First Name], tus colegas de TripleTen ya están sacándole más a su cuenta Ontop. ¿Tienes todo activado? Revisa aquí: https://onepager-workersprod.vercel.app/",
+            "raw": "[First Name], tus colegas de TripleTen ya están sacándole más a su cuenta Ontop. ¿Tienes todo activado? Revisa aquí: https://onepager-workersprod.vercel.app/",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Cada mes sin activar tus beneficios es dinero que no estás ganando. Vale 2 minutos verlo: https://onepager-workersprod.vercel.app/",
+            "raw": "Cada mes sin activar tus beneficios es dinero que no estás ganando. Vale 2 minutos verlo: https://onepager-workersprod.vercel.app/",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "sentCount": 0,
@@ -355,7 +391,8 @@
         ],
         "tone": "Direct and concrete",
         "channels": [
-          "email"
+          "email",
+          "whatsapp"
         ],
         "generatedAt": "2026-07-30T20:59:45.518Z",
         "cycle": 1
