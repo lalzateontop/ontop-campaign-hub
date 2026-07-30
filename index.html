@@ -1249,6 +1249,11 @@ function selectTrackAndConfig(trackId){
 // presentes (siempre se ofrecen juntos como opción a elegir, regla de producto #3).
 // Si un track solo tiene uno de los dos (p. ej. Track C con solo +30), queda como
 // su propio tema — eso es una decisión de negocio explícita del track, no un error.
+// One-pager con los 5 productos financieros de Ontop (Card, Reserve, Future Fund,
+// Transfer, Bills) en una sola página. Destino natural del CTA cuando un mensaje
+// forma parte de una secuencia que habla de varios productos.
+const ONE_PAGER_URL='https://onepager-workersprod.vercel.app/';
+
 function distinctProductThemes(products){
   const hasBoth=products.includes('Future Fund Flex')&&products.includes('Future Fund +30');
   if(!hasBoth) return [...products];
@@ -1268,10 +1273,11 @@ function distinctProductThemes(products){
 // solo CTA por mensaje.
 function channelInstructionFor(channel, t, c){
   const themes=distinctProductThemes(t.products);
+  const multiProductCtaNote=themes.length>1?` This message covers only ONE of several products this campaign talks about across the sequence — keep the CTA focused on THIS message's product/action, but add this exact link right after it as a "learn more" reference where the worker can see this and other Ontop benefits explained: ${ONE_PAGER_URL}`:'';
   if(channel==='email'){
     if(t.id==='DX') return `Generate 1 email from Luis Miguel to the ${c.name} HR contact (not workers). Include the 8 diagnostic questions.`;
     if(themes.length>1){
-      return `Generate an email chain of exactly ${themes.length} emails, ONE per product theme, in this order: ${themes.join(' → ')}. Each email has its OWN single focused CTA for just that one theme — do NOT cram multiple product themes or multiple CTAs into the same email, and do not drop any theme. Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END`;
+      return `Generate an email chain of exactly ${themes.length} emails, ONE per product theme, in this order: ${themes.join(' → ')}. Each email has its OWN single focused CTA for just that one theme — do NOT cram multiple product themes or multiple CTAs into the same email, and do not drop any theme.${multiProductCtaNote} Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END`;
     }
     return 'Generate an email chain of 2 emails (3 if there is a clear sequence). Funnel: activation → value/proof → urgency if applicable. Format: EMAIL_1: ... EMAIL_END / EMAIL_2: ... EMAIL_END';
   }
