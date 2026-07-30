@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-30T20:59:45.989Z",
+  "updatedAt": "2026-07-30T21:20:03.350Z",
   "tracks": {
     "A": {
       "status": {
@@ -317,6 +317,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[First Name], your Ontop account can do more than you're using it for. Card, savings, Reserve — your colleagues already have it all active. Don't leave money on the table: https://onepager-workersprod.vercel.app/",
+            "raw": "[First Name], your Ontop account can do more than you're using it for. Card, savings, Reserve — your colleagues already have it all active. Don't leave money on the table: https://onepager-workersprod.vercel.app/",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Still getting full value from Ontop? Most TripleTen workers who checked this page found at least one feature they weren't using. Takes 2 min: https://onepager-workersprod.vercel.app/",
+            "raw": "Still getting full value from Ontop? Most TripleTen workers who checked this page found at least one feature they weren't using. Takes 2 min: https://onepager-workersprod.vercel.app/",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "emails_es": [
@@ -345,6 +363,24 @@
             "sent": false,
             "editMode": false,
             "editBody": ""
+          },
+          {
+            "n": 1,
+            "type": "whatsapp",
+            "body": "[Nombre], hay beneficios en tu cuenta Ontop que aún no estás usando. Tus colegas de TripleTen ya los activaron. ¿Los ves aquí? → https://onepager-workersprod.vercel.app/",
+            "raw": "[Nombre], hay beneficios en tu cuenta Ontop que aún no estás usando. Tus colegas de TripleTen ya los activaron. ¿Los ves aquí? → https://onepager-workersprod.vercel.app/",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
+          },
+          {
+            "n": 2,
+            "type": "whatsapp",
+            "body": "Cada mes sin activarlos es dinero que se queda sobre la mesa. Sácale más a tu cuenta Ontop en 2 minutos: https://onepager-workersprod.vercel.app/",
+            "raw": "Cada mes sin activarlos es dinero que se queda sobre la mesa. Sácale más a tu cuenta Ontop en 2 minutos: https://onepager-workersprod.vercel.app/",
+            "sent": false,
+            "editMode": false,
+            "editBody": ""
           }
         ],
         "sentCount": 0,
@@ -355,7 +391,8 @@
         ],
         "tone": "Direct and concrete",
         "channels": [
-          "email"
+          "email",
+          "whatsapp"
         ],
         "generatedAt": "2026-07-30T20:59:45.518Z",
         "cycle": 1
