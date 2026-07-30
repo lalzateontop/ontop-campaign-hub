@@ -345,14 +345,14 @@ const CLIENTS = {
     tracks:[
       {id:'A',label:'Track A — Starter→Explorer',route:'Starter → Explorer',workers:414,delta:'$3.06',need:163,priority:'alta',products:['Ontop Card']},
       {id:'B',label:'Track B — Explorer→Builder',route:'Explorer → Builder',workers:272,delta:'$6.55',need:76,priority:'máxima',products:['Ontop Card','Future Fund Flex','Future Fund +30']},
-      {id:'C',label:'Track C — Builder→Power User',route:'Builder → Power User',workers:109,delta:'$11.26',need:44,priority:'media',products:['Ontop Card']},
+      {id:'C',label:'Track C — Builder→Power User',route:'Builder → Power User',workers:109,delta:'$11.26',need:44,priority:'media',products:['Ontop Card','Reserve','Future Fund +30']},
       {id:'D',label:'Track D — Power User→All-In',route:'Power User → All-In',workers:42,delta:'$19.31',need:26,priority:'pendiente confirmar Pricing',products:['Reserve']},
     ]},
   toloka:{name:'Toloka AI',workers:110,builderPlus:14.5,gap:6,contract:'PPT',mrr:'$1,969',color:'#f04a8a',
     tracks:[
       {id:'A',label:'Track A — Starter→Explorer',route:'Starter → Explorer',workers:58,delta:'$3.06',need:17,priority:'alta',products:['Ontop Card']},
       {id:'B',label:'Track B — Explorer→Builder',route:'Explorer → Builder',workers:36,delta:'$6.55',need:6,priority:'máxima',products:['Ontop Card','Future Fund Flex','Future Fund +30']},
-      {id:'C',label:'Track C — Builder→Power User',route:'Builder → Power User',workers:10,delta:'$11.26',need:3,priority:'media',products:['Ontop Card']},
+      {id:'C',label:'Track C — Builder→Power User',route:'Builder → Power User',workers:10,delta:'$11.26',need:3,priority:'media',products:['Ontop Card','Reserve','Future Fund +30']},
       {id:'D',label:'Track D — Power User→All-In',route:'Power User → All-In',workers:0,delta:'$19.31',need:0,priority:'sin base — construir Power Users primero',products:['Reserve']},
     ]},
   ride:{name:'Yango',legalName:'Ridetechnology',workers:65,builderPlus:1.5,gap:11,contract:'Tradicional',mrr:'$952',color:'#f04a8a',
@@ -360,14 +360,14 @@ const CLIENTS = {
       {id:'DX',label:'Fase 0 — Diagnóstico HR',route:'CSM → HR',workers:65,delta:'—',need:0,priority:'obligatoria primero',products:[]},
       {id:'A',label:'Track A — Starter→Explorer',route:'Starter → Explorer',workers:56,delta:'$3.06',need:11,priority:'pendiente diagnóstico',products:['Ontop Card','Future Fund Flex','Future Fund +30']},
       {id:'B',label:'Track B — Explorer→Builder',route:'Explorer → Builder',workers:3,delta:'$6.55',need:2,priority:'baja — pipeline mínimo',products:['Ontop Card','Future Fund Flex','Future Fund +30']},
-      {id:'C',label:'Track C — Builder→Power User',route:'Builder → Power User',workers:1,delta:'$11.26',need:1,priority:'baja — base mínima',products:['Ontop Card']},
+      {id:'C',label:'Track C — Builder→Power User',route:'Builder → Power User',workers:1,delta:'$11.26',need:1,priority:'baja — base mínima',products:['Ontop Card','Reserve','Future Fund +30']},
       {id:'D',label:'Track D — Power User→All-In',route:'Power User → All-In',workers:0,delta:'$19.31',need:0,priority:'sin base — horizonte 12 meses',products:['Reserve']},
     ]},
   nebius:{name:'Nebius',workers:17,builderPlus:11.8,gap:2,contract:'PPT',mrr:'$270',color:'#f04a8a',
     tracks:[
       {id:'A',label:'Track A — Starter→Explorer',route:'Starter → Explorer',workers:8,delta:'$3.06',need:3,priority:'alta',products:['Ontop Card']},
       {id:'B',label:'Track B — Explorer→Builder',route:'Explorer → Builder',workers:7,delta:'$6.55',need:2,priority:'máxima',products:['Ontop Card','Future Fund Flex','Future Fund +30']},
-      {id:'C',label:'Track C — Builder→Power User',route:'Builder → Power User',workers:2,delta:'$11.26',need:1,priority:'baja — base mínima',products:['Ontop Card']},
+      {id:'C',label:'Track C — Builder→Power User',route:'Builder → Power User',workers:2,delta:'$11.26',need:1,priority:'baja — base mínima',products:['Ontop Card','Reserve','Future Fund +30']},
       {id:'D',label:'Track D — Power User→All-In',route:'Power User → All-In',workers:0,delta:'$19.31',need:0,priority:'sin base — construir Power Users primero',products:['Reserve']},
     ]}
 };
@@ -701,7 +701,7 @@ NOTA DE MARCA: Si necesitas nombrar a la empresa del worker, usa SIEMPRE el nomb
 2. Cashback (10%/5%) ONLY with active Reserve membership.
 3. Future Fund: ALWAYS present as two options — Flex (3% APR, flexible withdrawal) OR +30 (4% APR, 30-day lock).
 4. Quick: ONLY traditional contracts (Yango / Ridetechnology only). Requires written Legal approval.
-5. Reserve ($14.9/mo): ONLY for existing Power Users.
+5. Reserve ($14.9/mo, unlocks cashback): can be offered as a growth incentive to drive more product usage/engagement (that's literally what makes a worker a heavier Ontop user internally — never say so to the worker). Frame it as something to activate/explore now, never claim the worker already has it active unless they do.
 6. PPT contracts: NEVER offer Quick.
 
 ══ INTERNAL LANGUAGE — NEVER EXPOSE TO WORKERS ══
@@ -1269,6 +1269,7 @@ Client: ${c.name}
 Track: ${t.label}
 Route: ${t.route}
 Products: ${t.products.length?t.products.join(', '):'HR diagnostic — include 8 questions'}
+${t.products.length?`ONLY mention these product(s) — ${t.products.join(', ')}. Do NOT mention or reference any OTHER Ontop product${['Ontop Card','Reserve','Future Fund Flex','Future Fund +30','Quick'].filter(p=>!t.products.includes(p)).length?' (e.g. '+['Ontop Card','Reserve','Future Fund Flex','Future Fund +30','Quick'].filter(p=>!t.products.includes(p)).join(', ')+')':''} — those are out of scope for this track. Within the listed products, you CAN frame the ones the worker hasn't activated yet as something to explore or activate now, to grow their product usage — just never claim they already have it active unless they do, and never mention internal tier/status names.`:''}
 Target workers: ${t.workers}
 Conversions needed: ${t.need}
 Contract type: ${c.contract}
@@ -1359,6 +1360,7 @@ Client: ${c.name}
 Track: ${t.label}
 Route: ${t.route}
 Products: ${t.products.length?t.products.join(', '):'HR diagnostic — include 8 questions'}
+${t.products.length?`ONLY mention these product(s) — ${t.products.join(', ')}. Do NOT mention or reference any OTHER Ontop product${['Ontop Card','Reserve','Future Fund Flex','Future Fund +30','Quick'].filter(p=>!t.products.includes(p)).length?' (e.g. '+['Ontop Card','Reserve','Future Fund Flex','Future Fund +30','Quick'].filter(p=>!t.products.includes(p)).join(', ')+')':''} — those are out of scope for this track. Within the listed products, you CAN frame the ones the worker hasn't activated yet as something to explore or activate now, to grow their product usage — just never claim they already have it active unless they do, and never mention internal tier/status names.`:''}
 Target workers: ${t.workers}
 Conversions needed: ${t.need}
 Contract type: ${c.contract}
