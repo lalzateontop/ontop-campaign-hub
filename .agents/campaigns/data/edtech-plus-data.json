@@ -1,6 +1,6 @@
 {
   "client": "edtech",
-  "updatedAt": "2026-07-30T21:20:03.350Z",
+  "updatedAt": "2026-07-30T21:20:23.951Z",
   "tracks": {
     "A": {
       "status": {
@@ -282,11 +282,11 @@
           {
             "n": 1,
             "type": "email",
-            "subject": "Your Ontop account has more to offer",
-            "preview": "A few TripleTen colleagues already made the switch. Here's what they're using.",
-            "body": "[First Name], you're leaving real money on the table.\n\nYour Ontop Card covers zero foreign transaction fees. That's solid. But your colleagues are doing more with their accounts, and the gap is worth knowing about.\n\nRight now, workers like you are:\n- **Earning 4% APR** on their balance with Future Fund +30\n- **Getting 10% cashback** on purchases through Reserve\n\nThat's interest and savings working at the same time, every month. Without those active, your money just sits.\n\nThe setup takes minutes. No complicated steps, no hidden costs.\n\nHere's everything you can activate today: [link below]\n\nLuis Miguel, your Ontop CSM",
-            "cta": "See what you're missing",
-            "legal": "Cashback (10%) requires active Reserve membership ($14.99/mo). Future Fund +30 locks funds for 30 days at 4% APR.",
+            "subject": "Your balance could earn 4% APR",
+            "preview": "Takes minutes to set up. Your colleagues already did it.",
+            "body": "[First Name], your money isn't working as hard as it could.\n\nYour Ontop Card already saves you on foreign transaction fees. That's a good start. But a few of your TripleTen colleagues took it one step further.\n\nThey're earning **4% APR** on their balance with Future Fund +30, or **3% APR** with Future Fund Flex if they prefer to keep things liquid.\n\nThat's real interest, added every month, on money that's already sitting in your account.\n\nThe setup takes minutes. No paperwork, no hidden fees.\n\n**Pick your option and activate it today.**",
+            "cta": "Start earning interest on my balance",
+            "legal": "Future Fund +30 locks funds for 30 days (4% APR). Future Fund Flex allows flexible withdrawal (3% APR). Present both options so the worker can choose.",
             "raw": "\nSUBJECT: Your Ontop account has more to offer\nPREVIEW: A few TripleTen colleagues already made the switch. Here's what they're using.\n---\n[First Name], you're leaving real money on the table.\n\nYour Ontop Card covers zero foreign transaction fees. That's solid. But your colleagues are doing more with their accounts, and the gap is worth knowing about.\n\nRight now, workers like you are:\n- **Earning 4% APR** on their balance with Future Fund +30\n- **Getting 10% cashback** on purchases through Reserve\n\nThat's interest and savings working at the same time, every month. Without those active, your money just sits.\n\nThe setup takes minutes. No complicated steps, no hidden costs.\n\nHere's everything you can activate today: [link below]\n\nLuis Miguel, your Ontop CSM\n---\nCTA: See what you're missing\nLINK: https://onepager-workersprod.vercel.app/\nLEGAL_NOTE: Cashback (10%) requires active Reserve membership ($14.99/mo). Future Fund +30 locks funds for 30 days at 4% APR.\n",
             "sent": false,
             "editMode": false,
@@ -295,11 +295,11 @@
           {
             "n": 2,
             "type": "email",
-            "subject": "$14.9/mo. Here's what it actually pays back.",
-            "preview": "Workers who activated Reserve are earning cashback on top of their Fund returns. The math is simple.",
-            "body": "[First Name], quick math worth your attention.\n\nReserve costs $14.99/month. But workers who activated it alongside Future Fund +30 are earning cashback on every purchase, on top of 4% APR on their saved balance.\n\nDepending on how you spend, Reserve pays for itself in the first few transactions. The rest is straight savings.\n\nYour colleagues at TripleTen figured this out. Over 40 workers have already added at least one of these to their account in the past few weeks.\n\nEvery month without it is a month you've paid zero fees but earned zero extra.\n\nYou can activate everything from one place:\n\nLuis Miguel, your Ontop CSM",
+            "subject": "Your card earns nothing extra. Fix that.",
+            "preview": "40+ TripleTen colleagues combined their card with Future Fund. Here's what they're getting.",
+            "body": "[First Name], a quick number worth knowing.\n\nReserve costs $14.99/month. Workers who added it alongside Future Fund +30 are earning cashback on every purchase, plus 4% APR on their saved balance.\n\nFor most people, it pays for itself in the first few transactions. Everything after that is extra money you'd otherwise leave on the table.\n\nOver 40 of your TripleTen colleagues have already set this up. They're earning on their spending and on their savings, at the same time.\n\nEvery month without it, you're getting zero fees and zero extra returns. That's the whole trade-off.\n\nOne screen. Two minutes. You can activate both from the same place.\n\nLuis Miguel, your Ontop CSM",
             "cta": "Activate and start earning",
-            "legal": "Cashback (10%) on purchases requires active Reserve ($14.99/mo). Future Fund +30: 4% APR, 30-day lock period applies. Past earnings of other workers are illustrative, not guaranteed.",
+            "legal": "Cashback applies only with active Reserve membership ($14.99/mo). Future Fund available as Flex (3% APR, flexible withdrawal) or +30 (4% APR, 30-day lock). Present both options before activation.",
             "raw": "\nSUBJECT: $14.9/mo. Here's what it actually pays back.\nPREVIEW: Workers who activated Reserve are earning cashback on top of their Fund returns. The math is simple.\n---\n[First Name], quick math worth your attention.\n\nReserve costs $14.99/month. But workers who activated it alongside Future Fund +30 are earning cashback on every purchase, on top of 4% APR on their saved balance.\n\nDepending on how you spend, Reserve pays for itself in the first few transactions. The rest is straight savings.\n\nYour colleagues at TripleTen figured this out. Over 40 workers have already added at least one of these to their account in the past few weeks.\n\nEvery month without it is a month you've paid zero fees but earned zero extra.\n\nYou can activate everything from one place:\n\nLuis Miguel, your Ontop CSM\n---\nCTA: Activate and start earning\nLINK: https://onepager-workersprod.vercel.app/\nLEGAL_NOTE: Cashback (10%) on purchases requires active Reserve ($14.99/mo). Future Fund +30: 4% APR, 30-day lock period applies. Past earnings of other workers are illustrative, not guaranteed.\n",
             "sent": false,
             "editMode": false,
@@ -308,30 +308,12 @@
           {
             "n": 3,
             "type": "email",
-            "subject": "Last nudge: your account, fully working",
-            "preview": "Most people who haven't activated yet say they'll \"do it later.\" Later costs money.",
-            "body": "[First Name], this is the last time I'll bring this up.\n\nYour Ontop Card is doing its job. Zero fees when you spend abroad. That's real.\n\nBut Future Fund +30 and Reserve are sitting there, unactivated, while your balance earns nothing and your purchases return nothing.\n\nWorkers who set this up in month one have been earning 4% APR and cashback since day one. The ones who waited are still waiting.\n\nOne link. A few minutes. No catch.\n\nLuis Miguel, your Ontop CSM",
-            "cta": "Get my account fully set up",
-            "legal": "Future Fund +30: 4% APR, 30-day lock. Reserve: $14.99/mo required for cashback eligibility. This message is part of an Ontop campaign for TripleTen workers.",
+            "subject": "Your balance has earned $0 this month",
+            "preview": "Takes 3 minutes to change that. Here's how.",
+            "body": "[First Name], that's not a dig. It's just math.\n\nEvery month your balance sits unactivated in Future Fund is a month of 4% APR you don't get back. Workers who set this up in week one have been earning since day one.\n\nYour Ontop Card is already covering you on zero foreign transaction fees. Adding Future Fund takes a few minutes and costs nothing.\n\nPick the option that fits you: **Flex** if you want to keep access to your funds, **+30** if you're comfortable locking them for a higher return.\n\nThat's it. One choice. Three minutes.\n\nLuis Miguel, your Ontop CSM",
+            "cta": "Start earning on my balance",
+            "legal": "Future Fund Flex: 3% APR, flexible withdrawal. Future Fund +30: 4% APR, funds locked 30 days. Both options presented at activation.",
             "raw": "\nSUBJECT: Last nudge: your account, fully working\nPREVIEW: Most people who haven't activated yet say they'll \"do it later.\" Later costs money.\n---\n[First Name], this is the last time I'll bring this up.\n\nYour Ontop Card is doing its job. Zero fees when you spend abroad. That's real.\n\nBut Future Fund +30 and Reserve are sitting there, unactivated, while your balance earns nothing and your purchases return nothing.\n\nWorkers who set this up in month one have been earning 4% APR and cashback since day one. The ones who waited are still waiting.\n\nOne link. A few minutes. No catch.\n\nLuis Miguel, your Ontop CSM\n---\nCTA: Get my account fully set up\nLINK: https://onepager-workersprod.vercel.app/\nLEGAL_NOTE: Future Fund +30: 4% APR, 30-day lock. Reserve: $14.99/mo required for cashback eligibility. This message is part of an Ontop campaign for TripleTen workers.\n",
-            "sent": false,
-            "editMode": false,
-            "editBody": ""
-          },
-          {
-            "n": 1,
-            "type": "whatsapp",
-            "body": "[First Name], your Ontop account can do more than you're using it for. Card, savings, Reserve — your colleagues already have it all active. Don't leave money on the table: https://onepager-workersprod.vercel.app/",
-            "raw": "[First Name], your Ontop account can do more than you're using it for. Card, savings, Reserve — your colleagues already have it all active. Don't leave money on the table: https://onepager-workersprod.vercel.app/",
-            "sent": false,
-            "editMode": false,
-            "editBody": ""
-          },
-          {
-            "n": 2,
-            "type": "whatsapp",
-            "body": "Still getting full value from Ontop? Most TripleTen workers who checked this page found at least one feature they weren't using. Takes 2 min: https://onepager-workersprod.vercel.app/",
-            "raw": "Still getting full value from Ontop? Most TripleTen workers who checked this page found at least one feature they weren't using. Takes 2 min: https://onepager-workersprod.vercel.app/",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -341,11 +323,11 @@
           {
             "n": 1,
             "type": "email",
-            "subject": "Tu cuenta Ontop puede hacer más por ti",
-            "preview": "Tus colegas en TripleTen ya lo están aprovechando — tú puedes hoy mismo.",
-            "body": "[First Name], hay funciones en tu cuenta Ontop que aún no has activado.\n\nNo es un extra opcional. Es dinero que dejas sobre la mesa cada mes.\n\nTus colegas ya están usando su tarjeta Ontop para comprar en el exterior sin pagar comisiones, generando rendimiento sobre su saldo con Future Fund +30 (4% APR), y accediendo a beneficios adicionales con Reserve.\n\nTú tienes acceso a lo mismo. Solo falta un paso.\n\nCada mes que pasa sin activarlo es un mes de rendimiento que no recuperas, y comisiones que sí pagaste (pero no tenías que pagar).\n\nEntra y ve exactamente qué tienes disponible en tu cuenta ahora mismo:",
-            "cta": "Ver qué tengo disponible → https://onepager-workersprod.vercel.app/",
-            "legal": "Future Fund +30 implica bloqueo de fondos por 30 días. Ontop Card: cero comisiones en transacciones internacionales como beneficio independiente. Cashback activo solo con Reserve.",
+            "subject": "Tus pagos al exterior te cuestan de más",
+            "preview": "Hay una forma de parar eso hoy, sin costo y en menos de 5 minutos.",
+            "body": "[First Name], cada vez que compras en dólares o pagas una suscripción internacional, tu banco cobra una comisión que Ontop no cobra.\n\nCon tu Ontop Card esos cargos son cero. Ya tienes acceso. Solo falta activarla.\n\nY si quieres que tu saldo también trabaje para ti, Future Fund te da 3% o 4% APR sobre lo que tengas guardado, con o sin periodo de bloqueo, según lo que prefieras.\n\nMás de 270 de tus colegas en TripleTen ya tienen esto activo.\n\nTarda menos de 5 minutos desde tu cuenta.",
+            "cta": "Activar mi Ontop Card",
+            "legal": "Future Fund disponible en dos modalidades: Flex (3% APR, retiro flexible) o +30 (4% APR, fondos disponibles tras 30 días). Cashback exclusivo para usuarios con Reserve activa.",
             "raw": "\nSUBJECT: Tu cuenta Ontop puede hacer más por ti\nPREVIEW: Tus colegas en TripleTen ya lo están aprovechando — tú puedes hoy mismo.\n---\n[First Name], hay funciones en tu cuenta Ontop que aún no has activado.\n\nNo es un extra opcional. Es dinero que dejas sobre la mesa cada mes.\n\nTus colegas ya están usando su tarjeta Ontop para comprar en el exterior sin pagar comisiones, generando rendimiento sobre su saldo con Future Fund +30 (4% APR), y accediendo a beneficios adicionales con Reserve.\n\nTú tienes acceso a lo mismo. Solo falta un paso.\n\nCada mes que pasa sin activarlo es un mes de rendimiento que no recuperas, y comisiones que sí pagaste (pero no tenías que pagar).\n\nEntra y ve exactamente qué tienes disponible en tu cuenta ahora mismo:\n---\nCTA: Ver qué tengo disponible → https://onepager-workersprod.vercel.app/\nLEGAL_NOTE: Future Fund +30 implica bloqueo de fondos por 30 días. Ontop Card: cero comisiones en transacciones internacionales como beneficio independiente. Cashback activo solo con Reserve.\n",
             "sent": false,
             "editMode": false,
@@ -354,30 +336,12 @@
           {
             "n": 2,
             "type": "email",
-            "subject": "¿Cuánto perdiste en comisiones este mes?",
-            "preview": "Un cálculo rápido que vale la pena hacer antes del próximo pago.",
-            "body": "[First Name], una pregunta directa:\n\n¿Cuánto pagaste en comisiones por compras internacionales o transferencias este mes?\n\nSi usaste otra tarjeta o cuenta para mover tu dinero, probablemente más de lo que crees.\n\nCon tu tarjeta Ontop activa al 100%, esas comisiones desaparecen. Con Future Fund +30, tu saldo trabaja al 4% APR mientras no lo necesitas. Con Reserve, cada compra te regresa un porcentaje en cashback.\n\nLos tres están disponibles en tu cuenta hoy.\n\nMás de 40 de tus compañeros en TripleTen ya los tienen activos. Ellos dejaron de pagar lo que no tenían que pagar.\n\nEl tiempo que llevas sin activarlos no se recupera. El próximo mes sí puedes empezar diferente.",
-            "cta": "Activar todo en mi cuenta → https://onepager-workersprod.vercel.app/",
-            "legal": "Future Fund +30: fondos bloqueados 30 días corridos. Cashback disponible únicamente con Reserve activa ($14.9/mes). Tarjeta Ontop: beneficio de zero foreign transaction fees aplica de forma independiente.",
+            "subject": "40 compañeros ya no pagan esas comisiones",
+            "preview": "Tú tampoco tienes que seguir pagándolas. Aquí está el cómo.",
+            "body": "[First Name], cada compra internacional tiene un costo que probablemente no ves en el resumen.\n\nComisiones de cambio, cargos por transacción, fees de transferencia. Se acumulan mes a mes.\n\nCon tu Ontop Card activa pagas cero comisiones en compras internacionales. Con Future Fund tu saldo genera 3% o 4% APR según el plazo que elijas, en lugar de quedarse quieto.\n\nMás de 40 de tus colegas en TripleTen ya tienen ambos activos. No pagaron nada por configurarlos.\n\nTú ya tienes una cuenta Ontop. Solo falta activar lo que está esperando en ella.",
+            "cta": "Activar mi tarjeta y rendimiento → https://onepager-workersprod.vercel.app/",
+            "legal": "Future Fund disponible en dos modalidades: Flex (3% APR, retiro flexible) o +30 (4% APR, fondos disponibles tras 30 días). El cashback aplica solo con Reserve activa.",
             "raw": "\nSUBJECT: ¿Cuánto perdiste en comisiones este mes?\nPREVIEW: Un cálculo rápido que vale la pena hacer antes del próximo pago.\n---\n[First Name], una pregunta directa:\n\n¿Cuánto pagaste en comisiones por compras internacionales o transferencias este mes?\n\nSi usaste otra tarjeta o cuenta para mover tu dinero, probablemente más de lo que crees.\n\nCon tu tarjeta Ontop activa al 100%, esas comisiones desaparecen. Con Future Fund +30, tu saldo trabaja al 4% APR mientras no lo necesitas. Con Reserve, cada compra te regresa un porcentaje en cashback.\n\nLos tres están disponibles en tu cuenta hoy.\n\nMás de 40 de tus compañeros en TripleTen ya los tienen activos. Ellos dejaron de pagar lo que no tenían que pagar.\n\nEl tiempo que llevas sin activarlos no se recupera. El próximo mes sí puedes empezar diferente.\n---\nCTA: Activar todo en mi cuenta → https://onepager-workersprod.vercel.app/\nLEGAL_NOTE: Future Fund +30: fondos bloqueados 30 días corridos. Cashback disponible únicamente con Reserve activa ($14.9/mes). Tarjeta Ontop: beneficio de zero foreign transaction fees aplica de forma independiente.\n",
-            "sent": false,
-            "editMode": false,
-            "editBody": ""
-          },
-          {
-            "n": 1,
-            "type": "whatsapp",
-            "body": "[Nombre], hay beneficios en tu cuenta Ontop que aún no estás usando. Tus colegas de TripleTen ya los activaron. ¿Los ves aquí? → https://onepager-workersprod.vercel.app/",
-            "raw": "[Nombre], hay beneficios en tu cuenta Ontop que aún no estás usando. Tus colegas de TripleTen ya los activaron. ¿Los ves aquí? → https://onepager-workersprod.vercel.app/",
-            "sent": false,
-            "editMode": false,
-            "editBody": ""
-          },
-          {
-            "n": 2,
-            "type": "whatsapp",
-            "body": "Cada mes sin activarlos es dinero que se queda sobre la mesa. Sácale más a tu cuenta Ontop en 2 minutos: https://onepager-workersprod.vercel.app/",
-            "raw": "Cada mes sin activarlos es dinero que se queda sobre la mesa. Sácale más a tu cuenta Ontop en 2 minutos: https://onepager-workersprod.vercel.app/",
             "sent": false,
             "editMode": false,
             "editBody": ""
@@ -391,8 +355,7 @@
         ],
         "tone": "Direct and concrete",
         "channels": [
-          "email",
-          "whatsapp"
+          "email"
         ],
         "generatedAt": "2026-07-30T20:59:45.518Z",
         "cycle": 1
